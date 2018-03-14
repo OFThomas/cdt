@@ -13,7 +13,8 @@ real(kind=dp), allocatable, dimension(:,:) :: unitary, ident, uprod
 real(kind=dp), allocatable, dimension(:,:,:)  :: u, gateseq
 
 counter=1
-qubits=3
+print*, 'Enter number of qubits, 2 or 3'
+read*, qubits
 n= 2**qubits
 numofdecomp=int(n*(n-1)/2.0_dp)
 
@@ -88,21 +89,6 @@ write(*,*) unitary
 
 !#!!! make unitary gates
 
-!#u1
-!#u(1:n,1,1)=(/1.0_dp, 0.0_dp, 0.0_dp, 0.0_dp/)
-!#u(1:n,2,1)=(/0.0_dp,r2/4.0, 0.0_dp, -r2/4.0/)
-!#u(1:n,3,1)=(/0.0_dp, 0.0_dp, 1.0_dp, 0.0_dp/)
-!#u(1:n,4,1)=(/0.0_dp, r2/4.0, 0.0_dp, r2/4.0/)
-
-!#u2
-!#u(1:n,1,2)=(/1.0_dp, 0.0_dp, 0.0_dp, 0.0_dp/)
-!#u(1:n,2,2)=(/0.0_dp, 1.0_dp, 0.0_dp, 0.0_dp/)
-!#u(1:n,3,2)=(/0.0_dp, 0.0_dp, 0.0_dp, -1.0_dp/)
-!#u(1:n,4,2)=(/0.0_dp, 0.0_dp, 1.0_dp, 0.0_dp/)
-
-!#u3
-
-
 !#print*, p(n), p(n-1), p(1)
 !#write(*,*) uprod
 !#write(*,*) u(:,:,1)
@@ -139,15 +125,16 @@ end do
 
 print*,
 print*, unitarycheck(u,unitary)
-if (unitarycheck(u,unitary)==1) then
+!if (unitarycheck(u,unitary)==1) then
   print*, 'THIS IS UNITARY'
   call invert(u,gateseq,counter)
   call gateset(gateseq)
-end if
+!end if
 
 do i=1,n*n
 if (icheck(gateseq(:,:,i))==0) then
-write(*,*) gateseq(:,:,i)
+
+!write(*,*) gateseq(:,:,i)
 print*,
 end if
 end do
@@ -156,7 +143,13 @@ do i=1, counter
   uprod=matmul(uprod,gateseq(:,:,i))
 end do
 
+print*, '------------------------------------------------------------------'
+print*, 'Unitary matrix from', counter-1, 'gates'
+print*, '------------------------------------------------------------------'
+
+print*,
 write(*,*) uprod
+!write(*,*) icheck(uprod)
 !#write(*,*) matmul(gateseq(:,:,1),gateseq(:,:,2))
 
 
@@ -298,13 +291,13 @@ itest:do i=1, size(uni,1)
   do j=1, size(uni,1)
     if (i.ne.j) then
       if (abs(uni(i,j))>=1e-10) then
-        !print*, 'not ident'
+        print*, 'not ident off diag'
         icheck=0
         exit itest
       end if
     else if (i.eq.j) then
-      if ((uni(i,j)-1)>=1e-10) then
-        !print*, 'not identity'
+      if ((abs(uni(i,j))-1)>=1e-10) then
+        print*, 'not identity diag'
         icheck=0
         exit itest
       end if
@@ -315,9 +308,5 @@ end do itest
 end function icheck
 
 
-
 end program matrixmul
-
-
-
 
