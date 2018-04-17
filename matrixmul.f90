@@ -42,7 +42,6 @@ do i=1, size(u,3)
 end do
 gateseq=u
 !#init uprod as ident
-!uprod=identity(n)
 
 !#make unitary
 if (qubits==2) then 
@@ -173,7 +172,6 @@ write(*,21) unitary
 print*,
 write(*,21) matmul(unitary,transpose(unitary))
 
-!#print*, p(n), p(n-1), p(1)
 uprod=unitary
 do i=1,n !#col
   do j=1,n-1 !#row
@@ -189,31 +187,13 @@ print*, 'unitaries'
 uprod=unitary
 do i=1, n*n
   if (icheck(u(:,:,i))==0) then 
-    !print*, 'u non identity',i
-    !write(*,*) u(:,:,i)
-    !print*,
     uprod=matmul(uprod(:,:),u(:,:,i))
-    !write(*,*) uprod
-    !print*,
   end if
 end do
 
-!print*, unitarycheck(u,unitary)
-!print*, icheck(uprod)
-!if (unitarycheck(u,unitary)==1) then
-!  if (icheck(uprod)==1) then
   print*, 'THIS IS UNITARY'
   call invert(u,gateseq,counter)
   call gateset(gateseq)
-!end if
-
-!do i=1,n*n
-!if (icheck(gateseq(:,:,i))==0) then
-
-!write(*,21) gateseq(:,:,i)
-!print*,
-!end if
-!end do
 
 do i=1, counter
   uprod=matmul(uprod,gateseq(:,:,i))
@@ -224,10 +204,6 @@ print*, 'Unitary matrix from', counter-1, 'gates'
 print*, '------------------------------------------------------------------'
 
 print*,
-!write(*,*) uprod
-!write(*,*) icheck(uprod)
-!#write(*,*) matmul(gateseq(:,:,1),gateseq(:,:,2))
-
 
 deallocate(ident)
 deallocate(unitary)
@@ -247,9 +223,6 @@ subroutine gateset(matrix)
   n=size(matrix,3)
   do i=1, n
     if (icheck(matrix(:,:,i))==0) then
-    !  print*, 'gate', i
-      !write(*,*) matrix(:,:,i)
-      !print*,
     end if
   end do
 end subroutine gateset
@@ -282,14 +255,11 @@ itest:do i=1, size(uni,1)
   do j=1, size(uni,1)
     if (i.ne.j) then
       if (abs(uni(i,j))>=1e-10) then
-!        print*, 'not ident off diag'
         icheck=0
         exit itest
       end if
     else if (i.eq.j) then
       if (abs(abs(uni(i,j))-1)>=1e-10) then
-!        print*, 'not identity diag', uni(i,j)
-!        write(*,*) uni
         icheck=0
         exit itest
       end if
@@ -335,8 +305,6 @@ call givensrot(ucurrent(col,row1), ucurrent(col,row2), c,s,r)
   ugate(row1,row2)=-s
   ugate(row2,row1)=s
   ugate(row2,row2)=c
-! if (icheck(ugate)==0) then 
-!end if
 ucurrent=matmul(ucurrent,ugate)
 end subroutine makeunitary
 
