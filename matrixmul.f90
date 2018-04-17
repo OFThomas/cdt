@@ -13,7 +13,7 @@ real(kind=dp), allocatable, dimension(:,:) :: unitary, ident, uprod
 real(kind=dp), allocatable, dimension(:,:,:)  :: u, gateseq
 
 counter=1
-print*, 'Enter number of qubits, 2 or 3'
+print*, 'Enter number of qubits, 2, 3 or 4'
 read*, qubits
 n= 2**qubits
 numofdecomp=int(n*(n-1)/2.0_dp)
@@ -82,11 +82,96 @@ else if (qubits==3) then
   unitary(7,6)=-r2*invr3
 
   unitary(8,4)=1.0_dp
+
+else if (qubits==4) then
+
+  p(1:n)=(/1,2,4,3,7,8,6,5,13,9,10,12,11,15,16,14/)
+  !# col,row
+  !0000
+  unitary(1,1)=1.0_dp
+  !0001
+  unitary(2,2)=0.5_dp
+  unitary(2,6)=sqrt(0.75_dp)
+  !0010
+  unitary(3,2)=0.5_dp
+  unitary(3,6)=-sqrt(1.0_dp/12.0_dp)
+  unitary(3,9)=sqrt(2.0_dp/3.0_dp)
+  !0011
+  unitary(4,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(4,7)=sqrt(1.0_dp/6.0_dp)
+  unitary(4,10)=sqrt(1.0_dp/3.0_dp)
+  unitary(4,15)=sqrt(1.0_dp/3.0_dp)
+  !0100
+  unitary(5,2)=0.5_dp
+  unitary(5,6)=-sqrt(1.0_dp/12.0_dp)
+  unitary(5,9)=-sqrt(1.0_dp/6.0_dp)
+  unitary(5,12)=sqrt(1.0_dp/2.0_dp)
+  !0101
+  unitary(6,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(6,7)=sqrt(1.0_dp/6.0_dp)
+  unitary(6,10)=-sqrt(1.0_dp/12.0_dp)
+  unitary(6,13)=0.5_dp
+  unitary(6,15)=-sqrt(1.0_dp/12.0_dp)
+  unitary(6,16)=0.5_dp 
+  !0110
+  unitary(7,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(7,7)=-sqrt(1.0_dp/6.0_dp)
+  unitary(7,10)=sqrt(1.0_dp/12.0_dp)
+  unitary(7,13)=0.5_dp
+  unitary(7,15)=-sqrt(1.0_dp/12.0_dp)
+  unitary(7,16)=-0.5_dp
+  !0111
+  unitary(8,4)=0.5_dp
+  unitary(8,8)=sqrt(1.0_dp/12.0_dp)
+  unitary(8,11)=sqrt(1.0_dp/6.0_dp)
+  unitary(8,14)=-sqrt(0.5_dp)
+  !1000
+  unitary(9,2)=0.5_dp
+  unitary(9,6)=-sqrt(1.0_dp/12.0_dp)
+  unitary(9,9)=-sqrt(1.0_dp/6.0_dp)
+  unitary(9,12)=-sqrt(0.5_dp)
+  !1001
+  unitary(10,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(10,7)=sqrt(1.0_dp/6.0_dp)
+  unitary(10,10)=-sqrt(1.0_dp/12.0_dp)
+  unitary(10,13)=-0.5_dp
+  unitary(10,15)=-sqrt(1.0_dp/12.0_dp)
+  unitary(10,16)=-0.5_dp
+  !1010
+  unitary(11,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(11,7)=-sqrt(1.0_dp/6.0_dp)
+  unitary(11,10)=sqrt(1.0_dp/12.0_dp)
+  unitary(11,13)=-0.5_dp
+  unitary(11,15)=-sqrt(1.0_dp/12.0_dp)
+  unitary(11,16)=0.5_dp
+  !1011
+  unitary(12,4)=0.5_dp
+  unitary(12,8)=sqrt(1.0_dp/12.0_dp)
+  unitary(12,11)=sqrt(1.0_dp/6.0_dp)
+  unitary(12,14)=sqrt(0.5)
+  !1100
+  unitary(13,3)=sqrt(1.0_dp/6.0_dp)
+  unitary(13,7)=-sqrt(1.0_dp/6.0_dp)
+  unitary(13,10)=-sqrt(1.0_dp/3.0_dp)
+  unitary(13,15)=sqrt(1.0_dp/3.0_dp)
+  !1101
+  unitary(14,4)=0.5_dp
+  unitary(14,8)=sqrt(1.0_dp/12.0_dp)
+  unitary(14,11)=-sqrt(2.0_dp/3.0_dp)
+  !1110
+  unitary(15,4)=0.5_dp
+  unitary(15,8)=-sqrt(3.0_dp/4.0_dp)
+  !1111
+  unitary(16,5)=1.0_dp
+
 end if
 
-write(*,*) unitary
-
+21 format ( 16F7.3)
+write(*,21) unitary
 !#!!! make unitary gates
+
+print*,
+write(*,21) matmul(unitary,transpose(unitary))
 
 !#print*, p(n), p(n-1), p(1)
 uprod=unitary
@@ -162,7 +247,7 @@ subroutine gateset(matrix)
   n=size(matrix,3)
   do i=1, n
     if (icheck(matrix(:,:,i))==0) then
-      print*, 'gate', i
+    !  print*, 'gate', i
       !write(*,*) matrix(:,:,i)
       !print*,
     end if
