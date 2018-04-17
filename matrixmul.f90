@@ -210,7 +210,7 @@ end do
 !do i=1,n*n
 !if (icheck(gateseq(:,:,i))==0) then
 
-!write(*,*) gateseq(:,:,i)
+!write(*,21) gateseq(:,:,i)
 !print*,
 !end if
 !end do
