@@ -1,0 +1,31 @@
+\begin{thebibliography}{1}
+
+\bibitem{bacon2006efficient}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
+\newblock {\em Physical review letters}, 97(17):170502, 2006.
+
+\bibitem{bacon2007quantum}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock The quantum schur and clebsch-gordan transforms: I. efficient qudit
+  circuits.
+\newblock In {\em Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, pages 1235--1244. Society for Industrial and Applied
+  Mathematics, 2007.
+
+\bibitem{li2013decomposition}
+Chi-Kwong Li, Rebecca Roberts, and Xiaoyan Yin.
+\newblock Decomposition of unitary matrices and quantum gates.
+\newblock {\em International Journal of Quantum Information}, 11(01):1350015,
+  2013.
+
+\bibitem{barenco1995elementary}
+Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
+  Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
+\newblock Elementary gates for quantum computation.
+\newblock {\em Physical review A}, 52(5):3457, 1995.
+
+\bibitem{githubot561}
+https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
+
+\end{thebibliography}
