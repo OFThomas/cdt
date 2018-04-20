@@ -5,13 +5,11 @@
 \BOOKMARK [2][-]{subsection.4.1}{Clebsch-Gordan coefficients for 3 qubits}{section.4}% 5
 \BOOKMARK [2][-]{subsection.4.2}{Circuit for 3 qubit transform}{section.4}% 6
 \BOOKMARK [2][-]{subsection.4.3}{4 Qubit CG coefficients}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.4}{Registering J \046 M explicitly Fig. 4, Fig. 5}{section.4}% 8
-\BOOKMARK [1][-]{section.5}{General circuit for the Quantum Schur transform Fig. 7}{}% 9
-\BOOKMARK [1][-]{section.6}{Reduced general gate circuit for up to the 2 qubit Schur transform Fig. 6}{}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Registering J \046 M explicitly ??, ??}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{General circuit for the Quantum Schur transform ??}{}% 9
+\BOOKMARK [1][-]{section.6}{Reduced general gate circuit for up to the 2 qubit Schur transform ??}{}% 10
 \BOOKMARK [1][-]{appendix.A}{Appendix: Maths}{}% 11
 \BOOKMARK [2][-]{subsection.A.1}{3 Qubit transformation}{appendix.A}% 12
 \BOOKMARK [2][-]{subsection.A.2}{3 Qubit phase encoding}{appendix.A}% 13
 \BOOKMARK [2][-]{subsection.A.3}{4 Qubit CG coefficients}{appendix.A}% 14
 \BOOKMARK [2][-]{subsection.A.4}{Rotation matrix for J \046 M values}{appendix.A}% 15
-\BOOKMARK [1][-]{appendix.A}{Appendix- Circuits}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Appendix- Fortran code}{}% 17
