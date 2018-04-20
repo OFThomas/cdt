@@ -1,0 +1,321 @@
+\appendix
+\section{Appendix- Circuits}
+\vspace{-1cm}
+
+\begin{comment}
+%%%%%%%%% circuit 1 
+\begin{figure}[h]
+\begin{align}
+\Qcircuit @C=0.5cm @R=0.7cm{
+%1
+&\lstick{S_1} &\gate{H} &\ctrl{1} &\qw \\
+%0
+&\lstick{S_0} &\ctrl{-1} &\targ &\qw \\
+}
+\end{align}
+\caption{Schur transform for 2 qubits}
+\label{cir:vanilla2}
+\end{figure}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%% Circuit 2
+
+\begin{figure}[h]
+\begin{align}
+\Qcircuit @C=0.52cm @R=0.6cm {
+%J
+&\lstick{J} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\targ &\qw&\qw&\qw &\rstick{J': \ket{0}=0, \ket{1}=1}\\
+%M1
+&\lstick{m_1} &\qw &\gate{H} &\gate{V} &\qw &\gate{V^{\dag}} &\qw &\gate{V} &\gate{H}
+&\qw &\qw&\qw&\qw&\qw&\qw &\ctrl{3} &\qw &\ctrlo{1} &\qw&\qw&\qw&\qw &\rstick{S_0 \wedge S_1} &&&&&&& \mbox{M'}\\
+%M0
+&\lstick{m_0} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\targ &\ctrl{1} &\qw &\targ &\ctrl{2} &\qw&\qw &\targ &\qw&\qw&\qw&\qw &\rstick{S_0 \oplus S_1 \oplus \overline{S_0 \wedge S_1}}  
+\gategroup{2}{30}{3}{30}{1em}{\}} 
+&&&&&&&& \mbox{Register} &&&&& \\
+%S0
+&\lstick{\ket{S_0}} &\qw&\qw &\ctrl{-2} &\targ &\ctrl{-2} &\targ &\qw&\qw&\qw &\ctrl{-1} &\gate{ZX} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{\ket{P_0}} 
+\gategroup{3}{12}{4}{13}{2em}{--} 
+\\
+%S1
+&\lstick{\ket{S_1}} &\qw&\qw&\qw &\ctrl{-1} &\qw &\ctrl{-1} 
+&\ctrl{-3} &\qw&\qw&\qw&\qw&\qw
+&\ctrl{-2} &\gate{HX} &\gate{ZX} &\qw&\qw &\ctrlo{-4} &\qw&\qw&\qw &\rstick{\ket{P_1}}
+\gategroup{5}{4}{5}{10}{1em}{_\}} 
+\gategroup{2}{15}{5}{17}{1em}{--} 
+\\
+%label
+&&&&&& \mbox{$S_0$ AND $S_1$} &&&&&& \mbox{$1^{st}$ Spin} &&& \mbox{$2^{nd}$ Spin}
+}
+\end{align}
+\caption{Spatial multiplexed 2 qubit}
+\label{cir:spatialmulti2}
+\vspace{-1cm}
+\end{figure}
+
+$HX$ gate triggers if $M=0$ meaning $S_0\neq S_1$ which is implemented using an XOR between $S_0$ \& $S_1$. The other gate ($T$) is triggered when $M=-1$ meaning $S_0=S_1=1$ which is done using an AND (Toffoli) gate  between, $S_0=S_1$ AND $S_1=1$ which is decomposed into 5 two-qubit gates. $T^2$ is the ZX gate, meaning $T^2\ket{S} = XZ\ket{S}$.
+
+\begin{table}[h]
+\begin{tabular}{ |c c|c c|c| } 
+\hline
+Spin values &&Circuit output &&M value \\
+\hline
+ $S_1$ &$S_0$ &$m_1$ &$m_0$ &M \\
+\hline
+ 0 &0 &0 &1 &M=+1 \\ 
+ 0 &1 &0 &0 &M=0 \\ 
+ 1 &0 &0 &0 &M=0 \\ 
+ 1 &1 &1 &0 &M=-1 \\ 
+\hline 
+\end{tabular}
+\caption{Table giving M register decoding for 2 qubit spatial multiplexing}
+\label{fig:tab1}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Circuit 3
+
+\begin{figure}[h]
+\begin{align}
+\Qcircuit @C=0.7cm @R=0.7cm {
+%J
+&\lstick{J} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\targ &\qw&\qw  &\rstick{J': \ket{0}=0, \ket{1}=1}\\
+%M1
+&\lstick{m_1} &\qw&\qw&\qw &\targ &\ctrl{1} &\qw&\qw&\qw &\ctrl{1} &\qw &\ctrl{1} &\ctrl{3} &\qw&\qw&\qw&\qw &\rstick{S_1} &&&&& \mbox{M'}\\
+%M0
+&\lstick{m_0} &\targ &\ctrl{1} &\qw&\qw &\targ &\ctrl{2} &\gate{X} &\ctrl{2} &\targ &\ctrl{2} &\targ &\qw&\qw&\qw&\qw&\qw &\rstick{\overline{S_0+S_1}} 
+\gategroup{2}{20}{3}{22}{1em}{\}} &&&&& \mbox{Register} \\
+%S0
+&\lstick{\ket{S_0}} &\ctrl{-1} &\gate{ZX} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{\ket{P_0}} 
+\gategroup{3}{3}{4}{4}{2em}{--} \\
+%S1
+&\lstick{\ket{S_1}} &\qw&\qw&\qw  &\ctrl{-3} &\qw &\gate{HX} &\qw &\gate{T} &\qw &\gate{T^{\dag}} &\qw &\gate{T} &\qw &\ctrlo{-4} &\qw&\qw &\rstick{\ket{P_1}}
+\gategroup{4}{10}{5}{14}{1em}{_\}} 
+\gategroup{2}{10}{5}{14}{1em}{--} \\
+%label
+&&& \mbox{$1^{st}$ Spin} &&&&&&&& \mbox{ZX gate}
+}
+\end{align}
+\caption{minimal gate spatial multiplexing}
+\label{cir:minspatialmult}
+\end{figure}
+
+\begin{table}[h]
+\begin{tabular}{ |c c|c c|c| } 
+\hline
+ Spin values &&Circuit output &&M value \\
+\hline
+ $S_1$ &$S_0$ &$S_1$ &$\overline{S_0+S_1}$ &M \\
+\hline
+ 0 &0 &0 &1 &M=+1 \\ 
+ 0 &1 &0 &0 &M=0 \\ 
+ 1 &0 &1 &0 &M=0 \\ 
+ 1 &1 &1 &1 &M=-1 \\ 
+\hline 
+\end{tabular}
+\caption{Table giving M register decoding for minimal gate number}
+\label{fig:tab}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Circuit 4
+
+\begin{figure}[h]
+\begin{align}
+\Qcircuit @C=0.28cm @R=0.7cm {
+%%%%%%%%%%%%%%%%%% J
+%J2
+&\lstick{J_2 \ket{0}} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw &\gate{H} &\gate{V} &\qw &\gate{V^{\dag}} &\qw &\gate{V} &\gate{H} &\qw&\qw
+&\qw&\qw&\qw  &\rstick{J'_2}
+ & \\
+%J1
+&\lstick{J_1 \ket{0}} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\targ &\gate{X} &\ctrl{-1} &\targ &\ctrl{-1} &\targ &\qw &\gate{X} &\qw &\targ &\qw
+&\qw&\qw &\rstick{J'_1} && \\
+%J0
+&\lstick{J_0 \ket{0}} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\ctrl{-1} &\targ &\qw &\ctrl{-1} &\qw &\ctrl{-1} &\ctrl{-2} &\targ &\qw&\qw &\gate{X}
+&\qw&\qw &\rstick{J'_0}
+\gategroup{1}{2}{3}{3}{1em}{\{}
+\gategroup{1}{36}{3}{38}{1.5em}{\}}
+\gategroup{1}{26}{7}{36}{2.5em}{--} 
+&  \\
+%%%%%%%%%%%%%%%%% M
+%M2
+&\lstick{m_2 \ket{0}} &\qw&\qw
+&\qw &\gate{H} &\gate{V} &\qw &\gate{V^{\dag}} &\qw &\gate{V} &\gate{H} &\qw&\qw&\qw&\qw
+&\ctrl{3} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw  &\rstick{m'_2} & \\
+%m1
+&\lstick{m_1 \ket{0}} &\qw&\qw
+&\targ &\gate{X} &\ctrl{-1} &\targ &\ctrl{-1} &\targ &\qw &\gate{X} &\qw &\targ &\qw&\qw&\qw
+&\qw&\qw &\ctrlo{1} &\qw &\ctrlo{1} &\ctrlo{2} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw  &\rstick{m'_1} & \\
+%m0
+&\lstick{m_0 \ket{0}} &\qw&\qw 
+&\ctrl{-1} &\targ &\qw &\ctrl{-1} &\qw &\ctrl{-1} &\qw &\targ &\qw&\qw &\gate{X} &\qw
+&\qw&\qw &\ctrlo{1} &\targ &\ctrlo{1} &\targ &\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{m'_0} 
+\gategroup{4}{2}{6}{3}{1em}{\{} 
+\gategroup{4}{36}{6}{38}{1.5em}{\}} 
+\gategroup{4}{5}{7}{15}{2.5em}{--} 
+&&      \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Qubit
+&\lstick{Spin \ket{s}} &\qw&\qw 
+&\qw &\ctrl{-1} &\qw&\qw&\qw&\qw &\ctrl{-3} &\ctrl{-1} &\qw &\ctrl{-2} &\qw&\qw
+&\gate{ZX} &\qw &\gate{W} &\qw &\gate{W^{\dag}} &\qw &\gate{W} 
+&\qw&\qw&\qw &\ctrl{-4} &\qw&\qw&\qw&\qw&\qw &\ctrl{-4} &\qw &\ctrl{-5} &\qw&\qw&\qw &\rstick{\ket{P}}       
+\gategroup{4}{17}{7}{23}{2em}{--} 
+%\gategroup{6}{32}{13}{36}{1em}{--}  
+%\gategroup{2}{45}{13}{50}{1em}{--}
+\\ 
+%Labels
+&&&&&&&& \mbox{Quantum Adder on m} &&&&&&&&&&& \mbox{Transform spin} &&&&&&&&&&& \mbox{Quantum Adder on J} &&&&&&&&&&&&&&&
+}
+\end{align}
+\caption{temporal multiplexed streaming}
+\label{cir:tempmultistream}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Circuit 5
+
+\begin{figure}[h]
+\begin{align}
+\Qcircuit @C=0.15cm @R=0.7cm {
+%%%%%%%%%%%%%%%%%J-Carry
+%j-C2
+&\lstick{C_2 \ket{0}} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\targ&\targ&\targ &\qw
+&\ctrl{4} 
+&\qw&\qw&\qw &\ctrl{3} &\qw&\qw &\rstick{C_2} &\\
+%j-C1
+&\lstick{C_1 \ket{0}} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\targ&\targ&\targ &\qw&\qw&\qw&\qw 
+&\targ&\targ&\targ &\qw&\qw&\qw&\qw&\qw 
+&\ctrl{-1} &\ctrl{-1} &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{C_1} &\\
+%j-C0
+&\lstick{C_0 \ket{0}} \gategroup{1}{2}{3}{3}{1em}{\{}
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\ctrl{-1} &\ctrl{-1} &\qw &\ctrl{3} &\qw&\qw
+&\qw &\ctrl{-1} &\ctrl{-1} &\qw &\ctrl{3} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{C_0} &\\
+%%%%%%%%%%%%%%%%%% J
+%J2
+&\lstick{J_2 \ket{0}}
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\targ &\targ &\qw&\qw  &\rstick{J'_2} & \\
+%J1
+&\lstick{J_1 \ket{0}}
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\ctrl{-4} &\ctrl{-3} &\qw
+&\targ &\targ &\qw&\qw&\qw&\qw&\qw&\qw  &\rstick{J'_1} & \\
+%J0
+&\lstick{J_0 \ket{0}} \gategroup{4}{2}{6}{3}{1em}{\{}
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\ctrlo{4} &\ctrlo{4} &\qw &\qw&\qw
+&\ctrl{5} &\ctrl{4} &\ctrl{4} &\qw&\qw
+&\ctrl{-4} &\ctrl{-3} &\qw &\targ &\targ &\qw&\qw 
+&\ctrl{-4} &\ctrl{-3} &\ctrl{-3}
+&\targ &\targ &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\rstick{J'_0} \gategroup{4}{60}{6}{61}{1.5em}{\}} &  \\
+%%%%%%%%%%%%%%%%%%M-Carry
+%m-C2
+&\lstick{C_2 \ket{0}} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\targ &\targ &\targ &\qw&\qw&\qw&\qw
+&\qw &\ctrl{3} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw     &\rstick{C_2}    \\
+%m-C1
+&\lstick{C_1 \ket{0}} 
+&\qw &\targ &\targ &\targ &\qw&\qw&\qw 
+&\targ &\targ &\targ &\qw&\qw&\qw&\qw
+&\qw &\ctrl{-1} &\ctrl{-1} &\qw &\ctrl{3} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{C_1}           \\
+%m-C0
+&\lstick{C_0 \ket{0}} \gategroup{7}{2}{9}{3}{1em}{\{}
+&\qw&\qw &\ctrl{-1} &\ctrl{-1} &\qw &\ctrl{3} &\qw&\qw 
+&\ctrl{-1} &\ctrl{-1} &\qw &\ctrl{3} &\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw  &\rstick{C_0}     \\
+%%%%%%%%%%%%%%%%% M
+%M2
+&\lstick{m_2 \ket{0}}
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw 
+&\targ &\targ &\qw&\qw
+&\ctrlo{3} &\ctrl{3} &\qw&\qw&\qw 
+&\qw &\ctrlo{1} &\ctrl{3} 
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{m'_2}   &    \\
+%m1
+&\lstick{m_1 \ket{0}}
+&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw &\qw&\qw&\qw
+&\ctrl{-4} &\ctrl{-3} &\qw &\targ &\targ
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\qw&\qw&\qw&\qw
+&\ctrl{2} &\ctrlo{2} &\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw  &\rstick{m'_1}   &      \\
+%m0
+&\lstick{m_0 \ket{0}} \gategroup{10}{2}{12}{3}{1em}{\{} \gategroup{7}{10}{13}{15}{1em}{--} &\qw
+&\ctrl{-4} &\ctrl{-3} &\qw &\targ &\targ &\qw
+&\ctrl{-4} &\ctrl{-3} &\qw &\targ &\targ &\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw &\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw
+&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\qw &\rstick{m'_0} \gategroup{10}{60}{12}{61}{1.5em}{\}} &&      \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Qubit
+&\lstick{Spin \ket{s}} &\qw 
+&\ctrlo{-1} &\qw &\ctrlo{-4} &\ctrlo{-1} &\qw&\qw
+&\ctrl{-1} &\qw &\ctrl{-4} &\ctrl{-1} &\qw&\qw&\qw 
+&\ctrl{-2} &\qw &\ctrl{-5} &\ctrl{-2} &\qw&\qw&\qw 
+&\ctrl{-3} &\qw&\qw&\qw &\gate{I} &\gate{ZX} \gategroup{6}{27}{13}{30}{1em}{--} 
+&\qw&\qw&\qw &\gate{I} &\gate{HX} &\gate{ZX} \gategroup{6}{32}{13}{36}{1em}{--} &\qw&\qw 
+&\ctrlo{-7} &\qw &\ctrlo{-10} &\ctrlo{-7} &\qw&\qw&\qw 
+&\ctrl{-7} &\qw &\ctrl{-7} &\ctrl{-7} &\qw&\qw&\qw  \gategroup{2}{45}{13}{50}{1em}{--} 
+&\ctrl{-8} &\qw &\ctrl{-11} &\ctrl{-8} &\qw&\qw&\qw
+&\ctrl{-9} \qw&\qw&\qw&\qw  &\rstick{\ket{P}}         \\ 
+%Labels
+&&&&&&&&&&& \mbox{Quantum Adder} &&&&&&&&&&&&&&&& \mbox{$1^{st}$ Spin} &&&&&& \mbox{$2^{nd}$ Spin} &&&&&&&&&&&&& \mbox{Quantum Adder} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+}
+\end{align}
+\caption{general streaming circuit}
+\label{cir:genstreaming}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Circuit 6 
+%end?
+\begin{table}[h]
+\begin{tabular}{ |c c c|c| } 
+\hline
+ $J_2$ &$J_1$ &$J_0$ &J \\
+ \hline
+ 0 &0 &0 &0 \\ 
+ 0 &0 &1 &$\frac{1}{2}$ \\ 
+ 0 &1 &0 &1 \\ 
+ 0 &1 &1 &$\frac{3}{2}$ \\ 
+ \hline 
+ 1 &0 &0 &-2 \\ 
+ 1 &0 &1 &-$\frac{3}{2}$ \\ 
+ 1 &1 &0 &-1 \\ 
+ 1 &1 &1 &-$\frac{1}{2}$ \\  
+ \hline 
+\end{tabular}
+\quad
+\begin{tabular}{ |c c c|c| } 
+\hline
+ $m_2$ &$m_1$ &$m_0$ &M \\
+ \hline
+ 0 &0 &0 &0 \\ 
+ 0 &0 &1 &$\frac{1}{2}$ \\ 
+ 0 &1 &0 &1 \\ 
+ 0 &1 &1 &$\frac{3}{2}$ \\ 
+ \hline 
+ 1 &0 &0 &-2 \\ 
+ 1 &0 &1 &-$\frac{3}{2}$ \\ 
+ 1 &1 &0 &-1 \\ 
+ 1 &1 &1 &-$\frac{1}{2}$ \\  
+ \hline
+\end{tabular}
+\caption{Tables giving binary Two's complement encoding to spin values of the M and J registers}
+\label{fig:encoding}
+\end{table}
