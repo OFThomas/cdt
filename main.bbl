@@ -5,14 +5,6 @@ Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
 \newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
 \newblock {\em Physical review letters}, 97(17):170502, 2006.
 
-\bibitem{bacon2007quantum}
-Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
-\newblock The quantum schur and clebsch-gordan transforms: I. efficient qudit
-  circuits.
-\newblock In {\em Proceedings of the eighteenth annual ACM-SIAM symposium on
-  Discrete algorithms}, pages 1235--1244. Society for Industrial and Applied
-  Mathematics, 2007.
-
 \bibitem{li2013decomposition}
 Chi-Kwong Li, Rebecca Roberts, and Xiaoyan Yin.
 \newblock Decomposition of unitary matrices and quantum gates.
@@ -27,5 +19,13 @@ Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
 
 \bibitem{githubot561}
 https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
+
+\bibitem{bacon2007quantum}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock The quantum schur and clebsch-gordan transforms: I. efficient qudit
+  circuits.
+\newblock In {\em Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, pages 1235--1244. Society for Industrial and Applied
+  Mathematics, 2007.
 
 \end{thebibliography}
