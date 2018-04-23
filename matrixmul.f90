@@ -3,7 +3,7 @@ program matrixmul
 implicit none
 
 integer, parameter :: dp=selected_real_kind(15,300)
-integer :: n, qubits, numofdecomp, i, j, counter
+integer :: n, qubits, numofdecomp, i, j, counter, cnotnum
 integer, allocatable, dimension(:) :: p, gatenum
 
 real(kind=dp), parameter :: invr2=1/sqrt(real(2,kind=dp)), invr3=1/sqrt(real(3,kind=dp)), invr6=1/sqrt(real(6,kind=dp))
@@ -12,6 +12,7 @@ real(kind=dp), parameter :: r2=sqrt(real(2,kind=dp))
 real(kind=dp), allocatable, dimension(:,:) :: unitary, ident, uprod
 real(kind=dp), allocatable, dimension(:,:,:)  :: u, gateseq
 
+cnotnum=0
 counter=1
 print*, 'Enter number of qubits, 2, 3 or 4'
 read*, qubits
@@ -165,7 +166,7 @@ else if (qubits==4) then
 
 end if
 
-21 format ( 4F7.3)
+21 format ( 8F7.3)
 write(*,21) unitary
 !#!!! make unitary gates
 
@@ -195,13 +196,18 @@ end do
   call invert(u,gateseq,counter)
   call gateset(gateseq)
  
-  write(*,21) gateseq(:,:,1:counter)
+  do i=1,counter
+  write(*,21) gateseq(:,:,i)
+  print*,
+  print*, cnotcheck(gateseq(:,:,i))
+  print*,
+  end do
 do i=1, counter
   uprod=matmul(uprod,gateseq(:,:,i))
 end do
 
 print*, '------------------------------------------------------------------'
-print*, 'Unitary matrix from', counter-1, 'gates'
+print*, 'Unitary matrix from', counter-1, 'gates ', 'Cnots', counter-1-cnotnum
 print*, '------------------------------------------------------------------'
 
 print*, size(gateseq,3)
@@ -226,6 +232,8 @@ subroutine gateset(matrix)
     if (icheck(matrix(:,:,i))==0) then 
     end if
     if (cnotcheck(matrix(:,:,i))==0) then
+    cnotnum=cnotnum+1
+    print*, 'cnot'
     end if
   end do
 end subroutine gateset
@@ -257,10 +265,12 @@ cnotcheck=1
 !#check if cnot
 cnottest:do i=1, size(uni,1)
   do j=1, size(uni,1)
-    if ((abs(uni(i,j)).eq.0).or.(abs(uni(i,j)).eq.1)) then
+    if ((abs(uni(i,j))<=1e-10).or.(abs(abs(uni(i,j))-1)<=1e-10)) then
      ! print*, ' 0 or 1'
     else 
       print*, 'not 0 or 1!!!!!'
+      cnotcheck=0
+      exit cnottest
     end if
   end do
 end do cnottest
