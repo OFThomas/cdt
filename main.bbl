@@ -5,11 +5,6 @@ Alexandra~E Moylett and Peter~S Turner.
 \newblock Quantum simulation of partially distinguishable boson sampling.
 \newblock {\em arXiv:1803.03657}, 2018.
 
-\bibitem{bacon2006efficient}
-Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
-\newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
-\newblock {\em Physical review letters}, 97(17):170502, 2006.
-
 \bibitem{kirby2017practical}
 William~M Kirby and Frederick~W Strauch.
 \newblock A practical quantum algorithm for the schur transform.
@@ -29,6 +24,11 @@ Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
   Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
 \newblock Elementary gates for quantum computation.
 \newblock {\em Physical review A}, 52(5):3457, 1995.
+
+\bibitem{bacon2006efficient}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
+\newblock {\em Physical review letters}, 97(17):170502, 2006.
 
 \bibitem{bacon2007quantum}
 Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
