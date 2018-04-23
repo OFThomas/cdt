@@ -166,12 +166,28 @@ else if (qubits==4) then
 
 end if
 
-21 format ( 8F7.3)
-write(*,21) unitary
-!#!!! make unitary gates
+22 format ( 4F7.3)
+23 format ( 8F7.3)
+24 format ( 16F7.3)
 
-print*,
-write(*,21) matmul(unitary,transpose(unitary))
+if (qubits==2) then 
+  write(*,22) unitary
+  ! make unitary gates
+  print*,
+  write(*,22) matmul(unitary,transpose(unitary))
+
+else if (qubits==3) then
+  write(*,23) unitary
+  ! make unitary gates
+  print*,
+  write(*,23) matmul(unitary,transpose(unitary))
+
+else
+  write(*,24) unitary
+  ! make unitary gates
+  print*,
+  write(*,24) matmul(unitary,transpose(unitary))
+end if
 
 uprod=unitary
 do i=1,n !#col
@@ -197,20 +213,20 @@ end do
   call gateset(gateseq)
  
   do i=1,counter
-  write(*,21) gateseq(:,:,i)
-  print*,
-  print*, cnotcheck(gateseq(:,:,i))
-  print*,
+  !write(*,21) gateseq(:,:,i)
+  !print*,
+  !print*, cnotcheck(gateseq(:,:,i))
+  !print*,
   end do
 do i=1, counter
   uprod=matmul(uprod,gateseq(:,:,i))
 end do
 
 print*, '------------------------------------------------------------------'
-print*, 'Unitary matrix from', counter-1, 'gates ', 'Cnots', counter-1-cnotnum
+print*, 'Unitary matrix from', counter-1, 'gates, ', 'Cnots=', counter-1-cnotnum
 print*, '------------------------------------------------------------------'
 
-print*, size(gateseq,3)
+!print*, size(gateseq,3)
 
 deallocate(ident)
 deallocate(unitary)
@@ -220,7 +236,7 @@ deallocate(p)
 deallocate(gateseq)
 deallocate(gatenum)
 
-!#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 contains
 
 !# print non identity elements
@@ -233,12 +249,12 @@ subroutine gateset(matrix)
     end if
     if (cnotcheck(matrix(:,:,i))==0) then
     cnotnum=cnotnum+1
-    print*, 'cnot'
+    !print*, 'cnot'
     end if
   end do
 end subroutine gateset
 
-!# transpose and invert array
+! transpose and invert array
 subroutine invert(matrix,inverted,count)
   real(kind=dp), dimension(:,:,:), intent(inout) :: inverted
   real(kind=dp), dimension(:,:,:), intent(in) :: matrix
@@ -254,7 +270,7 @@ subroutine invert(matrix,inverted,count)
   
 end subroutine invert
 
-!#!!!! Check product gives identity 
+! Check product gives identity 
 function cnotcheck(uni)
   real(kind=dp) :: cnotcheck
   real(kind=dp), dimension(:,:), intent(in) :: uni
@@ -262,13 +278,13 @@ function cnotcheck(uni)
 
 !check for CNOT
 cnotcheck=1
-!#check if cnot
+!check if cnot
 cnottest:do i=1, size(uni,1)
   do j=1, size(uni,1)
     if ((abs(uni(i,j))<=1e-10).or.(abs(abs(uni(i,j))-1)<=1e-10)) then
      ! print*, ' 0 or 1'
     else 
-      print*, 'not 0 or 1!!!!!'
+     ! print*, 'not 0 or 1!!!!!'
       cnotcheck=0
       exit cnottest
     end if
@@ -276,15 +292,14 @@ cnottest:do i=1, size(uni,1)
 end do cnottest
 end function cnotcheck
 
-
-!#!!!! Check product gives identity 
+! Check product gives identity 
 function icheck(uni)
   real(kind=dp) :: icheck
   real(kind=dp), dimension(:,:), intent(in) :: uni
   integer :: i, j
 
 icheck=1
-!#check ident
+!check ident
 itest:do i=1, size(uni,1)
   do j=1, size(uni,1)
     if (i.ne.j) then
@@ -302,7 +317,7 @@ itest:do i=1, size(uni,1)
 end do itest
 end function icheck
 
-!#!!!! Check product gives identity 
+! Check product gives identity 
 function unitarycheck(umatrices, uni)
   real(kind=dp) :: unitarycheck
   real(kind=dp), dimension(:,:,:), intent(in) :: umatrices
@@ -323,7 +338,7 @@ unitarycheck=icheck(uprod)
 
 end function unitarycheck 
 
-!#!!! find type of u
+! find type of u
 subroutine makeunitary(row1,row2,col,ucurrent, ugate)
   real(kind=dp) :: c,s,r
   real(kind=dp), dimension(:,:), intent(inout) :: ucurrent, ugate
@@ -342,7 +357,7 @@ call givensrot(ucurrent(col,row1), ucurrent(col,row2), c,s,r)
 ucurrent=matmul(ucurrent,ugate)
 end subroutine makeunitary
 
-!#!!! Calc givens rotation
+! Calc givens rotation
 subroutine givensrot(a, b, c, s, r)
   real(kind=dp) :: a, b, c, s, r, h, d
 h=0.0
@@ -363,7 +378,7 @@ end if
 end subroutine givensrot  
 
 
-!#!!!!! make identiy matrix dim n
+! make identiy matrix dim n
 function identity(n)
   real(kind=dp), dimension(n,n) :: identity
   integer :: n, i
