@@ -1,9 +1,19 @@
 \begin{thebibliography}{1}
 
+\bibitem{moylett2018quantum}
+Alexandra~E Moylett and Peter~S Turner.
+\newblock Quantum simulation of partially distinguishable boson sampling.
+\newblock {\em arXiv:1803.03657}, 2018.
+
 \bibitem{bacon2006efficient}
 Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
 \newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
 \newblock {\em Physical review letters}, 97(17):170502, 2006.
+
+\bibitem{kirby2017practical}
+William~M Kirby and Frederick~W Strauch.
+\newblock A practical quantum algorithm for the schur transform.
+\newblock {\em arXiv:1709.07119}, 2017.
 
 \bibitem{li2013decomposition}
 Chi-Kwong Li, Rebecca Roberts, and Xiaoyan Yin.
@@ -11,14 +21,14 @@ Chi-Kwong Li, Rebecca Roberts, and Xiaoyan Yin.
 \newblock {\em International Journal of Quantum Information}, 11(01):1350015,
   2013.
 
+\bibitem{githubot561}
+https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
+
 \bibitem{barenco1995elementary}
 Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
   Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
 \newblock Elementary gates for quantum computation.
 \newblock {\em Physical review A}, 52(5):3457, 1995.
-
-\bibitem{githubot561}
-https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
 
 \bibitem{bacon2007quantum}
 Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.

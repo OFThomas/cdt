@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1524475263 "main.aux" "main.bbl" "main" 1524480019
+["bibtex main"] 1524489220 "main.aux" "main.bbl" "main" 1524489454
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1524479998 7211 aea0acb0a1c79f5152a221bd38997a3d ""
+  "main.aux" 1524489441 6603 54573c78887b9ea7eb8bf40bce032bcd ""
   "main.bcf" 0 -1 0 ""
-  "references.bib" 1524233030 1486 74dee78d263a10ce948cfeb6d5f28a5f ""
+  "references.bib" 1524488902 1873 e7badf17b97a10bc95cbbcb32419a1bf ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1524479986 "main.tex" "main.pdf" "main" 1524480019
+  "main.bbl"
+["pdflatex"] 1524489429 "main.tex" "main.pdf" "main" 1524489454
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -223,14 +223,14 @@
   "appendcode.tex" 1524233030 7686 5dc8212b3842d36cb657109b1c0269c5 ""
   "appendmaths.tex" 1524337792 9348 10155cac57db7060078f4f6f498b5ba6 ""
   "genaddercirc.png" 1524233052 14297 88d78d07637600c6d386b0246a618067 ""
-  "main.aux" 1524479998 7211 aea0acb0a1c79f5152a221bd38997a3d ""
-  "main.bbl" 1524475263 1218 23515602da1cd711af0985f0ff1ffcc0 "bibtex main"
-  "main.out" 1524479998 1592 b398df70d9b7ff514327176bfb7a00f3 ""
-  "main.tex" 1524479985 14292 ec2da943dc390726fef622ad81068d6e ""
+  "main.aux" 1524489441 6603 54573c78887b9ea7eb8bf40bce032bcd ""
+  "main.bbl" 1524489220 1578 e2865ca7ce62bab05fa2701733734b45 "bibtex main"
+  "main.out" 1524489441 1029 d1376a9793201a4dbf9ea4ad44a25efc ""
+  "main.tex" 1524489418 14337 9d7d7e6957e2ef58fe6ee199382f2c27 ""
   "qcircuit.sty" 1524233030 12405 9483c9645d211b8579cf4ac8836c8798 ""
   "schurcascade.png" 1524233030 21609 f295da278ef32214ebfb1899b1992fea ""
   (generated)
   "main.pdf"
+  "main.out"
   "main.aux"
   "main.log"
-  "main.out"

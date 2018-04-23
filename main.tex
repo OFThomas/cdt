@@ -71,9 +71,8 @@
 There are two distinct ways of performing the Schur transform on $n$ qubits, it can either be built up from coupling all $n$ qubits together in a single iteration which we call the spatial multiplexed approach. The
 other approach is performing Clebsch-Gordan (CG) transforms on the $n$ qubits one at a time which we call the temporal multiplexed approach.  
 
-
+use in boson sampling experiments preparing highly symmetrerised states, \cite{moylett2018quantum}
 This report is structured as follows,   
-
 
 \section{Streaming Scheme}
 
@@ -87,10 +86,12 @@ The streaming Schur transform is described in \autoref{fig:stream},
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.4\textwidth]{schurcascade.png}
+\includegraphics[width=0.45\textwidth]{schurcascade.png}
 \caption{Streaming structure where the Schur transform is built up from consecutive Clebsch-Gordan transforms \cite{bacon2006efficient}.}
 \label{fig:stream}
 \end{figure}
+
+The aim of this report is to look at whether it is possible to achieve a log decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing the couplings up similar to a binary tree. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. looking at the pairing approach there is a symmetry in the fact that the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
 
 For the streaming scheme the $U_{CG}$ block can be chosen so that it contains all of the gates for upto the n-th qubit meaning the same block can be repeated. Where the $U_{CG}$ is the Clebsch-Gordan transform between the $J$ \& $M$ registers and the k-th qubit $\ket{i_k}$.
 
@@ -126,16 +127,14 @@ Where primed variables means after the angular momentum addition so $J$ is the t
 
 To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix}, values here \autoref{eq:rvalues}, and a function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (meaning the registers are allowed to be in superpositions) equivalent of the digital full adders and subtractors. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
 
-The aim of this report is to look at whether it is possible to achieve a log decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing the couplings up in a \textbf{binary tree?} technique. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. looking at the pairing approach there is a symmetry in the fact that the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem
-compared to any arbitrary $J \& M$ values.
 
+\section{Schur transform}
 
-\section{Implementing the Clebsch-Gordan Transform}
+The Schur transform  maps the computation basis states to a Schur basis, which is a labeling of J and M values.
+We present symmeterised  \cite{kirby2017practical}.
 
-The vanilla transform directly maps the computation basis states to a labeling of J and M values. The vanilla approach of calculating the CG coefficients and finding a gate decomposition does not scale well. A better approach is to use a scheme explicitly storing the values of J \& M in a register.
-
-%%%%%%%%%%%%%% 2 qubits
-\subsubsection{Clebsch-Gordan transform for 2 qubits}
+%%%%%%% 2 qubits
+%\subsubsection{Clebsch-Gordan transform for 2 qubits}
 
 The Clebsch-Gordan transform is a basis transformation into the Schur basis. The transform for 2 qubits is given by,
 \begin{subequations}
@@ -153,7 +152,7 @@ The Clebsch-Gordan transform is a basis transformation into the Schur basis. The
 
 Throughout the encoding $\ket{0}=+1/2$, $\ket{1}=-1/2$ is used unless stated otherwise.
 
-The transform expressed as a matrix is,
+The matrix for the transform which takes the computational basis to the spin basis is,
 \begin{align}
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
@@ -167,7 +166,6 @@ The transform expressed as a matrix is,
 \ket{10} \\
 \ket{11} \\ 
 \end{bmatrix}
-= \text{(spin labeling)}
 \begin{bmatrix}
 \ket{00} \\
 \frac{1}{\sqrt{2}}(\ket{01} + \ket{10}) \\
@@ -183,30 +181,30 @@ The transform expressed as a matrix is,
 \end{bmatrix}
 \end{align}
 
+For example, this transform takes the computational basis state, $\ket{01}$ to a superposition of the singlet and triplet states, $\frac{1}{\sqrt{2}} (\ket{J=1, M=0} + \ket{J=0, M=0})$. 
 
-\subsubsection{Clebsch-Gordan coefficients for 3 qubits}
+%\subsubsection{Clebsch-Gordan coefficients for 3 qubits}
 
-The CG coefficients for three qubits are no multiplicities of 4 for J=3/2 and 2 multiplicities of 2 for J=1/2  \autoref{eq:3cgcoeff}. The multiplicities, P are defined as $J'-J$ the new J value minus the previous J value, the number of 1s in a P string is the number of multiplicities for that J value.
+The transform for three qubits are no multiplicities of 4 for J=3/2 and 2 multiplicities of 2 for J=1/2  \autoref{eq:3cgcoeff}. The multiplicities, P are defined as $J'-J$ the new J value minus the previous J value, the number of 1s in a P string is the number of multiplicities for that J value.
 
 %%%%%%%%%%%%%%% vanilla basis %%%%%%%%%%%%%%%%%%5
 
-The matrix for the transform which takes the computational basis to the spin basis is,
 There are multiple ways of writing the spin basis, there is the traditional CG coefficients and there is also what is referred to here as the phase encoding \autoref{eq:phaseencode}. The phase encoded transform matrix will have a different decomposition as the shape of the matrix is different to the regular encoding. 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\subsubsection{4 Qubit CG coefficients}
+%\subsubsection{4 Qubit CG coefficients}
 
 The CG coefficients for four qubits contains 16 terms, 5 for J=2, 3 multiplicities of 3 for J=1, 2 multiplicities of 1 for J=0. The equations are given in \autoref{eq:4qubitcg}. In the J=1 case there are 3 acceptable bit strings, 0001, 0010, 0100 meaning there are 3 multiplicities present. 
 
-\subsection{Glebsch-Gordan circuits}
+\subsection{Schur Transform circuits}
 
 As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case could take at most $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits.
 
-\subsubsection{2 qubit circuit}
+See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the 19 $C^2U$ gate decomposition. The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform (QFT). The QFT produces the output in reverse qubit order the actual number of gates required to do the transform is massively reduced. The overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order afterwards wouldn't be as important reducing the CNOTs needed.
+
+
+%\subsubsection{Circuit for 2 qubits}
 
 Which can be implemented in a circuit as,
 %%%%%%%%% circuit 1 
@@ -225,20 +223,20 @@ Which can be implemented in a circuit as,
 
 Circuit for Clebsch-Gordan transform \autoref{cir:vanilla2} contains 2 gates.
 
-\subsubsection{Circuit for 3 qubit transform}
+%\subsubsection{Circuit for 3 qubit transform}
 
 For 3 qubits this upper bound is 28 $C^2U$ gates. It has been shown that in terms of gate count, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}. This means the maximum two-qubit gates needed would be 140 $CU$ gates.
 
 The decomposition of the 3 qubit CG transform was performed using the Givens rotation method for unitary decomposition into a gate-set. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
 
-See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the 19 $C^2U$ gate decomposition. The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform (QFT). The QFT produces the output in reverse qubit order the actual number of gates required to do the transform is massively reduced. The overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order afterwards wouldn't be as important reducing the CNOTs needed.
 
-
-\subsubsection{Circuit for 4 qubit transform}
+%\subsubsection{Circuit for 4 qubit transform}
 
 The decomposition scheme for the 4 qubit case could take at most $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where n is 4 and. For 4 qubits this upper bound is 120 $C^3U$ gates which could be up to $\sim 3000$ $CU$ gates. In reality it will be much fewer gates as the matrix is sparse, however this suggests a different approach was needed.
 
 The 4 qubit Clebsch-Gordan transform requires 72 $C^3U$ gates which is equal to $\sim 1800 CU$ gates. 
+
+
 
 \section{General circuit for the Quantum Schur transform \autoref{cir:genstreaming}}
 
