@@ -59,29 +59,14 @@
     \date{\today}
     \maketitle
 
-\section{The Schur Transform}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{itemize}
-	\item schur transform
-	\item streaming
-	\item clebsch gordan
-	\item vanilla CG
-	\item vanilla for 3,4
-	\item registered
-	\item general scheme
-	\item comments
-\end{itemize}
+\section{Introduction}
 
 \textit{background.}
 
 2004 Bacon, Chuang \& Harrow proposed a scheme for implementing the Schur transform in Poly time. 
-
-Information processing tasks, such as classical compression gain a huge advantage implementing the process using a streaming scheme. Rather than start the compression on all the data to be sent and wait for it all to
-be compressed then send the data, as compression can be performed sequentially, compress part of the message and send it while compressing the next part. The Schur transform can also be thought of in this way. However,
-with compression it can still be useful to only compress part of the message, it is meaningless to perform only part of the Schur transform which suggests there may be a more optimal scheme opposed to streaming for 
-implementing the Schur transform.      
 
 There are two distinct ways of performing the Schur transform on $n$ qubits, it can either be built up from coupling all $n$ qubits together in a single iteration which we call the spatial multiplexed approach. The
 other approach is performing Clebsch-Gordan (CG) transforms on the $n$ qubits one at a time which we call the temporal multiplexed approach.  
@@ -91,6 +76,12 @@ This report is structured as follows,
 
 
 \section{Streaming Scheme}
+
+Information processing tasks, such as classical compression gain a huge advantage implementing the process using a streaming scheme. Rather than start the compression on all the data to be sent and wait for it all to
+be compressed then send the data, as compression can be performed sequentially, compress part of the message and send it while compressing the next part. The Schur transform can also be thought of in this way. However,
+with compression it can still be useful to only compress part of the message, it is meaningless to perform only part of the Schur transform which suggests there may be a more optimal scheme opposed to streaming for 
+implementing the Schur transform.      
+
 
 The streaming Schur transform is described in \autoref{fig:stream},
 
@@ -144,7 +135,7 @@ compared to any arbitrary $J \& M$ values.
 The vanilla transform directly maps the computation basis states to a labeling of J and M values. The vanilla approach of calculating the CG coefficients and finding a gate decomposition does not scale well. A better approach is to use a scheme explicitly storing the values of J \& M in a register.
 
 %%%%%%%%%%%%%% 2 qubits
-\subsection{Clebsch-Gordan transform for 2 qubits}
+\subsubsection{Clebsch-Gordan transform for 2 qubits}
 
 The Clebsch-Gordan transform is a basis transformation into the Schur basis. The transform for 2 qubits is given by,
 \begin{subequations}
@@ -236,18 +227,22 @@ Circuit for Clebsch-Gordan transform \autoref{cir:vanilla2} contains 2 gates.
 
 \subsubsection{Circuit for 3 qubit transform}
 
-For 3 qubits this upper bound is 128 $C^2U$ gates. It has been shown that in terms of gate count, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}. This means the maximum two-qubit gates needed would be 140 $CU$ gates.
+For 3 qubits this upper bound is 28 $C^2U$ gates. It has been shown that in terms of gate count, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}. This means the maximum two-qubit gates needed would be 140 $CU$ gates.
 
 The decomposition of the 3 qubit CG transform was performed using the Givens rotation method for unitary decomposition into a gate-set. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
 
 See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the 19 $C^2U$ gate decomposition. The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform (QFT). The QFT produces the output in reverse qubit order the actual number of gates required to do the transform is massively reduced. The overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order afterwards wouldn't be as important reducing the CNOTs needed.
 
+
 \subsubsection{Circuit for 4 qubit transform}
 
 The decomposition scheme for the 4 qubit case could take at most $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where n is 4 and. For 4 qubits this upper bound is 120 $C^3U$ gates which could be up to $\sim 3000$ $CU$ gates. In reality it will be much fewer gates as the matrix is sparse, however this suggests a different approach was needed.
 
+The 4 qubit Clebsch-Gordan transform requires 72 $C^3U$ gates which is equal to $\sim 1800 CU$ gates. 
 
 \section{General circuit for the Quantum Schur transform \autoref{cir:genstreaming}}
+
+In the section above we have investigated the cost of implementing directly the Clebsch-gordan unitary matrix using a unitary gate decomposition scheme.  
 
 
 \subsection{Registering J \& M explicitly \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}}

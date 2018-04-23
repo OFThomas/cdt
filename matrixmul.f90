@@ -165,7 +165,7 @@ else if (qubits==4) then
 
 end if
 
-21 format ( 16F7.3)
+21 format ( 4F7.3)
 write(*,21) unitary
 !#!!! make unitary gates
 
@@ -194,7 +194,8 @@ end do
   print*, 'THIS IS UNITARY'
   call invert(u,gateseq,counter)
   call gateset(gateseq)
-
+ 
+  write(*,21) gateseq(:,:,1:counter)
 do i=1, counter
   uprod=matmul(uprod,gateseq(:,:,i))
 end do
@@ -203,7 +204,7 @@ print*, '------------------------------------------------------------------'
 print*, 'Unitary matrix from', counter-1, 'gates'
 print*, '------------------------------------------------------------------'
 
-print*,
+print*, size(gateseq,3)
 
 deallocate(ident)
 deallocate(unitary)
@@ -219,10 +220,12 @@ contains
 !# print non identity elements
 subroutine gateset(matrix)
   real(kind=dp), dimension(:,:,:), intent(in) :: matrix
-  integer :: n, i
+  integer :: n, i, j, k
   n=size(matrix,3)
   do i=1, n
-    if (icheck(matrix(:,:,i))==0) then
+    if (icheck(matrix(:,:,i))==0) then 
+    end if
+    if (cnotcheck(matrix(:,:,i))==0) then
     end if
   end do
 end subroutine gateset
@@ -242,6 +245,27 @@ subroutine invert(matrix,inverted,count)
   end do
   
 end subroutine invert
+
+!#!!!! Check product gives identity 
+function cnotcheck(uni)
+  real(kind=dp) :: cnotcheck
+  real(kind=dp), dimension(:,:), intent(in) :: uni
+  integer :: i, j
+
+!check for CNOT
+cnotcheck=1
+!#check if cnot
+cnottest:do i=1, size(uni,1)
+  do j=1, size(uni,1)
+    if ((abs(uni(i,j)).eq.0).or.(abs(uni(i,j)).eq.1)) then
+     ! print*, ' 0 or 1'
+    else 
+      print*, 'not 0 or 1!!!!!'
+    end if
+  end do
+end do cnottest
+end function cnotcheck
+
 
 !#!!!! Check product gives identity 
 function icheck(uni)
