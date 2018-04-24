@@ -63,9 +63,6 @@
 
 \section{Introduction}
 
-\textit{background.}
-
-
 There are many uses of the uses of the Schur transform, compression of local properties to a global system. in boson sampling experiments preparing highly symmetrerised states, \cite{moylett2018quantum}. 
 We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
 
@@ -134,12 +131,9 @@ The transform for four qubits contains 16 terms, J=2 contains 5 terms, J=1 conta
 
 \subsection{Schur Transform circuits}
 
-After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. 
+After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition for each of the Schur transform unitaries. 
 
-As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case could take at most $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits.
- It has been shown that in terms of gate count, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
-
-See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition. 
+As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case is bounded by $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits. When n is greater than 2, it is possible to reduce higher order control gates to single control gates, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
 
 The two qubit Schur transform can be implemented in a circuit which only contains two gates as \autoref{cir:vanilla2},
 

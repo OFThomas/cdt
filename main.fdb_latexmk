@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1524591467 "main.aux" "main.bbl" "main" 1524591479
+["bibtex main"] 1524596171 "main.aux" "main.bbl" "main" 1524596183
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1524591478 6666 267c463be9a84aa84110133d5a8b764c ""
+  "main.aux" 1524596183 6666 9662e8dd7268bafc7233e4a2328fbfdc ""
   "main.bcf" 0 -1 0 ""
   "references.bib" 1524489486 1873 e7badf17b97a10bc95cbbcb32419a1bf ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1524591467 "main.tex" "main.pdf" "main" 1524591479
+  "main.bbl"
+["pdflatex"] 1524596171 "main.tex" "main.pdf" "main" 1524596183
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -223,14 +223,14 @@
   "appendcode.tex" 1524233030 7686 5dc8212b3842d36cb657109b1c0269c5 ""
   "appendmaths.tex" 1524337792 9348 10155cac57db7060078f4f6f498b5ba6 ""
   "genaddercirc.png" 1524233052 14297 88d78d07637600c6d386b0246a618067 ""
-  "main.aux" 1524591478 6666 267c463be9a84aa84110133d5a8b764c ""
-  "main.bbl" 1524591467 1578 91cce01b0d622e0a1fe9fbb51e372b7e "bibtex main"
-  "main.out" 1524591478 1029 94c8b668a74df5cc0dcb016feedf236a ""
-  "main.tex" 1524591442 15782 3e22eaa20f3925ac8a227bc6a1be3f2f ""
+  "main.aux" 1524596183 6666 9662e8dd7268bafc7233e4a2328fbfdc ""
+  "main.bbl" 1524596171 1578 91cce01b0d622e0a1fe9fbb51e372b7e "bibtex main"
+  "main.out" 1524596183 1029 94c8b668a74df5cc0dcb016feedf236a ""
+  "main.tex" 1524596159 15809 62978fca5b249c0d9751cd1cd707b490 ""
   "qcircuit.sty" 1524233030 12405 9483c9645d211b8579cf4ac8836c8798 ""
   "schurcascade.png" 1524233030 21609 f295da278ef32214ebfb1899b1992fea ""
   (generated)
   "main.pdf"
-  "main.aux"
   "main.log"
+  "main.aux"
   "main.out"
