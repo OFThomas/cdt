@@ -69,12 +69,12 @@
 There are many uses of the uses of the Schur transform, compression of local properties to a global system, etc. in boson sampling experiments preparing highly symmetrerised states, \cite{moylett2018quantum}. 
 We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
 
-2004 Bacon, Chuang \& Harrow proposed a scheme for implementing the Schur transform in Poly time. 
 
 There are two distinct ways of performing the Schur transform on $n$ qubits, it can either be built up from coupling all $n$ qubits together in a single iteration which we call the spatial multiplexed approach. The
 other approach is performing Clebsch-Gordan (CG) transforms on the $n$ qubits one at a time which we call the temporal multiplexed approach.  
 
-This report is structured as follows,   
+This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the streaming procedure suggested by BCH \cite{bacon2006efficient}. 2004 Bacon, Chuang \& Harrow proposed a scheme for implementing the Schur transform in Poly time. 
+
 
 \section{Schur transform}
 
@@ -93,7 +93,6 @@ The Clebsch-Gordan transform is a basis transformation into the Schur basis. The
 \end{align}
 \end{subequations}
 
-Throughout the encoding $\ket{0}=+1/2$, $\ket{1}=-1/2$ is used unless stated otherwise.
 
 The matrix for the transform which takes the computational basis to the spin basis is,
 \begin{align}
@@ -124,9 +123,9 @@ The matrix for the transform which takes the computational basis to the spin bas
 \end{bmatrix}
 \end{align}
 
-For example, this transform takes the computational basis state, $\ket{01}$ to a superposition of the singlet and triplet states, $\frac{1}{\sqrt{2}} (\ket{J=1, M=0} + \ket{J=0, M=0})$. 
+For example, this transform takes the computational basis state, $\ket{01}$ to a superposition of the singlet and triplet states, $\frac{1}{\sqrt{2}} (\ket{J=1, M=0} + \ket{J=0, M=0})$. In the Two qubit case there are no multiplicities present which simplifies the procedure. 
 
-The transform for three qubits are no multiplicities of 4 for J=3/2 and 2 multiplicities of 2 for J=1/2  \autoref{eq:3cgcoeff}. The multiplicities, P are defined as $J'-J$ the new J value minus the previous J value, the number of 1s in a P string is the number of multiplicities for that J value.
+The transform for three qubits now contains multiplicities. The allowed J values are, J=3/2 and 2 multiplicities of 2 for J=1/2 \autoref{eq:3cgcoeff}. The multiplicities, P are defined as $J'-J$ the new J value minus the previous J value, the number of 1s in a P string is the number of multiplicities for that J value.
 
 There are multiple ways of writing the spin basis, there is the traditional CG coefficients and there is also what is referred to here as the phase encoding \autoref{eq:phaseencode}. The phase encoded transform matrix will have a different decomposition as the shape of the matrix is different to the regular encoding. 
 
@@ -179,6 +178,8 @@ The streaming Schur transform is described in \autoref{fig:stream},
 \caption{Streaming structure where the Schur transform is built up from consecutive Clebsch-Gordan transforms \cite{bacon2006efficient}.}
 \label{fig:stream}
 \end{figure}
+
+Throughout the encoding $\ket{0}=+1/2$, $\ket{1}=-1/2$ is used unless stated otherwise.
 
 The aim of this report is to look at whether it is possible to achieve a log decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing the couplings up similar to a binary tree. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. looking at the pairing approach there is a symmetry in the fact that the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
 
