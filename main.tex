@@ -214,9 +214,9 @@ The streaming scheme uses temporal multiplexing to perform the Schur transform i
 
 \section{Reduced general gate circuit for up to the 2 qubit Schur transform}
 
-We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. Here we remove the intermediate values and hence can reduce both the number of qubits required and the gate count. This scheme works by coupling in two qubits at a time as opposed to one. \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}. This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers whereas the streaming scheme stores all intermediate values. This reduces the number of qubits needed. 
+We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. Here we remove the intermediate values and hence can reduce both the number of qubits required and the gate count. This scheme works by coupling in two qubits at a time as opposed to one (\autoref{cir:minspatialmult}, \autoref{cir:spatialmulti2}). This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers whereas the streaming scheme stores all intermediate values. This reduces the number of qubits needed. 
 
-The circuit adds the value of the spin to be added $\ket{S}$, using the encoding, $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ to the M register to calculate the M' register value. This is done by implementing the quantum reversible equivalent to the digital adder. The CG transform gates are performed to generate P then the result is added to the J register to give the J' register value.
+The circuit adds the value of the spin to be added $\ket{S}$ using the encoding $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ to the M register to calculate the M' register value. This is done by implementing the quantum reversible equivalent to the digital adder. The CG transform gates are performed to generate P then the result is added to the J register to give the J' register value.
 
 \section{Conclusion}
 
