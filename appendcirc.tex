@@ -10,7 +10,7 @@ The case where $\ket{S} = \ket{1}$ means the spin is $-\frac{1}{2}$ we do M $-\f
 
 The Unitary is then performed on $\ket{S}$ depending on the values of the newly calculated M' and J registers using $R_y(\theta_{J,m'})$ \autoref{eq:rotmatrix}. The J register is then updated to J' by adding the value of $\ket{P}$ to J using the QAdd sequence of gates.
 
-To add the second qubit in the values of J' and M' are passed in as the initial register values. It is easy to extend this to many qubits being streamed in one at a time by carefully conditioning the controls on the unitaries, I think in the general case you need at most N controls for coupling up to N qubits in one at a time. The circuit written here has redundancy in the Identity and ZX gates appearing twice which is shown in the circuit for completeness\autoref{cir:genstreaming}. 
+To add the second qubit in the values of J' and M' are passed in as the initial register values. It is easy to extend this to many qubits being streamed in one at a time by carefully conditioning the controls on the unitaries, in the general case you need at most N controls for coupling up to N qubits in one at a time. The circuit written here has redundancy in the Identity and ZX gates appearing twice which is shown in the circuit for completeness\autoref{cir:genstreaming}. 
 registers.
 
 
