@@ -162,8 +162,7 @@ The 4 qubit Clebsch-Gordan transform requires 72 $C^3U$ gates which is equal to 
 
 Information processing tasks, such as classical compression gain a huge advantage implementing the process using a streaming scheme. Rather than start the compression on all the data to be sent and wait for it all to
 be compressed then send the data, as compression can be performed sequentially, compress part of the message and send it while compressing the next part. The Schur transform can also be thought of in this way. However,
-with compression it can still be useful to only compress part of the message, it is meaningless to perform only part of the Schur transform which suggests there may be a more optimal scheme opposed to streaming for 
-implementing the Schur transform.      
+with compression it can still be useful to only compress part of the message, performing a partial Schur transform is not defined which suggests there may be a more optimal scheme opposed to streaming for implementing the Schur transform.      
 
 The streaming Schur transform is described in \autoref{fig:stream},
 
@@ -187,7 +186,7 @@ For the streaming scheme the $U_{CG}$ block can be chosen so that it contains al
 \label{fig:ucg}
 \end{figure}
 
-The controlled Rotation matrix, $R_y(\theta_{J,m'})$ \autoref{fig:stream} is the Clebsch-Gordan coefficients for coupling 1 qubit sequentially, given by,
+The controlled Rotation matrix \cite{bacon2006efficient}, $R_y(\theta_{J,m'})$ \autoref{fig:ucg} is the Clebsch-Gordan coefficients for coupling 1 qubit sequentially, given by,
 
 \begin{align}
 \begin{split}
