@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1524660246 "main.aux" "main.bbl" "main" 1524660271
+["bibtex main"] 1524664446 "main.aux" "main.bbl" "main" 1524664588
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1524660271 6665 37d473a70565264e2b61f7c536b95c49 ""
+  "main.aux" 1524664588 6665 e423a01494ac87608386017d1fecd34d ""
   "main.bcf" 0 -1 0 ""
   "references.bib" 1524489486 1873 e7badf17b97a10bc95cbbcb32419a1bf ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1524660259 "main.tex" "main.pdf" "main" 1524660271
+  "main.bbl"
+["pdflatex"] 1524664576 "main.tex" "main.pdf" "main" 1524664588
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -223,14 +223,14 @@
   "appendcode.tex" 1524233030 7686 5dc8212b3842d36cb657109b1c0269c5 ""
   "appendmaths.tex" 1524337792 9348 10155cac57db7060078f4f6f498b5ba6 ""
   "genaddercirc.png" 1524233052 14297 88d78d07637600c6d386b0246a618067 ""
-  "main.aux" 1524660271 6665 37d473a70565264e2b61f7c536b95c49 ""
-  "main.bbl" 1524660246 1578 5e72499a7e4980a945084b09b1f3a692 "bibtex main"
-  "main.out" 1524660271 1029 94c8b668a74df5cc0dcb016feedf236a ""
-  "main.tex" 1524660252 15640 94da991d48e9e7d278a46a3755a3c4c2 ""
+  "main.aux" 1524664588 6665 e423a01494ac87608386017d1fecd34d ""
+  "main.bbl" 1524664447 1578 5e72499a7e4980a945084b09b1f3a692 "bibtex main"
+  "main.out" 1524664588 1029 94c8b668a74df5cc0dcb016feedf236a ""
+  "main.tex" 1524664575 15569 ce9b35c38f0e5c8acc89f9fbc581e07d ""
   "qcircuit.sty" 1524233030 12405 9483c9645d211b8579cf4ac8836c8798 ""
   "schurcascade.png" 1524233030 21609 f295da278ef32214ebfb1899b1992fea ""
   (generated)
-  "main.pdf"
-  "main.log"
   "main.aux"
   "main.out"
+  "main.pdf"
+  "main.log"
