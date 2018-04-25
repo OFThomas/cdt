@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{moylett2018quantum}
 Alexandra~E Moylett and Peter~S Turner.
@@ -29,6 +29,21 @@ Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
   Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
 \newblock Elementary gates for quantum computation.
 \newblock {\em Physical review A}, 52(5):3457, 1995.
+
+\bibitem{blume2014streaming}
+Robin Blume-Kohout, Sarah Croke, and Daniel Gottesman.
+\newblock Streaming universal distortion-free entanglement concentration.
+\newblock {\em IEEE Transactions on Information Theory}, 60(1):334--350, 2014.
+
+\bibitem{draper2004logarithmic}
+Thomas~G Draper, Samuel~A Kutin, Eric~M Rains, and Krysta~M Svore.
+\newblock A logarithmic-depth quantum carry-lookahead adder.
+\newblock {\em arXiv preprint quant-ph/0406142}, 2004.
+
+\bibitem{draper2000addition}
+Thomas~G Draper.
+\newblock Addition on a quantum computer.
+\newblock {\em arXiv preprint quant-ph/0008033}, 2000.
 
 \bibitem{bacon2007quantum}
 Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.

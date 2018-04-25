@@ -159,11 +159,9 @@ The 2 qubit case 1 out of 2 gates are CNOTs, 3 qubits, 14 out of 15 are $C^2$NOT
 
 \section{Streaming Scheme}
 
-Information processing tasks, such as classical compression gain a huge advantage implementing the process using a streaming scheme. Rather than start the compression on all the data to be sent and wait for it all to
-be compressed then send the data, as compression can be performed sequentially, compress part of the message and send it while compressing the next part. The Schur transform can also be thought of in this way. However,
-with compression it can still be useful to only compress part of the message, performing a partial Schur transform is not defined which suggests there may be a more optimal scheme opposed to streaming for implementing the Schur transform.      
+Entanglement purification is an example of a process which gains an advantage when using a streaming scheme \cite{blume2014streaming}. Rather than wait for all of the entangled resource to be purified, it is possible to optimally perform purification in a streaming setup, send some of the purified resource while purifying the rest continually. The streaming scheme for the Schur transform can also be thought of in this way. However, it can still be useful to only purify part of the resource, it is not useful to only be able to  perform a partial Schur transform which suggests there may be other equivalent or better methods compared to streaming for implementing the Schur transform.      
 
-The streaming Schur transform is described in \autoref{fig:stream},
+We look at whether it is possible to achieve decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing each of the couplings up similar to a binary tree. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
 
 \begin{figure}[h!]
 \centering
@@ -172,9 +170,7 @@ The streaming Schur transform is described in \autoref{fig:stream},
 \label{fig:stream}
 \end{figure}
 
-We look at whether it is possible to achieve decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing each of the couplings up similar to a binary tree. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
-
-For the streaming scheme the $U_{CG}$ block can be chosen so that it contains all of the gates for up to the n-th qubit meaning the same block can be repeated. Where the $U_{CG}$ is the Clebsch-Gordan transform between the $J$ \& $M$ registers and the k-th qubit $\ket{i_k}$.
+For the streaming scheme \autoref{fig:stream} the $U_{CG}$ block can be chosen so that it contains all of the gates for up to the n-th qubit meaning the same block can be repeated. Where the $U_{CG}$ is the Clebsch-Gordan transform between the $J$ \& $M$ registers and the k-th qubit $\ket{i_k}$.
 
 \begin{figure}[h!]
 \centering
@@ -212,8 +208,7 @@ To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calc
 
 In the section above we have investigated the cost of implementing directly the Clebsch-gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
 
-We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate.  
-
+We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate. Calculating the circuits was done by calculating the truth tables for each step, the quantum adder which can be implemented reversibly, \cite{draper2004logarithmic} and other possibly more optimal schemes for very large registers which makes use of the quantum Fourier transform, \cite{draper2000addition} which are outside the scope of this work.
 
 
 \subsection{Registering J \& M explicitly \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}}
