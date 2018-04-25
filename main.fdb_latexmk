@@ -1,13 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1524664446 "main.aux" "main.bbl" "main" 1524664588
+["bibtex main"] 1524668012 "main.aux" "main.bbl" "main" 1524668024
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1524664588 6665 e423a01494ac87608386017d1fecd34d ""
+  "main.aux" 1524668024 6760 eb7e166e927ce492ad59ef12cd5746d8 ""
   "main.bcf" 0 -1 0 ""
   "references.bib" 1524489486 1873 e7badf17b97a10bc95cbbcb32419a1bf ""
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1524664576 "main.tex" "main.pdf" "main" 1524664588
+["pdflatex"] 1524668012 "main.tex" "main.pdf" "main" 1524668024
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -219,18 +218,18 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1503343927 31343 93828589fb0cea665e553ee5a17ad2d4 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1506273035 1863403 f3ff9a4253bcb5fb9a9baaf0c572cb01 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1506273046 3854102 b5b3ff50abc52e5859768f907175f81a ""
-  "appendcirc.tex" 1524338755 16074 eb4dfa6d4808fedfc2852e1172cf0ed5 ""
+  "appendcirc.tex" 1524667999 16684 5c5b7ba6542b306cfd25711f0cee6b9d ""
   "appendcode.tex" 1524233030 7686 5dc8212b3842d36cb657109b1c0269c5 ""
   "appendmaths.tex" 1524337792 9348 10155cac57db7060078f4f6f498b5ba6 ""
   "genaddercirc.png" 1524233052 14297 88d78d07637600c6d386b0246a618067 ""
-  "main.aux" 1524664588 6665 e423a01494ac87608386017d1fecd34d ""
-  "main.bbl" 1524664447 1578 5e72499a7e4980a945084b09b1f3a692 "bibtex main"
-  "main.out" 1524664588 1029 94c8b668a74df5cc0dcb016feedf236a ""
-  "main.tex" 1524664575 15569 ce9b35c38f0e5c8acc89f9fbc581e07d ""
+  "main.aux" 1524668024 6760 eb7e166e927ce492ad59ef12cd5746d8 ""
+  "main.bbl" 1524668012 1578 5e72499a7e4980a945084b09b1f3a692 "bibtex main"
+  "main.out" 1524668024 1086 aa51c7069761ef4b8e79e49dd8bb930d ""
+  "main.tex" 1524665836 15571 0a093a5a6b47e0917e38263c0c263a4d ""
   "qcircuit.sty" 1524233030 12405 9483c9645d211b8579cf4ac8836c8798 ""
   "schurcascade.png" 1524233030 21609 f295da278ef32214ebfb1899b1992fea ""
   (generated)
-  "main.aux"
-  "main.out"
   "main.pdf"
+  "main.aux"
   "main.log"
+  "main.out"

@@ -214,6 +214,8 @@ In the section above we have investigated the cost of implementing directly the 
 
 We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate.  
 
+
+
 \subsection{Registering J \& M explicitly \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}}
 
 This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers. 
@@ -240,7 +242,7 @@ The circuit adds the value of the spin to be added, $\ket{S}$, to the M register
 \end{tabular}
 \caption{Binary Two's complement encoding to spin values of the J register}
 \label{tab:encoding}
-\vspace{-110pt}
+\vspace{-100pt}
 \end{wraptable}
 
 The streaming scheme uses temporal multiplexing to perform the Schur transform in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  25 APR 2018 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  25 APR 2018 15:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1977,7 +1977,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] <xymatrix 5x2 375> <xymatrix 5x2 375> <schurcascade.png, id=106, 577.40718pt x 271.0125pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] <xymatrix 5x2 375> <xymatrix 5x2 375> <schurcascade.png, id=110, 577.40718pt x 271.0125pt>
 File: schurcascade.png Graphic file (type png)
  <use schurcascade.png>
 Package pdftex.def Info: schurcascade.png used on input line 170.
@@ -1986,7 +1986,7 @@ Package pdftex.def Info: schurcascade.png used on input line 170.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<genaddercirc.png, id=109, 443.40656pt x 182.18062pt>
+<genaddercirc.png, id=113, 443.40656pt x 182.18062pt>
 File: genaddercirc.png Graphic file (type png)
  <use genaddercirc.png>
 Package pdftex.def Info: genaddercirc.png used on input line 181.
@@ -2001,38 +2001,22 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 l.2 \section{Appendix- Circuits}
                                  [12
 
-] <xymatrix 37x6 5164> <xymatrix 37x6 5164>
-Overfull \hbox (97.05244pt too wide) in paragraph at lines 49--49
+] <xymatrix 80x14 32853> <xymatrix 80x14 32853>
+Overfull \hbox (117.65309pt too wide) in paragraph at lines 154--154
 [] 
  []
 
-<xymatrix 24x6 4002> <xymatrix 24x6 4002>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<xymatrix 46x8 12040> <xymatrix 46x8 12040>
-Overfull \hbox (89.49135pt too wide) in paragraph at lines 180--180
+[13] <xymatrix 46x8 12040> <xymatrix 46x8 12040>
+Overfull \hbox (89.49135pt too wide) in paragraph at lines 221--221
 [] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[13] [14] <xymatrix 80x14 32853> <xymatrix 80x14 32853>
-Overfull \hbox (117.65309pt too wide) in paragraph at lines 302--302
+[14] [15] <xymatrix 24x6 4002> <xymatrix 24x6 4002> [16] <xymatrix 37x6 5164> <xymatrix 37x6 5164>
+Overfull \hbox (97.05244pt too wide) in paragraph at lines 329--329
 [] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [15] [16] [17] (./appendcode.texpdfTeX warning (ext4): destination with the same identifier (name{appendix.A}) has been already used, duplicate ignored
+) [17] (./appendcode.texpdfTeX warning (ext4): destination with the same identifier (name{appendix.A}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.2 \section{Appendix- Fortran code}
@@ -2049,28 +2033,28 @@ Package caption Warning: Unused \captionsetup[sub] on input line 20.
 See the caption package documentation for explanation.
 
 [25]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 274.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 274.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 274.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 274.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 94C8B668A74DF5CC0DCB016FEEDF236A;1029.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
+(rerunfilecheck)             Checksum: AA51C7069761EF4B8E79E49DD8BB930D;1086.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 274.
  ) 
 Here is how much of TeX's memory you used:
- 32737 strings out of 493029
- 597371 string characters out of 6136234
- 1727508 words of memory out of 5000000
- 35689 multiletter control sequences out of 15000+600000
+ 32740 strings out of 493029
+ 597403 string characters out of 6136234
+ 1633715 words of memory out of 5000000
+ 35691 multiletter control sequences out of 15000+600000
  41201 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,32n,69p,10400b,1912s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,32n,69p,10400b,1908s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (25 pages, 190800 bytes).
+Output written on main.pdf (25 pages, 191923 bytes).
 PDF statistics:
- 324 PDF objects out of 1000 (max. 8388607)
- 281 compressed objects within 3 object streams
- 92 named destinations out of 1000 (max. 500000)
- 143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 285 compressed objects within 3 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
