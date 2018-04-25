@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  25 APR 2018 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  25 APR 2018 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1977,7 +1977,11 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] <xymatrix 5x2 375> <xymatrix 5x2 375> <schurcascade.png, id=110, 577.40718pt x 271.0125pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `sridharan2010reduce' on page 2 undefined on input line 136.
+
+[2] <xymatrix 5x2 375> <xymatrix 5x2 375> <schurcascade.png, id=106, 577.40718pt x 271.0125pt>
 File: schurcascade.png Graphic file (type png)
  <use schurcascade.png>
 Package pdftex.def Info: schurcascade.png used on input line 168.
@@ -1986,7 +1990,7 @@ Package pdftex.def Info: schurcascade.png used on input line 168.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<genaddercirc.png, id=114, 443.40656pt x 182.18062pt>
+<genaddercirc.png, id=110, 443.40656pt x 182.18062pt>
 File: genaddercirc.png Graphic file (type png)
  <use genaddercirc.png>
 Package pdftex.def Info: genaddercirc.png used on input line 177.
@@ -2032,29 +2036,32 @@ Overfull \hbox (236.16278pt too wide) in paragraph at lines 12--12
 Package caption Warning: Unused \captionsetup[sub] on input line 20.
 See the caption package documentation for explanation.
 
+
+Package natbib Warning: There were undefined citations.
+
 [25]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 269.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 269.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 241.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 241.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 269.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 269.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 241.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 241.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AA51C7069761EF4B8E79E49DD8BB930D;1086.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 269.
+(rerunfilecheck)             Checksum: AE87F53A4B0412F385E766EF075A289F;983.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 241.
  ) 
 Here is how much of TeX's memory you used:
- 32752 strings out of 493029
- 597718 string characters out of 6136234
- 1633763 words of memory out of 5000000
- 35700 multiletter control sequences out of 15000+600000
- 41201 words of font info for 101 fonts, out of 8000000 for 9000
+ 32749 strings out of 493029
+ 597664 string characters out of 6136234
+ 1633610 words of memory out of 5000000
+ 35698 multiletter control sequences out of 15000+600000
+ 42308 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,32n,69p,10400b,1908s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (25 pages, 193474 bytes).
+Output written on main.pdf (25 pages, 192605 bytes).
 PDF statistics:
- 334 PDF objects out of 1000 (max. 8388607)
- 291 compressed objects within 3 object streams
- 96 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 329 PDF objects out of 1000 (max. 8388607)
+ 286 compressed objects within 3 object streams
+ 94 named destinations out of 1000 (max. 500000)
+ 143 words of extra memory for PDF output out of 10000 (max. 10000000)
 

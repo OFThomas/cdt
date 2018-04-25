@@ -402,6 +402,8 @@ INPUT ./schurcascade.png
 INPUT genaddercirc.png
 INPUT ./genaddercirc.png
 INPUT ./genaddercirc.png
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm

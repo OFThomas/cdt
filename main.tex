@@ -69,7 +69,7 @@ We look at existing algorithms for implementing the Schur transform and aim to p
 There are two distinct ways of performing the Schur transform on $n$ qubits, it can either be built up from coupling all $n$ qubits together in a single iteration which we call the spatial multiplexed approach. The
 other approach is performing Clebsch-Gordan (CG) transforms on the $n$ qubits one at a time which we call the temporal multiplexed approach.  
 
-This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the streaming procedure suggested by BCH \cite{bacon2006efficient}. 2004 Bacon, Chuang \& Harrow proposed a scheme for implementing the Schur transform in Poly time. 
+This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the streaming procedure suggested in \cite{bacon2006efficient}. 
 
 \section{Schur transform}
 
@@ -133,7 +133,7 @@ The transform for four qubits contains 16 terms, J=2 contains 5 terms, J=1 conta
 
 After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition for each of the Schur transform unitaries. 
 
-As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case is bounded by $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits. When n is greater than 2, it is possible to reduce higher order control gates to single control gates, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
+As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case is bounded by $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits. It is possible to calculate a optimal gate sequence however current classical algorithms are computationally expensive \cite{sridharan2010reduce}.When n is greater than 2, it is possible to reduce higher order control gates to single control gates, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
 
 The two qubit Schur transform can be implemented in a circuit which only contains two gates as \autoref{cir:vanilla2},
 
@@ -202,49 +202,21 @@ R_y(\theta_{J,m'})=
 
 Where primed variables means after the angular momentum addition so $J$ is the total J that the spin is coupling to, the system will have $J'$ total angular momentum after the coupling. $m$ is the z component of the system before and $m'$ is the total z component after the coupling.
 
-To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix}, values here \autoref{eq:rvalues}, and a function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (meaning the registers are allowed to be in superpositions) equivalent of the digital full adders and subtractors. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
+To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix}, values here \autoref{eq:rvalues}, and a function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (meaning the registers are allowed to be in superpositions) equivalent of the digital adders and subtracters. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
 
 \section{General circuit for the Quantum Schur transform \autoref{cir:genstreaming}}
 
-In the section above we have investigated the cost of implementing directly the Clebsch-gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
+In the section above we have investigated the cost of implementing directly the Clebsch-Gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
 
-We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate. Calculating the circuits was done by calculating the truth tables for each step, the quantum adder which can be implemented reversibly, \cite{draper2004logarithmic} and other possibly more optimal schemes for very large registers which makes use of the quantum Fourier transform, \cite{draper2000addition} which are outside the scope of this work.
-
-
-\subsection{Registering J \& M explicitly \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}}
-
-This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers. 
-
-Circuit uses the encoding for $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ and the same for $\ket{P}$. 
-
-The circuit adds the value of the spin to be added, $\ket{S}$, to the M register to calculate the M' register value. This is done by implementing the quantum reversible equivalent to the digital full adder. 
-
-\begin{wraptable}{r}{5.5cm}
-\begin{tabular}{ |c c c|c| }
-\hline
- $J_2$ &$J_1$ &$J_0$ &J \\
- \hline
- 0 &0 &0 &0 \\ 
- 0 &0 &1 &$\frac{1}{2}$ \\ 
- 0 &1 &0 &1 \\ 
- 0 &1 &1 &$\frac{3}{2}$ \\ 
- \hline 
- 1 &0 &0 &-2 \\ 
- 1 &0 &1 &-$\frac{3}{2}$ \\ 
- 1 &1 &0 &-1 \\ 
- 1 &1 &1 &-$\frac{1}{2}$ \\  
- \hline 
-\end{tabular}
-\caption{Binary Two's complement encoding to spin values of the J register}
-\label{tab:encoding}
-\vspace{-100pt}
-\end{wraptable}
+We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate. Calculating the circuits (shown in \autoref{cir:tempmultistream}) was done by calculating the truth tables for each step, the quantum adder which can be implemented reversibly, \cite{draper2004logarithmic} and other possibly more optimal schemes for very large registers which makes use of the quantum Fourier transform (QFT) \cite{draper2000addition} which are outside the scope of this work.
 
 The streaming scheme uses temporal multiplexing to perform the Schur transform in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}.
 
-\section{Reduced general gate circuit for up to the 2 qubit Schur transform \autoref{cir:tempmultistream}}
+\section{Reduced general gate circuit for up to the 2 qubit Schur transform}
 
-We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. Here we remove the intermediate values and hence can reduce both the number of qubits required and the gate count. This scheme works by coupling in two qubits at a time as opposed to one.
+We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. Here we remove the intermediate values and hence can reduce both the number of qubits required and the gate count. This scheme works by coupling in two qubits at a time as opposed to one. \autoref{cir:spatialmulti2}, \autoref{cir:minspatialmult}. This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers whereas the streaming scheme stores all intermediate values. This reduces the number of qubits needed. 
+
+The circuit adds the value of the spin to be added $\ket{S}$, using the encoding, $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ to the M register to calculate the M' register value. This is done by implementing the quantum reversible equivalent to the digital adder. The CG transform gates are performed to generate P then the result is added to the J register to give the J' register value.
 
 \section{Conclusion}
 
