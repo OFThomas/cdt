@@ -151,12 +151,9 @@ The two qubit Schur transform can be implemented in a circuit which only contain
 \label{cir:vanilla2}
 \end{figure}
 
-For 3 qubits this upper bound is 28 $C^2U$ gates.This means the maximum two-qubit gates needed would be 140 $CU$ gates. The decomposition of the 3 qubit CG transform was performed using the Givens rotation method for unitary decomposition into a gate-set. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
-19 $C^2U$ gate decomposition.
+For 3 qubits this upper bound is 28 $C^2U$ gates.This means the maximum two-qubit gates needed would be 140 $CU$ gates. The decomposition of the 3 qubit CG transform was performed using the Givens rotation method for unitary decomposition into a gate sequence. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
 
-The decomposition scheme for the 4 qubit case could take at most $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where n is 4 and. For 4 qubits this upper bound is 120 $C^3U$ gates which could be up to $\sim 3000$ $CU$ gates. In reality it will be much fewer gates as the matrix is sparse, however this suggests a different approach was needed.
-
-The 4 qubit Clebsch-Gordan transform requires 72 $C^3U$ gates which is equal to $\sim 1800 CU$ gates. 
+The decomposition scheme for the 4 qubit case the upper bound is 120 $C^3U$ gates which could be up to $\sim 3000$ $CU$ gates. The 4 qubit Schur transform requires 72 $C^3U$ gates which is equal to $\sim 1800 CU$ gates. This suggests a different approach was needed.
 
 \section{Streaming Scheme}
 
