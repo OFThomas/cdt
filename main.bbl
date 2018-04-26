@@ -1,9 +1,25 @@
 \begin{thebibliography}{10}
 
+\bibitem{blume2014streaming}
+Robin Blume-Kohout, Sarah Croke, and Daniel Gottesman.
+\newblock Streaming universal distortion-free entanglement concentration.
+\newblock {\em IEEE Transactions on Information Theory}, 60(1):334--350, 2014.
+
 \bibitem{moylett2018quantum}
 Alexandra~E Moylett and Peter~S Turner.
 \newblock Quantum simulation of partially distinguishable boson sampling.
 \newblock {\em arXiv:1803.03657}, 2018.
+
+\bibitem{plesch2010efficient}
+Martin Plesch and Vladim{\'\i}r Bu{\v{z}}ek.
+\newblock Efficient compression of quantum information.
+\newblock {\em Physical Review A}, 81(3):032317, 2010.
+
+\bibitem{harrow2005applications}
+Aram~W Harrow.
+\newblock Applications of coherent classical communication and the schur
+  transform to quantum information theory.
+\newblock {\em arXiv preprint quant-ph/0512255}, 2005.
 
 \bibitem{kirby2017practical}
 William~M Kirby and Frederick~W Strauch.
@@ -34,11 +50,6 @@ Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
   Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
 \newblock Elementary gates for quantum computation.
 \newblock {\em Physical review A}, 52(5):3457, 1995.
-
-\bibitem{blume2014streaming}
-Robin Blume-Kohout, Sarah Croke, and Daniel Gottesman.
-\newblock Streaming universal distortion-free entanglement concentration.
-\newblock {\em IEEE Transactions on Information Theory}, 60(1):334--350, 2014.
 
 \bibitem{draper2004logarithmic}
 Thomas~G Draper, Samuel~A Kutin, Eric~M Rains, and Krysta~M Svore.

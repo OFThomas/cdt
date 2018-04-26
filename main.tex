@@ -63,15 +63,13 @@
 
 \section{Introduction}
 
-There are many uses of the uses of the Schur transform, compression of local properties to a global system. in boson sampling experiments preparing highly symmetrerised states, \cite{moylett2018quantum}. 
-We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
+Universal distortion-free entanglement concentration \cite{blume2014streaming}, preparing highly symmetrized states for boson sampling  \cite{moylett2018quantum}, quantum data compression \cite{plesch2010efficient} and many other quantum information tasks \cite{harrow2005applications} can take advantage of an efficient implementation of the Schur transform. We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
 
-There are two distinct ways of performing the Schur transform on $n$ qubits, it can either be built up from coupling all $n$ qubits together in a single iteration which we call the spatial multiplexed approach. The
-other approach is performing Clebsch-Gordan (CG) transforms on the $n$ qubits one at a time which we call the temporal multiplexed approach.  
+There are two distinct ways of performing the Schur transform on n qubits, it can either be built up from coupling all n qubits together in a single iteration which we call the spatial multiplexed approach (as it acts on all qubits at once). The other approach is a streaming scheme which performs Clebsch-Gordan (CG) transforms on each of the n qubits one at a time which we call the temporal multiplexed approach (as it couples in one qubit at a time).  
 
-This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the streaming procedure suggested in \cite{bacon2006efficient}. 
+This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit numerically using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the analytical streaming procedure suggested in \cite{bacon2006efficient}. 
 
-\section{Schur transform}
+\section{The Schur Transform}
 
 The Schur transform maps the computation basis states to a Schur basis, in the qubit case this corresponds to performing a Clebsch-Gordan transform. There are different ways of defining a Schur basis but here we choose to use angular momentum, defined in terms of a labeling of J (Total angular momentum values), M (z-axis projection of the angular momentum) and multiplicity values which we refer to as P.
 
@@ -129,7 +127,7 @@ The transform for three qubits contains 8 terms, the allowed J values are J=3/2 
 
 The transform for four qubits contains 16 terms, J=2 contains 5 terms, J=1 contains 3 terms with 3 multiplicities and the J=0 contains 1 term with 2 multiplicities. The equations are given in \autoref{eq:4qubitcg}. In the J=1 subspace there are 3 acceptable bit strings containing a single one, 0001, 0010 and 0100. This means there are 3 multiplicities present. 
 
-\subsection{Schur Transform circuits}
+\subsection{Schur Transform Circuits}
 
 After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition for each of the Schur transform unitaries. 
 
@@ -177,7 +175,7 @@ For the streaming scheme \autoref{fig:stream} the $U_{CG}$ block can be chosen s
 \label{fig:ucg}
 \end{figure}
 
-The controlled Rotation matrix \cite{bacon2006efficient}, $R_y(\theta_{J,m'})$ \autoref{fig:ucg} is the Clebsch-Gordan coefficients for coupling 1 qubit sequentially,
+The controlled Rotation matrix \cite{bacon2006efficient}, $R_y(\theta_{J,m'})$ \autoref{fig:ucg} is the CG coefficients for coupling one qubit sequentially,
 
 \begin{align}
 \begin{split}
@@ -202,7 +200,7 @@ Where primed variables means after the angular momentum addition so $J$ is the t
 
 To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix}, values here \autoref{eq:rvalues}, and a function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (meaning the registers are allowed to be in superpositions) equivalent of the digital adders and subtracters. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
 
-\section{General circuit for the Quantum Schur transform \autoref{cir:genstreaming}}
+\section{General Circuit for the Quantum Schur Transform \autoref{cir:genstreaming}}
 
 In the section above we have investigated the cost of implementing directly the Clebsch-Gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
 
