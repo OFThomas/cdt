@@ -24,6 +24,11 @@ Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
 \bibitem{githubot561}
 https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
 
+\bibitem{sridharan2010reduced}
+Srinivas Sridharan, Mile Gu, Matthew~R James, and William~M McEneaney.
+\newblock Reduced-complexity numerical method for optimal gate synthesis.
+\newblock {\em Physical Review A}, 82(4):042319, 2010.
+
 \bibitem{barenco1995elementary}
 Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
   Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
