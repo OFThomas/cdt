@@ -63,15 +63,15 @@
 
 \section{Introduction}
 
-Universal distortion-free entanglement concentration \cite{blume2014streaming}, preparing highly symmetrized states for boson sampling  \cite{moylett2018quantum}, quantum data compression \cite{plesch2010efficient} and many other quantum information tasks \cite{harrow2005applications} can take advantage of an efficient implementation of the Schur transform. We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
+Universal distortion-free entanglement concentration \cite{blume2014streaming}, highly symmetrized state preparation for boson sampling \cite{moylett2018quantum}, quantum data compression \cite{plesch2010efficient} and many other quantum information tasks \cite{harrow2005applications} can take advantage of an efficient implementation of the Schur transform. We look at existing algorithms for implementing the Schur transform and aim to produce a minimal gate quantum circuit which in principle could be used to implement the Schur transform on a small number of qubits in the near future \cite{kirby2017practical}.
 
 There are two distinct ways of performing the Schur transform on n qubits, it can either be built up from coupling all n qubits together in a single iteration which we call the spatial multiplexed approach (as it acts on all qubits at once). The other approach is a streaming scheme which performs Clebsch-Gordan (CG) transforms on each of the n qubits one at a time which we call the temporal multiplexed approach (as it couples in one qubit at a time).  
 
-This report is structured as follows, the Schur transform is introduced and we construct a quantum circuit numerically using the Givens rotation method \cite{li2013decomposition}. We comment on the scalability of this method and compare it to the analytical streaming procedure suggested in \cite{bacon2006efficient}. 
+This report is structured as follows, the Schur transform is introduced then we construct a quantum circuit numerically decomposing the unitary matrix using the Givens rotation method \cite{li2013decomposition} implementing the Schur transform. We comment on the scalability of this method and compare it to the analytical streaming procedure suggested in \cite{bacon2006efficient}. 
 
 \section{The Schur Transform}
 
-The Schur transform maps computation basis states to a Schur basis, in the qubit case this corresponds to performing a Clebsch-Gordan transform using the rules for addition of angular momentum. There are different ways of defining a Schur basis but here we choose to use angular momentum which is the natural choice for qubits. The notation used throughout we will call this Schur basis the spin basis. The spin basis is defined in terms of a labeling of J (Total angular momentum values), M (z-axis projection of the angular momentum) and multiplicity values which we refer to as P.
+The Schur transform maps computation basis states to a Schur basis, in the qubit case this corresponds to performing a Clebsch-Gordan transform. There are different ways of defining a Schur basis but here we use angular momentum which is the natural choice for qubits. The notation used throughout will to the Schur basis as the spin basis. The spin basis is defined in terms of a labeling of J (Total angular momentum values), M (z-axis projection of the angular momentum) and multiplicity values which we refer to as P.
 
 The Schur basis vectors for two qubits are,
 
@@ -214,7 +214,7 @@ We note that it is possible to reduce the gate count of the general streaming sc
 
 \section{Discussion}
 
-Instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, pairing each of the couplings up performing parts in parallel rather than all sequentially remains an open question as to whether there is a speed up. The problem is looking at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
+Instead of coupling single qubits in at a time to the $J$ \& $M$ registers, pairing each of the couplings up performing parts in parallel rather than all sequentially remains an open question as to whether there is a speed up. The problem is looking at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
 
 The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform. The Schur transform overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used for the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order within the J block wouldn't be important and could lead to a reduction of gates needed.
 
