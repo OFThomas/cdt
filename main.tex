@@ -202,7 +202,7 @@ Where primed variables mean the variable after the angular momentum addition, e.
 
 To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix} (we calculate values in the appendix \autoref{eq:rvalues}) and the Qadder \autoref{fig:ucg} function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (registers are allowed to be in superpositions) equivalent of the digital adders and subtracters. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
 
-\section{General Circuit for the Quantum Schur Transform}
+\section{General Circuit for the Schur Transform}
 
 In the section above we have investigated the cost of implementing directly the Clebsch-Gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
 
@@ -214,18 +214,17 @@ We note that it is possible to reduce the gate count of the general streaming sc
 
 \section{Discussion}
 
-The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform (QFT). The QFT produces the output in reverse qubit order the actual number of gates required to do the transform is massively reduced. The overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order afterwards wouldn't be as important reducing the CNOTs needed.
+Instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, pairing each of the couplings up performing parts in parallel rather than all sequentially remains an open question as to whether there is a speed up. The problem is looking at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
 
-There is a lot of freedom in the choice of basis used. We have chosen to use Two's complement encoding for the registers. The encoding for the multiplicities remains consistent throughout although it is more complex. For the general circuits the encoding remains consistent throughout. In order to achieve the optimal number of gates for the Schur transform on a specific number of qubits the encoding is changed on a case by case basis. 
+The majority of the gates are CNOT gates. This is mainly due to the re-ordering of the basis and is similar to the quantum Fourier transform. The Schur transform overhead calculated here is due to the rearranging of the basis. This means that depending on what the transform is used for the transform could be computed with less gates. For example, if the transform was only used to check if the state was in a particular J block but didn't need to know the specific M value the order within the J block wouldn't be important and could lead to a reduction of gates needed.
 
-For large qubit coupling numbers the R matrix in the UCG tends to a Hadamard gate for the $\abs{M} < \abs{J}$ values of M. This means that depending on application of Schur transform and input states, it could be reasonable to approximate the transform when acting on highly symmetric states to just doing Hadamard gates.
+There is freedom in the choice of basis used. We have chosen to use Two's complement encoding for the registers. The encoding for the multiplicities remains consistent throughout although it is more complex. For the general circuits the encoding remains consistent throughout which is inherently scalable. In order to achieve the optimal number of gates for the Schur transform on a specific number of qubits however the encoding here is changed on a case by case basis. This suggests that for small near term devices the streaming scheme is not the best for achieving the smallest gate count however for large qubit couplings it is greatly preferred due to the structure it has. The Schur transform can be performed in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}. 
 
-We look at whether it is possible to achieve decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing each of the couplings up. This is the same as performing parts in parallel rather than sequentially. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
+For large qubit coupling numbers the R matrix in the $U_{CG}$ tends to a Hadamard gate for the $\abs{M} < \abs{J}$ values of M. This means that depending on application of Schur transform and input states, it could be reasonable to approximate the transform when acting on highly symmetric states to implementing mostly Hadamard gates which would reduce the control complexity and the gate count.
 
 \section{Conclusion}
 
-The streaming scheme uses temporal multiplexing to perform the Schur transform in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}.
-
+For small qubit numbers we suspect that it is more optimal to use an unregistered Schur transform, which can further be improved on by further optimising the gate decomposition classically. The disadvantage is that the encoding changes depending on how many qubits are being transformed and it is difficult to scale. The streaming scheme uses explicit registering, storing the values of J \& M in registers, with consistent encoding and has a scalable structure suitable for large qubit Schur transforms.
 
 %%%%%%%%%%%%
 \bibliographystyle{unsrt}
