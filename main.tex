@@ -71,7 +71,7 @@ This report is structured as follows, the Schur transform is introduced and we c
 
 \section{The Schur Transform}
 
-The Schur transform maps the computation basis states to a Schur basis, in the qubit case this corresponds to performing a Clebsch-Gordan transform. There are different ways of defining a Schur basis but here we choose to use angular momentum, defined in terms of a labeling of J (Total angular momentum values), M (z-axis projection of the angular momentum) and multiplicity values which we refer to as P.
+The Schur transform maps computation basis states to a Schur basis, in the qubit case this corresponds to performing a Clebsch-Gordan transform using the rules for addition of angular momentum. There are different ways of defining a Schur basis but here we choose to use angular momentum which is the natural choice for qubits. The notation used throughout we will call this Schur basis the spin basis. The spin basis is defined in terms of a labeling of J (Total angular momentum values), M (z-axis projection of the angular momentum) and multiplicity values which we refer to as P.
 
 The Schur basis vectors for two qubits are,
 
@@ -121,61 +121,63 @@ We have suppressed the multiplicity label here for simplicity as there are no mu
 
 This transform takes the computational basis state, $\ket{01}$ to a superposition of the singlet and triplet states, $\frac{1}{\sqrt{2}} (\ket{J=1, M=0} + \ket{J=0, M=0})$. 
 
-The Schur basis vectors can be calculated for any n qubit couplings using the Glebsch-Gordan coefficients, here we have calculated up to 4 qubits. For more than two qubits multiplicities are introduced, multiplicities keep track of which subspace the system is in. The multiplicities, P are defined as $J'-J$ the new J value minus the previous J value, the number of combinations for a given amount of 1s in a P string is the number of multiplicities for that J value.
+The Schur basis vectors can be calculated for any n qubit couplings using the Glebsch-Gordan coefficients, here we have calculated up to 4 qubits. For more than two qubits multiplicities are introduced, multiplicities keep track of which subspace the system is in. The multiplicities, P are defined as $J'-J$ which is the new J value after the coupling of the spin minus the previous J value. The number of combinations for a given amount of 1s in a P string is the number of multiplicities for that J value.
 
-The transform for three qubits contains 8 terms, the allowed J values are J=3/2 which contains 4 states and J=1/2 which contains 2 states. The J=1/2 subspace contains 2 multiplicities corresponding to the two possible routes to that coupling, either J=1 to J=1/2 (couple down) or J=0 to J=1/2 (couple up). The basis vectors are given in the appendix for completeness \autoref{eq:3cgcoeff}. There are multiple ways of writing the spin basis vectors, the traditional C-G coefficients and also what we refer to as the phase encoding \autoref{eq:phaseencode}. The phase encoded transform matrix will have a different decomposition as the shape of the matrix is different to the regular encoding. 
+The transform for three qubits contains 8 terms, the allowed J values are J=3/2 which contains 4 states and J=1/2 which contains 2 states. The J=1/2 subspace contains 2 multiplicities corresponding to the two possible routes to that coupling, either J=1 to J=1/2 (couple down) or J=0 to J=1/2 (couple up). The basis vectors are given in the appendix for completeness \autoref{eq:3cgcoeff}. There are multiple ways of writing the spin basis vectors, the traditional CG coefficients and also what we refer to as the phase encoding \autoref{eq:phaseencode}. The phase encoded transform matrix will have a different decomposition as the shape of the matrix is different to the regular encoding. 
 
 The transform for four qubits contains 16 terms, J=2 contains 5 terms, J=1 contains 3 terms with 3 multiplicities and the J=0 contains 1 term with 2 multiplicities. The equations are given in \autoref{eq:4qubitcg}. In the J=1 subspace there are 3 acceptable bit strings containing a single one, 0001, 0010 and 0100. This means there are 3 multiplicities present. 
 
 \subsection{Schur Transform Circuits}
 
-After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. See online \cite{githubot561} for Fortran code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition for each of the Schur transform unitaries. 
+After building the unitary matrices from the Schur basis vectors using the CG coefficients we now calculate the gate cost of implementing the unitaries for 2, 3 and 4 qubits. See online \cite{githubot561} for FORTRAN code which implements the Givens rotation method to give the $C^{n-1}U$ decomposition for each of the Schur transform unitaries. 
 
-As two-qubit (entangling) gates are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case is bounded by $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ means a unitary acting on 1 qubit controlled on the other n-1 qubits. It is possible to calculate a optimal gate sequence however current classical algorithms are computationally expensive \cite{sridharan2010reduced}.When n is greater than 2, it is possible to reduce higher order control gates to single control gates, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
+As two-qubit (entangling) gates, denoted here by $C-U$, are much more expensive to perform compared to single qubit gates, the cost of the circuits discussed here will all be given in terms of the number of two-qubit gates. The decomposition scheme for the n-qubit case is bounded by $2^{n-1}(2^n-1)$ $C^{n-1}U$ gates \cite{li2013decomposition}, where $C^{n-1}U$ is defined as a unitary acting on 1 qubit controlled on the other n-1 qubits. It is possible to calculate a optimal gate sequence however current classical algorithms are computationally expensive \cite{sridharan2010reduced}.When n is greater than 2, it is possible to reduce higher order control gates to single control gates, $C^nU \sim 5 C^{n-1}V$ where $U \& V$ are unitaries \cite{barenco1995elementary}.
 
 The two qubit Schur transform can be implemented in a circuit which only contains two gates as \autoref{cir:vanilla2},
 
 %%%%%%%%% circuit 1 
 \begin{figure}[h]
-\begin{align}
+\begin{align*}
 \Qcircuit @C=0.5cm @R=0.7cm{
 %1
-&\lstick{S_1} &\gate{H} &\ctrl{1} &\qw \\
+&\lstick{\ket{S_1}} &\gate{H} &\ctrl{1} &\qw \\
 %0
-&\lstick{S_0} &\ctrl{-1} &\targ &\qw \\
+&\lstick{\ket{S_0}} &\ctrl{-1} &\targ &\qw \\
 }
-\end{align}
+\end{align*}
 \caption{Schur transform for 2 qubits}
 \label{cir:vanilla2}
 \end{figure}
 
-For 3 qubits this upper bound is 28 $C^2U$ gates.This means the maximum two-qubit gates needed would be 140 $CU$ gates. The decomposition of the 3 qubit CG transform was performed using the Givens rotation method for unitary decomposition into a gate sequence. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
+For 3 qubits the decomposition upper bound is 28 $C^2U$ gates. This implies the maximum two-qubit gates needed would be 140 $CU$ gates. The decomposition of the 3 qubit CG transform was performed analytically and using the Givens rotation method for unitary decomposition into a gate sequence to check the code converged to the correct sequence. The matrix \autoref{eq:3qubitcg} can be expressed as a product of 19 $C^2U$ gates (control-control-unitaries) which is $\sim$80 $CU$ gates. 
 
-The decomposition scheme for the 4 qubit case the upper bound is 120 $C^3U$ gates which could be up to $\sim 3000$ $CU$ gates. The 4 qubit Schur transform requires 72 $C^3U$ gates which is equal to $\sim 1800 CU$ gates. The 2 qubit case 1 out of 2 gates are CNOTs, 3 qubits, 14 out of 19 are $C^2$NOTs and 4 qubits, 50 out of 72 are $C^3$-NOT gates. This suggests a different approach was needed.
+For the 4 qubits the decomposition requires at most 120 $C^3U$ gates ($\sim 3000$ $CU$ gates). The 4 qubit Schur transform was decomposed into 72 $C^3U$ gates ($\sim 1800 CU$ gates). These decompositions are not optimal however there exist algorithms to further optimise gate sequences \cite{shende2006synthesis} but are computationally expensive and not investigated here. The majority of gates were CNOT or equivalent gates, the 2 qubit gate set contained 1 out of 2 gates were CNOTs, 3 qubits, 14 out of 19 were $C^2$NOTs and 4 qubits, 50 out of 72 were $C^3$-NOT gates. This suggests a different approach was needed.
 
 \section{Streaming Scheme}
 
-Entanglement purification is an example of a process which gains an advantage when using a streaming scheme \cite{blume2014streaming}. It is possible to optimally perform purification in a streaming setup which is an advantage as it allows for some of the purified resource to be distributed while purifying the rest continually. It can still be useful to only purify part of the resource. There exists a streaming scheme for the Schur transform however, it is not useful to only be able to  perform a partial Schur transform which suggests there may be other equivalent or better methods compared to streaming for implementing the Schur transform.      
+Entanglement purification is an example of a process which gains an advantage when using a streaming scheme \cite{blume2014streaming}. It is possible to optimally perform purification in a streaming setup which is an advantage as it allows for some of the purified resource to be distributed while purifying the rest continually. The advantage gained from streaming is that it can still be useful to only purify part of the resource. There exists a streaming scheme for the Schur transform, however it is not useful to only be able to  perform a partial Schur transform. This suggests there may be other equivalent or better methods for implementing the Schur transform.      
 
-We look at whether it is possible to achieve decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing each of the couplings up. This is the same as performing parts in parallel rather than sequentially. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
+The streaming scheme \autoref{fig:stream}, where the $U_{CG}$ is the Clebsch-Gordan transform between the $J$ \& $M$ registers and the k-th qubit $\ket{i_k}$. The $U_{CG}$ block can be chosen so that it contains all of the gates for up to the n-th qubit meaning the same block can be repeated. The $U_{CG}$ block is built up from \autoref{fig:ucg},  
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{schurcascade.png}
-\caption{Streaming structure where the Schur transform is built up from consecutive Clebsch-Gordan transforms \cite{bacon2006efficient}.}
+\begin{subfigure}[H]{0.49\textwidth}
+\centering
+\includegraphics[width=0.9\textwidth]{schurcascade.png}
+\caption{Streaming structure where the Schur transform is built up from consecutive Clebsch-Gordan transforms.}
 \label{fig:stream}
-\end{figure}
-
-For the streaming scheme \autoref{fig:stream} the $U_{CG}$ block can be chosen so that it contains all of the gates for up to the n-th qubit meaning the same block can be repeated. Where the $U_{CG}$ is the Clebsch-Gordan transform between the $J$ \& $M$ registers and the k-th qubit $\ket{i_k}$.
-
-\begin{figure}[h!]
+\end{subfigure}
+~
+\begin{subfigure}[H]{0.49\textwidth}
 \centering
-\includegraphics[width=0.4\textwidth]{genaddercirc.png}
-\caption{$U_{CG}$ block, Qadder, controlled rotation, Qadder \cite{bacon2006efficient}.}
+\includegraphics[width=0.9\textwidth]{genaddercirc.png}
+\caption{$U_{CG}$ block, composed of a Qadder from qubit to M, controlled rotation on qubit conditional on J \& M' registers, Qadder transformed qubit to J.}
 \label{fig:ucg}
+\end{subfigure}
+\caption{Streaming Schur Transform from \cite{bacon2006efficient}}  
 \end{figure}
 
-The controlled Rotation matrix \cite{bacon2006efficient}, $R_y(\theta_{J,m'})$ \autoref{fig:ucg} is the CG coefficients for coupling one qubit sequentially,
+The controlled Rotation matrix \cite{bacon2006efficient}, $R_y(\theta_{J,m'})$ is the CG coefficients for coupling one qubit sequentially,
 
 \begin{align}
 \begin{split}
@@ -196,19 +198,19 @@ R_y(\theta_{J,m'})=
 \label{eq:rotmatrix}
 \end{align}
 
-Where primed variables means after the angular momentum addition so $J$ is the total J that the spin is coupling to, the system will have $J'$ total angular momentum after the coupling. $m$ is the z component of the system before and $m'$ is the total z component after the coupling.
+Where primed variables mean the variable after the angular momentum addition, e.g. $J$ is the total angular momentum that the spin is coupling to, the whole system will have $J'$ total angular momentum after the coupling. $m$ is the z component of the system before and $m'$ is the total z component after the coupling.
 
-To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix}, values here \autoref{eq:rvalues}, and a function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (meaning the registers are allowed to be in superpositions) equivalent of the digital adders and subtracters. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
+To build this circuit the rotation matrix, $R_y(\theta_{J,m'})$ needs to be calculated using \autoref{eq:rotmatrix} (we calculate values in the appendix \autoref{eq:rvalues}) and the Qadder \autoref{fig:ucg} function to update the $\ket{m}$ and $\ket{J}$ registers is needed. Updating the registers can be implemented relatively simply using the coherent (registers are allowed to be in superpositions) equivalent of the digital adders and subtracters. The complexity now has been reduced to implementing the Clebsch-Gordan transform, $U_{CG}$.
 
-\section{General Circuit for the Quantum Schur Transform \autoref{cir:genstreaming}}
+\section{General Circuit for the Quantum Schur Transform}
 
 In the section above we have investigated the cost of implementing directly the Clebsch-Gordan unitary matrix using a unitary gate decomposition scheme. We note that the majority, over half of the gates are CNOT or higher dimensional equivalents.
 
-We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to calculate. Calculating the circuits (shown in \autoref{cir:tempmultistream}) was done by calculating the truth tables for each step, the quantum adder which can be implemented reversibly, \cite{draper2004logarithmic} and other possibly more optimal schemes for very large registers which makes use of the quantum Fourier transform (QFT) \cite{draper2000addition} which are outside the scope of this work. The streaming scheme uses temporal multiplexing to perform the Schur transform in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}.
+We now compare directly decomposing the Schur transform unitary to the streaming scheme above, the streaming method has the advantage of being modular and relatively easy to construct. Calculating and constructing the circuits (shown in \autoref{cir:tempmultistream}) was done by calculating the truth tables for each step. The quantum adder has already been studied and can be implemented using a reversible equivalent to a digital adder, \cite{draper2004logarithmic}. There are also other possibly more optimal schemes for very large registers which makes use of the quantum Fourier transform (QFT) \cite{draper2000addition}. These are outside the scope of this work as we are focusing on small numbers of qubits. The actual adder used here takes advantage of the fact the registers only ever change by $\pm1$ at each step \autoref{cir:genstreaming} . 
 
-We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. Here we remove the intermediate values and hence can reduce both the number of qubits required and the gate count. This scheme works by coupling in two qubits at a time as opposed to one (\autoref{cir:minspatialmult}, \autoref{cir:spatialmulti2}). This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers whereas the streaming scheme stores all intermediate values. This reduces the number of qubits needed. 
+The general streaming circuit adds the value of the spin to be added $\ket{S}$ using the encoding $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ to the M register to calculate the M' register value. The CG transform gates are performed to generate P then the result is added to the J register to give the J' register value. The general circuit is shown in \autoref{cir:genstreaming}.
 
-The circuit adds the value of the spin to be added $\ket{S}$ using the encoding $\ket{S} : \ket{0} \mapsto Spin = +\frac{1}{2}, \ket{1} \mapsto Spin = -\frac{1}{2}$ to the M register to calculate the M' register value. This is done by implementing the quantum reversible equivalent to the digital adder. The CG transform gates are performed to generate P then the result is added to the J register to give the J' register value.
+We note that it is possible to reduce the gate count of the general streaming scheme by changing the encoding. We remove the intermediate values which reduces both the number of qubits required and the gate count. This spatial multiplexing approach only stores the final output values of the $J$ \& $M$ registers whereas the streaming scheme stores all possible intermediate values. The scheme works by coupling in two qubits at a time as opposed to one (\autoref{cir:minspatialmult}, \autoref{cir:spatialmulti2}). 
 
 \section{Discussion}
 
@@ -218,9 +220,11 @@ There is a lot of freedom in the choice of basis used. We have chosen to use Two
 
 For large qubit coupling numbers the R matrix in the UCG tends to a Hadamard gate for the $\abs{M} < \abs{J}$ values of M. This means that depending on application of Schur transform and input states, it could be reasonable to approximate the transform when acting on highly symmetric states to just doing Hadamard gates.
 
+We look at whether it is possible to achieve decrease in time by instead of coupling 1 qubit in at a time to the $J$ \& $M$ registers, to pairing each of the couplings up. This is the same as performing parts in parallel rather than sequentially. To investigate the problem we look at how the complexity of performing the Clebsch-Gordan transform scales moving from coupling a single qubit to an arbitrary $J \& M$ to coupling arbitrary $J \& M$ registers together. The pairing approach has a symmetry in the max range of $J \& M$ values will be the same within each pairing which will help simplify the problem compared to any arbitrary $J \& M$ values.
+
 \section{Conclusion}
 
-
+The streaming scheme uses temporal multiplexing to perform the Schur transform in polynomial time if a recursive streaming scheme is used \cite{bacon2007quantum}.
 
 
 %%%%%%%%%%%%

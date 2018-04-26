@@ -51,6 +51,12 @@ Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
 \newblock Elementary gates for quantum computation.
 \newblock {\em Physical review A}, 52(5):3457, 1995.
 
+\bibitem{shende2006synthesis}
+Vivek~V Shende, Stephen~S Bullock, and Igor~L Markov.
+\newblock Synthesis of quantum-logic circuits.
+\newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
+  Circuits and Systems}, 25(6):1000--1010, 2006.
+
 \bibitem{draper2004logarithmic}
 Thomas~G Draper, Samuel~A Kutin, Eric~M Rains, and Krysta~M Svore.
 \newblock A logarithmic-depth quantum carry-lookahead adder.
