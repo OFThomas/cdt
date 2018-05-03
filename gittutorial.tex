@@ -16,6 +16,7 @@
 \usepackage{rotating}
 \usepackage{float}
 \usepackage{hyperref}
+\graphicspath{figures}
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
 \renewcommand{\equationautorefname}{Eq.}
 \renewcommand{\figureautorefname}{Fig.}
@@ -33,6 +34,8 @@
 \author{Oliver Thomas}
 \institute{Quantum Engineering CDT \\ University of Bristol}
 \date{\today}
+
+% plan
 
 \begin{document}
 
@@ -72,7 +75,7 @@
 \frametitle{Making a repository}
 \begin{itemize}
 \item make a new repository, then go to the website and make a new folder 
-\item go to the folder and right click git with bas
+\item go to the folder and right click git with bash
 \item You are now able to use bash for the rest of the talk!
 \end{itemize}
 \end{frame}
@@ -82,7 +85,7 @@
 \begin{frame}
 \frametitle{Basic Git commands}
 \begin{itemize}
-	\item There are four\footnotemark important commands you will need for git:
+	\item There are four\footnotemark\ important commands you will need for git:
 	\item \texttt{git pull}
 	\item \texttt{git add}
 	\item \texttt{git commit}
@@ -93,19 +96,213 @@
 
 %slide 5
 \begin{frame}
-\frametitle{Plotting with Python} 
+\frametitle{Why Python?} 
 \begin{itemize}
-	\item Python is popular, multi-platform and becoming a standard language\footnotemark 
+	\item Python is popular, multi-platform and becoming a standard language\footnotemark\ 
+	\item It is a good high level language to know, it is very flexible
 \end{itemize}
+\footnotetext[2]{standard on most of the popular linux distributions}
+\end{frame}
 
-
-\footnotetext[2]{standard on nearly every linux dist}
-\url{https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html}
+%slide 5
+\begin{frame}
+\frametitle{Python syntax} 
+\begin{itemize}
+	\item As with every programming language we should figure out how to do \textit{Hello, world!}
+\end{itemize}
+Open python and type:
+\begin{verbatim}
+print 'Hello, world!'
+\end{verbatim}
 \end{frame}
 
 %slide 6
 \begin{frame}
 \frametitle{Plotting}
+\begin{itemize}
+	\item Python requires the \texttt{numpy} library\footnotemark\ for a lot of basic maths functions and arrays.
+	\item We are going to use the \texttt{matplotlib} library\footnotemark\ for the remainder of this talk. 
+\end{itemize}
+\footnotetext[3]{\url{http://www.numpy.org/}}
+\footnotetext[4]{\url{https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html}}
 \end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 1, Plotting functions}
+\begin{itemize}
+	\item Go to the \texttt{src} folder and open \texttt{ex1functions.py} 
+	\item  
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 1, Plotting functions}
+\begin{itemize}
+	\item figure 
+	\item  
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1plot.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 2, Plotting data!}
+\begin{itemize}
+	\item once again, in the \texttt{src} folder open \texttt{ex2data.py}
+	\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 2, Plotting data!}
+\begin{itemize}
+	\item figure 
+	\item
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1plot.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 3, Histograms!}
+\begin{itemize}
+\item once again, in the \texttt{src} folder open \texttt{ex3hist.py}
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 3, Histograms!}
+\begin{itemize}
+\item figure
+\item
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1plot.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 4, Subplots!}
+\begin{itemize}
+\item In the \texttt{src} folder open \texttt{ex4subplots.py} 
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 4, Subplots!}
+\begin{itemize}
+\item Figures!
+\item
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1plot.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\item  
+\item
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
