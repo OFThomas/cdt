@@ -25,4 +25,6 @@ plt.plot(x2, y2, '.-')
 plt.xlabel('time (s)')
 plt.ylabel('Undamped')
 
-plt.show()
+#plt.show()
+
+plt.savefig('ex5.png', format='png')
