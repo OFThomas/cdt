@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  3 MAY 2018 19:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  4 MAY 2018 09:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2458,18 +2458,30 @@ Package pdftex.def Info: ./figures/ex1.png used on input line 152.
 
  <./figures/ex1.png>] [12
 
-] <./figures/ex2.png, id=354, 578.16pt x 433.62pt>
-File: ./figures/ex2.png Graphic file (type png)
- <use ./figures/ex2.png>
-Package pdftex.def Info: ./figures/ex2.png used on input line 176.
-(pdftex.def)             Requested size: 145.3713pt x 109.02667pt.
+]
+
+LaTeX Warning: File `aex2.png' not found on input line 176.
+
+
+./gittutorial.tex:176: Package pdftex.def Error: File `aex2.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176 \end{frame}
+                 
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.176 \end{frame}
                   [13
 
- <./figures/ex2.png>] [14
+] [14
 
 ]
 
@@ -2496,7 +2508,7 @@ l.201 \end{frame}
 
 ] [16
 
-] <./figures/ex4.png, id=462, 578.16pt x 433.62pt>
+] <./figures/ex4.png, id=460, 578.16pt x 433.62pt>
 File: ./figures/ex4.png Graphic file (type png)
  <use ./figures/ex4.png>
 Package pdftex.def Info: ./figures/ex4.png used on input line 225.
@@ -2509,7 +2521,7 @@ l.225 \end{frame}
 
  <./figures/ex4.png>] [18
 
-] <./figures/ex5.png, id=516, 578.16pt x 433.62pt>
+] <./figures/ex5.png, id=514, 578.16pt x 433.62pt>
 File: ./figures/ex5.png Graphic file (type png)
  <use ./figures/ex5.png>
 Package pdftex.def Info: ./figures/ex5.png used on input line 249.
@@ -2522,18 +2534,30 @@ l.249 \end{frame}
 
  <./figures/ex5.png>] [20
 
-] <./figures/ex6.png, id=572, 433.62pt x 433.62pt>
-File: ./figures/ex6.png Graphic file (type png)
- <use ./figures/ex6.png>
-Package pdftex.def Info: ./figures/ex6.png used on input line 273.
-(pdftex.def)             Requested size: 145.3713pt x 145.37111pt.
+]
+
+LaTeX Warning: File `aex6.png' not found on input line 273.
+
+
+./gittutorial.tex:273: Package pdftex.def Error: File `aex6.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 \end{frame}
+                 
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.273 \end{frame}
                   [21
 
- <./figures/ex6.png>] [22
+] [22
 
 ] [23
 
@@ -2577,18 +2601,18 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
  ) 
 Here is how much of TeX's memory you used:
- 28287 strings out of 493029
- 535505 string characters out of 6136234
+ 28279 strings out of 493029
+ 535325 string characters out of 6136234
  595746 words of memory out of 5000000
- 31239 multiletter control sequences out of 15000+600000
+ 31231 multiletter control sequences out of 15000+600000
  25029 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,16n,61p,10407b,564s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on gittutorial.pdf (29 pages, 552332 bytes).
+Output written on gittutorial.pdf (29 pages, 213846 bytes).
 PDF statistics:
- 847 PDF objects out of 1000 (max. 8388607)
+ 843 PDF objects out of 1000 (max. 8388607)
  781 compressed objects within 8 object streams
  60 named destinations out of 1000 (max. 500000)
- 92 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 82 words of extra memory for PDF output out of 10000 (max. 10000000)
 
