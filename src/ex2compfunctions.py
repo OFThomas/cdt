@@ -8,7 +8,7 @@ Python Batman Equation
 """
 from __future__ import division
 import matplotlib.pyplot as plt
-from numpy import sqrt #originally had from scipy import sqrt
+from numpy import sqrt
 from numpy import meshgrid
 from numpy import arange
 
@@ -28,5 +28,7 @@ eq6 = (6*sqrt(10)/7+(1.5-.5*abs(x))*sqrt(abs(abs(x)-1)/(abs(x)-1))-(6*sqrt(10)/1
 for f in [eq1,eq2,eq3,eq4,eq5,eq6]:
     plt.contour(x, y, f, [0])
 
-plt.savefig('ex2.png', format='png')
-#plt.show()
+plt.title("I'M BATMAN.")
+
+#plt.savefig('ex2.png', format='png')
+plt.show()

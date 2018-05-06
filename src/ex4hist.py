@@ -15,8 +15,9 @@ l = plt.plot(bins, y, 'r--', linewidth=1)
 plt.xlabel('Smarts')
 plt.ylabel('Probability')
 plt.title(r'$\mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$')
+
 plt.axis([40, 160, 0, 0.03])
 plt.grid(True)
 
-#plt.show()
-plt.savefig('ex4.png', format='png')
+plt.show()
+#plt.savefig('ex4.png', format='png')
