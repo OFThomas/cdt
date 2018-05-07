@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  7 MAY 2018 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.24)  7 MAY 2018 21:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2214,6 +2214,9 @@ LaTeX Warning: Label `fig:function' multiply defined.
 
 LaTeX Warning: Label `fig:function' multiply defined.
 
+
+LaTeX Warning: Label `fig:xkcdversion' multiply defined.
+
 )
 \openout1 = `gittutorial.aux'.
 
@@ -2388,56 +2391,65 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-Overfull \hbox (18.59181pt too wide) in paragraph at lines 53--53
- []\OT1/cmtt/m/n/10.95 finalx.tex, finalxFORREAL.tex, finalxIPromise.tex,
+Overfull \hbox (18.59181pt too wide) in paragraph at lines 60--60
+ []\OT1/cmtt/m/n/10.95 finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf,
  []
 
-[2
+<./figures/xkcdversion.png, id=53, 240.29774pt x 399.29175pt>
+File: ./figures/xkcdversion.png Graphic file (type png)
+ <use ./figures/xkcdversion.png>
+Package pdftex.def Info: ./figures/xkcdversion.png used on input line 60.
+(pdftex.def)             Requested size: 75.59148pt x 125.60696pt.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 60.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 60.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 60.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 60.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 60.
+ (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
+ [2
 
-]
+ <./figures/xkcdversion.png>]
 Runaway argument?
-./gittutorial.tex:54: Paragraph ended before \next was complete.
+./gittutorial.tex:61: Paragraph ended before \next was complete.
 <to be read again> 
                    \par 
-l.54 
+l.61 
      
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 63.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
-File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 63.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
-File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 63.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
-File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 63.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 63.
- (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
-File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
- [3
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
+[3
 
 ] [4
 
@@ -2455,10 +2467,10 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 
 ]
 Runaway argument?
-./gittutorial.tex:148: Paragraph ended before \next was complete.
+./gittutorial.tex:155: Paragraph ended before \next was complete.
 <to be read again> 
                    \par 
-l.148 
+l.155 
       
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -2468,27 +2480,29 @@ My plan is to forget the whole thing and hope for the best.
 
 ] [12
 
-] <./figures/ex1.png, id=353, 578.16pt x 433.62pt>
+] [13
+
+] <./figures/ex1.png, id=384, 578.16pt x 433.62pt>
 File: ./figures/ex1.png Graphic file (type png)
  <use ./figures/ex1.png>
-Package pdftex.def Info: ./figures/ex1.png used on input line 182.
+Package pdftex.def Info: ./figures/ex1.png used on input line 204.
 (pdftex.def)             Requested size: 145.3713pt x 109.02667pt.
- [13
+ [14
 
- <./figures/ex1.png>] [14
+ <./figures/ex1.png>] [15
 
 ]
 
-LaTeX Warning: File `aex2.png' not found on input line 206.
+LaTeX Warning: File `aex2.png' not found on input line 228.
 
 
-./gittutorial.tex:206: Package pdftex.def Error: File `aex2.png' not found.
+./gittutorial.tex:228: Package pdftex.def Error: File `aex2.png' not found.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.206 \end{frame}
+l.228 \end{frame}
                  
 Using draft setting for this image.
 Try typing  <return>  to proceed.
@@ -2497,74 +2511,62 @@ If that doesn't work, type  X <return>  to quit.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.206 \end{frame}
-                  [15
+l.228 \end{frame}
+                  [16
 
-] [16
+] [17
 
-]
-
-LaTeX Warning: File `ex3.png' not found on input line 231.
-
-
-./gittutorial.tex:231: Package pdftex.def Error: File `ex3.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.231 \end{frame}
-                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+] <./figures/ex3.png, id=493, 578.16pt x 433.62pt>
+File: ./figures/ex3.png Graphic file (type png)
+ <use ./figures/ex3.png>
+Package pdftex.def Info: ./figures/ex3.png used on input line 252.
+(pdftex.def)             Requested size: 145.3713pt x 109.02667pt.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.231 \end{frame}
-                  [17
+l.252 \end{frame}
+                  [18
 
-] [18
+ <./figures/ex3.png>] [19
 
-] <./figures/ex4.png, id=515, 578.16pt x 433.62pt>
+] <./figures/ex4.png, id=548, 578.16pt x 433.62pt>
 File: ./figures/ex4.png Graphic file (type png)
  <use ./figures/ex4.png>
-Package pdftex.def Info: ./figures/ex4.png used on input line 255.
+Package pdftex.def Info: ./figures/ex4.png used on input line 275.
 (pdftex.def)             Requested size: 145.3713pt x 109.02667pt.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.255 \end{frame}
-                  [19
+l.275 \end{frame}
+                  [20
 
- <./figures/ex4.png>] [20
+ <./figures/ex4.png>] [21
 
-] <./figures/ex5.png, id=571, 578.16pt x 433.62pt>
+] <./figures/ex5.png, id=603, 578.16pt x 433.62pt>
 File: ./figures/ex5.png Graphic file (type png)
  <use ./figures/ex5.png>
-Package pdftex.def Info: ./figures/ex5.png used on input line 279.
+Package pdftex.def Info: ./figures/ex5.png used on input line 298.
 (pdftex.def)             Requested size: 145.3713pt x 109.02667pt.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.279 \end{frame}
-                  [21
+l.298 \end{frame}
+                  [22
 
- <./figures/ex5.png>] [22
+ <./figures/ex5.png>] [23
 
 ]
 
-LaTeX Warning: File `aex6.png' not found on input line 303.
+LaTeX Warning: File `aex6.png' not found on input line 321.
 
 
-./gittutorial.tex:303: Package pdftex.def Error: File `aex6.png' not found.
+./gittutorial.tex:321: Package pdftex.def Error: File `aex6.png' not found.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.303 \end{frame}
+l.321 \end{frame}
                  
 Using draft setting for this image.
 Try typing  <return>  to proceed.
@@ -2573,10 +2575,8 @@ If that doesn't work, type  X <return>  to quit.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:function}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.303 \end{frame}
-                  [23
-
-] [24
+l.321 \end{frame}
+                  [24
 
 ] [25
 
@@ -2592,7 +2592,18 @@ l.303 \end{frame}
 
 ] [31
 
-]
+] <./figures/xkcdgit.png, id=868, 298.11375pt x 431.81325pt>
+File: ./figures/xkcdgit.png Graphic file (type png)
+ <use ./figures/xkcdgit.png>
+Package pdftex.def Info: ./figures/xkcdgit.png used on input line 397.
+(pdftex.def)             Requested size: 116.29527pt x 168.4526pt.
+pdfTeX warning (ext4): destination with the same identifier (name{fig:xkcdversion}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.397 \end{frame}
+                  [32
+
+ <./figures/xkcdgit.png>]
 \tf@nav=\write6
 \openout6 = `gittutorial.nav'.
 
@@ -2602,11 +2613,11 @@ l.303 \end{frame}
 \tf@snm=\write8
 \openout8 = `gittutorial.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 388.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 388.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
  (./gittutorial.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 388.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 388.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `gittutorial.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -2617,21 +2628,21 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 388.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 28320 strings out of 493029
- 536422 string characters out of 6136234
- 595746 words of memory out of 5000000
- 31268 multiletter control sequences out of 15000+600000
- 25029 words of font info for 74 fonts, out of 8000000 for 9000
+ 28360 strings out of 493029
+ 537151 string characters out of 6136234
+ 595794 words of memory out of 5000000
+ 31303 multiletter control sequences out of 15000+600000
+ 31022 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,16n,61p,10407b,564s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on gittutorial.pdf (31 pages, 220946 bytes).
+Output written on gittutorial.pdf (32 pages, 307292 bytes).
 PDF statistics:
- 901 PDF objects out of 1000 (max. 8388607)
- 835 compressed objects within 9 object streams
- 64 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 936 PDF objects out of 1000 (max. 8388607)
+ 865 compressed objects within 9 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 103 words of extra memory for PDF output out of 10000 (max. 10000000)
 
