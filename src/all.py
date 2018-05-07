@@ -65,6 +65,8 @@ def ex3():
         yfixed = y-(coeff[0]*x + coeff[1])
 	return yfixed
 
+    #Data file to read in
+    datafile='data.txt'
     datafile=raw_input('enter data file name: \n')
     x, y = np.genfromtxt(datafile, unpack=True)
     
