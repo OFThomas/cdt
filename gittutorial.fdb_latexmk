@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1525723918 "gittutorial.tex" "gittutorial.pdf" "gittutorial" 1525723918
+["pdflatex"] 1525723918 "gittutorial.tex" "gittutorial.pdf" "gittutorial" 1525768324
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -224,15 +224,15 @@
   "figures/ex5.png" 1525371509 46592 8125c21e80721817d0f68b76831d8ee2 ""
   "figures/xkcdgit.png" 1525721993 48767 d28f46654cd788d9c8e29a04bf1bf2f2 ""
   "figures/xkcdversion.png" 1525721524 26158 3ce5bbdafe764d45c98b2316b627feff ""
-  "gittutorial.aux" 1525723784 6273 ea33a53336127ff895ea08d2856b2d54 ""
-  "gittutorial.nav" 1525723784 3194 cdc35f428d80baaff4e90ca237ffaba3 ""
-  "gittutorial.out" 1525723783 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "gittutorial.tex" 1525723917 8883 0f3c706d343719e5c34086d492de4b0c ""
+  "gittutorial.aux" 1525723919 6273 ea33a53336127ff895ea08d2856b2d54 ""
+  "gittutorial.nav" 1525723919 3194 cdc35f428d80baaff4e90ca237ffaba3 ""
+  "gittutorial.out" 1525723918 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "gittutorial.tex" 1525723998 8883 0f3c706d343719e5c34086d492de4b0c ""
   (generated)
-  "gittutorial.aux"
-  "gittutorial.out"
-  "gittutorial.log"
-  "gittutorial.pdf"
   "gittutorial.toc"
+  "gittutorial.pdf"
   "gittutorial.snm"
+  "gittutorial.out"
+  "gittutorial.aux"
+  "gittutorial.log"
   "gittutorial.nav"
