@@ -2,7 +2,7 @@ from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
 
-excase=int(raw_input('Enter the example number \n'))
+excase=int(raw_input('Enter the example number (1 to 7) \n'))
 
 ###########################################################################################################
 
@@ -261,6 +261,13 @@ def ex6():
     plt.show()
     return 1
 ##################################################################################
+def ex7():
+
+    
+    plt.plot()    
+    plt.show()
+
+    return 1
 
 if(excase==1):
     ex1()
@@ -274,6 +281,9 @@ elif(excase==5):
     ex5()
 elif(excase==6):
     ex6()
+elif(excase==7):
+    ex7()
+
 else:
     print 'Not an int between 1 & 6'
 
