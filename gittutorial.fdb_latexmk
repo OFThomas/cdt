@@ -1,6 +1,11 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["pdflatex"] 1526055544 "gittutorial.tex" "gittutorial.pdf" "gittutorial" 1526055544
   "/etc/texmf/web2c/texmf.cnf" 1491416545 1101 af7716885e081ab43982cab7b4672c1a ""
+=======
+["pdflatex"] 1525987569 "gittutorial.tex" "gittutorial.pdf" "gittutorial" 1525987569
+  "/etc/texmf/web2c/texmf.cnf" 1525985403 1101 af7716885e081ab43982cab7b4672c1a ""
+>>>>>>> f8a0e806940b1f585a57c9968518288655bd283c
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm" 1136768653 2288 f478fc8fed18759effb59f3dad7f3084 ""
@@ -214,6 +219,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1503343927 31343 93828589fb0cea665e553ee5a17ad2d4 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1503343927 31343 93828589fb0cea665e553ee5a17ad2d4 ""
+<<<<<<< HEAD
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1506273035 1863403 f3ff9a4253bcb5fb9a9baaf0c572cb01 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1506273046 3854102 b5b3ff50abc52e5859768f907175f81a ""
   "aex2.png" 0 -1 0 ""
@@ -228,11 +234,35 @@
   "gittutorial.nav" 1526055514 2822 d0dc3cf0efa6b067000c70a0eba229af ""
   "gittutorial.out" 1526055513 0 d41d8cd98f00b204e9800998ecf8427e ""
   "gittutorial.tex" 1526055543 9048 378100423a850731c5a38a1ba67df25a ""
+=======
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1525985584 1863403 f3ff9a4253bcb5fb9a9baaf0c572cb01 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1525985679 3854027 0fbbcc624c919cb8a0fffa0ed33787b5 ""
+  "aex2.png" 0 -1 0 ""
+  "aex6.png" 0 -1 0 ""
+  "figures/ex1.png" 1525983844 15845 d9c8c301426a80d0297c82a6daed5e4d ""
+  "figures/ex3.png" 1525983844 24345 1e47aff6fa1956b5cda79bdce025dc4f ""
+  "figures/ex4.png" 1525983844 44021 38050fb9dc4b59b7cafc1229ac1c37e2 ""
+  "figures/ex5.png" 1525983844 46592 8125c21e80721817d0f68b76831d8ee2 ""
+  "figures/xkcdgit.png" 1525983844 48767 d28f46654cd788d9c8e29a04bf1bf2f2 ""
+  "figures/xkcdversion.png" 1525983844 26158 3ce5bbdafe764d45c98b2316b627feff ""
+  "gittutorial.aux" 1525983844 5757 cca7e34d858db623f2ea84ca1fe3a13e ""
+  "gittutorial.nav" 1525983844 2822 d0dc3cf0efa6b067000c70a0eba229af ""
+  "gittutorial.out" 1525983844 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "gittutorial.tex" 1525983844 8891 cf9c95848afdd54641c856d68bd3b13a ""
+>>>>>>> f8a0e806940b1f585a57c9968518288655bd283c
   (generated)
+  "gittutorial.out"
+  "gittutorial.aux"
   "gittutorial.nav"
   "gittutorial.snm"
   "gittutorial.toc"
   "gittutorial.out"
   "gittutorial.pdf"
+<<<<<<< HEAD
   "gittutorial.aux"
   "gittutorial.log"
+=======
+  "gittutorial.toc"
+  "gittutorial.log"
+  "gittutorial.snm"
+>>>>>>> f8a0e806940b1f585a57c9968518288655bd283c
