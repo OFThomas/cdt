@@ -40,4 +40,5 @@ a=np.array([0,1,1,0])
 a.shape = (2,2)
 print a
 
-print takagi_for_unitary(a)
+u= takagi_for_unitary(a)
+print u
