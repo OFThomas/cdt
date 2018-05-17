@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{The Schur Transform}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Schur Transform Circuits}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Streaming Scheme}{}% 4
+\BOOKMARK [1][-]{section.4}{General Circuit for the Schur Transform}{}% 5
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 6
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 7
+\BOOKMARK [1][-]{appendix.A}{Appendix: Equations}{}% 8
+\BOOKMARK [2][-]{subsection.A.1}{3 Qubit transformation}{appendix.A}% 9
+\BOOKMARK [2][-]{subsection.A.2}{3 Qubit phase encoding}{appendix.A}% 10
+\BOOKMARK [2][-]{subsection.A.3}{4 Qubit CG coefficients}{appendix.A}% 11
+\BOOKMARK [2][-]{subsection.A.4}{Rotation matrix for J \046 M values}{appendix.A}% 12
+\BOOKMARK [1][-]{appendix.A}{Appendix- Circuits}{}% 13
+\BOOKMARK [1][-]{appendix.B}{Spatial multiplexing}{}% 14
+\BOOKMARK [1][-]{appendix.A}{Appendix- Fortran code}{}% 15
