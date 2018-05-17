@@ -1,0 +1,23 @@
+use to define symbols, comma seperated
+a = symbols('x') 
+
+To print expression use pprint()
+pprint() 
+
+can use the simplify(args) command
+
+Matrices are comma seperated,
+Matrix([[row 1], [row 2], ... ])
+
+Transpose is .T
+Det is .det()
+
+Can use diag command to make block diag matrices
+diag(-1, ones(2, 2), Matrix([5, 7, 5]))
+
+
+Integrals, use .doit() to do the integral
+i=Integral(sqrt(1/a), a)
+
+
+zoo means imaginary infinity
