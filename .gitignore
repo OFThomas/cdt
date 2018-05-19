@@ -1,0 +1,6 @@
+#latex
+*.aux
+*.fdb*
+*.fls
+*.gz
+
