@@ -1,23 +1,24 @@
 from sympy import *
-from sympy.abc import alpha, beta
+from sympy.physics.quantum.dagger import Dagger
+from sympy.abc import alpha, beta, xi, zeta
 init_printing(use_unicode=True)
-
 
 def makesinglesq(size, sqcoeff):
     for i in range(1,size):
         return 1
 
+xi1, xi2 = symbols('xi_1 xi_2')
+
+pprint(xi1)
+
 c1=MatrixSymbol('c1',2,2)
 s1=MatrixSymbol('s1',2,2)
 
-#cbig=MatrixSymbol('c', 2,2)
-#sbig=MatrixSymbol('s', 2,2)
 c,s = symbols('c,s')
 cbig, sbig = symbols('c s')
 
 a,b,c,d = symbols('a,b,c,d')
 e,f,g,h = symbols('e,f,g,h')
-
 
 sqcoeffs=[s for i in range(2) ]
 print(sqcoeffs)
@@ -33,28 +34,46 @@ n=2
 al = MatrixSymbol('alpha', 2,2)
 be = MatrixSymbol('beta',2,2)
 
-#for i in range(1,2):
- #   al[i,i]=1
 mata=Matrix([[1,0],[0,1]])
 matb=Matrix([[0,1],[1,0]])
 
+#make block form for matrix
 block=BlockMatrix([[al,be],
                 [conjugate(be), conjugate(al)]])
+
+print('Symplectic matrix\n')
 pprint(block)
 print()
-pprint(Matrix(block))
+print('Break the blocks up\n')
+mblock=Matrix(block)
+pprint(mblock)
+print()
 
+#substitute alpha
 temp=block.subs(al,mata)
+#subs beta
 end=Matrix(temp.subs(be,matb))
-#end=ImmutableMatrix(tend)
 pprint(end)
 print(type(end))
 #p,d=end.diagonalize()
 #mend=end.clone()
 mend=end.evalf()
 print(type(mend))
-#pprint(mend.eigenvectors())
-#pprint(block_collapse(block.diagonalize()))
+print(type(mata))
+pprint(end)
+
+print('\nEigenvectors\n')
+pprint(end.eigenvects())
+
+p,d = end.diagonalize()
+
+pprint(p)
+print('\n diag matrix using PDP^-1\n')
+pprint(d)
+
+pprint(exp(end))
+
+
 """
 #make symbolic matrix
 smsq=Matrix(n,n, lambda i,j: cbig if i==j else sbig if i+j==n-1 else 0)
