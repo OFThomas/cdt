@@ -21,7 +21,7 @@ a,b,c,d = symbols('a,b,c,d')
 e,f,g,h = symbols('e,f,g,h')
 
 sqcoeffs=[s for i in range(2) ]
-print(sqcoeffs)
+#print(sqcoeffs)
 
 #sqmatrix=makesinglesq(2,sqcoeffs)
 #pprint(sqmatrix)
@@ -60,7 +60,7 @@ temp=block.subs(al,c)
 blockend=temp.subs(be,s)
 end=Matrix(blockend)
 
-pprint(end)
+#pprint(end)
 print(type(end))
 #p,d=end.diagonalize()
 #mend=end.clone()
@@ -99,7 +99,7 @@ t1=transform#.subs(a,aamatrix)
 t2=t1.subs(al,c)
 t3=t2.subs(be,s)
 transfom=t3
-pprint(Matrix(t3))
+print(pprint(Matrix(modes[0:n])),'=',  pprint(Matrix(t3[0:n])))
 
 """
 #pprint(exp(end))
