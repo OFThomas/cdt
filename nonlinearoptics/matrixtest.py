@@ -23,19 +23,24 @@ e,f,g,h = symbols('e,f,g,h')
 sqcoeffs=[s for i in range(2) ]
 print(sqcoeffs)
 
-sqmatrix=makesinglesq(2,sqcoeffs)
-pprint(sqmatrix)
+#sqmatrix=makesinglesq(2,sqcoeffs)
+#pprint(sqmatrix)
+
 #Squeezing mode size
 sqsize=2
 
 #total dim
-n=2
+nspace=2
+nspectral=2
 
-al = MatrixSymbol('alpha', 2,2)
-be = MatrixSymbol('beta',2,2)
+n=nspace*nspectral
 
-mata=Matrix([[xi1,0],[0,xi1]])
-matb=Matrix([[0,xi2],[xi2,0]])
+al = MatrixSymbol('alpha', n,n)
+be = MatrixSymbol('beta',n,n)
+
+#single mode squeezer
+c=Matrix(n,n, lambda i,j: xi1 if i==j else 0 )
+s=Matrix(n,n, lambda i,j: xi2 if i+j==n-1 else 0)
 
 #make block form for matrix
 block=BlockMatrix([[al,be],
@@ -50,9 +55,9 @@ pprint(mblock)
 print()
 
 #substitute alpha
-temp=block.subs(al,mata)
+temp=block.subs(al,c)
 #subs beta
-blockend=temp.subs(be,matb)
+blockend=temp.subs(be,s)
 end=Matrix(blockend)
 
 pprint(end)
@@ -61,18 +66,42 @@ print(type(end))
 #mend=end.clone()
 mend=end.evalf()
 print(type(mend))
-print(type(mata))
 pprint(end)
 
 print('\nEigenvectors\n')
-pprint(end.eigenvals())
+#pprint(end.eigenvals())
 
 p,d = end.diagonalize()
 
-pprint(p)
+#pprint(p)
 print('\n diag matrix using PDP^-1\n')
-pprint(d)
+#pprint(d)
 print('\n simplify\n')
+a=MatrixSymbol('a',n,1)
+a1,a2 = symbols('a1 a2')
+aamatrix=Matrix([[a1],[a2]])
+#pprint(aamatrix)
+
+bmodes=BlockMatrix([[a],[conjugate(a)]])
+pprint(bmodes)
+print('subs in a')
+#bmodesexp=bmodes.subs(a,aamatrix)
+modes=Matrix(bmodes)
+
+pprint(modes)
+
+transform=block_collapse(block*bmodes)
+pprint(transform)
+print(type(transform))
+
+print('\n Then Substitute \n')
+t1=transform#.subs(a,aamatrix)
+t2=t1.subs(al,c)
+t3=t2.subs(be,s)
+transfom=t3
+pprint(Matrix(t3))
+
+"""
 #pprint(exp(end))
 
 
@@ -83,9 +112,6 @@ print('make block form\n')
 pprint(sqmat)
 
 sqsize=2
-#single mode squeezer
-c=Matrix(sqsize,sqsize, lambda i,j: xi1 if i==j else 0 )
-s=Matrix(sqsize,sqsize, lambda i,j: xi2 if i+j==sqsize-1 else 0)
 
 test=sqmat.subs({cbig:c, sbig:s})
 print('\n subs in blocks\n')
@@ -101,21 +127,6 @@ pprint(test[0,1])
 p,d = test[0,1].diagonalize()
 pprint(d)
 
-a=MatrixSymbol('a',2,1)
-a1,a2 = symbols('a1 a2')
-aamatrix=Matrix([[a1],[a2]])
-pprint(aamatrix)
-
-bmodes=BlockMatrix([[a],[conjugate(a)]])
-pprint(bmodes)
-print('subs in a')
-bmodesexp=bmodes.subs(a,aamatrix)
-modes=Matrix(bmodesexp)
-
-pprint(modes)
-
-pprint(block_collapse(block*bmodes))
-"""
 block1=BlockMatrix([[c,s],
                     [conjugate(s),conjugate(c)]])
 
