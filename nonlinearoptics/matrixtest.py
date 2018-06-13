@@ -34,8 +34,8 @@ n=2
 al = MatrixSymbol('alpha', 2,2)
 be = MatrixSymbol('beta',2,2)
 
-mata=Matrix([[1,0],[0,1]])
-matb=Matrix([[0,1],[1,0]])
+mata=Matrix([[xi1,0],[0,xi1]])
+matb=Matrix([[0,xi2],[xi2,0]])
 
 #make block form for matrix
 block=BlockMatrix([[al,be],
@@ -52,7 +52,9 @@ print()
 #substitute alpha
 temp=block.subs(al,mata)
 #subs beta
-end=Matrix(temp.subs(be,matb))
+blockend=temp.subs(be,matb)
+end=Matrix(blockend)
+
 pprint(end)
 print(type(end))
 #p,d=end.diagonalize()
@@ -63,16 +65,68 @@ print(type(mata))
 pprint(end)
 
 print('\nEigenvectors\n')
-pprint(end.eigenvects())
+pprint(end.eigenvals())
 
 p,d = end.diagonalize()
 
 pprint(p)
 print('\n diag matrix using PDP^-1\n')
 pprint(d)
+print('\n simplify\n')
+#pprint(exp(end))
 
-pprint(exp(end))
 
+sqmat=Matrix([[cbig,sbig],
+            [conjugate(sbig), conjugate(cbig)]])
+
+print('make block form\n')
+pprint(sqmat)
+
+sqsize=2
+#single mode squeezer
+c=Matrix(sqsize,sqsize, lambda i,j: xi1 if i==j else 0 )
+s=Matrix(sqsize,sqsize, lambda i,j: xi2 if i+j==sqsize-1 else 0)
+
+test=sqmat.subs({cbig:c, sbig:s})
+print('\n subs in blocks\n')
+pprint(test)
+print(type(test))
+
+print('\n collapse to matrix\n')
+testmat=Matrix(test)
+pprint(testmat)
+print(type(testmat))
+
+pprint(test[0,1])
+p,d = test[0,1].diagonalize()
+pprint(d)
+
+a=MatrixSymbol('a',2,1)
+a1,a2 = symbols('a1 a2')
+aamatrix=Matrix([[a1],[a2]])
+pprint(aamatrix)
+
+bmodes=BlockMatrix([[a],[conjugate(a)]])
+pprint(bmodes)
+print('subs in a')
+bmodesexp=bmodes.subs(a,aamatrix)
+modes=Matrix(bmodesexp)
+
+pprint(modes)
+
+pprint(block_collapse(block*bmodes))
+"""
+block1=BlockMatrix([[c,s],
+                    [conjugate(s),conjugate(c)]])
+
+pprint(block1)
+print(type(block1))
+pprint(Matrix(block1))
+print(type(Matrix(block1)))
+
+upper=block1[0,0]
+pprint(upper)
+"""
 
 """
 #make symbolic matrix
