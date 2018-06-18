@@ -3,44 +3,33 @@ from sympy.physics.quantum.dagger import Dagger
 from sympy.abc import alpha, beta, xi, zeta
 init_printing(use_unicode=True)
 
+#single mode squeezer 
 def makesinglesq(size, sqcoeff):
     for i in range(1,size):
         return 1
 
-xi1, xi2 = symbols('xi_1 xi_2')
-
-pprint(xi1)
-
-c1=MatrixSymbol('c1',2,2)
-s1=MatrixSymbol('s1',2,2)
-
-c,s = symbols('c,s')
-cbig, sbig = symbols('c s')
-
-a,b,c,d = symbols('a,b,c,d')
-e,f,g,h = symbols('e,f,g,h')
-
-sqcoeffs=[s for i in range(2) ]
-#print(sqcoeffs)
-
-#sqmatrix=makesinglesq(2,sqcoeffs)
-#pprint(sqmatrix)
+#define symbols for squeezing
+xi=symbols('xi:2')
 
 #Squeezing mode size
 sqsize=2
 
 #total dim
 nspace=2
+
+#spectral dim 
 nspectral=2
 
+#make total dimension
 n=nspace*nspectral
 
+#block form for symplectic matrix
 al = MatrixSymbol('alpha', n,n)
 be = MatrixSymbol('beta',n,n)
 
 #single mode squeezer
-c=Matrix(n,n, lambda i,j: xi1 if i==j else 0 )
-s=Matrix(n,n, lambda i,j: xi2 if i+j==n-1 else 0)
+c=Matrix(n,n, lambda i,j: xi[0] if i==j else 0 )
+s=Matrix(n,n, lambda i,j: xi[1] if i+j==n-1 else 0)
 
 #make block form for matrix
 block=BlockMatrix([[al,be],
@@ -51,7 +40,7 @@ pprint(block)
 print()
 print('Break the blocks up\n')
 mblock=Matrix(block)
-pprint(mblock)
+#pprint(mblock)
 print()
 
 #substitute alpha
@@ -88,7 +77,7 @@ print('subs in a')
 #bmodesexp=bmodes.subs(a,aamatrix)
 modes=Matrix(bmodes)
 
-pprint(modes)
+#pprint(modes)
 
 transform=block_collapse(block*bmodes)
 pprint(transform)
