@@ -8,24 +8,44 @@ def makesinglesq(size, sqcoeff):
     for i in range(1,size):
         return 1
 
-#define symbols for squeezing
-xi=symbols('xi:2')
+def matsubs(mat,aold,anew,bold,bnew,cold,cnew):
+    temp1=mat.subs(aold,anew)
+    temp2=temp1.subs(bold,bnew)
+    temp3=temp2.subs(cold,cnew)
+    return temp3
 
 #Squeezing mode size
 sqsize=2
 
 #total dim
 nspace=2
-
+print('Spatial modes =', nspace)
 #spectral dim 
 nspectral=2
-
+print('Spectral modes =', nspectral)
 #make total dimension
 n=nspace*nspectral
+print('Total dim =', n)
+
+#define symbols for modes
+a=symbols('a:100')
+
+#define symbols for squeezing
+xi=symbols('xi:100')
 
 #block form for symplectic matrix
 al = MatrixSymbol('alpha', n,n)
 be = MatrixSymbol('beta',n,n)
+
+#Make optical modes
+ablk=MatrixSymbol('a',n,1)
+
+modematrix=Matrix(n,1, lambda i,j: a[i] )
+
+print('\n Mode matrix')
+bmodes=BlockMatrix([[ablk],[conjugate(ablk)]])
+modes=matsubs(bmodes,ablk,modematrix,0,0,0,0)
+pprint(bmodes)
 
 #single mode squeezer
 c=Matrix(n,n, lambda i,j: xi[0] if i==j else 0 )
@@ -35,146 +55,28 @@ s=Matrix(n,n, lambda i,j: xi[1] if i+j==n-1 else 0)
 block=BlockMatrix([[al,be],
                 [conjugate(be), conjugate(al)]])
 
-print('Symplectic matrix\n')
+print('\n Symplectic matrix')
 pprint(block)
-print()
-print('Break the blocks up\n')
-mblock=Matrix(block)
-#pprint(mblock)
-print()
 
-#substitute alpha
-temp=block.subs(al,c)
-#subs beta
-blockend=temp.subs(be,s)
-end=Matrix(blockend)
+print('\n Function for debugging')
+#Substitute matrix elements in!
+#blk=matsubs(block,al,c,be,s,0,0)
+#pprint(Matrix(blk))
 
-#pprint(end)
-print(type(end))
-#p,d=end.diagonalize()
-#mend=end.clone()
-mend=end.evalf()
-print(type(mend))
-pprint(end)
-
-print('\nEigenvectors\n')
-#pprint(end.eigenvals())
-
-p,d = end.diagonalize()
-
-#pprint(p)
-print('\n diag matrix using PDP^-1\n')
-#pprint(d)
-print('\n simplify\n')
-a=MatrixSymbol('a',n,1)
-a1,a2 = symbols('a1 a2')
-aamatrix=Matrix([[a1],[a2]])
-#pprint(aamatrix)
-
-bmodes=BlockMatrix([[a],[conjugate(a)]])
-pprint(bmodes)
-print('subs in a')
-#bmodesexp=bmodes.subs(a,aamatrix)
-modes=Matrix(bmodes)
-
-#pprint(modes)
-
+#Do mode transformation
 transform=block_collapse(block*bmodes)
-pprint(transform)
-print(type(transform))
 
-print('\n Then Substitute \n')
-t1=transform#.subs(a,aamatrix)
-t2=t1.subs(al,c)
-t3=t2.subs(be,s)
-transfom=t3
-print(pprint(Matrix(modes[0:n])),'=',  pprint(Matrix(t3[0:n])))
+#Substitute for real this time
+print('\n Then Substitute')
+finalmat = matsubs(transform,ablk,modematrix,al,c,be,s)
 
-"""
-#pprint(exp(end))
+print('\n Print final matrix after subs')
+pprint(finalmat)
+print('\n Which for the input modes evaluates to')
+pprint(Matrix(finalmat[0:4]))
 
+print('\n Which transforms the modes as, ')
+pprint(relational.Eq(Matrix(modes[0:n]),Matrix(finalmat[0:n])))
 
-sqmat=Matrix([[cbig,sbig],
-            [conjugate(sbig), conjugate(cbig)]])
-
-print('make block form\n')
-pprint(sqmat)
-
-sqsize=2
-
-test=sqmat.subs({cbig:c, sbig:s})
-print('\n subs in blocks\n')
-pprint(test)
-print(type(test))
-
-print('\n collapse to matrix\n')
-testmat=Matrix(test)
-pprint(testmat)
-print(type(testmat))
-
-pprint(test[0,1])
-p,d = test[0,1].diagonalize()
-pprint(d)
-
-block1=BlockMatrix([[c,s],
-                    [conjugate(s),conjugate(c)]])
-
-pprint(block1)
-print(type(block1))
-pprint(Matrix(block1))
-print(type(Matrix(block1)))
-
-upper=block1[0,0]
-pprint(upper)
-"""
-
-"""
-#make symbolic matrix
-smsq=Matrix(n,n, lambda i,j: cbig if i==j else sbig if i+j==n-1 else 0)
-print('smsq')
-pprint(smsq)
-
-#single mode squeezer
-c=Matrix(sqsize,sqsize, lambda i,j: 0 )
-s=Matrix(sqsize,sqsize, lambda i,j: 1)
-
-testsmsq=Matrix(n,n, lambda i,j: c if i==j else s if i+j==n-1 else 0)
-print('testsmsq')
-pprint(testsmsq)
-
-print('subs in matrices')
-test=smsq.subs({cbig:c, sbig:s})
-pprint(test)
-smsq=test
-print('Print smsq')
-pprint(smsq)
-
-#print('eigenvlues, multiplicities')
-#print(smsq.eigenvals())
-#print('eigenvectors')
-#pprint(x.eigenvects())
-
-p, d = smsq.diagonalize()
-pprint(p)
-pprint(d)
-
-pprint(p*d*p**-1)
-
-
-
-Eq(a,1)
-
-pprint (x)
-
-print(x.eigenvals())
-pprint(x.eigenvects())
-
-p, d = x.diagonalize()
-pprint(p)
-pprint(d)
-
-pprint(p*d*p**-1)
-
-"""
 
 
