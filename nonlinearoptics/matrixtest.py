@@ -1,9 +1,16 @@
 from sympy import *
 from sympy.physics.quantum.dagger import Dagger
+from sympy.physics.quantum import TensorProduct 
 from sympy.abc import alpha, beta, xi, zeta
 init_printing(use_unicode=True)
 
-#single mode squeezer 
+def makebs(mode1,mode2, n, theta):
+    #beamsplitter
+    passive=Matrix(n,n, lambda i,j: cos(theta) if ((i==j)and((i==mode1)or(i==mode2))) 
+            else  sqrt(-1)*sin(theta) if (i+j)==(mode1+mode2)and((i==mode1)or(i==mode2)) 
+            else 1 if (i==j)and((i!=mode1)or(i!=mode2)) else 0)
+    return passive
+
 def makesinglesq(n):
     #Single mode squeezer
     c1=Matrix(n,n, lambda i,j: c(xi[i%2]) if i==j else 0)
@@ -71,6 +78,25 @@ pprint(block)
 
 print('\n Function for debugging')
 
+print('Beamsplitter')
+beamspace= makebs(0,1,nspace,pi/4)
+pprint(beamspace)
+
+beamsplitter=TensorProduct(beamspace,eye(nspectral))
+pprint(beamsplitter)
+blockbs=matsubs(block,al,beamsplitter,be,zeros(n),0,0)
+pprint(blockbs)
+
+#Do mode transformation
+transform=block_collapse(blockbs*bmodes)
+#pprint(transform.subs(ablk,modematrix))
+#pprint(Matrix(transform.subs(ablk,modematrix)))
+
+modeout=Matrix(transform.subs(ablk,modematrix))
+
+print('\n Beamsplitter transformation on spatial modes 0 & 1')
+pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modeout[0:n])))
+
 #Do mode transformation
 transform=block_collapse(block*bmodes)
 
@@ -83,7 +109,7 @@ print('\n Single mode squeezing')
 print('\n Print final matrix after subs')
 pprint(finalmatssq)
 
-print('\n Which transforms the modes as, ')
+print('\n Single mode squeezing transforms as, ')
 pprint(relational.Eq(Matrix(modes[0:n]),Matrix(finalmatssq[0:n])))
 
 print('\nTwo mode squeezing')
@@ -91,6 +117,6 @@ print('\n Print final matrix after subs')
 pprint(finalmattmsq)
 
 print('\n Two mode squeezing transforms as, ')
+outputmodes=Matrix(modes[0:n])
 pprint(relational.Eq(Matrix(modes[0:n]),Matrix(finalmattmsq[0:n])))
-
 
