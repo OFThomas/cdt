@@ -54,7 +54,6 @@ def doitplease():
     modematrix=Matrix(n,1, lambda i,j: a[i] )
     #substitution for a modes
     modes=matsubs(bmodes,ablk,modematrix,0,0,0,0)
-    print('\n Mode matrix, a_ij (spatial,spectral)')
 
     #block form for symplectic matrix
     al = MatrixSymbol('alpha', n,n)
@@ -68,130 +67,107 @@ def doitplease():
     #Single mode squeezer
     c1,s1 = makesinglesq(n, nspectral)
     #Two mode squeezer
-    c12,s12 = maketwomodesq(mode1=mode1sq,mode2=mode2sq, n=n, nspec=nspectral)
-    c34,s34= maketwomodesq(mode1=mode3sq,mode2=mode4sq, n=n, nspec=nspectral)
-
+    c12,s12 = maketwomodesq(mode1=sq1_mode1,mode2=sq1_mode2, n=n, nspec=nspectral)
+    c34,s34= maketwomodesq(mode1=sq2_mode3,mode2=sq2_mode4, n=n, nspec=nspectral)
+ 
+    # symplectic sqs
     ms01=Matrix(matsubs(block,al,c12,be,s12,0,0))
     ms23=Matrix(matsubs(block,al,c34,be,s34,0,0))
 
     #Make beamsplitter 
     beamspace= Matrix(makebs(bsmode1,bsmode2,nspace,pi/4))
     beamsplitter=TensorProduct(beamspace,eye(nspectral))
-
+    
+    # symplectic beamsplitter
     mbs=Matrix(matsubs(block,al,beamsplitter,be,zeros(n),0,0))
 
     #Make phase shifter 
     phasespace=Matrix(makeps(phasemode,n,nspectral,pi/2))
-
+    
+    # symplectic phase shifer
     mps=Matrix(matsubs(block,al,phasespace,be,zeros(n),0,0))
+    # return symplectic transform and modes 
+    print('\nms01, ms23, mps, mbs\n')
     return mbs*mps*ms23*ms01, modes
 
-def justdoitplease():
-    return transform*modes
+def justdoitplease(transform, modes):
+    modetransform=transform*modes
+    pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
+    return 
+
+################################## start of program
 
 #spatial dim
 nspace=4
-print('Spatial modes =', nspace)
 
 #spectral dim 
 nspectral=2
-print('Spectral modes =', nspectral)
 
 #make total dimension
 n=nspace*nspectral
-print('Total dim =', n)
 
+################# Specify modes for unitaries
 # 2 mode squeezer on modes 0 & 1
-mode1sq,mode2sq= 0,1
-print('\n Two mode squeezing on modes, ', mode1sq,',', mode2sq)
+sq1_mode1,sq1_mode2= 0,1
+
 # 2 mode sq on modes 2 & 3
-mode3sq,mode4sq=2,3
-print('Two mode squeezer on modes, ', mode3sq, ',', mode4sq)
+sq2_mode3,sq2_mode4=2,3
+
 # Phase shifter
 phasemode=2
-print('Phase shift on modes. ', phasemode)
 
 # beamsplitter spatial modes
 bsmode1, bsmode2= 1,2
-print('Beamsplitter on modes, ', bsmode1, ',', bsmode2)
 
 numofsqs =2 
 
-#Show matrices?
-showmat=0
-#show m matrices 
-showmmat=1
-
-#define symbols for modes, 2 spatial, 2 spectral 
-#a=symbols('a:%d:%d' % (nspace, nspectral)) 
-#define symbols for squeezing
-#xi=symbols('xi:100')
 # phase shift
 omega=symbols('omega:100')
 
+print('Spatial modes =', nspace)
+print('Spectral modes =', nspectral)
+print('Total dim =', n)
+print('\n Two mode squeezing on modes, ', sq1_mode1,',', sq1_mode2)
+print('Two mode squeezer on modes, ', sq2_mode3, ',', sq2_mode4)
+print('Phase shift on modes. ', phasemode)
+print('Beamsplitter on modes, ', bsmode1, ',', bsmode2)
+
+########### Define squeezing symbols
 xi=[None]*2
 for i in range(0,2):
     xi[i]=symbols('xi%d' % (i+4))
 
-print('xi =',type(xi), xi)
 
+#cosh & sinh placeholders
+c,s = symbols('c s')
+
+########### Define optical modes
 a=[None]*n
-
 for i in range(0,nspace):
     for j in range(0,nspectral):
         a[i*(nspectral)+j]=symbols('a%d%d' % (i, j))
 
-print('a =', type(a), a)
-#cosh & sinh placeholders
-c,s = symbols('c s')
+#Calculate mode transformation
+transform, modes =doitplease()
+# d mode transformation
+justdoitplease(transform,modes) 
+
+
+######################## Substitution for numerical values
+xi[0]=0
+xi[1]='blue'
+
+a[1*nspectral]='red'
+a[1*nspectral+1]='blue'
+
+#update matrices and mode transformation
+transform, modes =doitplease()
+justdoitplease(transform,modes) 
+
+#end
+
+
 """
-#Make optical modes
-ablk=MatrixSymbol('a',n,1)
-#build block matrix for modes
-bmodes=BlockMatrix([[ablk],[conjugate(ablk)]])
-#make a size n vector for a
-modematrix=Matrix(n,1, lambda i,j: a[i] )
-#substitution for a modes
-modes=matsubs(bmodes,ablk,modematrix,0,0,0,0)
-print('\n Mode matrix, a_ij (spatial,spectral)')
-pprint(bmodes)
-
-# make squeezing matrices
-#Single mode squeezer
-c1,s1 = makesinglesq(n, nspectral)
-#Two mode squeezer
-c12,s12 = maketwomodesq(mode1=mode1sq,mode2=mode2sq, n=n, nspec=nspectral)
-c34,s34= maketwomodesq(mode1=mode3sq,mode2=mode4sq, n=n, nspec=nspectral)
-
-
-#block form for symplectic matrix
-al = MatrixSymbol('alpha', n,n)
-be = MatrixSymbol('beta',n,n)
-
-#make block form for symplectic matrix
-block=BlockMatrix([[al,be],
-                [conjugate(be), conjugate(al)]])
-
-print('\n Symplectic matrix')
-pprint(block)
-
-ms01=Matrix(matsubs(block,al,c12,be,s12,0,0))
-ms23=Matrix(matsubs(block,al,c34,be,s34,0,0))
-
-#Make beamsplitter 
-print('Beamsplitter')
-beamspace= Matrix(makebs(bsmode1,bsmode2,nspace,pi/4))
-beamsplitter=TensorProduct(beamspace,eye(nspectral))
-
-mbs=Matrix(matsubs(block,al,beamsplitter,be,zeros(n),0,0))
-
-#Make phase shifter 
-print('Phase shifter')
-phasespace=Matrix(makeps(phasemode,n,nspectral,pi/2))
-
-mps=Matrix(matsubs(block,al,phasespace,be,zeros(n),0,0))
-
-
 ################ Finished making 
 
 blockbs=block 
@@ -237,50 +213,8 @@ pprint(relational.Eq(Matrix(modes[0:n]),Matrix(finalmattmsq[0:n])))
 #                                END OF TESTING 
 #
 #############################################################################
-
-
-# 2 mode squeezer on modes 0 & 1
-print('\nTwo mode squeezing on modes, ', mode1sq,',', mode2sq)
-if showmmat==1:
-    pprint(ms01)
-
-# 2 mode sq on modes 2 & 3
-print('Two mode squeezer on modes, ', mode3sq, ',', mode4sq)
-if showmmat==1:
-    pprint(ms23)
-
-#Phase shift 
-print('Phase shift on modes. ', phasemode)
-if showmmat==1:
-    pprint(mps)
-
-# beamsplitter spatial modes
-print('Beamsplitter on modes, ', bsmode1, ',', bsmode2)
-if showmmat==1:
-    pprint(mbs)
-
-transform=mbs*mps*ms23*ms01
-
-modetransform=(transform*modes)
-
-#modetransform=matsubs(modetrans,xi[0],'red',xi[1],'blue',0,0)
-
-pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
 """
 
-transform, modes =doitplease()
-modetransform=justdoitplease() 
-pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
-
-xi[0]=0
-xi[1]='blue'
-
-a[1*nspectral]='red'
-a[1*nspectral+1]='blue'
-
-transform, modes =doitplease()
-modetransform=justdoitplease() 
-pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
 
 
 
