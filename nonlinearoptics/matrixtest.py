@@ -152,12 +152,22 @@ justdoitplease(mbs*mps*msq2*msq1,modes)
 
 print('Worked?')
 
-S1=msq1[range(0,n),range(n,2*n)]
+pprint(msq1)
+S1=msq1[range(sq1_mode1,sq1_mode2+1),range(n+sq1_mode1,n+sq1_mode2+1)]
 pprint(S1)
 
 p, d = S1.diagonalize()
 pprint(p)
 pprint(d)
+
+unitary=diag(p, eye(2))
+pprint(unitary)
+u1=TensorProduct(eye(2),unitary)
+pprint(u1)
+
+pprint(msq1)
+pprint(u1.inv()*msq1*u1)
+
 
 """
 ######################## Substitution for numerical values
