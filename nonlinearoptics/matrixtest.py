@@ -1,6 +1,7 @@
 from sympy import *
 from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum import TensorProduct 
+from mpmath import mp
 from sympy.abc import alpha, beta, xi, zeta
 init_printing(use_unicode=True)
 
@@ -161,12 +162,40 @@ pprint(p)
 pprint(d)
 
 unitary=diag(p, eye(2))
-pprint(unitary)
+#pprint(unitary)
 u1=TensorProduct(eye(2),unitary)
-pprint(u1)
+#pprint(u1)
 
-pprint(msq1)
-pprint(u1.inv()*msq1*u1)
+#pprint(msq1)
+#pprint(u1.inv()*msq1*u1)
+
+p,q =symbols('p q')
+p=2+sqrt(-1)*3
+q=3-sqrt(-1)
+
+print('\nTesting diag structure on symplectic matrices\n')
+sym=Matrix([[p,q],[conjugate(q),conjugate(p)]])
+pprint(sym)
+
+print('\nnumerical Svd')
+#u,s,v = mp.svd(sym)
+#pprint(u)
+#pprint(s)
+#pprint(v)
+
+
+print('\n Diag sym*conj(sym)')
+p,d = (sym*conjugate(sym)).diagonalize()
+
+pprint(p)
+pprint(d)
+pprint(p.inv())
+print()
+print('Columns of U \neigenvects of sym*conj(sym)')
+pprint((sym*conjugate(sym)).eigenvects())
+
+print('Columns of V\neigenvects of conj(sym)*sym')
+pprint((conjugate(sym)*sym).eigenvects())
 
 
 """
