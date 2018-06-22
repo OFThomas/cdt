@@ -26,7 +26,7 @@ def makeps(mode1,phaseangle):
 
 def makebs(mode1,mode2,theta):
     #Make beamsplitter 
-    beamspace= Matrix(n,n, lambda i,j: cos(theta) if ((i==j)and((i==mode1)or(i==mode2))) 
+    beamspace= Matrix(nspace,nspace, lambda i,j: cos(theta) if ((i==j)and((i==mode1)or(i==mode2))) 
             else  sqrt(-1)*sin(theta) if (i+j)==(mode1+mode2)and((i==mode1)or(i==mode2)) 
             else 1 if (i==j)and((i!=mode1)or(i!=mode2)) else 0)
     beamsplitter=TensorProduct(beamspace,eye(nspectral))    
@@ -53,7 +53,7 @@ def makesq(mode1,mode2, sqparam):
     c2=Matrix(n,n, lambda i,j: c(sqparam[i]) if (i==j)and( 
         ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) ) else 1 if i==j else 0 )
     #off diag sinh on modes, zero else
-    s2=Matrix(n,n, lambda i,j: s(sqparam[i]) if  ((i+j)==m1s+m2s)and( 
+    s2=Matrix(n,n, lambda i,j: s(sqparam[i]) if  (i==n-1-j)and( 
         ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) )  else 0)
     # symplectic sqs
     ms01=Matrix(matsubs(block,al,c2,be,s2,0,0))
@@ -70,13 +70,45 @@ def justdoitplease(transform, modes):
     pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
     return 
 
+def takagi_for_unitary(A):
+    ### takes a unitary matrix A such that A^T = A, ###
+    ###    returns unitary U such that A = U U^T    ###
+    N = A.shape[0]
+    U = np.eye(N)
+
+    while A.shape[0] > 0:   
+        n = A.shape[0]
+        # constructing a vector v such that A*ybar = y
+        x = np.random.rand(n)+1j*np.random.rand(n)
+        x /= np.sqrt(np.dot(x.conj(),x))
+        Axbar = np.tensordot(A,x.conj(),(1,0))
+        mu = np.dot(x.conj(),Axbar)
+
+        if np.abs(mu)>1-1e-8:
+            y = mu**.5*x
+        else:
+            y = Axbar + x; y /= np.sqrt(np.dot(y.conj(),y))
+
+        # constructing a unitary V with first column = y
+        V = np.random.random((n,n))+1j*np.random.random((n,n))
+        V[:,0] = y
+        V,__ = np.linalg.qr(V)
+        # update A
+        A = np.tensordot(np.tensordot(V.conj().T,A,(1,0)),V.conj(),(1,0))[1:,1:]
+        # update U
+        Vi = np.eye(N,dtype=complex)
+        Vi[N-n:,N-n:] = V
+        U = np.tensordot(U,Vi,(1,0))
+
+    return U
+
 ################################## start of program
 
 #spatial dim
 nspace=4
 
 #spectral dim 
-nspectral=1
+nspectral=2
 
 #make total dimension
 n=nspace*nspectral
@@ -157,10 +189,6 @@ pprint(msq1)
 S1=msq1[range(sq1_mode1,sq1_mode2+1),range(n+sq1_mode1,n+sq1_mode2+1)]
 pprint(S1)
 
-p, d = S1.diagonalize()
-pprint(p)
-pprint(d)
-
 unitary=diag(p, eye(2))
 #pprint(unitary)
 u1=TensorProduct(eye(2),unitary)
@@ -169,13 +197,13 @@ u1=TensorProduct(eye(2),unitary)
 #pprint(msq1)
 #pprint(u1.inv()*msq1*u1)
 
-p,q =symbols('p q')
-p=2+sqrt(-1)*3
-q=3-sqrt(-1)
+#p,q =symbols('p q')
+#p=2+sqrt(-1)*3
+#q=3-sqrt(-1)
 
 print('\nTesting diag structure on symplectic matrices\n')
-sym=Matrix([[p,q],[conjugate(q),conjugate(p)]])
-pprint(sym)
+#sym=Matrix([[p,q],[conjugate(q),conjugate(p)]])
+#pprint(sym)
 
 print('\nnumerical Svd')
 #u,s,v = mp.svd(sym)
@@ -183,19 +211,12 @@ print('\nnumerical Svd')
 #pprint(s)
 #pprint(v)
 
-
-print('\n Diag sym*conj(sym)')
-p,d = (sym*conjugate(sym)).diagonalize()
-
-pprint(p)
-pprint(d)
-pprint(p.inv())
 print()
 print('Columns of U \neigenvects of sym*conj(sym)')
-pprint((sym*conjugate(sym)).eigenvects())
+#pprint((sym*conjugate(sym)).eigenvects())
 
 print('Columns of V\neigenvects of conj(sym)*sym')
-pprint((conjugate(sym)*sym).eigenvects())
+#pprint((conjugate(sym)*sym).eigenvects())
 
 
 """
