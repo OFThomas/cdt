@@ -50,10 +50,10 @@ def makesq(mode1,mode2, sqparam):
     m1s=mode1*nspec
     m2s=mode2*nspec
     #diagonal part cosh on modes, I elsewhere
-    c2=Matrix(n,n, lambda i,j: c(sqparam[i]) if (i==j)and( 
+    c2=Matrix(n,n, lambda i,j: cosh(sqparam[i]) if (i==j)and( 
         ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) ) else 1 if i==j else 0 )
     #off diag sinh on modes, zero else
-    s2=Matrix(n,n, lambda i,j: s(sqparam[i]) if  (i==n-1-j)and( 
+    s2=Matrix(n,n, lambda i,j: sinh(sqparam[i]) if ((i!=j)and((i+j==m1s))or(i+j==m2s))and( 
         ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) )  else 0)
     # symplectic sqs
     ms01=Matrix(matsubs(block,al,c2,be,s2,0,0))
@@ -69,6 +69,16 @@ def justdoitplease(transform, modes):
     modetransform=transform*modes
     pprint(relational.Eq(Matrix(modes[0:n]),Matrix(modetransform[0:n])))
     return 
+
+def fixfloaterr(matrix):
+    imax,jmax=matrix.shape
+    newmatrix=matrix
+    for j in range(0,jmax):
+        for i in range(0,imax):
+            if (abs(newmatrix[i,j])<=10**-15):
+                newmatrix[i,j]=0
+    
+    return Matrix(newmatrix)
 
 def takagi_for_unitary(A):
     ### takes a unitary matrix A such that A^T = A, ###
@@ -108,7 +118,7 @@ def takagi_for_unitary(A):
 nspace=4
 
 #spectral dim 
-nspectral=2
+nspectral=1
 
 #make total dimension
 n=nspace*nspectral
@@ -143,6 +153,9 @@ print('Beamsplitter on modes, ', bsmode1, ',', bsmode2, 'angle= ', bsangle)
 xi=[None]*n
 for i in range(0,n):
     xi[i]=symbols('xi%d' % (i))
+
+xi[0]=1
+xi[1]=2
 
 #cosh & sinh placeholders
 c,s = symbols('c s')
@@ -186,37 +199,63 @@ justdoitplease(mbs*mps*msq2*msq1,modes)
 print('Worked?')
 
 pprint(msq1)
-S1=msq1[range(sq1_mode1,sq1_mode2+1),range(n+sq1_mode1,n+sq1_mode2+1)]
+S1=msq1[range(sq1_mode1,sq1_mode2+1),range(sq1_mode1+n,sq1_mode2+n+1)]
+
 pprint(S1)
+smat=Matrix(N(S1))
 
-unitary=diag(p, eye(2))
-#pprint(unitary)
-u1=TensorProduct(eye(2),unitary)
-#pprint(u1)
-
-#pprint(msq1)
-#pprint(u1.inv()*msq1*u1)
-
-#p,q =symbols('p q')
-#p=2+sqrt(-1)*3
-#q=3-sqrt(-1)
-
-print('\nTesting diag structure on symplectic matrices\n')
-#sym=Matrix([[p,q],[conjugate(q),conjugate(p)]])
-#pprint(sym)
+smat=Matrix(N(msq1))
+pprint(smat)
 
 print('\nnumerical Svd')
-#u,s,v = mp.svd(sym)
-#pprint(u)
+ufloat,sfloat,vfloat = mp.svd(smat)
+
+u=fixfloaterr(ufloat)
+#s=fixfloaterr(sfloat)
+#v=fixfloaterr(vfloat)
+
+pprint(ufloat)
+pprint(u)
+
+pprint(sfloat)
 #pprint(s)
+
+pprint(vfloat)
 #pprint(v)
 
+print(type(u))
+print(type(vfloat))
+
+pprint(Matrix(vfloat))
+
 print()
+"""
 print('Columns of U \neigenvects of sym*conj(sym)')
-#pprint((sym*conjugate(sym)).eigenvects())
+pprint((smat*conjugate(smat)).eigenvects())
 
 print('Columns of V\neigenvects of conj(sym)*sym')
-#pprint((conjugate(sym)*sym).eigenvects())
+pprint((conjugate(smat)*smat).eigenvects())
+"""
+
+#unitary=diag(u, eye(2))
+#pprint(unitary)
+#u1=TensorProduct(eye(2),unitary)
+
+u1=u
+v1=Matrix(vfloat)
+print('unitary')
+pprint(u1)
+
+print('unitary inverse')
+pprint(v1)
+
+print('Two mode squeezing matrix')
+pprint(msq1)
+print('U1 inv * tmsq * u1')
+pprint(u1*N(msq1)*v1)
+
+
+
 
 
 """
