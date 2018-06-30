@@ -19,14 +19,16 @@ def makemodes():
 def makeps(mode1,phaseangle):
     ##Phase shifter
     m1=mode1*nspectral
-    phasespace=Matrix(n,n, lambda i,j: exp(sqrt(-1)*omega[i%nspectral]) if ((i==j)and((m1<=i)and(i<m1+nspectral))) else 1 if(i==j) else 0)
+    phasespace=Matrix(n,n, lambda i,j: exp(sqrt(-1)*omega[i%nspectral])
+            if ((i==j)and((m1<=i)and(i<m1+nspectral))) else 1 if(i==j) else 0)
     # symplectic phase shifer
     mps=Matrix(matsubs(block,al,phasespace,be,zeros(n),0,0))
     return mps
 
 def makebs(mode1,mode2,theta):
     #Make beamsplitter 
-    beamspace= Matrix(nspace,nspace, lambda i,j: cos(theta) if ((i==j)and((i==mode1)or(i==mode2))) 
+    beamspace= Matrix(nspace,nspace, lambda i,j: cos(theta) 
+            if ((i==j)and((i==mode1)or(i==mode2))) 
             else  sqrt(-1)*sin(theta) if (i+j)==(mode1+mode2)and((i==mode1)or(i==mode2)) 
             else 1 if (i==j)and((i!=mode1)or(i!=mode2)) else 0)
     beamsplitter=TensorProduct(beamspace,eye(nspectral))    
@@ -44,17 +46,18 @@ def makesq(mode1,mode2, sqparam):
     #Two mode squeezer
     #for off-diagonal
     nspec=nspectral
-    m1=mode1*nspec*2+1
-    m2=mode2*nspec*2+1
     #for diagonal
     m1s=mode1*nspec
     m2s=mode2*nspec
     #diagonal part cosh on modes, I elsewhere
-    c2=Matrix(n,n, lambda i,j: cosh(sqparam[i]) if (i==j)and( 
-        ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) ) else 1 if i==j else 0 )
+    c2=Matrix(n,n, lambda i,j: cosh(sqparam[i+m2s]) 
+            if (i==j)and((m1s<=i<m1s+nspec)or(m2s<=i<m2s+nspec))
+            else 1 if i==j else 0 )
     #off diag sinh on modes, zero else
-    s2=Matrix(n,n, lambda i,j: sinh(sqparam[i]) if ((i!=j)and((i+j==m1s))or(i+j==m2s))and( 
-        ((m1s<=i)and(i<(m1s+nspec)))or((m2s<=i)and(i<(m2s+nspec))) )  else 0)
+    s2=Matrix(n,n, lambda i,j: sinh(sqparam[2*i+j-m1s]) 
+            if ((m1s<=i<m1s+nspec)or(m2s<=i<m2s+nspec))and
+            ((m1s<=j<m1s+nspec)or(m2s<=j<m2s+nspec))
+            else 0)
     # symplectic sqs
     ms01=Matrix(matsubs(block,al,c2,be,s2,0,0))
     return ms01
@@ -150,12 +153,23 @@ print('Phase shift on modes. ', phasemode, 'phase angle', phaseangle)
 print('Beamsplitter on modes, ', bsmode1, ',', bsmode2, 'angle= ', bsangle)
 
 ########### Define squeezing symbols
-xi=[None]*n
-for i in range(0,n):
+xi=[None]*(n**2)
+for i in range(0,n**2):
     xi[i]=symbols('xi%d' % (i))
 
-xi[0]=1
-xi[1]=2
+#modes 0 & 1
+xi[1]=1
+xi[2]=2
+
+#modes 2 & 3
+xi[5]=1
+xi[6]=2
+
+#make active s block anti-diag
+xi[0]=0
+xi[3]=0
+xi[4]=0
+xi[7]=0
 
 #cosh & sinh placeholders
 c,s = symbols('c s')
