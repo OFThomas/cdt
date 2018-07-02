@@ -74,23 +74,24 @@ def justdoitplease(transform, modes):
     return 
 
 def fixfloaterr(matrix):
-    imax,jmax=matrix.shape
-    newmatrix=matrix
+    imax=matrix.rows
+    jmax=matrix.cols
+    newmatrix=matrix[:,:]
     for j in range(0,jmax):
         for i in range(0,imax):
             if (abs(newmatrix[i,j])<=10**-15):
                 newmatrix[i,j]=0
     
-    return Matrix(newmatrix)
+    return (newmatrix)
 
 def makematrixexact(matrix):
     imax,jmax=matrix.shape
-    newmat=matrix 
+    newmat=matrix[:,:] 
     for j in range(0,jmax):
         for i in range(0,imax):
             newmat[i,j]=nsimplify(matrix[i,j], full=True)
 
-    return newmat
+    return matrix
 
 def takagi_for_unitary(A):
     ### takes a unitary matrix A such that A^T = A, ###
@@ -151,7 +152,12 @@ bsmode1, bsmode2= 1,2
 bsangle=pi/4
 
 # phase shift
-omega=symbols('omega:100')
+omega=[None]*(nspectral)
+for i in range(0,nspectral):
+    omega[i]=symbols('omega:%d' % (i))
+
+omega[0]=pi/2
+
 ########### Define squeezing symbols
 xi=[None]*(n**2)
 for i in range(0,n**2):
@@ -219,7 +225,8 @@ mbs=makebs(bsmode1,bsmode2,bsangle)
 pprint(mbs)
 
 #do mode transformation
-justdoitplease(mbs*mps*msq2*msq1,modes)
+transform=mps*msq2*msq1 
+justdoitplease(transform,modes)
 
 #############################################################
 ############### numerics ###################################
@@ -231,61 +238,66 @@ S1=msq1[range(sq1_mode1,sq1_mode2+1),range(sq1_mode1+n,sq1_mode2+n+1)]
 pprint(S1)
 smat=Matrix(N(S1))
 
-smat=Matrix(N(msq1))
-pprint(smat)
+smat=mp.matrix(2*n)
+imax,jmax=transform.shape
 
+for j in range(0,jmax):
+    for i in range(0,imax):
+        smat[i,j]=mp.mpmathify(N(transform[i,j]))
+
+
+#smat=Matrix(N(msq1))
+print('\n Squeeze matrix\n')
+pprint(smat)
+print(type(smat))
 
 ########################## svd ##########################
 print('\nnumerical Svd')
-ufloat,sfloat,vfloat = mp.svd(smat)
+ufloat,sfloat,vfloat = mp.svd_c(smat)
 
-ufix=fixfloaterr(ufloat)
-#s=fixfloaterr(sfloat)
-#v=fixfloaterr(vfloat)
-
-pprint(ufloat)
-pprint(ufix)
-
-u=makematrixexact(ufix)
-pprint(u)
-
-s=Matrix(zeros(2*n))
+stemp=mp.matrix(2*n)
 for i in range(0,2*n):
-    s[i,i]=sfloat[i]
+    stemp[i,i]=sfloat[i]
 
-pprint(sfloat)
-pprint(s)
-
-pprint(makematrixexact(s))
-
-pprint(vfloat)
-#pprint(v)
-
-
-print(type(u))
-print(type(vfloat))
-
-vtemp=Matrix(zeros(2*n))
+vtemp=mp.matrix(2*n)
 for j in range(0,2*n):
     for i in range(0,2*n):
         vtemp[i,j]=vfloat[i,j]
 
+u=mp.chop(ufloat)
+s=mp.chop(stemp)
+v=mp.chop(vtemp)
 
-pprint(vtemp)
-print(type(vtemp))
-
-v=makematrixexact(vtemp)
+print('\n u \n')
+pprint(u)
+print('\n s \n')
+pprint(s)
+print('\n v \n')
 pprint(v)
 
-sqreconstruct=u*s*v
+sqreconstruct=mp.chop(u*s*v)
 
-print('After svd doing u*s*v')
-pprint(N(sqreconstruct))
+print('\nAfter svd doing u*s*v\n')
+pprint(sqreconstruct)
 
-print('Original sq matrix')
+print('\nOriginal sq matrix\n')
 pprint(smat)
 
-pprint(relational.Eq(sqreconstruct,smat))
+diff=sqreconstruct-smat 
+
+pprint(diff)
+
+print(mp.norm(diff,p='inf'))
+
+if (mp.norm(diff,p='inf')<=10**-5):
+    print('\n#############################################')
+    print('#######        Close enough     #############')
+    print('#############################################')
+
+
+
+
+#pprint(relational.Eq(sqreconstruct,smat))
 
 """
 print('Columns of U \neigenvects of sym*conj(sym)')
