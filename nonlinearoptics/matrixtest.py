@@ -83,6 +83,15 @@ def fixfloaterr(matrix):
     
     return Matrix(newmatrix)
 
+def makematrixexact(matrix):
+    imax,jmax=matrix.shape
+    newmat=matrix 
+    for j in range(0,jmax):
+        for i in range(0,imax):
+            newmat[i,j]=nsimplify(matrix[i,j], full=True)
+
+    return newmat
+
 def takagi_for_unitary(A):
     ### takes a unitary matrix A such that A^T = A, ###
     ###    returns unitary U such that A = U U^T    ###
@@ -143,19 +152,11 @@ bsangle=pi/4
 
 # phase shift
 omega=symbols('omega:100')
-
-print('Spatial modes =', nspace)
-print('Spectral modes =', nspectral)
-print('Total dim =', n)
-print('\n Two mode squeezing on modes, ', sq1_mode1,',', sq1_mode2)
-print('Two mode squeezer on modes, ', sq2_mode1, ',', sq2_mode2)
-print('Phase shift on modes. ', phasemode, 'phase angle', phaseangle)
-print('Beamsplitter on modes, ', bsmode1, ',', bsmode2, 'angle= ', bsangle)
-
 ########### Define squeezing symbols
 xi=[None]*(n**2)
 for i in range(0,n**2):
     xi[i]=symbols('xi%d' % (i))
+
 
 #modes 0 & 1
 xi[1]=1
@@ -164,6 +165,7 @@ xi[2]=2
 #modes 2 & 3
 xi[5]=1
 xi[6]=2
+
 
 #make active s block anti-diag
 xi[0]=0
@@ -180,7 +182,16 @@ for i in range(0,nspace):
     for j in range(0,nspectral):
         a[i*(nspectral)+j]=symbols('a%d%d' % (i, j))
 
-################## Make stuff happen!
+print('Spatial modes =', nspace)
+print('Spectral modes =', nspectral)
+print('Total dim =', n)
+print('\n Two mode squeezing on modes, ', sq1_mode1,',', sq1_mode2)
+print('Two mode squeezer on modes, ', sq2_mode1, ',', sq2_mode2)
+print('Phase shift on modes. ', phasemode, 'phase angle', phaseangle)
+print('Beamsplitter on modes, ', bsmode1, ',', bsmode2, 'angle= ', bsangle)
+
+
+################## Make stuff happen!#######################
 modes=makemodes()
 
 #block form for symplectic matrix
@@ -210,6 +221,8 @@ pprint(mbs)
 #do mode transformation
 justdoitplease(mbs*mps*msq2*msq1,modes)
 
+#############################################################
+############### numerics ###################################
 print('Worked?')
 
 pprint(msq1)
@@ -221,35 +234,65 @@ smat=Matrix(N(S1))
 smat=Matrix(N(msq1))
 pprint(smat)
 
+
+########################## svd ##########################
 print('\nnumerical Svd')
 ufloat,sfloat,vfloat = mp.svd(smat)
 
-u=fixfloaterr(ufloat)
+ufix=fixfloaterr(ufloat)
 #s=fixfloaterr(sfloat)
 #v=fixfloaterr(vfloat)
 
 pprint(ufloat)
+pprint(ufix)
+
+u=makematrixexact(ufix)
 pprint(u)
 
+s=Matrix(zeros(2*n))
+for i in range(0,2*n):
+    s[i,i]=sfloat[i]
+
 pprint(sfloat)
-#pprint(s)
+pprint(s)
+
+pprint(makematrixexact(s))
 
 pprint(vfloat)
 #pprint(v)
 
+
 print(type(u))
 print(type(vfloat))
 
-pprint(Matrix(vfloat))
+vtemp=Matrix(zeros(2*n))
+for j in range(0,2*n):
+    for i in range(0,2*n):
+        vtemp[i,j]=vfloat[i,j]
 
-print()
+
+pprint(vtemp)
+print(type(vtemp))
+
+v=makematrixexact(vtemp)
+pprint(v)
+
+sqreconstruct=u*s*v
+
+print('After svd doing u*s*v')
+pprint(N(sqreconstruct))
+
+print('Original sq matrix')
+pprint(smat)
+
+pprint(relational.Eq(sqreconstruct,smat))
+
 """
 print('Columns of U \neigenvects of sym*conj(sym)')
 pprint((smat*conjugate(smat)).eigenvects())
 
 print('Columns of V\neigenvects of conj(sym)*sym')
 pprint((conjugate(smat)*smat).eigenvects())
-"""
 
 #unitary=diag(u, eye(2))
 #pprint(unitary)
@@ -268,9 +311,7 @@ pprint(msq1)
 print('U1 inv * tmsq * u1')
 pprint(u1*N(msq1)*v1)
 
-
-
-
+"""
 
 """
 ######################## Substitution for numerical values
@@ -293,7 +334,5 @@ mbs=makebs(bsmode1,bsmode2,bsangle)
 justdoitplease(mbs*mps*msq2*msq1,modes)
 
 """
-
-
 #end
 
