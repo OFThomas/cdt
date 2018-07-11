@@ -57,7 +57,7 @@ m = Makeelements(n,nspectral, sq1_mode1, sq1_mode2,
 
 #do mode transformation
 transform=m.bs*m.ps*m.sq2*m.sq1 
-m.justdoitplease(transform,m.modes)
+m.justdoitplease(transform,m.modes, showmodes=2*n)
 
 #############################################################
 ############### numerics ###################################
@@ -119,8 +119,63 @@ if (mp.norm(diff,p='inf')<=10**-5):
     print('#############################################\n')
 
 # 
-# pprint(m.makeps(0,[2],2))
+
+# phase shift
+omega=[None]*(nspectral)
+for i in range(0,nspectral):
+    omega[i]=symbols('omega:%d' % (i))
+
+omega[0]=pi/2
+
+########### Define squeezing symbols
+xi=[None]*(n**2)
+for i in range(0,n**2):
+    xi[i]=symbols('r%d' % (i))
+
+#modes 0 & 1
+#xi[1]=1
+#xi[2]=2
+
+#modes 2 & 3
+#xi[5]=1
+#xi[6]=2
+
+#make active s block anti-diag
+xi[0]=0
+xi[3]=0
+xi[4]=0
+xi[7]=0
+
+
+transform = [None]*4
+
+squeezer1=m.makesq(mode1=0, mode2=1, sqparam=xi )
+pprint(squeezer1)
+
+squeezer2=m.makesq(mode1=2, mode2=3, sqparam=xi )
+pprint(squeezer2)
+
+phaseshift=m.makeps(mode1=1,phaseangle=omega)
+pprint(phaseshift)
+
+beamsplitter=m.makebs(mode1=1 , mode2=2 , theta=pi/4 )
+pprint(beamsplitter)
+
+transform[0]=squeezer1
+transform[1]=squeezer2*transform[0]
+transform[2]=phaseshift*transform[1]
+transform[3]=beamsplitter*transform[2]
+
+
+#do mode transformation
+for i in range(0,len(transform)):
+    m.justdoitplease(transform[i],m.modes, showmodes=n)
+    print()
+
+
+
 # bs
+
 # pprint(m.makebs(0,1,2))
 
 

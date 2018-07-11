@@ -30,7 +30,6 @@ class Makeelements():
         for i in range(0,self.n**2):
             xi[i]=symbols('xi%d' % (i))
 
-                    
         #modes 0 & 1
         xi[1]=1
         xi[2]=2
@@ -39,13 +38,11 @@ class Makeelements():
         xi[5]=1
         xi[6]=2
 
-
         #make active s block anti-diag
         xi[0]=0
         xi[3]=0
         xi[4]=0
         xi[7]=0
-
 
         self.modes=self.makemodes()
       
@@ -66,7 +63,7 @@ class Makeelements():
         pprint(self.sq2)
 
         #make phase shifter
-        self.ps=self.makeps(phasemode,omega,phaseangle)
+        self.ps=self.makeps(phasemode,omega)
         pprint(self.ps)
 
         #make beamsplitter 
@@ -86,10 +83,10 @@ class Makeelements():
         modes=self.matsubs(bmodes,ablk,modematrix,0,0,0,0)
         return modes
 
-    def makeps(self,mode1, omega,phaseangle):
+    def makeps(self,mode1, phaseangle):
         ##Phase shifter
         m1=mode1*self.nspectral
-        phasespace=Matrix(self.n,self.n, lambda i,j: exp(sqrt(-1)*omega[i%self.nspectral])
+        phasespace=Matrix(self.n,self.n, lambda i,j: exp(sqrt(-1)*phaseangle[i%self.nspectral])
                 if ((i==j)and((m1<=i)and(i<m1+self.nspectral))) else 1 if(i==j) else 0)
         # symplectic phase shifer
         mps=Matrix(self.matsubs(self.block,self.al,phasespace,self.be,zeros(self.n),0,0))
@@ -139,9 +136,9 @@ class Makeelements():
         temp3=temp2.subs(cold,cnew)
         return temp3
 
-    def justdoitplease(self,transform, modes):
+    def justdoitplease(self,transform, modes, showmodes):
         modetransform=transform*modes
-        pprint(relational.Eq(Matrix(modes[0:self.n]),Matrix(modetransform[0:self.n])))
+        pprint(relational.Eq(Matrix(modes[0:showmodes]),Matrix(modetransform[0:showmodes])))
         return 
 
 class Matrixops():
