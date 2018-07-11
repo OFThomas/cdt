@@ -8,6 +8,15 @@ from makeelements import *
 
 init_printing(use_unicode=True)
 
+def printc(matrix):
+    print()
+    pprint(matrix[0:n,0:n])
+
+def prints(matrix):
+    print()
+    pprint(matrix[0:n,n:2*n])
+
+
 ################################## start of program
 
 #spatial dim
@@ -166,13 +175,17 @@ transform[1]=squeezer2*transform[0]
 transform[2]=phaseshift*transform[1]
 transform[3]=beamsplitter*transform[2]
 
-
 #do mode transformation
 for i in range(0,len(transform)):
+    print('\nC matrix')
+    printc(transform[i])
+    print('\nS matrix')
+    prints(transform[i])
+    print('\n mode transform')
     m.justdoitplease(transform[i],m.modes, showmodes=n)
     print()
 
-
+# ################## print s and c matrix
 
 # bs
 
