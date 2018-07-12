@@ -3,7 +3,7 @@ from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum import TensorProduct 
 from mpmath import mp
 from sympy.abc import alpha, beta, xi, zeta
-
+from sympy import I
 
 class Makeelements():
     
@@ -86,7 +86,7 @@ class Makeelements():
     def makeps(self,mode1, phaseangle):
         ##Phase shifter
         m1=mode1*self.nspectral
-        phasespace=Matrix(self.n,self.n, lambda i,j: exp(sqrt(-1)*phaseangle[i%self.nspectral])
+        phasespace=Matrix(self.n,self.n, lambda i,j: exp(I*phaseangle[i%self.nspectral])
                 if ((i==j)and((m1<=i)and(i<m1+self.nspectral))) else 1 if(i==j) else 0)
         # symplectic phase shifer
         mps=Matrix(self.matsubs(self.block,self.al,phasespace,self.be,zeros(self.n),0,0))

@@ -2,7 +2,8 @@ from sympy import *
 from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum import TensorProduct 
 from mpmath import mp
-from sympy.abc import alpha, beta, xi, zeta
+from sympy.abc import alpha, beta, xi, zeta, omega, theta, phi
+from sympy import I
 
 from makeelements import *
 
@@ -42,9 +43,6 @@ phaseangle=pi/2
 # beamsplitter spatial modes
 bsmode1, bsmode2= 1,2
 bsangle=pi/4
-
-#cosh & sinh placeholders
-c,s = symbols('c s')
 
 ########### Define optical modes
 print('Spatial modes =', nspace)
@@ -130,11 +128,11 @@ if (mp.norm(diff,p='inf')<=10**-5):
 # 
 
 # phase shift
-omega=[None]*(nspectral)
+theta=[None]*(nspectral*2)
 for i in range(0,nspectral):
-    omega[i]=symbols('omega:%d' % (i))
+    theta[i]=symbols('theta%d' % (i))
 
-omega[0]=pi/2
+#theta[0]=symbols('theta')
 
 ########### Define squeezing symbols
 xi=[None]*(n**2)
@@ -164,10 +162,10 @@ pprint(squeezer1)
 squeezer2=m.makesq(mode1=2, mode2=3, sqparam=xi )
 pprint(squeezer2)
 
-phaseshift=m.makeps(mode1=1,phaseangle=omega)
+phaseshift=m.makeps(mode1=1,phaseangle=theta)
 pprint(phaseshift)
 
-beamsplitter=m.makebs(mode1=1 , mode2=2 , theta=pi/4 )
+beamsplitter=m.makebs(mode1=1 , mode2=2 , theta=phi )
 pprint(beamsplitter)
 
 transform[0]=squeezer1
