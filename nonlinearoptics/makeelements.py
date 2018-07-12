@@ -44,7 +44,7 @@ class Makeelements():
         xi[4]=0
         xi[7]=0
 
-        self.modes=self.makemodes()
+        self.modes=self.makemodes(self.a)
       
         #block form for symplectic matrix
         self.al = MatrixSymbol('alpha', self.n,self.n)
@@ -72,13 +72,13 @@ class Makeelements():
 
         return
 
-    def makemodes(self):
+    def makemodes(self,symb):
         #Make optical modes
         ablk=MatrixSymbol('a',self.n,1)
         #build block matrix for modes
         bmodes=BlockMatrix([[ablk],[conjugate(ablk)]])
         #make a size n vector for a
-        modematrix=Matrix(self.n,1, lambda i,j: self.a[i] )
+        modematrix=Matrix(self.n,1, lambda i,j: symb[i] )
         #substitution for a modes
         modes=self.matsubs(bmodes,ablk,modematrix,0,0,0,0)
         return modes
@@ -137,9 +137,12 @@ class Makeelements():
         return temp3
 
     def justdoitplease(self,transform, modes, showmodes):
+        #modetransform=[None]*2*self.n 
+        #for i in range(0,2*self.n):
+        #    modetransform[i]=transform[i,:]*modes[i,:]
         modetransform=transform*modes
         pprint(relational.Eq(Matrix(modes[0:showmodes]),Matrix(modetransform[0:showmodes])))
-        return 
+        return modetransform 
 
 class Matrixops():
 

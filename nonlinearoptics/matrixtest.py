@@ -153,7 +153,6 @@ xi[3]=0
 xi[4]=0
 xi[7]=0
 
-
 transform = [None]*4
 
 squeezer1=m.makesq(mode1=0, mode2=1, sqparam=xi )
@@ -180,8 +179,27 @@ for i in range(0,len(transform)):
     print('\nS matrix')
     prints(transform[i])
     print('\n mode transform')
-    m.justdoitplease(transform[i],m.modes, showmodes=n)
+    modetrans=m.justdoitplease(transform[i],m.modes, showmodes=n)
     print()
+
+
+b=symbols('b:%d' % (n))
+
+bmodes = Matrix(m.makemodes(b))
+
+moderel=[None]*2*n
+
+# make new modes b = Ma
+for i in range(0,2*n):
+    moderel[i]=Eq(bmodes[i,0],modetrans[i,0])
+   
+# for formatting
+print('\n\n\n\n\n\n\n\n\n\n\n\n\n')
+   
+# print new b modes
+for i in range(0,n):
+    pprint(moderel[i])
+
 
 # ################## print s and c matrix
 
