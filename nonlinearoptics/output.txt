@@ -74,37 +74,7 @@ Beamsplitter on modes,  1 , 2 angle=  pi/4
 ⎢                       2       2      ⎥
 ⎢                                      ⎥
 ⎣0   0     0    0  0    0       0     1⎦
-        ⎡                                               ___                         ⎤
-        ⎢                         a₀₀⋅cosh(1) + sinh(1)⋅a₁₀                         ⎥
-        ⎢                                                                           ⎥
-        ⎢                                                  ___              ___     ⎥
-        ⎢     √2⋅a₁₀⋅cosh(2)   √2⋅a₂₀⋅cosh(1)   √2⋅sinh(2)⋅a₀₀   √2⋅sinh(1)⋅a₃₀     ⎥
-        ⎢     ────────────── - ────────────── + ────────────── - ──────────────     ⎥
-⎡a₀₀⎤   ⎢           2                2                2                2            ⎥
-⎢   ⎥   ⎢                                                                           ⎥
-⎢a₁₀⎥   ⎢                                                    ___                ___ ⎥
-⎢   ⎥   ⎢ √2⋅ⅈ⋅a₁₀⋅cosh(2)   √2⋅ⅈ⋅a₂₀⋅cosh(1)   √2⋅ⅈ⋅sinh(2)⋅a₀₀   √2⋅ⅈ⋅sinh(1)⋅a₃₀ ⎥
-⎢a₂₀⎥   ⎢ ──────────────── + ──────────────── + ──────────────── + ──────────────── ⎥
-⎢   ⎥   ⎢        2                  2                  2                  2         ⎥
-⎢a₃₀⎥   ⎢                                                                           ⎥
-⎢   ⎥   ⎢                                               ___                         ⎥
-⎢___⎥   ⎢                         a₃₀⋅cosh(2) + sinh(2)⋅a₂₀                         ⎥
-⎢a₀₀⎥ = ⎢                                                                           ⎥
-⎢   ⎥   ⎢                                               ___                         ⎥
-⎢___⎥   ⎢                         a₁₀⋅sinh(1) + cosh(1)⋅a₀₀                         ⎥
-⎢a₁₀⎥   ⎢                                                                           ⎥
-⎢   ⎥   ⎢                                                  ___              ___     ⎥
-⎢___⎥   ⎢     √2⋅a₀₀⋅sinh(2)   √2⋅a₃₀⋅sinh(1)   √2⋅cosh(2)⋅a₁₀   √2⋅cosh(1)⋅a₂₀     ⎥
-⎢a₂₀⎥   ⎢     ────────────── - ────────────── + ────────────── - ──────────────     ⎥
-⎢   ⎥   ⎢           2                2                2                2            ⎥
-⎢___⎥   ⎢                                                                           ⎥
-⎣a₃₀⎦   ⎢                                                     ___                ___⎥
-        ⎢  √2⋅ⅈ⋅a₀₀⋅sinh(2)   √2⋅ⅈ⋅a₃₀⋅sinh(1)   √2⋅ⅈ⋅cosh(2)⋅a₁₀   √2⋅ⅈ⋅cosh(1)⋅a₂₀⎥
-        ⎢- ──────────────── - ──────────────── - ──────────────── - ────────────────⎥
-        ⎢         2                  2                  2                  2        ⎥
-        ⎢                                                                           ⎥
-        ⎢                                               ___                         ⎥
-        ⎣                         a₂₀⋅sinh(2) + cosh(2)⋅a₃₀                         ⎦
+False
 
  Numerics 
 
@@ -234,15 +204,7 @@ S matrix
 ⎣   0         0      0  0⎦
 
  mode transform
-        ⎡                        ___⎤
-⎡a₀₀⎤   ⎢a₀₀⋅cosh(r₁) + sinh(r₁)⋅a₁₀⎥
-⎢   ⎥   ⎢                           ⎥
-⎢a₁₀⎥   ⎢                        ___⎥
-⎢   ⎥ = ⎢a₁₀⋅cosh(r₂) + sinh(r₂)⋅a₀₀⎥
-⎢a₂₀⎥   ⎢                           ⎥
-⎢   ⎥   ⎢            a₂₀            ⎥
-⎣a₃₀⎦   ⎢                           ⎥
-        ⎣            a₃₀            ⎦
+False
 
 
 C matrix
@@ -266,17 +228,7 @@ S matrix
 ⎣   0         0      sinh(r₆)     0    ⎦
 
  mode transform
-        ⎡                        ___⎤
-        ⎢a₀₀⋅cosh(r₁) + sinh(r₁)⋅a₁₀⎥
-⎡a₀₀⎤   ⎢                           ⎥
-⎢   ⎥   ⎢                        ___⎥
-⎢a₁₀⎥   ⎢a₁₀⋅cosh(r₂) + sinh(r₂)⋅a₀₀⎥
-⎢   ⎥ = ⎢                           ⎥
-⎢a₂₀⎥   ⎢                        ___⎥
-⎢   ⎥   ⎢a₂₀⋅cosh(r₅) + sinh(r₅)⋅a₃₀⎥
-⎣a₃₀⎦   ⎢                           ⎥
-        ⎢                        ___⎥
-        ⎣a₃₀⋅cosh(r₆) + sinh(r₆)⋅a₂₀⎦
+False
 
 
 C matrix
@@ -302,17 +254,7 @@ S matrix
 ⎣      0            0      sinh(r₆)     0    ⎦
 
  mode transform
-        ⎡                              ___      ⎤
-        ⎢      a₀₀⋅cosh(r₁) + sinh(r₁)⋅a₁₀      ⎥
-⎡a₀₀⎤   ⎢                                       ⎥
-⎢   ⎥   ⎢     ⅈ⋅θ₀             ⅈ⋅θ₀          ___⎥
-⎢a₁₀⎥   ⎢a₁₀⋅ℯ    ⋅cosh(r₂) + ℯ    ⋅sinh(r₂)⋅a₀₀⎥
-⎢   ⎥ = ⎢                                       ⎥
-⎢a₂₀⎥   ⎢                              ___      ⎥
-⎢   ⎥   ⎢      a₂₀⋅cosh(r₅) + sinh(r₅)⋅a₃₀      ⎥
-⎣a₃₀⎦   ⎢                                       ⎥
-        ⎢                              ___      ⎥
-        ⎣      a₃₀⋅cosh(r₆) + sinh(r₆)⋅a₂₀      ⎦
+False
 
 
 C matrix
@@ -340,29 +282,7 @@ S matrix
 ⎣           0                0      sinh(r₆)          0        ⎦
 
  mode transform
-        ⎡                                                             ___                             
-        ⎢                                     a₀₀⋅cosh(r₁) + sinh(r₁)⋅a₁₀                             
-⎡a₀₀⎤   ⎢                                                                                             
-⎢   ⎥   ⎢     ⅈ⋅θ₀                                            ⅈ⋅θ₀                 ___                
-⎢a₁₀⎥   ⎢a₁₀⋅ℯ    ⋅cos(φ)⋅cosh(r₂) + ⅈ⋅a₂₀⋅sin(φ)⋅cosh(r₅) + ℯ    ⋅cos(φ)⋅sinh(r₂)⋅a₀₀ + ⅈ⋅sin(φ)⋅sinh
-⎢   ⎥ = ⎢                                                                                             
-⎢a₂₀⎥   ⎢       ⅈ⋅θ₀                                            ⅈ⋅θ₀                 ___              
-⎢   ⎥   ⎢ⅈ⋅a₁₀⋅ℯ    ⋅sin(φ)⋅cosh(r₂) + a₂₀⋅cos(φ)⋅cosh(r₅) + ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(r₂)⋅a₀₀ + cos(φ)⋅sinh
-⎣a₃₀⎦   ⎢                                                                                             
-        ⎢                                                             ___                             
-        ⎣                                     a₃₀⋅cosh(r₆) + sinh(r₆)⋅a₂₀                             
-
-        ⎤
-        ⎥
-        ⎥
-     ___⎥
-(r₅)⋅a₃₀⎥
-        ⎥
-     ___⎥
-(r₅)⋅a₃₀⎥
-        ⎥
-        ⎥
-        ⎦
+False
 
 
 
@@ -378,17 +298,30 @@ S matrix
 
 
 
-                             ___
-b₀ = a₀₀⋅cosh(r₁) + sinh(r₁)⋅a₁₀
-          ⅈ⋅θ₀                                            ⅈ⋅θ₀                 ___                    
-b₁ = a₁₀⋅ℯ    ⋅cos(φ)⋅cosh(r₂) + ⅈ⋅a₂₀⋅sin(φ)⋅cosh(r₅) + ℯ    ⋅cos(φ)⋅sinh(r₂)⋅a₀₀ + ⅈ⋅sin(φ)⋅sinh(r₅)
+                     ________                    
+b(out_00) = sinh(r₁)⋅b(in_10) + cosh(r₁)⋅b(in_00)
+             ⅈ⋅θ₀                 ________    ⅈ⋅θ₀                                              _______
+b(out_10) = ℯ    ⋅cos(φ)⋅sinh(r₂)⋅b(in_00) + ℯ    ⋅cos(φ)⋅cosh(r₂)⋅b(in_10) + ⅈ⋅sin(φ)⋅sinh(r₅)⋅b(in_30
 
- ___
-⋅a₃₀
-            ⅈ⋅θ₀                                            ⅈ⋅θ₀                 ___                  
-b₂ = ⅈ⋅a₁₀⋅ℯ    ⋅sin(φ)⋅cosh(r₂) + a₂₀⋅cos(φ)⋅cosh(r₅) + ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(r₂)⋅a₀₀ + cos(φ)⋅sinh(r₅)
+_                             
+) + ⅈ⋅sin(φ)⋅cosh(r₅)⋅b(in_20)
+               ⅈ⋅θ₀                 ________      ⅈ⋅θ₀                                            _____
+b(out_20) = ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(r₂)⋅b(in_00) + ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r₂)⋅b(in_10) + cos(φ)⋅sinh(r₅)⋅b(in_
 
- ___
-⋅a₃₀
-                             ___
-b₃ = a₃₀⋅cosh(r₆) + sinh(r₆)⋅a₂₀
+___                           
+30) + cos(φ)⋅cosh(r₅)⋅b(in_20)
+                     ________                    
+b(out_30) = sinh(r₆)⋅b(in_20) + cosh(r₆)⋅b(in_30)
+b(out_00) b(in_00)
+0
+   ⅈ⋅θ₀                                    ⎛________  ________⎞    ⅈ⋅θ₀                                
+- ℯ    ⋅cos(φ)⋅sinh(r₁)⋅sinh(r₂)⋅Commutator⎝b(in_00), b(in_10)⎠ + ℯ    ⋅cos(φ)⋅sinh(r₁)⋅cosh(r₂)⋅Commut
+
+    ⎛________          ⎞    ⅈ⋅θ₀                                    ⎛________          ⎞               
+ator⎝b(in_10), b(in_10)⎠ - ℯ    ⋅cos(φ)⋅sinh(r₂)⋅cosh(r₁)⋅Commutator⎝b(in_00), b(in_00)⎠ + ⅈ⋅sin(φ)⋅sin
+
+                         ⎛________  ________⎞                                        ⎛________         
+h(r₁)⋅sinh(r₅)⋅Commutator⎝b(in_10), b(in_30)⎠ + ⅈ⋅sin(φ)⋅sinh(r₁)⋅cosh(r₅)⋅Commutator⎝b(in_10), b(in_20
+
+ ⎞                                        ⎛________          ⎞
+)⎠ - ⅈ⋅sin(φ)⋅sinh(r₅)⋅cosh(r₁)⋅Commutator⎝b(in_30), b(in_00)⎠

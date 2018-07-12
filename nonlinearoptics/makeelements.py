@@ -1,13 +1,16 @@
 from sympy import *
-from sympy.physics.quantum.dagger import Dagger
-from sympy.physics.quantum import TensorProduct 
-from mpmath import mp
+from sympy.physics.quantum import TensorProduct
 from sympy.abc import alpha, beta, xi, zeta
 from sympy import I
 
+from sympy.physics.secondquant import B, Dagger  
+
 class Makeelements():
-    
-    def __init__(self,nspace,nspectral,sq1_mode1,sq1_mode2, sq2_mode1, sq2_mode2, phasemode, phaseangle, bsmode1,bsmode2, bsangle):
+
+
+    def __init__(self,nspace,nspectral,modes_in,
+            sq1_mode1,sq1_mode2, sq2_mode1, sq2_mode2, 
+            phasemode, phaseangle, bsmode1,bsmode2, bsangle):
    
         self.nspace=nspace
         self.n=nspace*nspectral
@@ -16,8 +19,10 @@ class Makeelements():
         self.a=[None]*self.n
         for i in range(0,self.nspace):
             for j in range(0,self.nspectral):
-                self.a[i*(self.nspectral)+j]=symbols('a%d%d' % (i, j))
+                #self.a[i*(self.nspectral)+j]=symbols('a%d%d' % (i, j))
+                self.a[i*(self.nspectral)+j]= B('in_%d%d' % (i,j))
         
+        self.a=modes_in 
         # phase shift
         omega=[None]*(nspectral)
         for i in range(0,nspectral):
@@ -75,12 +80,14 @@ class Makeelements():
     def makemodes(self,symb):
         #Make optical modes
         ablk=MatrixSymbol('a',self.n,1)
+        ablkdag=MatrixSymbol('adag', self.n,1)
         #build block matrix for modes
-        bmodes=BlockMatrix([[ablk],[conjugate(ablk)]])
+        bmodes=BlockMatrix([[ablk],[ablkdag]])
         #make a size n vector for a
         modematrix=Matrix(self.n,1, lambda i,j: symb[i] )
+        dagmodematrix=Matrix(self.n,1, lambda i,j: Dagger(symb[i]))
         #substitution for a modes
-        modes=self.matsubs(bmodes,ablk,modematrix,0,0,0,0)
+        modes=self.matsubs(bmodes,ablk,modematrix,ablkdag,dagmodematrix,0,0)
         return modes
 
     def makeps(self,mode1, phaseangle):

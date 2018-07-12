@@ -1,143 +1,147 @@
-from sympy import *
-from sympy.physics.quantum.dagger import Dagger
-from sympy.physics.quantum import TensorProduct 
 from mpmath import mp
-from sympy.abc import alpha, beta, xi, zeta, omega, theta, phi
-from sympy import I
+from sympy import *
+from sympy.abc import alpha, beta, omega, phi, theta, xi, zeta
+from sympy.physics.secondquant import Commutator as Com
 
 from makeelements import *
 
 init_printing(use_unicode=True)
 
+
 def printc(matrix):
     print()
-    pprint(matrix[0:n,0:n])
+    pprint(matrix[0:n, 0:n])
+
 
 def prints(matrix):
     print()
-    pprint(matrix[0:n,n:2*n])
+    pprint(matrix[0:n, n:2 * n])
 
 
 ################################## start of program
 
 #spatial dim
-nspace=4
+nspace = 4
 
-#spectral dim 
-nspectral=1
+#spectral dim
+nspectral = 1
 
 #make total dimension
-n=nspace*nspectral
+n = nspace * nspectral
 
 ################# Specify modes for unitaries
 # 2 mode squeezer on modes 0 & 1
-sq1_mode1,sq1_mode2= 0,1
+sq1_mode1, sq1_mode2 = 0, 1
 
 # 2 mode sq on modes 2 & 3
-sq2_mode1,sq2_mode2=2,3
+sq2_mode1, sq2_mode2 = 2, 3
 
 # Phase shifter
-phasemode=2
-phaseangle=pi/2
+phasemode = 2
+phaseangle = pi / 2
 
 # beamsplitter spatial modes
-bsmode1, bsmode2= 1,2
-bsangle=pi/4
+bsmode1, bsmode2 = 1, 2
+bsangle = pi / 4
 
 ########### Define optical modes
 print('Spatial modes =', nspace)
 print('Spectral modes =', nspectral)
 print('Total dim =', n)
-print('\n Two mode squeezing on modes, ', sq1_mode1,',', sq1_mode2)
+print('\n Two mode squeezing on modes, ', sq1_mode1, ',', sq1_mode2)
 print('Two mode squeezer on modes, ', sq2_mode1, ',', sq2_mode2)
 print('Phase shift on modes. ', phasemode, 'phase angle', phaseangle)
 print('Beamsplitter on modes, ', bsmode1, ',', bsmode2, 'angle= ', bsangle)
 
-
-################## Make stuff happen!#######################
+a = [None] * n
+b = [None] * n
+for i in range(0, nspace):
+    for j in range(0, nspectral):
+        #self.a[i*(self.nspectral)+j]=symbols('a%d%d' % (i, j))
+        a[i * (nspectral) + j] = B('%d%d' % (i, j))
+        b[i * (nspectral) + j] = B('%d%d' % (i, j))
+# ################# Make stuff happen!#######################
 
 # makes a bs, ps, sq1, sq2
-m = Makeelements(n,nspectral, sq1_mode1, sq1_mode2,
-                    sq2_mode1, sq2_mode2, phasemode, phaseangle,
-                    bsmode1, bsmode2, bsangle)
- 
+m = Makeelements(n, nspectral, a, sq1_mode1, sq1_mode2, sq2_mode1, sq2_mode2,
+                 phasemode, phaseangle, bsmode1, bsmode2, bsangle)
 
-#do mode transformation
-transform=m.bs*m.ps*m.sq2*m.sq1 
-m.justdoitplease(transform,m.modes, showmodes=2*n)
+# do mode transformation
+transform = m.bs * m.ps * m.sq2 * m.sq1
+m.justdoitplease(transform, m.modes, showmodes=2 * n)
 
-#############################################################
-############### numerics ###################################
+# ############################################################
+# ############## numerics ###################################
 print('\n Numerics \n')
 
 pprint(m.sq1)
-S1=m.sq1[range(sq1_mode1,sq1_mode2+1),range(sq1_mode1+n,sq1_mode2+n+1)]
+S1 = m.sq1[range(sq1_mode1, sq1_mode2 + 1),
+           range(sq1_mode1 + n, sq1_mode2 + n + 1)]
 
 pprint(S1)
-smat=Matrix(N(S1))
+smat = Matrix(N(S1))
 
-smat=mp.matrix(2*n)
-imax,jmax=transform.shape
+smat = mp.matrix(2 * n)
+imax, jmax = transform.shape
 
-for j in range(0,jmax):
-    for i in range(0,imax):
-        smat[i,j]=mp.mpmathify(N(transform[i,j]))
+for j in range(0, jmax):
+    for i in range(0, imax):
+        smat[i, j] = mp.mpmathify(N(transform[i, j]))
 
-
-#smat=Matrix(N(msq1))
+# smat=Matrix(N(msq1))
 print('\n Squeeze matrix\n')
-#pprint(smat)
+# pprint(smat)
 
-########################## svd ##########################
+# ######################### svd ##########################
 print('\nnumerical Svd')
-ufloat,sfloat,vfloat = mp.svd_c(smat)
+ufloat, sfloat, vfloat = mp.svd_c(smat)
 
-stemp=mp.matrix(2*n)
-for i in range(0,2*n):
-    stemp[i,i]=sfloat[i]
+stemp = mp.matrix(2 * n)
+for i in range(0, 2 * n):
+    stemp[i, i] = sfloat[i]
 
-vtemp=mp.matrix(2*n)
-for j in range(0,2*n):
-    for i in range(0,2*n):
-        vtemp[i,j]=vfloat[i,j]
+vtemp = mp.matrix(2 * n)
+for j in range(0, 2 * n):
+    for i in range(0, 2 * n):
+        vtemp[i, j] = vfloat[i, j]
 
-# set numbers <10^-15 = 0 
-u=mp.chop(ufloat)
-s=mp.chop(stemp)
-v=mp.chop(vtemp)
+# set numbers <10^-15 = 0
+u = mp.chop(ufloat)
+s = mp.chop(stemp)
+v = mp.chop(vtemp)
 
-# reconstruct to compare 
-sqreconstruct=mp.chop(u*s*v)
+# reconstruct to compare
+sqreconstruct = mp.chop(u * s * v)
 
 print('\nAfter svd doing u*s*v\n')
-#pprint(sqreconstruct)
+# pprint(sqreconstruct)
 
 print('\nOriginal sq matrix\n')
-#pprint(smat)
+# pprint(smat)
 
-diff=sqreconstruct-smat 
-#pprint(mp.chop(diff))
+diff = sqreconstruct - smat
+# pprint(mp.chop(diff))
 
-print(mp.norm(diff,p='inf'))
+print(mp.norm(diff, p='inf'))
 
-if (mp.norm(diff,p='inf')<=10**-5):
+if mp.norm(diff, p='inf') <= 10**-5:
     print('\n#############################################')
     print('#######        Close enough     #############')
     print('#############################################\n')
 
-# 
+#
 
 # phase shift
-theta=[None]*(nspectral*2)
-for i in range(0,nspectral):
-    theta[i]=symbols('theta%d' % (i))
+theta = [None] * (nspectral * 2)
+for i in range(0, nspectral):
+    theta[i] = symbols('theta%d' % (i))
 
 #theta[0]=symbols('theta')
 
 ########### Define squeezing symbols
-xi=[None]*(n**2)
-for i in range(0,n**2):
-    xi[i]=symbols('r%d' % (i))
+xi = [None] * (n**2)
+for i in range(0, n**2):
+    xi[i] = symbols('r%d' % (i))
 
 #modes 0 & 1
 #xi[1]=1
@@ -148,63 +152,72 @@ for i in range(0,n**2):
 #xi[6]=2
 
 #make active s block anti-diag
-xi[0]=0
-xi[3]=0
-xi[4]=0
-xi[7]=0
+xi[0] = 0
+xi[3] = 0
+xi[4] = 0
+xi[7] = 0
 
-transform = [None]*4
+transform = [None] * 4
 
-squeezer1=m.makesq(mode1=0, mode2=1, sqparam=xi )
+squeezer1 = m.makesq(mode1=0, mode2=1, sqparam=xi)
 pprint(squeezer1)
 
-squeezer2=m.makesq(mode1=2, mode2=3, sqparam=xi )
+squeezer2 = m.makesq(mode1=2, mode2=3, sqparam=xi)
 pprint(squeezer2)
 
-phaseshift=m.makeps(mode1=1,phaseangle=theta)
+phaseshift = m.makeps(mode1=1, phaseangle=theta)
 pprint(phaseshift)
 
-beamsplitter=m.makebs(mode1=1 , mode2=2 , theta=phi )
+beamsplitter = m.makebs(mode1=1, mode2=2, theta=phi)
 pprint(beamsplitter)
 
-transform[0]=squeezer1
-transform[1]=squeezer2*transform[0]
-transform[2]=phaseshift*transform[1]
-transform[3]=beamsplitter*transform[2]
+transform[0] = squeezer1
+transform[1] = squeezer2 * transform[0]
+transform[2] = phaseshift * transform[1]
+transform[3] = beamsplitter * transform[2]
 
 #do mode transformation
-for i in range(0,len(transform)):
+for i in range(0, len(transform)):
     print('\nC matrix')
     printc(transform[i])
     print('\nS matrix')
     prints(transform[i])
     print('\n mode transform')
-    modetrans=m.justdoitplease(transform[i],m.modes, showmodes=n)
+    modetrans = m.justdoitplease(transform[i], m.modes, showmodes=n)
     print()
 
-
-b=symbols('b:%d' % (n))
+#b = symbols('b:%d' % (n))
 
 bmodes = Matrix(m.makemodes(b))
 
-moderel=[None]*2*n
+moderel = [None] * 2 * n
 
 # make new modes b = Ma
-for i in range(0,2*n):
-    moderel[i]=Eq(bmodes[i,0],modetrans[i,0])
-   
+for i in range(0, 2 * n):
+    moderel[i] = Eq(bmodes[i, 0], modetrans[i, 0])
+
 # for formatting
 print('\n\n\n\n\n\n\n\n\n\n\n\n\n')
-   
+
 # print new b modes
-for i in range(0,n):
+for i in range(0, 2 * n):
     pprint(moderel[i])
 
+d = modetrans[:, 0]
+amodes = m.modes[:, 0]
 
+print(bmodes[0], amodes[0])
+
+print('bmodes0, bmodes1')
+pprint(Com(bmodes[0], bmodes[1]))
+
+print('\n modetrans00, modetrans10')
+pprint(Com(d[0], d[1]))
+
+print('\n d00, d^00 doit')
+pprint(Com(d[0], d[n + 0]))
 # ################## print s and c matrix
 
 # bs
 
 # pprint(m.makebs(0,1,2))
-
-
