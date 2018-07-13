@@ -1,16 +1,16 @@
 from sympy import *
 from sympy.abc import alpha, beta, omega, phi, theta, xi, zeta
 from sympy.physics.secondquant import Commutator as Com
+from sympy.physics.secondquant import wicks, NO
 
 class Commutators():
-    
     def __init__(self, bmodes, amodes, modetransform):
 
-        self.amodes=amodes
-        self.bmodes=bmodes
-        self.n=len(bmodes[:,0])
-        self.modetrans=modetransform
-        
+        self.amodes = amodes
+        self.bmodes = bmodes
+        self.n = len(bmodes[:, 0])
+        self.modetrans = modetransform
+
         self.moderel = [None] * self.n
         # make new modes b = Ma
         for i in range(0, self.n):
@@ -31,7 +31,7 @@ class Commutators():
         #return self.d
 
     # commutator
-    def c(self,A,B):
+    def c(self, A, B):
         print('\nComutator is')
         print('[', end='')
         pprint(A)
@@ -39,9 +39,14 @@ class Commutators():
         pprint(B)
         print(']', flush=True)
         print('\n Which evaluates to:')
-        pprint(Com(A,B))
+        pprint(Com(A, B))
 
-        return Com(A,B)
+        return Com(A, B)
 
     def constructmodeops(self):
         return self.d
+
+    def dowicks(self, A):
+        pprint(simplify(A))
+        return (A)
+

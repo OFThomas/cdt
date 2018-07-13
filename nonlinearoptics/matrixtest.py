@@ -1,10 +1,9 @@
-from mpmath import mp
-from sympy import *
-from sympy.abc import alpha, beta, omega, phi, theta, xi, zeta
-from sympy.physics.secondquant import Commutator as Com
+from sympy import Matrix, init_printing, pi, pprint, symbols
+from sympy.abc import alpha, beta, omega, phi, zeta
+from sympy.physics.secondquant import B, Dagger
 
-from makeelements import *
-from operatoralg import *
+from makeelements import Makeelements
+from operatoralg import Commutators
 
 init_printing(use_unicode=True)
 
@@ -19,18 +18,17 @@ def prints(matrix):
     pprint(matrix[0:n, n:2 * n])
 
 
-################################## start of program
+# ################################# start of program
 
-#spatial dim
+# spatial dim
 nspace = 4
+# spectral dim
+nspectral = 1
 
-#spectral dim
-nspectral = 8
-
-#make total dimension
+# make total dimension
 n = nspace * nspectral
 
-################# Specify modes for unitaries
+# ################ Specify modes for unitaries
 # 2 mode squeezer on modes 0 & 1
 sq1_modes = [0, 1]
 
@@ -45,7 +43,7 @@ phaseangle = pi / 2
 bsmodes = [1, 2]
 bsangle = pi / 4
 
-########### Define optical modes
+# ########## Define optical modes
 print('Spatial modes =', nspace)
 print('Spectral modes =', nspectral)
 print('Total dim =', n)
@@ -55,22 +53,20 @@ print('Phase shift on modes. ', phasemode, 'phase angle', phaseangle)
 print('Beamsplitter on modes, ', bsmodes[0], ',', bsmodes[1], 'angle= ',
       bsangle)
 
+# input and output modes
 a = [None] * n
 b = [None] * n
 for i in range(0, nspace):
     for j in range(0, nspectral):
-        #self.a[i*(self.nspectral)+j]=symbols('a%d%d' % (i, j))
+        # B is boson annihilation op
         a[i * (nspectral) + j] = B('%d+%d' % (i * nspectral, j))
         b[i * (nspectral) + j] = B('%d+%d' % (i * nspectral, j))
+
 # ################# Make stuff happen!#######################
 
 # makes a bs, ps, sq1, sq2
 m = Makeelements(nspace, nspectral, a, sq1_modes, sq2_modes, phasemode,
                  phaseangle, bsmodes, bsangle)
-
-# do mode transformation
-#transform = m.bs * m.ps * m.sq2 * m.sq1
-#m.justdoitplease(transform, m.modes, showmodes=2 * n)
 
 # ############## numerics ###################################
 
@@ -79,26 +75,9 @@ theta = [None] * (nspectral * 2)
 for i in range(0, nspectral):
     theta[i] = symbols('theta%d' % (i))
 
-#theta[0]=symbols('theta')
-
-########### Define squeezing symbols
 xi = [None] * (n**2)
 for i in range(0, n**2):
     xi[i] = symbols('r%d' % (i))
-
-#modes 0 & 1
-#xi[1]=1
-#xi[2]=2
-
-#modes 2 & 3
-#xi[5]=1
-#xi[6]=2
-
-#make active s block anti-diag
-#xi[0] = 0
-#xi[3] = 0
-#xi[4] = 0
-#xi[7] = 0
 
 transform = [None] * 4
 
@@ -137,13 +116,36 @@ print()
 bmodes = Matrix(m.makemodes(b))
 amodes = m.modes[:, 0]
 
+# for characterising
+fulltransform = Matrix(m.makeblock())
+modetrans = m.justdoitplease(fulltransform, m.modes, showmodes=n)
+# end of characterising
+
 com = Commutators(bmodes, amodes, modetrans)
 
 d = com.constructmodeops()
 
 print('\n\n\n')
 
+
+def correlationfn(indices, modes):
+    g = 1
+    for i in range(0, len(indices)):
+        print('i,j', i, j)
+        g = g * modes[i]
+    for i in range(len(indices) - 1, -1, -1):
+        g = g * modes[n + i]
+    return g
+
+
 c_d0d1 = com.c(d[0], d[1])
 c_d0dagd0 = com.c(d[0], d[n + 0])
 
+g1 = d[n + 0] * d[0]
+com.dowicks(g1)
+
+index = [0]
+pprint(correlationfn(index, d))
+
+pprint(d)
 #
