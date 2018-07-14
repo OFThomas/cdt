@@ -90,11 +90,12 @@ transform[0] = squeezer1
 transform[1] = squeezer2 * transform[0]
 transform[2] = phaseshift * transform[1]
 transform[3] = beamsplitter * transform[2]
-
-#pprint(squeezer1)
-#pprint(squeezer2)
-#pprint(phaseshift)
-#pprint(beamsplitter)
+"""
+pprint(squeezer1)
+pprint(squeezer2)
+pprint(phaseshift)
+pprint(beamsplitter)
+"""
 
 # do mode transformation
 for i in range(0, len(transform)):
@@ -121,8 +122,10 @@ fulltransform = Matrix(m.makeblock())
 modetrans = m.justdoitplease(fulltransform, m.modes, showmodes=n)
 # end of characterising
 
-com = Commutators(bmodes, amodes, modetrans)
+# from operatoralg import commutation stuff
+com = Commutators(bmodes, amodes, modetrans, fulltransform)
 
+# use relational to make d final mode transforms
 d = com.constructmodeops()
 
 print('\n\n\n')
@@ -141,11 +144,18 @@ def correlationfn(indices, modes):
 c_d0d1 = com.c(d[0], d[1])
 c_d0dagd0 = com.c(d[0], d[n + 0])
 
-g1 = d[n + 0] * d[0]
-com.dowicks(g1)
-
-index = [0]
-pprint(correlationfn(index, d))
-
+# mode transforms
 pprint(d)
+
+# commutation relations using matrix elements
+
+#pprint(com.matrixel([0, 1], d))
+#pprint(com.matrixel([1, 0], d))
+
+#pprint(com.matrixel([n + 0, n + 1], d))
+#pprint(com.matrixel([n + 1, n + 0], d))
+
+#pprint(com.matrixel([0, n + 0], d))
+pprint(com.matrixel([n + 0, 0], d))
+
 #
