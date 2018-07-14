@@ -66,6 +66,8 @@ class Commutators():
 
             matelement = fulltransform[a:b, 0:n] * fulltransform[a:b, n:2 *
                                                                  n].T
+
+            print('(Alpha*Beta^T)_', index[0], index[1], '-')
             return (matelement[index[0], index[1]] -
                     matelement[index[1], index[0]])
 
@@ -73,6 +75,7 @@ class Commutators():
         if (index[0] >= n) and (index[1] < n) or (index[0] < n) and (index[1]
                                                                      >= n):
             print('Matrix element')
+
             a = 0
             b = n
             matelement = fulltransform[a:b, 0:n] * fulltransform[n:2 * n, n:2 *
@@ -83,11 +86,15 @@ class Commutators():
                 index[0] = index[0] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
+                print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',
+                      index[0], index[1])
                 return (-ans)
             elif index[1] >= n:
                 index[1] = index[1] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
+                print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',
+                      index[0], index[1])
                 return (ans)
 
     def constructmodeops(self):

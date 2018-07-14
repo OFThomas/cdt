@@ -1,6 +1,6 @@
-from sympy import Matrix, init_printing, pi, pprint, symbols
+from sympy import Matrix, init_printing, pi, pprint, symbols, simplify
 from sympy.abc import alpha, beta, omega, phi, zeta
-from sympy.physics.secondquant import B, Dagger
+from sympy.physics.secondquant import B, Dagger, BKet, NO
 
 from makeelements import Makeelements
 from operatoralg import Commutators
@@ -73,11 +73,14 @@ m = Makeelements(nspace, nspectral, a, sq1_modes, sq2_modes, phasemode,
 # phase shift
 theta = [None] * (nspectral * 2)
 for i in range(0, nspectral):
-    theta[i] = symbols('theta%d' % (i))
+    theta[i] = symbols('theta%d' % (i), real=True)
 
 xi = [None] * (n**2)
 for i in range(0, n**2):
-    xi[i] = symbols('r%d' % (i))
+    xi[i] = symbols('r%d' % (i), real=True)
+    xi[i] = symbols('r', real=True)
+
+phi = symbols('phi', real=True)
 
 transform = [None] * 4
 
@@ -119,6 +122,8 @@ amodes = m.modes[:, 0]
 
 # for characterising
 fulltransform = Matrix(m.makeblock())
+fulltransform = transform[len(transform) - 1]
+
 modetrans = m.justdoitplease(fulltransform, m.modes, showmodes=n)
 # end of characterising
 
@@ -156,6 +161,55 @@ pprint(d)
 #pprint(com.matrixel([n + 1, n + 0], d))
 
 #pprint(com.matrixel([0, n + 0], d))
-pprint(com.matrixel([n + 0, 0], d))
+pprint(com.matrixel([n + 0, n + 1], d) * com.matrixel([n + 2, n + 3], d))
 
+g4 = 0
+counter = 0
+print('G4 calc')
+
+for j in range(0, 2 * n):
+    for i in range(j + 1, 2 * n):
+        print('#############################################')
+        print('step i,j', i, j)
+        g4 = g4 + com.matrixel([j, i], d)
+        pprint(g4)
+        counter += 1
+
+print('Final g4 =')
+pprint(g4)
+print('counter =', counter)
+
+print('simplify')
+pprint(simplify(g4))
+
+# ### for real
+
+# def picktwonumbers(listin):
+
+g4 = 0
+multi = 1
+counter = 0
+print('G4 calc')
+
+# make list 0 to 2*n-1
+nums = [i for i in range(0, 2 * n)]
+
+for j in range(0, n):
+    print('#############################################')
+    print('step j', j)
+
+    for i in range(0, len(nums)):
+        #       multi=multi*
+        1
+
+    g4 = g4 + com.matrixel([j, i], d)
+    pprint(g4)
+    counter += 1
+
+print('Final g4 =')
+pprint(g4)
+print('counter =', counter)
+
+print('simplify')
+pprint(simplify(g4))
 #
