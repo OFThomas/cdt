@@ -69,18 +69,18 @@ class Commutators():
     def matrixel(self, index, A):
         n = int(0.5 * self.n)
         fulltransform = self.fulltransform
-        print('com d[', index[0], '], d[', index[1], ']')
+        print('\ncom d[', index[0], '], d[', index[1], ']')
         self.c(A[index[0]], A[index[1]])
         print()
         # alpha*beta.T
         if (index[0] < n) and (index[1] < n) or ((index[0] >= n) and
                                                  (index[1] >= n)):
             
-            print('(Alpha*Beta^T)_', index[0], index[1], '-')
-            print('\n\n\n\nABT TEST')
-            print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
+            #print('(Alpha*Beta^T)_', index[0], index[1], '-')
+            #print('\n\n\n\nABT TEST')
+            #print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
             
-            print('Matrix element')
+            #print('Matrix element')
             a = 0
             b = n
             # conjugate alpha*beta.T
@@ -93,8 +93,8 @@ class Commutators():
             matelement = fulltransform[a:b, 0:n] * fulltransform[a:b, n:2 *
                                                                  n].T
 
-            print('matel old way')
-            print(matelement[index[0],index[1]]-matelement[index[1],index[0]])
+            #print('matel old way')
+            #print(matelement[index[0],index[1]]-matelement[index[1],index[0]])
             
             return (matelement[index[0], index[1]] -
                     matelement[index[1], index[0]])
@@ -102,7 +102,7 @@ class Commutators():
         # dagger non-dagger
         if (index[0] >= n) and (index[1] < n) or (index[0] < n) and (index[1]
                                                                      >= n):
-            print('Matrix element')
+            #print('Matrix element')
 
             a = 0
             b = n
@@ -114,15 +114,13 @@ class Commutators():
                 index[0] = index[0] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
-                print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',
-                      index[0], index[1])
+                #print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',index[0], index[1])
                 return (-ans)
             elif index[1] >= n:
                 index[1] = index[1] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
-                print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',
-                      index[0], index[1])
+                #print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',index[0], index[1])
                 return (ans)
 
     def constructmodeops(self):

@@ -220,8 +220,29 @@ pprint((G4/G4_no_bs))
 print('\n g4')
 pprint(simplify(G4.subs(phi,pi/4)))
 
-pprint(com.matrixel([0,1],d))
-pprint(com.matrixel([1,0],d))
+print('\nd0dag')
+pprint(com.matrixel([0+n,1+n],d))
+pprint(com.matrixel([0+n,2+n],d))
+pprint(com.matrixel([0+n,3+n],d))
 
-pprint(com.c(d[0],d[3]*d[3+n]).doit())
+pprint(com.matrixel([0+n,3],d))
+pprint(com.matrixel([0+n,2],d))
+pprint(com.matrixel([0+n,1],d))
+
+print('\nd1dag')
+pprint(com.matrixel([1+n,2+n],d))
+pprint(com.matrixel([1+n,3+n],d))
+
+pprint(com.matrixel([1+n,3],d))
+pprint(com.matrixel([1+n,2],d))
+
+print('\nd2dag')
+pprint(com.matrixel([2+n,3+n],d))
+pprint(com.matrixel([2+n,3],d))
+
+
+
+#pprint(com.matrixel([0+n,3+n],d))
+
+#pprint(com.c(d[0],d[3]*d[3+n]).doit())
 #
