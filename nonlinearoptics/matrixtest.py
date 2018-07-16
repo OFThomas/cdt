@@ -162,7 +162,7 @@ pprint(d)
 
 #pprint(com.matrixel([0, n + 0], d))
 pprint(com.matrixel([n + 0, n + 1], d) * com.matrixel([n + 2, n + 3], d))
-
+"""
 g4 = 0
 counter = 0
 print('G4 calc')
@@ -181,7 +181,7 @@ print('counter =', counter)
 
 print('simplify')
 pprint(simplify(g4))
-
+"""
 # ### for real
 
 # def picktwonumbers(listin):
@@ -212,4 +212,49 @@ print('counter =', counter)
 
 print('simplify')
 pprint(simplify(g4))
+
+def amp(a):
+    return abs(a)**2
+
+g4=0
+
+gam10=com.ABT(1,0)
+gam32=com.ABT(3,2)
+gam21=com.ABT(2,1)
+gam30=com.ABT(3,0)
+gam20=com.ABT(2,0)
+gam31=com.ABT(3,1)
+
+gam=amp(gam10*gam32+gam21*gam30+gam20*gam31)
+
+pprint(gam)
+
+bbdag00=com.BBD(0,0)
+bbdag11=com.BBD(1,1)
+bbdag22=com.BBD(2,2)
+bbdag33=com.BBD(3,3)
+
+bdiag=bbdag00*bbdag11*bbdag22*bbdag33
+
+term1=amp(gam10) * bbdag33*bbdag22
+term2=amp(gam21) * bbdag00*bbdag33
+term3=amp(gam20)*bbdag11*bbdag33
+term4=amp(gam32)*bbdag00*bbdag11
+term5=amp(gam31)*bbdag00*bbdag22
+term6=amp(gam30)*bbdag11*bbdag22
+
+g4=gam+bdiag+term1+term2+term3+term4+term5+term6
+
+G4=g4#.subs(phi,pi/4)
+print('G4')
+pprint(G4)
+print('Simplified')
+pprint(simplify(G4))
+
+print('answer')
+G4_no_bs=simplify(g4.subs(phi,pi/2))
+
+print('\n\n\n\n help?')
+pprint(simplify(G4/G4_no_bs))
+
 #

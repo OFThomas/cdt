@@ -45,6 +45,18 @@ class Commutators():
 
         return Com(A, B)
 
+    def ABT(self,i0,i1):
+        ft=self.fulltransform
+        n=int(0.5*self.n)
+        matel=ft[0:n,0:n]*ft[0:n,n:2*n].T
+        return matel[i0,i1]
+
+    def BBD(self,i0,i1):
+        ft=self.fulltransform
+        n=int(0.5*self.n)
+        matel=ft[0:n,n:2*n]*ft[n:2*n,0:n].T
+        return matel[i0,i1]
+
     def matrixel(self, index, A):
         n = int(0.5 * self.n)
         fulltransform = self.fulltransform
@@ -68,6 +80,11 @@ class Commutators():
                                                                  n].T
 
             print('(Alpha*Beta^T)_', index[0], index[1], '-')
+            print('\n\n\n\nABT TEST')
+            print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
+            print('matel old way')
+            print(matelement[index[0],index[1]]-matelement[index[1],index[0]])
+            
             return (matelement[index[0], index[1]] -
                     matelement[index[1], index[0]])
 
