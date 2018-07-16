@@ -48,7 +48,16 @@ class Commutators():
     def ABT(self,i0,i1):
         ft=self.fulltransform
         n=int(0.5*self.n)
-        matel=ft[0:n,0:n]*ft[0:n,n:2*n].T
+        if (i0 < n) and (i1 < n):
+            a=0
+            b=n
+        elif (i0 >= n) and (i1 >= n):
+            a=n
+            b=2*n
+            i0=i0-n
+            i1=i1-n
+
+        matel=ft[a:b,0:n]*ft[a:b,n:2*n].T
         return matel[i0,i1]
 
     def BBD(self,i0,i1):
@@ -66,6 +75,11 @@ class Commutators():
         # alpha*beta.T
         if (index[0] < n) and (index[1] < n) or ((index[0] >= n) and
                                                  (index[1] >= n)):
+            
+            print('(Alpha*Beta^T)_', index[0], index[1], '-')
+            print('\n\n\n\nABT TEST')
+            print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
+            
             print('Matrix element')
             a = 0
             b = n
@@ -79,9 +93,6 @@ class Commutators():
             matelement = fulltransform[a:b, 0:n] * fulltransform[a:b, n:2 *
                                                                  n].T
 
-            print('(Alpha*Beta^T)_', index[0], index[1], '-')
-            print('\n\n\n\nABT TEST')
-            print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
             print('matel old way')
             print(matelement[index[0],index[1]]-matelement[index[1],index[0]])
             

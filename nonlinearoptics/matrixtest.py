@@ -19,6 +19,7 @@ def prints(matrix):
 
 
 # ################################# start of program
+showexplicit=0
 
 # spatial dim
 nspace = 4
@@ -121,8 +122,10 @@ bmodes = Matrix(m.makemodes(b))
 amodes = m.modes[:, 0]
 
 # for characterising
-fulltransform = Matrix(m.makeblock())
-fulltransform = transform[len(transform) - 1]
+if showexplicit==1:
+    fulltransform = Matrix(m.makeblock())
+else:
+    fulltransform = transform[len(transform) - 1]
 
 modetrans = m.justdoitplease(fulltransform, m.modes, showmodes=n)
 # end of characterising
@@ -161,57 +164,8 @@ pprint(d)
 #pprint(com.matrixel([n + 1, n + 0], d))
 
 #pprint(com.matrixel([0, n + 0], d))
-pprint(com.matrixel([n + 0, n + 1], d) * com.matrixel([n + 2, n + 3], d))
-"""
-g4 = 0
-counter = 0
-print('G4 calc')
+#pprint(com.matrixel([n + 0, n + 1], d) * com.matrixel([n + 2, n + 3], d))
 
-for j in range(0, 2 * n):
-    for i in range(j + 1, 2 * n):
-        print('#############################################')
-        print('step i,j', i, j)
-        g4 = g4 + com.matrixel([j, i], d)
-        pprint(g4)
-        counter += 1
-
-print('Final g4 =')
-pprint(g4)
-print('counter =', counter)
-
-print('simplify')
-pprint(simplify(g4))
-"""
-# ### for real
-
-# def picktwonumbers(listin):
-
-g4 = 0
-multi = 1
-counter = 0
-print('G4 calc')
-
-# make list 0 to 2*n-1
-nums = [i for i in range(0, 2 * n)]
-
-for j in range(0, n):
-    print('#############################################')
-    print('step j', j)
-
-    for i in range(0, len(nums)):
-        #       multi=multi*
-        1
-
-    g4 = g4 + com.matrixel([j, i], d)
-    pprint(g4)
-    counter += 1
-
-print('Final g4 =')
-pprint(g4)
-print('counter =', counter)
-
-print('simplify')
-pprint(simplify(g4))
 
 def amp(a):
     return abs(a)**2
@@ -227,6 +181,7 @@ gam31=com.ABT(3,1)
 
 gam=amp(gam10*gam32+gam21*gam30+gam20*gam31)
 
+print('\n gamma \n')
 pprint(gam)
 
 bbdag00=com.BBD(0,0)
@@ -235,6 +190,9 @@ bbdag22=com.BBD(2,2)
 bbdag33=com.BBD(3,3)
 
 bdiag=bbdag00*bbdag11*bbdag22*bbdag33
+print('\nBBdag diag terms\n')
+pprint(bdiag)
+
 
 term1=amp(gam10) * bbdag33*bbdag22
 term2=amp(gam21) * bbdag00*bbdag33
@@ -246,15 +204,24 @@ term6=amp(gam30)*bbdag11*bbdag22
 g4=gam+bdiag+term1+term2+term3+term4+term5+term6
 
 G4=g4#.subs(phi,pi/4)
-print('G4')
+print('\nG4\n')
 pprint(G4)
-print('Simplified')
-pprint(simplify(G4))
+print('\nSimplified\n')
+pprint((G4))
+
+print('\n no beamsplitter\n')
+G4_no_bs=(g4.subs(phi,0))
+pprint(G4_no_bs)
 
 print('answer')
-G4_no_bs=simplify(g4.subs(phi,pi/2))
-
 print('\n\n\n\n help?')
-pprint(simplify(G4/G4_no_bs))
+pprint((G4/G4_no_bs))
 
+print('\n g4')
+pprint(simplify(G4.subs(phi,pi/4)))
+
+pprint(com.matrixel([0,1],d))
+pprint(com.matrixel([1,0],d))
+
+pprint(com.c(d[0],d[3]*d[3+n]).doit())
 #
