@@ -19,7 +19,7 @@ def prints(matrix):
 
 
 # ################################# start of program
-showexplicit=0
+showexplicit = 1
 
 # spatial dim
 nspace = 4
@@ -122,7 +122,7 @@ bmodes = Matrix(m.makemodes(b))
 amodes = m.modes[:, 0]
 
 # for characterising
-if showexplicit==1:
+if showexplicit == 1:
     fulltransform = Matrix(m.makeblock())
 else:
     fulltransform = transform[len(transform) - 1]
@@ -170,77 +170,75 @@ pprint(d)
 def amp(a):
     return abs(a)**2
 
-g4=0
 
-gam10=com.ABT(1,0)
-gam32=com.ABT(3,2)
-gam21=com.ABT(2,1)
-gam30=com.ABT(3,0)
-gam20=com.ABT(2,0)
-gam31=com.ABT(3,1)
+g4 = 0
 
-gam=amp(gam10*gam32+gam21*gam30+gam20*gam31)
+gam10 = com.ABT(1, 0)
+gam32 = com.ABT(3, 2)
+gam21 = com.ABT(2, 1)
+gam30 = com.ABT(3, 0)
+gam20 = com.ABT(2, 0)
+gam31 = com.ABT(3, 1)
+
+gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
 
 print('\n gamma \n')
 pprint(gam)
 
-bbdag00=com.BBD(0,0)
-bbdag11=com.BBD(1,1)
-bbdag22=com.BBD(2,2)
-bbdag33=com.BBD(3,3)
+bbdag00 = com.BBD(0, 0)
+bbdag11 = com.BBD(1, 1)
+bbdag22 = com.BBD(2, 2)
+bbdag33 = com.BBD(3, 3)
 
-bdiag=bbdag00*bbdag11*bbdag22*bbdag33
+bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
 print('\nBBdag diag terms\n')
 pprint(bdiag)
 
+term1 = amp(gam10) * bbdag33 * bbdag22
+term2 = amp(gam21) * bbdag00 * bbdag33
+term3 = amp(gam20) * bbdag11 * bbdag33
+term4 = amp(gam32) * bbdag00 * bbdag11
+term5 = amp(gam31) * bbdag00 * bbdag22
+term6 = amp(gam30) * bbdag11 * bbdag22
 
-term1=amp(gam10) * bbdag33*bbdag22
-term2=amp(gam21) * bbdag00*bbdag33
-term3=amp(gam20)*bbdag11*bbdag33
-term4=amp(gam32)*bbdag00*bbdag11
-term5=amp(gam31)*bbdag00*bbdag22
-term6=amp(gam30)*bbdag11*bbdag22
+g4 = gam + bdiag + term1 + term2 + term3 + term4 + term5 + term6
 
-g4=gam+bdiag+term1+term2+term3+term4+term5+term6
-
-G4=g4#.subs(phi,pi/4)
+G4 = g4  #.subs(phi,pi/4)
 print('\nG4\n')
 pprint(G4)
 print('\nSimplified\n')
 pprint((G4))
 
 print('\n no beamsplitter\n')
-G4_no_bs=(g4.subs(phi,0))
+G4_no_bs = (g4.subs(phi, 0))
 pprint(G4_no_bs)
 
 print('answer')
 print('\n\n\n\n help?')
-pprint((G4/G4_no_bs))
+pprint((G4 / G4_no_bs))
 
 print('\n g4')
-pprint(simplify(G4.subs(phi,pi/4)))
+pprint(simplify(G4.subs(phi, pi / 4)))
 
 print('\nd0dag')
-pprint(com.matrixel([0+n,1+n],d))
-pprint(com.matrixel([0+n,2+n],d))
-pprint(com.matrixel([0+n,3+n],d))
+pprint(com.matrixel([0 + n, 1 + n], d))
+pprint(com.matrixel([0 + n, 2 + n], d))
+pprint(com.matrixel([0 + n, 3 + n], d))
 
-pprint(com.matrixel([0+n,3],d))
-pprint(com.matrixel([0+n,2],d))
-pprint(com.matrixel([0+n,1],d))
+pprint(com.matrixel([0 + n, 3], d))
+pprint(com.matrixel([0 + n, 2], d))
+pprint(com.matrixel([0 + n, 1], d))
 
 print('\nd1dag')
-pprint(com.matrixel([1+n,2+n],d))
-pprint(com.matrixel([1+n,3+n],d))
+pprint(com.matrixel([1 + n, 2 + n], d))
+pprint(com.matrixel([1 + n, 3 + n], d))
 
-pprint(com.matrixel([1+n,3],d))
-pprint(com.matrixel([1+n,2],d))
+pprint(com.matrixel([1 + n, 3], d))
+pprint(com.matrixel([1 + n, 2], d))
 
 print('\nd2dag')
-pprint(com.matrixel([2+n,3+n],d))
-pprint(com.matrixel([2+n,3],d))
-
-
+pprint(com.matrixel([2 + n, 3 + n], d))
+pprint(com.matrixel([2 + n, 3], d))
 
 #pprint(com.matrixel([0+n,3+n],d))
 
