@@ -1,0 +1,139 @@
+Report feedback
+
+Pg3 Preface,
+
+pg4 no quotes 
+
+pg5 quantum physicist
+
+pg7 ordering?
+ background normally goes into the intro? 
+rename weird vectors section to overview?
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CHAPTER 1
+
+INTRODUCTION
+introduction with subsections
+pg9 add in some q tech using semiconductor industry?
+
+
+WEIRD VECTOR THINGS
+pg13 linear algebra necessary? 
+pg14 no subscripts, maybe do logical ops on 1 bit first then go to registers?
+
+GATE MODEL
+pg16 pls finish section
+pg 17 merge vectors and gate model into one section?
+
+need to include notation for control on 1, control on 0 and registers using -/-
+
+have a separate section on universality? 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CHAPTER 2 QUANTUM PROGRAMMING LANGUAGES
+
+GENERAL 
+pg19 can we sort out that list?
+
+ALL of the languages here are python libraries.
+so you only need to know python syntax
+
+add footnote explaining problem with using 'compiler' 
+
+should we make a general template for all of the languages so the subsections
+are consistent?
+
+Which library is most beginner friendly?
+
+Are we putting in circuit diagrams?
+
+use either listings for all code or \texttt{} 
+
+maybe put comparison at start of the section and mention which languages run on
+which hardware in the case someone wants to specifically use the Acorn chip...
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+RIGETTI
+pg20 say forest is name of everything 
+Grove is alogrithms and pre written code. Many examples etc.
+Pyquil is python library which translates into Quil code 
+then either simulator QVM or QPU.
+
+diagram is not helpful
+
+listing 2.1, can use np.diag(),
+use lists to reduce syntax?
+
+pg22 can you explain what each import is doing explicitly?
+object oriented should we explain what 
+qvm=QVMConnection() and P=Program() is doing?
+
+pg23 what is cr=[] a blank list doing?
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+IBM QISKIT
+pg23 get rid of 'high level language python'
+pg25 maybe also say could do HX|0> to show there are equivalent decompositions?
+can you include the python code for the circuit you've got?
+
+examples
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+PROJECT Q
+pg28 Domain-specific language embedded in python, more like a library than a full
+language
+compiler?
+
+examples
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Q#
+pg30 Platform
+Online documentation is terrible 
+different to the other libraries (languages) as uses a driver program?
+
+least cross-plaform friendly 
+install and set up guide?
+.NET core is available on linux and macos supposedly.
+
+can't assign values to qubits 
+pg31 what is a namespace? maybe say it is a library or module?
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FURTHER LANGUAGES
+pg33 
+QDK is Q#
+mention Languages:
+
+Scaffold
+QCL
+literally anything other than another python library
+
+pg34 put exercises at the end of the guide?
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SHORT TERM QC
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+IMPLEMENTATION
+
+rigetti compiler
+qiskit compiler
+project q compiler
+
+would be good if you could set a qubit to value |1> without having to do x|0>
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+General feedback
+
+More people on programming?
+
+Non-locality and Bell states?
+Super dense coding
