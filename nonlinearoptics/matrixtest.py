@@ -1,4 +1,4 @@
-from sympy import Matrix, init_printing, pi, pprint, symbols, simplify
+from sympy import Matrix, init_printing, pi, pprint, symbols, simplify, expand, factor
 from sympy.abc import alpha, beta, omega, phi, zeta
 from sympy.physics.secondquant import B, Dagger, BKet, NO
 
@@ -19,7 +19,7 @@ def prints(matrix):
 
 
 # ################################# start of program
-showexplicit = 1
+showexplicit = 0
 
 # spatial dim
 nspace = 4
@@ -78,7 +78,7 @@ for i in range(0, nspectral):
 
 xi = [None] * (n**2)
 for i in range(0, n**2):
-    xi[i] = symbols('r%d' % (i), real=True)
+    xi[i] = symbols('r%d' % (i))
     xi[i] = symbols('r', real=True)
 
 phi = symbols('phi', real=True)
@@ -220,25 +220,41 @@ pprint((G4 / G4_no_bs))
 print('\n g4')
 pprint(simplify(G4.subs(phi, pi / 4)))
 
-print('\nd0dag')
-pprint(com.matrixel([0 + n, 1 + n], d))
-pprint(com.matrixel([0 + n, 2 + n], d))
-pprint(com.matrixel([0 + n, 3 + n], d))
+cresult=[None]*12
 
-pprint(com.matrixel([0 + n, 3], d))
-pprint(com.matrixel([0 + n, 2], d))
-pprint(com.matrixel([0 + n, 1], d))
+print('\nd0dag')
+cresult[0]=(com.matrixel([0 + n, 1 + n], d))
+cresult[1]=(com.matrixel([0 + n, 2 + n], d))
+cresult[2]=(com.matrixel([0 + n, 3 + n], d))
+
+cresult[3]=(com.matrixel([0 + n, 3], d))
+cresult[4]=(com.matrixel([0 + n, 2], d))
+cresult[5]=(com.matrixel([0 + n, 1], d))
 
 print('\nd1dag')
-pprint(com.matrixel([1 + n, 2 + n], d))
-pprint(com.matrixel([1 + n, 3 + n], d))
+cresult[6]=(com.matrixel([1 + n, 2 + n], d))
+cresult[7]=(com.matrixel([1 + n, 3 + n], d))
 
-pprint(com.matrixel([1 + n, 3], d))
-pprint(com.matrixel([1 + n, 2], d))
+cresult[8]=(com.matrixel([1 + n, 3], d))
+cresult[9]=(com.matrixel([1 + n, 2], d))
 
 print('\nd2dag')
-pprint(com.matrixel([2 + n, 3 + n], d))
-pprint(com.matrixel([2 + n, 3], d))
+cresult[10]=(com.matrixel([2 + n, 3 + n], d))
+cresult[11]=(com.matrixel([2 + n, 3], d))
+
+print(cresult)
+
+g4expr=1
+for i in range(n-1,-1,-1):
+    print('\nd %d dagd %d\n' % (i,i))
+    ddagd=expand(d[i+n]*d[i])
+    pprint(expand(ddagd))
+    g4expr=g4expr*ddagd
+
+print('\n\n g4 expr=')
+pprint((g4expr))
+
+
 
 #pprint(com.matrixel([0+n,3+n],d))
 
