@@ -51,7 +51,9 @@ Are we putting in circuit diagrams?
 use either listings for all code or \texttt{} 
 
 maybe put comparison at start of the section and mention which languages run on
-which hardware in the case someone wants to specifically use the Acorn chip...
+which hardware in the case someone wants to specifically use the Acorn chip.
+
+put the Dwave software here too?
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 RIGETTI
@@ -114,6 +116,22 @@ pg34 put exercises at the end of the guide?
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 SHORT TERM QC
+
+often called nisq devices?
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Dwave
+
+say that qbsolv is a python library
+is there any qbsolv code or is it all from 1Qbit?
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+EIGENSOLVER
+
+pg39 needs a background and introduction. What is it?
+
 
 
 
