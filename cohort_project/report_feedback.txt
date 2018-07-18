@@ -30,6 +30,8 @@ need to include notation for control on 1, control on 0 and registers using -/-
 
 have a separate section on universality? 
 
+talk about measurement
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 CHAPTER 2 QUANTUM PROGRAMMING LANGUAGES
 
@@ -115,10 +117,10 @@ literally anything other than another python library
 pg34 put exercises at the end of the guide?
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-SHORT TERM QC
+CHAPTER 3 SHORT TERM QC
 
 often called nisq devices?
-
+someone do a review and intro?
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Dwave
@@ -131,6 +133,29 @@ is there any qbsolv code or is it all from 1Qbit?
 EIGENSOLVER
 
 pg39 needs a background and introduction. What is it?
+
+
+pg40 Qiskit
+
+need python 3.5
+isn't the ising model exactly what Dwave does? we could compare Dwave vs qiskit if we look at that?
+seperate windows, linux and macos installs
+inline code or commands please use \texttt{}
+pg41 Which part of the code is usr variables and which part is fixed?
+This will look very strange to someone who hasn't seen dictionaries before.
+don't put inline comments inside a dictionary declaration. 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CHAPTER 4 ALGORITHMS
+
+say all of the quantum algorithms are probabilistic 
+pg45 outcomes or some label for the 1st column?
+is the unstructured search problem an important problem in computer science? examples?
+mention amplitude amplification?
+
+if we are going to use Dirac notation, maybe include kets equal to all of the matrices?
+
+pg49 x gate on |0> capital
 
 
 
