@@ -224,39 +224,19 @@ g4norm=(simplify(G4 / G4_no_bs))
 
 pprint((g4norm))
 
-
 print('\n g4')
 
-print('gamma')
-pprint(gam)
 
-print('\n bdiags')
-pprint(bdiag)
-
-print('\n terms')
-pprint(term)
-
-
+"""
 d_nobs=d.subs(phi,0)
 
 pprint(d_nobs)
 for i in range(0,2*n):
     print()
     pprint(d_nobs[i])
+"""
 
 
-#nobs_transform=fulltransform.subs(phi,0)
-#pprint(nobs_transform)
-#pprint(bmodes)
-#m.justdoitplease(Matrix(nobs_transform),Matrix(bmodes), showmodes=n)
-
-modetrans,rel = m.justdoitplease(fulltransform.subs(phi,0), m.modes, showmodes=n)
-
-
-#pprint(rel)
-#pprint(modetrans)
-
-#pprint(simplify(G4.subs(phi, pi / 4)))
 """
 cresult=[None]*12
 
@@ -294,7 +274,4 @@ pprint((g4expr))
 """
 
 
-#pprint(com.matrixel([0+n,3+n],d))
-
-#pprint(com.c(d[0],d[3]*d[3+n]).doit())
 #
