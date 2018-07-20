@@ -4,8 +4,10 @@ from sympy.physics.secondquant import NO
 from sympy.physics.secondquant import Commutator as Com
 from sympy.physics.secondquant import wicks
 
+from makeelements import *
 
-class Commutators():
+
+class Operatoralg():
     def __init__(self, bmodes, amodes, modetransform, fulltransform):
         self.fulltransform = fulltransform
         self.amodes = amodes
@@ -45,26 +47,26 @@ class Commutators():
 
         return Com(A, B)
 
-    def ABT(self,i0,i1):
-        ft=self.fulltransform
-        n=int(0.5*self.n)
+    def ABT(self, i0, i1):
+        ft = self.fulltransform
+        n = int(0.5 * self.n)
         if (i0 < n) and (i1 < n):
-            a=0
-            b=n
+            a = 0
+            b = n
         elif (i0 >= n) and (i1 >= n):
-            a=n
-            b=2*n
-            i0=i0-n
-            i1=i1-n
+            a = n
+            b = 2 * n
+            i0 = i0 - n
+            i1 = i1 - n
 
-        matel=ft[a:b,0:n]*ft[a:b,n:2*n].T
-        return matel[i0,i1]
+        matel = ft[a:b, 0:n] * ft[a:b, n:2 * n].T
+        return matel[i0, i1]
 
-    def BBD(self,i0,i1):
-        ft=self.fulltransform
-        n=int(0.5*self.n)
-        matel=ft[0:n,n:2*n]*ft[n:2*n,0:n].T
-        return matel[i0,i1]
+    def BBD(self, i0, i1):
+        ft = self.fulltransform
+        n = int(0.5 * self.n)
+        matel = ft[0:n, n:2 * n] * ft[n:2 * n, 0:n].T
+        return matel[i0, i1]
 
     def matrixel(self, index, A):
         n = int(0.5 * self.n)
@@ -75,11 +77,7 @@ class Commutators():
         # alpha*beta.T
         if (index[0] < n) and (index[1] < n) or ((index[0] >= n) and
                                                  (index[1] >= n)):
-            
-            #print('(Alpha*Beta^T)_', index[0], index[1], '-')
-            #print('\n\n\n\nABT TEST')
-            #print(self.ABT(index[0],index[1]) - self.ABT(index[1],index[0]))
-            
+
             #print('Matrix element')
             a = 0
             b = n
@@ -93,16 +91,12 @@ class Commutators():
             matelement = fulltransform[a:b, 0:n] * fulltransform[a:b, n:2 *
                                                                  n].T
 
-            #print('matel old way')
-            #print(matelement[index[0],index[1]]-matelement[index[1],index[0]])
-            
             return (matelement[index[0], index[1]] -
                     matelement[index[1], index[0]])
 
         # dagger non-dagger
         if (index[0] >= n) and (index[1] < n) or (index[0] < n) and (index[1]
                                                                      >= n):
-            #print('Matrix element')
 
             a = 0
             b = n
@@ -114,13 +108,11 @@ class Commutators():
                 index[0] = index[0] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
-                #print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',index[0], index[1])
                 return (-ans)
             elif index[1] >= n:
                 index[1] = index[1] - n
                 ans = (
                     matelement[index[0], index[1]] - mat2[index[0], index[1]])
-                #print('(Alpha*Alpha^)_', index[0], index[1], '-(Beta*Beta^)_',index[0], index[1])
                 return (ans)
 
     def constructmodeops(self):
@@ -130,9 +122,59 @@ class Commutators():
         pprint(simplify(A))
         return (A)
 
-    def g4(self, mat):
-        alpha = mat[0:self.n, 0:self.n]
-        beta = mat[0:self.n, self.n:2 * self.n]
+    def calcg4(self):
+        def amp(a):
+            return abs(a)**2
+
         g4 = 0
-        #g4=abs()
+
+        gam10 = self.ABT(1, 0)
+        gam32 = self.ABT(3, 2)
+        gam21 = self.ABT(2, 1)
+        gam30 = self.ABT(3, 0)
+        gam20 = self.ABT(2, 0)
+        gam31 = self.ABT(3, 1)
+
+        gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
+
+        bbdag00 = self.BBD(0, 0)
+        bbdag11 = self.BBD(1, 1)
+        bbdag22 = self.BBD(2, 2)
+        bbdag33 = self.BBD(3, 3)
+
+        bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
+
+        term = [None] * 6
+
+        term[0] = amp(gam10) * bbdag33 * bbdag22
+        term[1] = amp(gam21) * bbdag00 * bbdag33
+        term[2] = amp(gam20) * bbdag11 * bbdag33
+        term[3] = amp(gam32) * bbdag00 * bbdag11
+        term[4] = amp(gam31) * bbdag00 * bbdag22
+        term[5] = amp(gam30) * bbdag11 * bbdag22
+
+        g4 = gam + bdiag + term[0] + term[1] + term[2] + term[3] + term[4] + term[5]
+
+        #print('\n no beamsplitter\n')
+        G4_no_bs = (g4.subs(phi, 0))
+        #pprint(G4_no_bs)
+
+        #print('answer')
+        #print('\n\n\n\n help?')
+
+        g4norm = (simplify(g4 / G4_no_bs))
+        #pprint((g4norm))
+        print('\n gamma \n')
+        pprint(gam)
+        print('\nBBdag diag terms\n')
+        pprint(bdiag)
+        print('g4 not normalised')
+        pprint(g4)
+        pprint(G4_no_bs.subs(phi, 1))
+        print('g4calc in opalg')
+
+        print('full transform subs')
+        pprint(self.fulltransform)
+        print('phi=0')
+        pprint(self.fulltransform.subs(phi, 0))
         return g4
