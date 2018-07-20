@@ -172,59 +172,62 @@ pprint(d)
 def amp(a):
     return abs(a)**2
 
+def calcg4():
+    g4 = 0
 
-g4 = 0
+    gam10 = com.ABT(1, 0)
+    gam32 = com.ABT(3, 2)
+    gam21 = com.ABT(2, 1)
+    gam30 = com.ABT(3, 0)
+    gam20 = com.ABT(2, 0)
+    gam31 = com.ABT(3, 1)
 
-gam10 = com.ABT(1, 0)
-gam32 = com.ABT(3, 2)
-gam21 = com.ABT(2, 1)
-gam30 = com.ABT(3, 0)
-gam20 = com.ABT(2, 0)
-gam31 = com.ABT(3, 1)
+    gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
 
-gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
+    #print('\n gamma \n')
+    #pprint(gam)
 
-print('\n gamma \n')
-pprint(gam)
+    bbdag00 = com.BBD(0, 0)
+    bbdag11 = com.BBD(1, 1)
+    bbdag22 = com.BBD(2, 2)
+    bbdag33 = com.BBD(3, 3)
 
-bbdag00 = com.BBD(0, 0)
-bbdag11 = com.BBD(1, 1)
-bbdag22 = com.BBD(2, 2)
-bbdag33 = com.BBD(3, 3)
+    bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
+    #print('\nBBdag diag terms\n')
+    #pprint(bdiag)
 
-bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
-print('\nBBdag diag terms\n')
-pprint(bdiag)
+    term=[None]*6
 
-term=[None]*6
+    term[0] = amp(gam10) * bbdag33 * bbdag22
+    term[1] = amp(gam21) * bbdag00 * bbdag33
+    term[2] = amp(gam20) * bbdag11 * bbdag33
+    term[3] = amp(gam32) * bbdag00 * bbdag11
+    term[4] = amp(gam31) * bbdag00 * bbdag22
+    term[5] = amp(gam30) * bbdag11 * bbdag22
 
-term[0] = amp(gam10) * bbdag33 * bbdag22
-term[1] = amp(gam21) * bbdag00 * bbdag33
-term[2] = amp(gam20) * bbdag11 * bbdag33
-term[3] = amp(gam32) * bbdag00 * bbdag11
-term[4] = amp(gam31) * bbdag00 * bbdag22
-term[5] = amp(gam30) * bbdag11 * bbdag22
+    g4 = gam + bdiag + term[0] + term[1] + term[2] + term[3] + term[4] + term[5]
 
-g4 = gam + bdiag + term[0] + term[1] + term[2] + term[3] + term[4] + term[5]
+    G4 = g4  #.subs(phi,pi/4)
+    #print('\nG4\n')
+    #pprint(G4)
+    #print('\nSimplified\n')
+    #pprint((G4))
 
-G4 = g4  #.subs(phi,pi/4)
-print('\nG4\n')
-pprint(G4)
-print('\nSimplified\n')
-pprint((G4))
+    #print('\n no beamsplitter\n')
+    G4_no_bs = (g4.subs(phi, 0))
+    #pprint(G4_no_bs)
 
-print('\n no beamsplitter\n')
-G4_no_bs = (g4.subs(phi, 0))
-pprint(G4_no_bs)
+    #print('answer')
+    #print('\n\n\n\n help?')
 
-print('answer')
-print('\n\n\n\n help?')
-
-g4norm=(simplify(G4 / G4_no_bs))
-
-pprint((g4norm))
+    g4norm=(simplify(G4 / G4_no_bs))
+    #pprint((g4norm))
+    return g4norm
 
 print('\n g4')
+g4=calcg4()
+pprint(g4)
+
 
 
 """
