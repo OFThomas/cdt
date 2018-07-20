@@ -1,4 +1,4 @@
-from sympy import Matrix, init_printing, pi, pprint, symbols, simplify, expand, factor
+from sympy import Matrix, init_printing, pi, pprint, symbols, simplify, expand, factor, apart, cancel
 from sympy.abc import alpha, beta, omega, phi, zeta
 from sympy.physics.secondquant import B, Dagger, BKet, NO
 
@@ -127,9 +127,11 @@ if showexplicit == 1:
 else:
     fulltransform = transform[len(transform) - 1]
 
-modetrans = m.justdoitplease(fulltransform, m.modes, showmodes=n)
+modetrans, rel = m.justdoitplease(fulltransform, m.modes, showmodes=n)
 # end of characterising
 
+print('rel')
+pprint(rel)
 # from operatoralg import commutation stuff
 com = Commutators(bmodes, amodes, modetrans, fulltransform)
 
@@ -194,14 +196,16 @@ bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
 print('\nBBdag diag terms\n')
 pprint(bdiag)
 
-term1 = amp(gam10) * bbdag33 * bbdag22
-term2 = amp(gam21) * bbdag00 * bbdag33
-term3 = amp(gam20) * bbdag11 * bbdag33
-term4 = amp(gam32) * bbdag00 * bbdag11
-term5 = amp(gam31) * bbdag00 * bbdag22
-term6 = amp(gam30) * bbdag11 * bbdag22
+term=[None]*6
 
-g4 = gam + bdiag + term1 + term2 + term3 + term4 + term5 + term6
+term[0] = amp(gam10) * bbdag33 * bbdag22
+term[1] = amp(gam21) * bbdag00 * bbdag33
+term[2] = amp(gam20) * bbdag11 * bbdag33
+term[3] = amp(gam32) * bbdag00 * bbdag11
+term[4] = amp(gam31) * bbdag00 * bbdag22
+term[5] = amp(gam30) * bbdag11 * bbdag22
+
+g4 = gam + bdiag + term[0] + term[1] + term[2] + term[3] + term[4] + term[5]
 
 G4 = g4  #.subs(phi,pi/4)
 print('\nG4\n')
@@ -215,11 +219,45 @@ pprint(G4_no_bs)
 
 print('answer')
 print('\n\n\n\n help?')
-pprint((G4 / G4_no_bs))
+
+g4norm=(simplify(G4 / G4_no_bs))
+
+pprint((g4norm))
+
 
 print('\n g4')
-pprint(simplify(G4.subs(phi, pi / 4)))
 
+print('gamma')
+pprint(gam)
+
+print('\n bdiags')
+pprint(bdiag)
+
+print('\n terms')
+pprint(term)
+
+
+d_nobs=d.subs(phi,0)
+
+pprint(d_nobs)
+for i in range(0,2*n):
+    print()
+    pprint(d_nobs[i])
+
+
+#nobs_transform=fulltransform.subs(phi,0)
+#pprint(nobs_transform)
+#pprint(bmodes)
+#m.justdoitplease(Matrix(nobs_transform),Matrix(bmodes), showmodes=n)
+
+modetrans,rel = m.justdoitplease(fulltransform.subs(phi,0), m.modes, showmodes=n)
+
+
+#pprint(rel)
+#pprint(modetrans)
+
+#pprint(simplify(G4.subs(phi, pi / 4)))
+"""
 cresult=[None]*12
 
 print('\nd0dag')
@@ -253,7 +291,7 @@ for i in range(n-1,-1,-1):
 
 print('\n\n g4 expr=')
 pprint((g4expr))
-
+"""
 
 
 #pprint(com.matrixel([0+n,3+n],d))

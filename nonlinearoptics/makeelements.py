@@ -1,6 +1,6 @@
 from sympy import (BlockMatrix, I, Matrix, MatrixSymbol, conjugate, cos, cosh,
                    exp, eye, pprint, relational, sin, sinh, sqrt, symbols,
-                   zeros)
+                   zeros, Eq)
 from sympy.abc import xi
 from sympy.physics.quantum import TensorProduct
 from sympy.physics.secondquant import Dagger
@@ -132,10 +132,13 @@ class Makeelements():
         temp3 = temp2.subs(cold, cnew)
         return temp3
 
-    def justdoitplease(self, transform, modes, showmodes):
+    def justdoitplease(self, transform,modes, showmodes):
         modetransform = transform * modes
-        pprint(
-            relational.Eq(
-                Matrix(modes[0:showmodes]),
-                Matrix(modetransform[0:showmodes])))
-        return modetransform
+        #pprint(relational.Eq(Matrix(modes[0:showmodes]),Matrix(modetransform[0:showmodes])))
+        
+        rel=Eq(modes,(transform*modes))
+        pprint(rel)
+
+        # whole mode transform matrix
+        pprint(Eq(modes[:, 0], modetransform[:, 0]))
+        return modetransform, rel
