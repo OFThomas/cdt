@@ -1,7 +1,7 @@
 from sympy import Matrix, init_printing, pi, pprint, symbols, simplify, expand, factor, apart, cancel
 from sympy.abc import alpha, beta, omega, phi, zeta
 from sympy.physics.secondquant import B, Dagger, BKet, NO
-
+from sympy import *
 from makeelements import Makeelements
 from makeelements import *
 from operatoralg import Operatoralg
@@ -139,12 +139,12 @@ pprint(d)
 print('\n g4')
 g4 = opalg.calcg4()
 g4_nobs = g4.subs(m.phi, 0)
-g4norm = g4 / g4_nobs
-pprint(g4norm)
+g4norm = factor(g4) / factor(g4_nobs)
 
-print('subs phi=0')
+print('Factorised G4 normalised')
+pprint(factor(g4norm))
 
-pprint(g4.subs(m.phi, 0))
+#pprint(g4.subs(m.phi, 0))
 """
 d_nobs=d.subs(phi,0)
 
