@@ -135,6 +135,12 @@ class Operatoralg():
         gam20 = self.ABT(2, 0)
         gam31 = self.ABT(3, 1)
 
+        print('gamma')
+        pprint(gam10 * gam32)
+        print('gamma')
+        pprint(gam21 * gam30)
+        print('gamma')
+        pprint(gam20 * gam31)
         gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
 
         bbdag00 = self.BBD(0, 0)
