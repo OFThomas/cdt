@@ -11,13 +11,15 @@ init_printing(use_unicode=True)
 
 def printc(matrix):
     print()
-    pprint(matrix[0:n, 0:n])
-
+    mat=(matrix[0:n, 0:n])
+    pprint(mat)
+    return mat
 
 def prints(matrix):
     print()
-    pprint(matrix[0:n, n:2 * n])
-
+    mat=(matrix[0:n, n:2 * n])
+    pprint(mat)
+    return mat
 
 # ################################# start of program
 showexplicit = 0
@@ -144,22 +146,45 @@ g4norm = factor(g4) / factor(g4_nobs)
 print('Factorised G4 normalised')
 pprint(factor(g4norm))
 
-x=symbols('x:4')
-
-matx=Matrix([[x[0],1],[0,x[2]]])
-pprint(matx)
-
+def jordanblock(i,j):
+    if i==j-1:
+        return 1
+    elif i==j:
+        return x[i]
+    else: return 0
 def matrixcosh(x):
     return (exp(x)+exp(-x))/2
 
 def matrixsinh(x):
     return (exp(x)-exp(-x))/2
 
+
+x=symbols('x:10')
+
+print('H')
+f=symbols('F')
+H=Matrix([[0,0,0,f],
+        [0,0,f,0],
+        [0,conjugate(f),0,0],
+        [conjugate(f),0,0,0]])
+def expik(H):
+    arg=(I*diag(1,1,-1,-1)*H)
+    return exp(arg)
+
+print('exp(-iKH')
+exph=(expik(H))
+pprint(exph)
+pprint(simplify(exph))
+
+matx=Matrix([[x[0],x[1]],[0,x[3]]])
+
+matx=Matrix(3,3, jordanblock)
+pprint(matx)
 # ###############################
 coshx=matrixcosh(matx)
 print('\n Cosh of matrix')
 print('\n unsimplified')
-pprint(coshx)
+# pprint(coshx)
 
 print('\nsimplified')
 pprint(simplify(coshx))
@@ -168,13 +193,19 @@ pprint(simplify(coshx))
 print('\nSinh of matrix')
 sinhx=matrixsinh(matx)
 print('\nunsimplified')
-pprint(sinhx)
+# pprint(sinhx)
 
 print('\nsimplified')
 pprint(simplify(sinhx))
 
-#pprint(g4.subs(m.phi, 0))
 """
+beta=prints(fulltransform)
+betadag=conjugate(prints(fulltransform))
+print('BB^ =')
+pprint(beta*betadag.T)
+
+#pprint(g4.subs(m.phi, 0))
+
 d_nobs=d.subs(phi,0)
 
 pprint(d_nobs)
