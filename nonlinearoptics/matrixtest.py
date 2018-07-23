@@ -144,6 +144,35 @@ g4norm = factor(g4) / factor(g4_nobs)
 print('Factorised G4 normalised')
 pprint(factor(g4norm))
 
+x=symbols('x:4')
+
+matx=Matrix([[x[0],1],[0,x[2]]])
+pprint(matx)
+
+def matrixcosh(x):
+    return (exp(x)+exp(-x))/2
+
+def matrixsinh(x):
+    return (exp(x)-exp(-x))/2
+
+# ###############################
+coshx=matrixcosh(matx)
+print('\n Cosh of matrix')
+print('\n unsimplified')
+pprint(coshx)
+
+print('\nsimplified')
+pprint(simplify(coshx))
+
+# ###############################################
+print('\nSinh of matrix')
+sinhx=matrixsinh(matx)
+print('\nunsimplified')
+pprint(sinhx)
+
+print('\nsimplified')
+pprint(simplify(sinhx))
+
 #pprint(g4.subs(m.phi, 0))
 """
 d_nobs=d.subs(phi,0)
