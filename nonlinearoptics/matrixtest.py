@@ -11,15 +11,17 @@ init_printing(use_unicode=True)
 
 def printc(matrix):
     print()
-    mat=(matrix[0:n, 0:n])
+    mat = (matrix[0:n, 0:n])
     pprint(mat)
     return mat
 
+
 def prints(matrix):
     print()
-    mat=(matrix[0:n, n:2 * n])
+    mat = (matrix[0:n, n:2 * n])
     pprint(mat)
     return mat
+
 
 # ################################# start of program
 showexplicit = 0
@@ -146,42 +148,48 @@ g4norm = factor(g4) / factor(g4_nobs)
 print('Factorised G4 normalised')
 pprint(factor(g4norm))
 
-def jordanblock(i,j):
-    if i==j-1:
+
+def jordanblock(i, j):
+    if i == j - 1:
         return 1
-    elif i==j:
+    elif i == j:
         return x[i]
-    else: return 0
+    else:
+        return 0
+
+
 def matrixcosh(x):
-    return (exp(x)+exp(-x))/2
+    return (exp(x) + exp(-x)) / 2
+
 
 def matrixsinh(x):
-    return (exp(x)-exp(-x))/2
+    return (exp(x) - exp(-x)) / 2
 
 
-x=symbols('x:10')
+x = symbols('x:10')
 
 print('H')
-f=symbols('F')
-H=Matrix([[0,0,0,f],
-        [0,0,f,0],
-        [0,conjugate(f),0,0],
-        [conjugate(f),0,0,0]])
+f = symbols('F')
+H = Matrix([[0, 0, 0, f], [0, 0, f, 0], [0, conjugate(f), 0, 0],
+            [conjugate(f), 0, 0, 0]])
+
+
 def expik(H):
-    arg=(I*diag(1,1,-1,-1)*H)
+    arg = (I * diag(1, 1, -1, -1) * H)
     return exp(arg)
 
+
 print('exp(-iKH')
-exph=(expik(H))
+exph = (expik(H))
 pprint(exph)
 pprint(simplify(exph))
 
-matx=Matrix([[x[0],x[1]],[0,x[3]]])
+matx = Matrix([[x[0], x[1]], [0, x[3]]])
 
-matx=Matrix(3,3, jordanblock)
+matx = Matrix(3, 3, jordanblock)
 pprint(matx)
 # ###############################
-coshx=matrixcosh(matx)
+coshx = matrixcosh(matx)
 print('\n Cosh of matrix')
 print('\n unsimplified')
 # pprint(coshx)
@@ -191,13 +199,12 @@ pprint(simplify(coshx))
 
 # ###############################################
 print('\nSinh of matrix')
-sinhx=matrixsinh(matx)
+sinhx = matrixsinh(matx)
 print('\nunsimplified')
 # pprint(sinhx)
 
 print('\nsimplified')
 pprint(simplify(sinhx))
-
 """
 beta=prints(fulltransform)
 betadag=conjugate(prints(fulltransform))
