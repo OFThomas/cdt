@@ -166,16 +166,34 @@ def matrixsinh(x):
     return (exp(x) - exp(-x)) / 2
 
 
+def dag(x):
+    return conjugate(Transpose(x))
+
+
 x = symbols('x:10')
 
 print('H')
 f = symbols('F')
-H = Matrix([[0, 0, 0, f], [0, 0, f, 0], [0, conjugate(f), 0, 0],
-            [conjugate(f), 0, 0, 0]])
+H = Matrix([[0, 0, 0, f], [0, 0, Transpose(f), 0], [0, conjugate(f), 0, 0],
+            [dag(f), 0, 0, 0]])
+
+pprint(H)
+
+print('Grouping signal and idler terms,')
+#H=Matrix([
+
+#A = MatrixSymbol('A', 2, 2)
+
+A = Matrix([[0, f], [Transpose(f), 0]])
+Ha = BlockMatrix([[0, A], [(conjugate(A)), 0]])
+
+pprint(H)
 
 
 def expik(H):
-    arg = (I * diag(1, 1, -1, -1) * H)
+    arg = (-I * diag(1, 1, -1, -1) * H)
+    print('arg=')
+    pprint(arg)
     return exp(arg)
 
 
@@ -183,7 +201,7 @@ print('exp(-iKH')
 exph = (expik(H))
 pprint(exph)
 pprint(simplify(exph))
-
+"""
 matx = Matrix([[x[0], x[1]], [0, x[3]]])
 
 matx = Matrix(3, 3, jordanblock)
@@ -205,7 +223,7 @@ print('\nunsimplified')
 
 print('\nsimplified')
 pprint(simplify(sinhx))
-"""
+
 beta=prints(fulltransform)
 betadag=conjugate(prints(fulltransform))
 print('BB^ =')
