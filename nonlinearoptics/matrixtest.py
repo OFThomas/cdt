@@ -66,21 +66,7 @@ m = Makeelements(nspace, nspectral, sq1_modes, sq2_modes, phasemode,
                  phaseangle, bsmodes, bsangle)
 
 # ############## numerics ###################################
-"""
-# phase shift
-theta = [None] * (nspectral * 2)
-for i in range(0, nspectral):
-    theta[i] = symbols('theta%d' % (i), real=True)
 
-# squeeze param
-xi = [None] * (n**2)
-for i in range(0, n**2):
-    xi[i] = symbols('r%d' % (i))
-    xi[i] = symbols('r', real=True)
-
-# beamsplitter angle
-phi = symbols('phi', real=True)
-"""
 transform = [None] * 4
 
 squeezer1 = m.makesq(mode=[0, 1])  #, sqparam=xi)
@@ -174,18 +160,17 @@ x = symbols('x:10')
 
 print('H')
 f = symbols('F')
-H = Matrix([[0, 0, 0, f], [0, 0, Transpose(f), 0], [0, conjugate(f), 0, 0],
-            [dag(f), 0, 0, 0]])
+H = Matrix([[0, 0, 0, f], [0, 0, (f), 0], [0, conjugate(f), 0, 0],
+            [conjugate(f), 0, 0, 0]])
 
 pprint(H)
 
 print('Grouping signal and idler terms,')
-#H=Matrix([
 
 #A = MatrixSymbol('A', 2, 2)
 
-A = Matrix([[0, f], [Transpose(f), 0]])
-Ha = BlockMatrix([[0, A], [(conjugate(A)), 0]])
+A = Matrix([[0, f], [(f), 0]])
+Ha = BlockMatrix([[zeros(2), A], [(conjugate(A)), zeros(2)]])
 
 pprint(H)
 
@@ -201,6 +186,13 @@ print('exp(-iKH')
 exph = (expik(H))
 pprint(exph)
 pprint(simplify(exph))
+
+#
+#
+#
+#
+
+pprint(Ha)
 """
 matx = Matrix([[x[0], x[1]], [0, x[3]]])
 
@@ -229,49 +221,10 @@ betadag=conjugate(prints(fulltransform))
 print('BB^ =')
 pprint(beta*betadag.T)
 
-#pprint(g4.subs(m.phi, 0))
 
-d_nobs=d.subs(phi,0)
-
-pprint(d_nobs)
-for i in range(0,2*n):
-    print()
-    pprint(d_nobs[i])
-
-
-cresult=[None]*12
-
-print('\nd0dag')
-cresult[0]=(com.matrixel([0 + n, 1 + n], d))
-cresult[1]=(com.matrixel([0 + n, 2 + n], d))
-cresult[2]=(com.matrixel([0 + n, 3 + n], d))
-
-cresult[3]=(com.matrixel([0 + n, 3], d))
-cresult[4]=(com.matrixel([0 + n, 2], d))
-cresult[5]=(com.matrixel([0 + n, 1], d))
-
-print('\nd1dag')
-cresult[6]=(com.matrixel([1 + n, 2 + n], d))
-cresult[7]=(com.matrixel([1 + n, 3 + n], d))
-
-cresult[8]=(com.matrixel([1 + n, 3], d))
-cresult[9]=(com.matrixel([1 + n, 2], d))
-
-print('\nd2dag')
-cresult[10]=(com.matrixel([2 + n, 3 + n], d))
-cresult[11]=(com.matrixel([2 + n, 3], d))
-
-print(cresult)
-
-g4expr=1
-for i in range(n-1,-1,-1):
-    print('\nd %d dagd %d\n' % (i,i))
-    ddagd=expand(d[i+n]*d[i])
-    pprint(expand(ddagd))
-    g4expr=g4expr*ddagd
-
-print('\n\n g4 expr=')
-pprint((g4expr))
 """
+#
+#
+#
 
 #
