@@ -176,7 +176,15 @@ pprint(H)
 
 
 def expik(H):
-    arg = (-I * diag(1, 1, -1, -1) * H)
+    if (str(type(H)) == "<class 'sympy.matrices.dense.MutableDenseMatrix'>"):
+        print('matrix')
+        arg = (-I * diag(eye(2), -eye(2)) * H)
+    elif (str(type(H)) ==
+          "<class 'sympy.matrices.expressions.blockmatrix.BlockMatrix'>"):
+        print('block matrix')
+        A = symbols('A')
+        arg = (-I * BlockMatrix([[eye(2), zeros(2)], [zeros(2), eye(2)]]))
+        arg = (-I * diag(eye(1), -eye(1)) * Matrix([[0, A], [A, 0]]))
     print('arg=')
     pprint(arg)
     return exp(arg)
@@ -193,6 +201,12 @@ pprint(simplify(exph))
 #
 
 pprint(Ha)
+
+print('type H %s, type Ha %s' % (type(H), type(Ha)))
+
+expha = expik(Ha)
+pprint(expha)
+pprint(simplify(factor(expha)))
 """
 matx = Matrix([[x[0], x[1]], [0, x[3]]])
 
