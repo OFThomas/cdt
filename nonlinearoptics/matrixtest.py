@@ -5,7 +5,7 @@ from sympy import *
 from makeelements import Makeelements
 from makeelements import *
 from operatoralg import Operatoralg
-
+import mpmath as mp
 init_printing(use_unicode=True)
 
 
@@ -160,6 +160,8 @@ x = symbols('x:10')
 
 print('H')
 f = symbols('F')
+#f = 14
+
 H = Matrix([[0, 0, 0, f], [0, 0, (f), 0], [0, conjugate(f), 0, 0],
             [conjugate(f), 0, 0, 0]])
 
@@ -167,7 +169,7 @@ pprint(H)
 
 print('Grouping signal and idler terms,')
 
-#A = MatrixSymbol('A', 2, 2)
+A = MatrixSymbol('A', 2, 2)
 
 A = Matrix([[0, f], [(f), 0]])
 Ha = BlockMatrix([[zeros(2), A], [(conjugate(A)), zeros(2)]])
@@ -182,18 +184,20 @@ def expik(H):
     elif (str(type(H)) ==
           "<class 'sympy.matrices.expressions.blockmatrix.BlockMatrix'>"):
         print('block matrix')
-        A = symbols('A')
+        #Ablk = symbols('A')
         arg = (-I * BlockMatrix([[eye(2), zeros(2)], [zeros(2), eye(2)]]))
         arg = (-I * diag(eye(1), -eye(1)) * Matrix([[0, A], [A, 0]]))
+        Hmat = Matrix(H)
+        arg = (-I * diag(eye(2), -eye(2)) * Hmat)
     print('arg=')
     pprint(arg)
     return exp(arg)
 
 
-print('exp(-iKH')
-exph = (expik(H))
-pprint(exph)
-pprint(simplify(exph))
+#print('exp(-iKH')
+#exph = (expik(H))
+#pprint(exph)
+#pprint(simplify(exph))
 
 #
 #
@@ -206,7 +210,59 @@ print('type H %s, type Ha %s' % (type(H), type(Ha)))
 
 expha = expik(Ha)
 pprint(expha)
-pprint(simplify(factor(expha)))
+simpexpha = simplify(factor(expha))
+pprint(simpexpha)
+
+
+#
+#
+def cpp_generator(mat, name, label, args=1):
+    update_cpp = '\nvoid {0}::{1}_update()'.format(label, name) + '{'
+    for n in range(mat.shape[1]):
+        for m in range(mat.shape[0]):
+            expr = (mat[m, n])
+            #symbs = expr.free_symbols
+            c = ccode(expr)  #, dereference=args)
+            update_cpp += '\n_{0}({1}, {2}) = {3};'.format(name, m, n, c)
+    update_cpp += '\n};'
+    return update_cpp
+
+
+simp = simpexpha.subs(f, 13)
+#simp = simpexpha
+pprint(simp)
+
+label = 'M_matrix'
+mat = simp
+name = 'F'
+code = cpp_generator(mat, name, label)
+print(code)
+
+
+def matrixprinter(outfile, mat):
+    nmat = mp.matrix(N(mat))
+    outfile.write(str(mat.shape[1]) + ' ')
+    outfile.write(str(mat.shape[0]) + '\n')
+    for j in range(0, mat.shape[1]):
+        for i in range(0, mat.shape[0]):
+
+            print(nmat[i, j])
+            outfile.write(str(nmat[i, j]) + ' ')
+        outfile.write('\n')
+    return 0
+
+
+with open('temp.txt', 'w') as f:
+    #f.write(cxxcode(N(simp)))
+    #matrixprinter(f, simp)
+    mpmatout = (mp.matrix(N(simp)))
+    pprint(mpmatout)
+    matrixprinter(f, simp)
+#
+#
+#
+#
+#
 """
 matx = Matrix([[x[0], x[1]], [0, x[3]]])
 
