@@ -12,13 +12,17 @@ class Operatoralg():
         self.fulltransform = fulltransform
         self.amodes = amodes
         self.bmodes = bmodes
-        self.n = len(bmodes[:, 0])
+        #        self.n = len(bmodes[:, 0])
+        self.n = int((amodes.shape)[0])
+        print('n', self.n)
+
         self.modetrans = modetransform
 
         self.moderel = [None] * self.n
         # make new modes b = Ma
-        for i in range(0, self.n):
-            self.moderel[i] = Eq(self.bmodes[i, 0], self.modetrans[i, 0])
+        #for i in range(0, self.n):
+        #pprint(type(self.modetrans))
+        #self.moderel[i] = Eq(self.bmodes[i, 0], self.modetrans[i, 0])
 
         # whole mode transform matrix
         pprint(Eq(self.bmodes[:, 0], self.modetrans[:, 0]))

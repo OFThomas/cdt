@@ -1,6 +1,6 @@
-from sympy import (BlockMatrix, I, Matrix, MatrixSymbol, conjugate, cos, cosh,
-                   exp, eye, pprint, relational, sin, sinh, sqrt, symbols,
-                   zeros, Eq)
+from sympy import (BlockMatrix, block_collapse, I, Matrix, MatrixSymbol,
+                   conjugate, cos, cosh, exp, eye, pprint, relational, sin,
+                   sinh, sqrt, symbols, zeros, Eq)
 from sympy.abc import xi
 from sympy.physics.quantum import TensorProduct
 from sympy.physics.secondquant import Dagger, B
@@ -87,6 +87,7 @@ class Makeelements():
 
     def makebs(self, mode):  #, theta):
         # Make beamsplitter
+
         beamspace = Matrix(
             self.nspace, self.nspace,
             lambda i, j: cos(self.phi) if ((i == j) and ((i == mode[0]) or (i == mode[1]))) else sqrt(-1) * sin(self.phi) if (i + j) == (mode[0] + mode[1]) and ((i == mode[0]) or (i == mode[1])) else 1 if (i == j) and ((i != mode[0]) or (i != mode[1])) else 0
@@ -109,38 +110,50 @@ class Makeelements():
     def makesq(self, mode):  #, sqparam):
         # Two mode squeezer
         # for off-diagonal
+        def diag(i, j):
+            if (i == j) and ((m1s <= i < m1s + nspec) or
+                             (m2s <= i < m2s + nspec)):
+                return cosh(self.xi[i + m2s])
+            elif i == j:
+                return 1
+            else:
+                return 0
+
+        def off_diag(i, j):
+            if (((m1s <= i < m1s + nspec) or (m2s <= i < m2s + nspec)) and
+                ((m1s <= j < m1s + nspec) or (m2s <= j < m2s + nspec))) and (
+                    abs(i - j) == nspec) and (i != j):
+                return sinh(self.xi[2 * i + j - m1s])
+            else:
+                return 0
+
         n = self.n
         nspec = self.nspectral
         # for diagonal
         m1s = mode[0] * nspec
         m2s = mode[1] * nspec
+
         # diagonal part cosh on modes, I elsewhere
-        c2 = Matrix(
-            n, n,
-            lambda i, j: cosh(self.xi[i + m2s]) if (i == j) and ((m1s <= i < m1s + nspec) or (m2s <= i < m2s + nspec)) else 1 if i == j else 0
-        )
+        c2 = Matrix(n, n, diag)
         # off diag sinh on modes, zero else
-        s2 = Matrix(
-            n, n,
-            lambda i, j: sinh(self.xi[2 * i + j - m1s]) if (((m1s <= i < m1s + nspec) or (m2s <= i < m2s + nspec)) and ((m1s <= j < m1s + nspec) or (m2s <= j < m2s + nspec))) and (abs(i - j) == nspec) and (i != j) else 0
-        )
+        s2 = Matrix(n, n, off_diag)
         # symplectic sqs
-        ms01 = Matrix(self.matsubs(self.block, self.al, c2, self.be, s2, 0, 0))
-        return ms01
+        ms01 = (self.matsubs(self.block, self.al, c2, self.be, s2, 0, 0))
+        return Matrix(ms01)
 
     def matsubs(self, mat, aold, anew, bold, bnew, cold, cnew):
         temp1 = mat.subs(aold, anew)
         temp2 = temp1.subs(bold, bnew)
         temp3 = temp2.subs(cold, cnew)
-        return temp3
+        return block_collapse(temp3)
 
     def justdoitplease(self, transform, modes, showmodes):
         modetransform = transform * modes
-        #pprint(relational.Eq(Matrix(modes[0:showmodes]),Matrix(modetransform[0:showmodes])))
+        # pprint(relational.Eq(Matrix(modes[0:showmodes]),Matrix(modetransform[0:showmodes])))
 
         rel = Eq(modes, (transform * modes))
-        pprint(rel)
+        # pprint(rel)
 
         # whole mode transform matrix
-        pprint(Eq(modes[:, 0], modetransform[:, 0]))
+        # pprint(Eq(modes[:, 0], modetransform[:, 0]))
         return modetransform, rel
