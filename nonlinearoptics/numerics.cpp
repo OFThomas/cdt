@@ -33,21 +33,11 @@ int main(){
 	int row1, col1;
 
 	mfile >> row1 >> col1;
+	int var[10][10];
 	
-	int **a = new int *[row1];
-	
-	for ( int i = 0; i < row1; i++)
-	{
-		a[i] = new int[col1];
-	}
 
-	for ( int i = 0; i <row1; i++ )
-	{
-		for ( int j = 0; j < col1; j++ )
-		{
-			mfile >> a[i][j];
-		}
-	}
+	cout << row1 << endl;
+	cout << col1 << endl;
 
 	for (int i = row1 - 1; i >= 0; i--)
     		cout << a[i][0] << "\n";
