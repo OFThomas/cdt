@@ -143,8 +143,8 @@ g4file = open("g4data.txt", "w+")
 g4file.write('xi phi g4\n')
 
 # set increments
-xi_start = 0.0
-xi_end = 8.0
+xi_start = -8.0
+xi_end = -xi_start
 xi_incr = 0.1
 
 xi_steps = math.ceil((xi_end - xi_start) / float(xi_incr))
@@ -161,6 +161,7 @@ phi_val = phi_start
 
 for i in range(0, xi_steps):
 
+    #   g4analytic=
     # reset phi for each xi
     phi_val = phi_start
 
