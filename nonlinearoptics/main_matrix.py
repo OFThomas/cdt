@@ -144,14 +144,14 @@ g4file.write('xi phi g4\n')
 
 # set increments
 xi_start = 0.0
-xi_end = 1.0
-xi_incr = 0.5
+xi_end = 8.0
+xi_incr = 0.1
 
 xi_steps = math.ceil((xi_end - xi_start) / float(xi_incr))
 
 phi_start = 0.0
 phi_end = float(2 * pi)
-phi_incr = float(0.1 * pi)
+phi_incr = float(0.005 * pi)
 
 phi_steps = math.ceil((phi_end - phi_start) / float(phi_incr))
 
