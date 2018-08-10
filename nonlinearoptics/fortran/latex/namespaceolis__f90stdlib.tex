@@ -4,32 +4,26 @@
 \begin{DoxyCompactItemize}
 \item 
 subroutine \hyperlink{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}{alloc\+\_\+complex\+\_\+eigenvects} (matrix, eigenvals, u, v)
-\item 
+\begin{DoxyCompactList}\small\item\em allocates eigenvals, u \& v arrays for eigenvals \& eigenvects \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}{alloc\+\_\+complex\+\_\+svd} (matrix, sigma, u, vt)
-\item 
+\begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{randseed} (seed)
-\item 
+\begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{printvectors} (vect, desc, f)
-\item 
+\begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{outerproduct} (a, b)
-\item 
+\begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
 complex(kind=dp) function \hyperlink{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}{complextrace} (a)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the trace of a complex matrix \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}{complex\+\_\+eigenvects} (a, w, vl, vr)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}{complex\+\_\+svd} (a, sigma, u, vt)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}{c\+\_\+inv2} (m\+\_\+in)
-\item 
+\begin{DoxyCompactList}\small\item\em inverse for a complex 2x2 matrix \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{matrixnorm} (c)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-\begin{DoxyAuthor}{Author}
-Oliver
-\end{DoxyAuthor}
-oli\textquotesingle{}s standard F\+O\+R\+T\+R\+AN L\+Ib 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}\label{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}} 
@@ -38,57 +32,186 @@ oli\textquotesingle{}s standard F\+O\+R\+T\+R\+AN L\+Ib
 \subsubsection{\texorpdfstring{alloc\+\_\+complex\+\_\+eigenvects()}{alloc\_complex\_eigenvects()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+eigenvects (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix,  }\item[{complex(kind=dp), dimension(\+:), intent(inout), allocatable}]{eigenvals,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{v }\end{DoxyParamCaption})}
 
+
+
+allocates eigenvals, u \& v arrays for eigenvals \& eigenvects 
+
+allocated temp work arrays also \begin{DoxyAuthor}{Author}
+Oliver Thomas August 2018 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & input complex matrix \\
+\hline
+{\em eigenvals} & 1d array for eigenvalues, is overwriten on exit \\
+\hline
+{\em u} & 2d array of left eigenvectors \\
+\hline
+{\em v} & 3d array of right eigenvectors \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}\label{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!alloc\+\_\+complex\+\_\+svd@{alloc\+\_\+complex\+\_\+svd}}
 \index{alloc\+\_\+complex\+\_\+svd@{alloc\+\_\+complex\+\_\+svd}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{alloc\+\_\+complex\+\_\+svd()}{alloc\_complex\_svd()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+svd (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix,  }\item[{real(kind=dp), dimension(\+:), intent(inout), allocatable}]{sigma,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{vt }\end{DoxyParamCaption})}
 
+
+
+allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & input complex matrix \\
+\hline
+{\em sigma} & real vector of singular values sorted in descending order \\
+\hline
+{\em u} & unitary matrix \\
+\hline
+{\em vt} & unitary matrix returns V$\ast$$\ast$H N\+OT v \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}\label{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!c\+\_\+inv2@{c\+\_\+inv2}}
 \index{c\+\_\+inv2@{c\+\_\+inv2}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{c\+\_\+inv2()}{c\_inv2()}}
 {\footnotesize\ttfamily complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::c\+\_\+inv2 (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(2,2), intent(in)}]{m\+\_\+in }\end{DoxyParamCaption})}
 
+
+
+inverse for a complex 2x2 matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+in} & is input complex 2x2 matrix \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}\label{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complex\+\_\+eigenvects@{complex\+\_\+eigenvects}}
 \index{complex\+\_\+eigenvects@{complex\+\_\+eigenvects}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{complex\+\_\+eigenvects()}{complex\_eigenvects()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::complex\+\_\+eigenvects (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{a,  }\item[{complex(kind=dp), dimension(\+:), allocatable}]{w,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vl,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vr }\end{DoxyParamCaption})}
 
+
+
+computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & input allocatable complex matrix to be diagonalised \\
+\hline
+{\em w} & output allocatable complex 1d array containing eigenvals \\
+\hline
+{\em vl} & output allocatable complex 2d array containing left eigenvectors \\
+\hline
+{\em vr} & output allocatable complex 2d array containing right eigenvectors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+need to check this is optimised 
+\end{DoxyNote}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}\label{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complex\+\_\+svd@{complex\+\_\+svd}}
 \index{complex\+\_\+svd@{complex\+\_\+svd}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{complex\+\_\+svd()}{complex\_svd()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::complex\+\_\+svd (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{a,  }\item[{real(kind=dp), dimension(\+:), allocatable}]{sigma,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vt }\end{DoxyParamCaption})}
 
+
+
+computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & input allocatable complex matrix to be S\+VD\textquotesingle{}d \\
+\hline
+{\em sigma} & output allocatable complex 1d array containing ordered singular values \\
+\hline
+{\em u} & output allocatable complex 2d array containing u \\
+\hline
+{\em vt} & output allocatable complex 2d array containing v$\ast$$\ast$H \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+need to check this is optimised 
+\end{DoxyNote}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}\label{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complextrace@{complextrace}}
 \index{complextrace@{complextrace}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{complextrace()}{complextrace()}}
 {\footnotesize\ttfamily complex(kind=dp) function olis\+\_\+f90stdlib\+::complextrace (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{a }\end{DoxyParamCaption})}
 
+
+
+computes the trace of a complex matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & is the complex matrix in \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}\label{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!matrixnorm@{matrixnorm}}
 \index{matrixnorm@{matrixnorm}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{matrixnorm()}{matrixnorm()}}
 {\footnotesize\ttfamily real(kind=dp) function olis\+\_\+f90stdlib\+::matrixnorm (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{c }\end{DoxyParamCaption})}
 
+
+
+computed Frobenieus matrix norm of complex matrix using lapack zlange 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & input complex matrix \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}\label{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!outerproduct@{outerproduct}}
 \index{outerproduct@{outerproduct}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{outerproduct()}{outerproduct()}}
 {\footnotesize\ttfamily complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::outerproduct (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:), intent(in)}]{a,  }\item[{complex(kind=dp), dimension(\+:), intent(in)}]{b }\end{DoxyParamCaption})}
 
+
+
+outerproduct of two complex vectors, returns a complex matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & is input vector 1, $\vert$ket$>$ \\
+\hline
+{\em b} & is input vector 2, $<$bra$\vert$ \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}\label{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!printvectors@{printvectors}}
 \index{printvectors@{printvectors}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{printvectors()}{printvectors()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::printvectors (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{vect,  }\item[{character(len=$\ast$), intent(in), optional}]{desc,  }\item[{integer, intent(in), optional}]{f }\end{DoxyParamCaption})}
 
+
+
+print formatted matrices  can take optional args for labels or write directly to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect} & is the input complex matrix \\
+\hline
+{\em desc} & is the optional string to be written above the matrix \\
+\hline
+{\em f} & is the optional file output unit to write to, default is console \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}\label{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!randseed@{randseed}}
 \index{randseed@{randseed}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection{\texorpdfstring{randseed()}{randseed()}}
 {\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::randseed (\begin{DoxyParamCaption}\item[{integer, dimension(\+:), allocatable}]{seed }\end{DoxyParamCaption})}
 
+
+
+generates random seed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & is input allocatable 1d array \\
+\hline
+\end{DoxyParams}

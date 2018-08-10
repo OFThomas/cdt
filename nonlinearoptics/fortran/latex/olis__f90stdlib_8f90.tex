@@ -9,22 +9,22 @@ module \hyperlink{namespaceolis__f90stdlib}{olis\+\_\+f90stdlib}
 \begin{DoxyCompactItemize}
 \item 
 subroutine \hyperlink{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}{olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+eigenvects} (matrix, eigenvals, u, v)
-\item 
+\begin{DoxyCompactList}\small\item\em allocates eigenvals, u \& v arrays for eigenvals \& eigenvects \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}{olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+svd} (matrix, sigma, u, vt)
-\item 
+\begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{olis\+\_\+f90stdlib\+::randseed} (seed)
-\item 
+\begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{olis\+\_\+f90stdlib\+::printvectors} (vect, desc, f)
-\item 
+\begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{olis\+\_\+f90stdlib\+::outerproduct} (a, b)
-\item 
+\begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
 complex(kind=dp) function \hyperlink{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}{olis\+\_\+f90stdlib\+::complextrace} (a)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the trace of a complex matrix \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}{olis\+\_\+f90stdlib\+::complex\+\_\+eigenvects} (a, w, vl, vr)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}{olis\+\_\+f90stdlib\+::complex\+\_\+svd} (a, sigma, u, vt)
-\item 
+\begin{DoxyCompactList}\small\item\em computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}{olis\+\_\+f90stdlib\+::c\+\_\+inv2} (m\+\_\+in)
-\item 
+\begin{DoxyCompactList}\small\item\em inverse for a complex 2x2 matrix \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{olis\+\_\+f90stdlib\+::matrixnorm} (c)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\end{DoxyCompactItemize}

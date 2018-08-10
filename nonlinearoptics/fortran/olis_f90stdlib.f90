@@ -1,7 +1,18 @@
-!> @author Oliver
-!!
-!! oli's standard FORTRAN LIb
+
 module olis_f90stdlib
+!>@file olis_f90stdlib
+!>
+!> linear alg and random number subroutines
+!> oli's standard FORTRAN LIb
+!> @author Oliver Thomas
+!> August 2018- started docs
+!>
+!>@brief fortran lib for linear alg
+!>
+!>@details Allocation routines for temp work arrays for complex_svd,
+!> complex_eigenvals and eigenvector solver, outer product of complex vects,
+!> matrix formatting print routine and random number and seed subroutines
+!>
 implicit none
 
 integer, parameter, private :: dp=selected_real_kind(15,300)
@@ -19,16 +30,20 @@ integer, private :: info, lwork
 real(kind=dp), allocatable, dimension(:), private ::  rwork_eigen, rwork_svd
 complex(kind=dp), allocatable, dimension(:), private :: work_eigen, work_svd
 
-
-
-
-
 ! make temp arrays for complex_svd
-
 
 contains
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+!>@brief allocates eigenvals, u & v arrays for eigenvals & eigenvects
+!>
+!>@detail allocated temp work arrays also 
+!>@author Oliver Thomas
+!>August 2018
+!>@param matrix input complex matrix 
+!>@param eigenvals 1d array for eigenvalues, is overwriten on exit
+!>@param u 2d array of left eigenvectors 
+!>@param v 3d array of right eigenvectors
 subroutine alloc_complex_eigenvects(matrix, eigenvals, u, v)
 ! complex diag
 complex(kind=dp), dimension(:,:), intent(in) :: matrix
@@ -50,6 +65,12 @@ allocate(rwork_eigen(2*size(matrix,1)))
 print*, 'Allocated temp work arrays for DIAG'
 end subroutine alloc_complex_eigenvects
 
+!>@brief allocates sigma (singular vals), u and vt for complexSVD
+!>@detail allocates temp work arrays too 
+!>@param matrix input complex matrix
+!>@param sigma real vector of singular values sorted in descending order
+!>@param u unitary matrix
+!>@param vt unitary matrix returns V**H NOT v
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 subroutine alloc_complex_svd(matrix, sigma, u, vt)
 ! complex SVD
@@ -72,6 +93,8 @@ print*, 'Allocated temp work arrays for SVD'
 end subroutine alloc_complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+!>@brief generates random seed
+!>@param seed is input allocatable 1d array
 subroutine randseed(seed)
 !!!!! random seed
 integer :: values(1:8), seedsize
@@ -88,7 +111,13 @@ call random_seed(put=seed)
 end subroutine randseed
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 
-  subroutine printvectors(vect, desc, f)
+
+!>@brief print formatted matrices
+!>@detail can take optional args for labels or write directly to a file
+!>@param vect is the input complex matrix
+!>@param desc is the optional string to be written above the matrix
+!>@param f is the optional file output unit to write to, default is console
+subroutine printvectors(vect, desc, f)
   implicit none
   integer :: i, j, m, n
   integer, intent(in), optional :: f 
@@ -123,6 +152,9 @@ end subroutine randseed
   
   
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !>@brief outerproduct of two complex vectors, returns a complex matrix
+  !>@param a is input vector 1, |ket>
+  !>@param b is input vector 2, <bra|
   function outerproduct(a,b)
   implicit none
   complex(kind=dp), dimension(2,2) :: outerproduct
@@ -139,6 +171,8 @@ end subroutine randseed
   end function outerproduct
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  !>@brief computes the trace of a complex matrix
+  !>@param a is the complex matrix in
 function complextrace(a)
         complex(kind=dp), dimension(:,:) :: a
         complex(kind=dp) :: complextrace 
@@ -151,7 +185,14 @@ function complextrace(a)
 end function complextrace
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
+!>@brief computes the complex eigenvalues and eigenvectors
+!>@detail overwrites matrix in, input eigenvalue array and eigenvector arrays
+!> uses the zgeev subroutine from lapack
+!>@param a input allocatable complex  matrix to be diagonalised
+!>@param w output allocatable complex 1d array containing eigenvals
+!>@param vl output allocatable complex 2d array containing left eigenvectors
+!>@param vr output allocatable complex 2d array containing right eigenvectors
+!>@note need to check this is optimised
 subroutine complex_eigenvects(a, w, vl, vr)
 ! matrix a in, eigenvals, eigenvects out
 implicit none
@@ -195,6 +236,14 @@ end subroutine complex_eigenvects
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+!>@brief computes the complex eigenvalues and eigenvectors
+!>@detail overwrites matrix in, input eigenvalue array and eigenvector arrays
+!> uses the zgeev subroutine from lapack
+!>@param a input allocatable complex  matrix to be SVD'd
+!>@param sigma output allocatable complex 1d array containing ordered singular values
+!>@param u output allocatable complex 2d array containing u
+!>@param vt output allocatable complex 2d array containing v**H
+!>@note need to check this is optimised
 subroutine complex_svd(a, sigma, u, vt)
 ! matrix a in, eigenvals, eigenvects out
 ! A = U * sigma * V **H
@@ -251,6 +300,8 @@ end subroutine complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+!>@brief inverse for a complex 2x2 matrix
+!>@param m_in is input complex 2x2 matrix
 function c_inv2(m_in)
     implicit none
     complex(kind=dp), dimension(2,2), intent(in) :: m_in 
@@ -264,8 +315,9 @@ function c_inv2(m_in)
     c_inv2=c_inv2/det
 end function c_inv2
 
-!matrix norms
-! Frobenieus norm
+
+!>@brief computed Frobenieus matrix norm of complex matrix using lapack zlange
+!>@param c input complex matrix 
 function matrixnorm(c)
     complex(kind=dp), dimension(:,:) :: c
     real(kind=dp) :: matrixnorm, zlange

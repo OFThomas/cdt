@@ -68,30 +68,37 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:af0119bd404337367bc0727decf6dd89c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#af0119bd404337367bc0727decf6dd89c">alloc_complex_eigenvects</a> (matrix, eigenvals, u, v)</td></tr>
+<tr class="memdesc:af0119bd404337367bc0727decf6dd89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocates eigenvals, u &amp; v arrays for eigenvals &amp; eigenvects  <a href="#af0119bd404337367bc0727decf6dd89c">More...</a><br /></td></tr>
 <tr class="separator:af0119bd404337367bc0727decf6dd89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31420ff7579f33919c00c26753b56612"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a31420ff7579f33919c00c26753b56612">alloc_complex_svd</a> (matrix, sigma, u, vt)</td></tr>
+<tr class="memdesc:a31420ff7579f33919c00c26753b56612"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocates sigma (singular vals), u and vt for complexSVD  allocates temp work arrays too  <a href="#a31420ff7579f33919c00c26753b56612">More...</a><br /></td></tr>
 <tr class="separator:a31420ff7579f33919c00c26753b56612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a560e235cbabaf74da88a2ec97eda5628"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a560e235cbabaf74da88a2ec97eda5628">randseed</a> (seed)</td></tr>
+<tr class="memdesc:a560e235cbabaf74da88a2ec97eda5628"><td class="mdescLeft">&#160;</td><td class="mdescRight">generates random seed  <a href="#a560e235cbabaf74da88a2ec97eda5628">More...</a><br /></td></tr>
 <tr class="separator:a560e235cbabaf74da88a2ec97eda5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9780b39329025edfdef71ce07e250808"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a9780b39329025edfdef71ce07e250808">printvectors</a> (vect, desc, f)</td></tr>
+<tr class="memdesc:a9780b39329025edfdef71ce07e250808"><td class="mdescLeft">&#160;</td><td class="mdescRight">print formatted matrices  can take optional args for labels or write directly to a file  <a href="#a9780b39329025edfdef71ce07e250808">More...</a><br /></td></tr>
 <tr class="separator:a9780b39329025edfdef71ce07e250808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b646e61678500e78a9c48747a07bdf0"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(2, 2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a9b646e61678500e78a9c48747a07bdf0">outerproduct</a> (a, b)</td></tr>
+<tr class="memdesc:a9b646e61678500e78a9c48747a07bdf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">outerproduct of two complex vectors, returns a complex matrix  <a href="#a9b646e61678500e78a9c48747a07bdf0">More...</a><br /></td></tr>
 <tr class="separator:a9b646e61678500e78a9c48747a07bdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#aaa6e9aabcf33a6f7052e1db5aa5dcf70">complextrace</a> (a)</td></tr>
+<tr class="memdesc:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes the trace of a complex matrix  <a href="#aaa6e9aabcf33a6f7052e1db5aa5dcf70">More...</a><br /></td></tr>
 <tr class="separator:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71c5b363b52932a5c69053149ac8cc25"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a71c5b363b52932a5c69053149ac8cc25">complex_eigenvects</a> (a, w, vl, vr)</td></tr>
+<tr class="memdesc:a71c5b363b52932a5c69053149ac8cc25"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack  <a href="#a71c5b363b52932a5c69053149ac8cc25">More...</a><br /></td></tr>
 <tr class="separator:a71c5b363b52932a5c69053149ac8cc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81e060e6ecfde9524a9732349a818db3"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a81e060e6ecfde9524a9732349a818db3">complex_svd</a> (a, sigma, u, vt)</td></tr>
+<tr class="memdesc:a81e060e6ecfde9524a9732349a818db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack  <a href="#a81e060e6ecfde9524a9732349a818db3">More...</a><br /></td></tr>
 <tr class="separator:a81e060e6ecfde9524a9732349a818db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a162dd5131a39a62d7b95e2ebca4664a4"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(2, 2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a162dd5131a39a62d7b95e2ebca4664a4">c_inv2</a> (m_in)</td></tr>
+<tr class="memdesc:a162dd5131a39a62d7b95e2ebca4664a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">inverse for a complex 2x2 matrix  <a href="#a162dd5131a39a62d7b95e2ebca4664a4">More...</a><br /></td></tr>
 <tr class="separator:a162dd5131a39a62d7b95e2ebca4664a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43175b11cfecf961b5e6e597cfb2f848"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a43175b11cfecf961b5e6e597cfb2f848">matrixnorm</a> (c)</td></tr>
+<tr class="memdesc:a43175b11cfecf961b5e6e597cfb2f848"><td class="mdescLeft">&#160;</td><td class="mdescRight">computed Frobenieus matrix norm of complex matrix using lapack zlange  <a href="#a43175b11cfecf961b5e6e597cfb2f848">More...</a><br /></td></tr>
 <tr class="separator:a43175b11cfecf961b5e6e597cfb2f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Oliver</dd></dl>
-<p>oli's standard FORTRAN LIb </p>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="af0119bd404337367bc0727decf6dd89c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0119bd404337367bc0727decf6dd89c">&#9670;&nbsp;</a></span>alloc_complex_eigenvects()</h2>
 
@@ -129,6 +136,18 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>allocates eigenvals, u &amp; v arrays for eigenvals &amp; eigenvects </p>
+<p>allocated temp work arrays also </p><dl class="section author"><dt>Author</dt><dd>Oliver Thomas August 2018 </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix</td><td>input complex matrix </td></tr>
+    <tr><td class="paramname">eigenvals</td><td>1d array for eigenvalues, is overwriten on exit </td></tr>
+    <tr><td class="paramname">u</td><td>2d array of left eigenvectors </td></tr>
+    <tr><td class="paramname">v</td><td>3d array of right eigenvectors </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -170,6 +189,17 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>allocates sigma (singular vals), u and vt for complexSVD  allocates temp work arrays too </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix</td><td>input complex matrix </td></tr>
+    <tr><td class="paramname">sigma</td><td>real vector of singular values sorted in descending order </td></tr>
+    <tr><td class="paramname">u</td><td>unitary matrix </td></tr>
+    <tr><td class="paramname">vt</td><td>unitary matrix returns V**H NOT v </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a162dd5131a39a62d7b95e2ebca4664a4"></a>
@@ -187,6 +217,14 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>inverse for a complex 2x2 matrix </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m_in</td><td>is input complex 2x2 matrix </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -228,6 +266,18 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>input allocatable complex matrix to be diagonalised </td></tr>
+    <tr><td class="paramname">w</td><td>output allocatable complex 1d array containing eigenvals </td></tr>
+    <tr><td class="paramname">vl</td><td>output allocatable complex 2d array containing left eigenvectors </td></tr>
+    <tr><td class="paramname">vr</td><td>output allocatable complex 2d array containing right eigenvectors </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>need to check this is optimised </dd></dl>
+
 </div>
 </div>
 <a id="a81e060e6ecfde9524a9732349a818db3"></a>
@@ -268,6 +318,18 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>input allocatable complex matrix to be SVD'd </td></tr>
+    <tr><td class="paramname">sigma</td><td>output allocatable complex 1d array containing ordered singular values </td></tr>
+    <tr><td class="paramname">u</td><td>output allocatable complex 2d array containing u </td></tr>
+    <tr><td class="paramname">vt</td><td>output allocatable complex 2d array containing v**H </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>need to check this is optimised </dd></dl>
+
 </div>
 </div>
 <a id="aaa6e9aabcf33a6f7052e1db5aa5dcf70"></a>
@@ -286,6 +348,14 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>computes the trace of a complex matrix </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>is the complex matrix in </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a43175b11cfecf961b5e6e597cfb2f848"></a>
@@ -303,6 +373,14 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>computed Frobenieus matrix norm of complex matrix using lapack zlange </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>input complex matrix </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -331,6 +409,15 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>outerproduct of two complex vectors, returns a complex matrix </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>is input vector 1, |ket&gt; </td></tr>
+    <tr><td class="paramname">b</td><td>is input vector 2, &lt;bra| </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -366,6 +453,16 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>print formatted matrices  can take optional args for labels or write directly to a file </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vect</td><td>is the input complex matrix </td></tr>
+    <tr><td class="paramname">desc</td><td>is the optional string to be written above the matrix </td></tr>
+    <tr><td class="paramname">f</td><td>is the optional file output unit to write to, default is console </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a560e235cbabaf74da88a2ec97eda5628"></a>
@@ -383,6 +480,14 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>generates random seed </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>is input allocatable 1d array </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
