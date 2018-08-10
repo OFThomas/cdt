@@ -11,9 +11,9 @@ Beamsplitter on modes,  1 , 2 angle=  pi/4
 
 C matrix
 
-⎡cosh(r)     0     0  0⎤
+⎡cosh(ξ)     0     0  0⎤
 ⎢                      ⎥
-⎢   0     cosh(r)  0  0⎥
+⎢   0     cosh(ξ)  0  0⎥
 ⎢                      ⎥
 ⎢   0        0     1  0⎥
 ⎢                      ⎥
@@ -21,9 +21,9 @@ C matrix
 
 S matrix
 
-⎡   0     sinh(r)  0  0⎤
+⎡   0     sinh(ξ)  0  0⎤
 ⎢                      ⎥
-⎢sinh(r)     0     0  0⎥
+⎢sinh(ξ)     0     0  0⎥
 ⎢                      ⎥
 ⎢   0        0     0  0⎥
 ⎢                      ⎥
@@ -34,181 +34,181 @@ S matrix
 
 C matrix
 
-⎡cosh(r)     0        0        0   ⎤
+⎡cosh(ξ)     0        0        0   ⎤
 ⎢                                  ⎥
-⎢   0     cosh(r)     0        0   ⎥
+⎢   0     cosh(ξ)     0        0   ⎥
 ⎢                                  ⎥
-⎢   0        0     cosh(r)     0   ⎥
+⎢   0        0     cosh(ξ)     0   ⎥
 ⎢                                  ⎥
-⎣   0        0        0     cosh(r)⎦
+⎣   0        0        0     cosh(ξ)⎦
 
 S matrix
 
-⎡   0     sinh(r)     0        0   ⎤
+⎡   0     sinh(ξ)     0        0   ⎤
 ⎢                                  ⎥
-⎢sinh(r)     0        0        0   ⎥
+⎢sinh(ξ)     0        0        0   ⎥
 ⎢                                  ⎥
-⎢   0        0        0     sinh(r)⎥
+⎢   0        0        0     sinh(ξ)⎥
 ⎢                                  ⎥
-⎣   0        0     sinh(r)     0   ⎦
+⎣   0        0     sinh(ξ)     0   ⎦
 
 
  mode transform
 
 C matrix
 
-⎡cosh(r)        0           0        0   ⎤
+⎡cosh(ξ)        0           0        0   ⎤
 ⎢                                        ⎥
 ⎢          ⅈ⋅θ₀                          ⎥
-⎢   0     ℯ    ⋅cosh(r)     0        0   ⎥
+⎢   0     ℯ    ⋅cosh(ξ)     0        0   ⎥
 ⎢                                        ⎥
-⎢   0           0        cosh(r)     0   ⎥
+⎢   0           0        cosh(ξ)     0   ⎥
 ⎢                                        ⎥
-⎣   0           0           0     cosh(r)⎦
+⎣   0           0           0     cosh(ξ)⎦
 
 S matrix
 
-⎡      0        sinh(r)     0        0   ⎤
+⎡      0        sinh(ξ)     0        0   ⎤
 ⎢                                        ⎥
 ⎢ ⅈ⋅θ₀                                   ⎥
-⎢ℯ    ⋅sinh(r)     0        0        0   ⎥
+⎢ℯ    ⋅sinh(ξ)     0        0        0   ⎥
 ⎢                                        ⎥
-⎢      0           0        0     sinh(r)⎥
+⎢      0           0        0     sinh(ξ)⎥
 ⎢                                        ⎥
-⎣      0           0     sinh(r)     0   ⎦
+⎣      0           0     sinh(ξ)     0   ⎦
 
 
  mode transform
 
 C matrix
 
-⎡cosh(r)            0                    0             0   ⎤
+⎡cosh(ξ)            0                    0             0   ⎤
 ⎢                                                          ⎥
 ⎢           ⅈ⋅θ₀                                           ⎥
-⎢   0      ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)     0   ⎥
+⎢   0      ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)     0   ⎥
 ⎢                                                          ⎥
 ⎢            ⅈ⋅θ₀                                          ⎥
-⎢   0     ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)      0   ⎥
+⎢   0     ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)      0   ⎥
 ⎢                                                          ⎥
-⎣   0               0                    0          cosh(r)⎦
+⎣   0               0                    0          cosh(ξ)⎦
 
 S matrix
 
-⎡          0             sinh(r)     0            0        ⎤
+⎡          0             sinh(ξ)     0            0        ⎤
 ⎢                                                          ⎥
 ⎢  ⅈ⋅θ₀                                                    ⎥
-⎢ ℯ    ⋅cos(φ)⋅sinh(r)      0        0     ⅈ⋅sin(φ)⋅sinh(r)⎥
+⎢ ℯ    ⋅cos(φ)⋅sinh(ξ)      0        0     ⅈ⋅sin(φ)⋅sinh(ξ)⎥
 ⎢                                                          ⎥
 ⎢   ⅈ⋅θ₀                                                   ⎥
-⎢ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(r)     0        0      cos(φ)⋅sinh(r) ⎥
+⎢ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(ξ)     0        0      cos(φ)⋅sinh(ξ) ⎥
 ⎢                                                          ⎥
-⎣          0                0     sinh(r)         0        ⎦
+⎣          0                0     sinh(ξ)         0        ⎦
 
 
 C matrix
 
-⎡cosh(r)            0                    0             0   ⎤
+⎡cosh(ξ)            0                    0             0   ⎤
 ⎢                                                          ⎥
 ⎢           ⅈ⋅θ₀                                           ⎥
-⎢   0      ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)     0   ⎥
+⎢   0      ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)     0   ⎥
 ⎢                                                          ⎥
 ⎢            ⅈ⋅θ₀                                          ⎥
-⎢   0     ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)      0   ⎥
+⎢   0     ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)      0   ⎥
 ⎢                                                          ⎥
-⎣   0               0                    0          cosh(r)⎦
+⎣   0               0                    0          cosh(ξ)⎦
 
 S matrix
 
-⎡          0             sinh(r)     0            0        ⎤
+⎡          0             sinh(ξ)     0            0        ⎤
 ⎢                                                          ⎥
 ⎢  ⅈ⋅θ₀                                                    ⎥
-⎢ ℯ    ⋅cos(φ)⋅sinh(r)      0        0     ⅈ⋅sin(φ)⋅sinh(r)⎥
+⎢ ℯ    ⋅cos(φ)⋅sinh(ξ)      0        0     ⅈ⋅sin(φ)⋅sinh(ξ)⎥
 ⎢                                                          ⎥
 ⎢   ⅈ⋅θ₀                                                   ⎥
-⎢ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(r)     0        0      cos(φ)⋅sinh(r) ⎥
+⎢ⅈ⋅ℯ    ⋅sin(φ)⋅sinh(ξ)     0        0      cos(φ)⋅sinh(ξ) ⎥
 ⎢                                                          ⎥
-⎣          0                0     sinh(r)         0        ⎦
+⎣          0                0     sinh(ξ)         0        ⎦
 
 rel
-            ⎡        cosh(r)                     0                    0                  0            
+            ⎡        cosh(ξ)                     0                    0                  0            
             ⎢                                                                                         
 ⎡⎡b(0)⎤ ⎤   ⎢                            ⅈ⋅θ₀                                                         
-⎢⎢    ⎥ ⎥   ⎢           0               ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)          0           ℯ
+⎢⎢    ⎥ ⎥   ⎢           0               ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)          0           ℯ
 ⎢⎢b(1)⎥ ⎥   ⎢                                                                                         
 ⎢⎢    ⎥ ⎥   ⎢                             ⅈ⋅θ₀                                                        
-⎢⎢b(2)⎥ ⎥   ⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0          ⅈ⋅
+⎢⎢b(2)⎥ ⎥   ⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0          ⅈ⋅
 ⎢⎢    ⎥ ⎥   ⎢                                                                                         
-⎢⎣b(3)⎦ ⎥   ⎢           0                        0                    0               cosh(r)         
+⎢⎣b(3)⎦ ⎥   ⎢           0                        0                    0               cosh(ξ)         
 ⎢       ⎥ = ⎢                                                                                         
-⎢⎡b+(0)⎤⎥   ⎢           0                     sinh(r)                 0                  0            
+⎢⎡b+(0)⎤⎥   ⎢           0                     sinh(ξ)                 0                  0            
 ⎢⎢     ⎥⎥   ⎢                                                                                         
 ⎢⎢b+(1)⎥⎥   ⎢  -ⅈ⋅θ₀                                                                                  
-⎢⎢     ⎥⎥   ⎢ ℯ     ⋅cos(φ)⋅sinh(r)              0                    0          -ⅈ⋅sin(φ)⋅sinh(r)    
+⎢⎢     ⎥⎥   ⎢ ℯ     ⋅cos(φ)⋅sinh(ξ)              0                    0          -ⅈ⋅sin(φ)⋅sinh(ξ)    
 ⎢⎢b+(2)⎥⎥   ⎢                                                                                         
 ⎢⎢     ⎥⎥   ⎢    -ⅈ⋅θ₀                                                                                
-⎣⎣b+(3)⎦⎦   ⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(r)            0                    0           cos(φ)⋅sinh(r)      
+⎣⎣b+(3)⎦⎦   ⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(ξ)            0                    0           cos(φ)⋅sinh(ξ)      
             ⎢                                                                                         
-            ⎣           0                        0                 sinh(r)               0            
+            ⎣           0                        0                 sinh(ξ)               0            
 
-        0                     sinh(r)                   0                 0        ⎤          
+        0                     sinh(ξ)                   0                 0        ⎤          
                                                                                    ⎥          
 ⅈ⋅θ₀                                                                               ⎥ ⎡⎡b(0)⎤ ⎤
-    ⋅cos(φ)⋅sinh(r)              0                      0          ⅈ⋅sin(φ)⋅sinh(r)⎥ ⎢⎢    ⎥ ⎥
+    ⋅cos(φ)⋅sinh(ξ)              0                      0          ⅈ⋅sin(φ)⋅sinh(ξ)⎥ ⎢⎢    ⎥ ⎥
                                                                                    ⎥ ⎢⎢b(1)⎥ ⎥
  ⅈ⋅θ₀                                                                              ⎥ ⎢⎢    ⎥ ⎥
-ℯ    ⋅sin(φ)⋅sinh(r)             0                      0           cos(φ)⋅sinh(r) ⎥ ⎢⎢b(2)⎥ ⎥
+ℯ    ⋅sin(φ)⋅sinh(ξ)             0                      0           cos(φ)⋅sinh(ξ) ⎥ ⎢⎢b(2)⎥ ⎥
                                                                                    ⎥ ⎢⎢    ⎥ ⎥
-        0                        0                   sinh(r)              0        ⎥ ⎢⎣b(3)⎦ ⎥
+        0                        0                   sinh(ξ)              0        ⎥ ⎢⎣b(3)⎦ ⎥
                                                                                    ⎥⋅⎢       ⎥
-     cosh(r)                     0                      0                 0        ⎥ ⎢⎡b+(0)⎤⎥
+     cosh(ξ)                     0                      0                 0        ⎥ ⎢⎡b+(0)⎤⎥
                                                                                    ⎥ ⎢⎢     ⎥⎥
                         -ⅈ⋅θ₀                                                      ⎥ ⎢⎢b+(1)⎥⎥
-        0              ℯ     ⋅cos(φ)⋅cosh(r)    -ⅈ⋅sin(φ)⋅cosh(r)         0        ⎥ ⎢⎢     ⎥⎥
+        0              ℯ     ⋅cos(φ)⋅cosh(ξ)    -ⅈ⋅sin(φ)⋅cosh(ξ)         0        ⎥ ⎢⎢     ⎥⎥
                                                                                    ⎥ ⎢⎢b+(2)⎥⎥
                           -ⅈ⋅θ₀                                                    ⎥ ⎢⎢     ⎥⎥
-        0             -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0        ⎥ ⎣⎣b+(3)⎦⎦
+        0             -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0        ⎥ ⎣⎣b+(3)⎦⎦
                                                                                    ⎥          
-        0                        0                      0              cosh(r)     ⎦          
+        0                        0                      0              cosh(ξ)     ⎦          
 n 8
-          ⎡        cosh(r)                     0                    0                  0              
+          ⎡        cosh(ξ)                     0                    0                  0              
           ⎢                                                                                           
 ⎡b(0) ⎤   ⎢                            ⅈ⋅θ₀                                                         ⅈ⋅
-⎢     ⎥   ⎢           0               ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)          0           ℯ  
+⎢     ⎥   ⎢           0               ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)          0           ℯ  
 ⎢b(1) ⎥   ⎢                                                                                           
 ⎢     ⎥   ⎢                             ⅈ⋅θ₀                                                         ⅈ
-⎢b(2) ⎥   ⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0          ⅈ⋅ℯ 
+⎢b(2) ⎥   ⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0          ⅈ⋅ℯ 
 ⎢     ⎥   ⎢                                                                                           
-⎢b(3) ⎥   ⎢           0                        0                    0               cosh(r)           
+⎢b(3) ⎥   ⎢           0                        0                    0               cosh(ξ)           
 ⎢     ⎥ = ⎢                                                                                           
-⎢b+(0)⎥   ⎢           0                     sinh(r)                 0                  0              
+⎢b+(0)⎥   ⎢           0                     sinh(ξ)                 0                  0              
 ⎢     ⎥   ⎢                                                                                           
 ⎢b+(1)⎥   ⎢  -ⅈ⋅θ₀                                                                                    
-⎢     ⎥   ⎢ ℯ     ⋅cos(φ)⋅sinh(r)              0                    0          -ⅈ⋅sin(φ)⋅sinh(r)      
+⎢     ⎥   ⎢ ℯ     ⋅cos(φ)⋅sinh(ξ)              0                    0          -ⅈ⋅sin(φ)⋅sinh(ξ)      
 ⎢b+(2)⎥   ⎢                                                                                           
 ⎢     ⎥   ⎢    -ⅈ⋅θ₀                                                                                  
-⎣b+(3)⎦   ⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(r)            0                    0           cos(φ)⋅sinh(r)        
+⎣b+(3)⎦   ⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(ξ)            0                    0           cos(φ)⋅sinh(ξ)        
           ⎢                                                                                           
-          ⎣           0                        0                 sinh(r)               0              
+          ⎣           0                        0                 sinh(ξ)               0              
 
-      0                     sinh(r)                   0                 0        ⎤                
+      0                     sinh(ξ)                   0                 0        ⎤                
                                                                                  ⎥                
 θ₀                                                                               ⎥ ⎡⎡b(0)⎤ ⎤      
-  ⋅cos(φ)⋅sinh(r)              0                      0          ⅈ⋅sin(φ)⋅sinh(r)⎥ ⎢⎢    ⎥ ⎥      
+  ⋅cos(φ)⋅sinh(ξ)              0                      0          ⅈ⋅sin(φ)⋅sinh(ξ)⎥ ⎢⎢    ⎥ ⎥      
                                                                                  ⎥ ⎢⎢b(1)⎥ ⎥      
 ⋅θ₀                                                                              ⎥ ⎢⎢    ⎥ ⎥      
-   ⋅sin(φ)⋅sinh(r)             0                      0           cos(φ)⋅sinh(r) ⎥ ⎢⎢b(2)⎥ ⎥      
+   ⋅sin(φ)⋅sinh(ξ)             0                      0           cos(φ)⋅sinh(ξ) ⎥ ⎢⎢b(2)⎥ ⎥      
                                                                                  ⎥ ⎢⎢    ⎥ ⎥      
-      0                        0                   sinh(r)              0        ⎥ ⎢⎣b(3)⎦ ⎥      
+      0                        0                   sinh(ξ)              0        ⎥ ⎢⎣b(3)⎦ ⎥      
                                                                                  ⎥⋅⎢       ⎥[:8, ]
-   cosh(r)                     0                      0                 0        ⎥ ⎢⎡b+(0)⎤⎥      
+   cosh(ξ)                     0                      0                 0        ⎥ ⎢⎡b+(0)⎤⎥      
                                                                                  ⎥ ⎢⎢     ⎥⎥      
                       -ⅈ⋅θ₀                                                      ⎥ ⎢⎢b+(1)⎥⎥      
-      0              ℯ     ⋅cos(φ)⋅cosh(r)    -ⅈ⋅sin(φ)⋅cosh(r)         0        ⎥ ⎢⎢     ⎥⎥      
+      0              ℯ     ⋅cos(φ)⋅cosh(ξ)    -ⅈ⋅sin(φ)⋅cosh(ξ)         0        ⎥ ⎢⎢     ⎥⎥      
                                                                                  ⎥ ⎢⎢b+(2)⎥⎥      
                         -ⅈ⋅θ₀                                                    ⎥ ⎢⎢     ⎥⎥      
-      0             -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0        ⎥ ⎣⎣b+(3)⎦⎦      
+      0             -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0        ⎥ ⎣⎣b+(3)⎦⎦      
                                                                                  ⎥                
-      0                        0                      0              cosh(r)     ⎦                
+      0                        0                      0              cosh(ξ)     ⎦                
 
 
 
@@ -235,184 +235,184 @@ None
 
 
 
-⎡        cosh(r)                     0                    0                  0                    0   
+⎡        cosh(ξ)                     0                    0                  0                    0   
 ⎢                                                                                                     
 ⎢                            ⅈ⋅θ₀                                                         ⅈ⋅θ₀        
-⎢           0               ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)          0           ℯ    ⋅cos(φ)⋅
+⎢           0               ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)          0           ℯ    ⋅cos(φ)⋅
 ⎢                                                                                                     
 ⎢                             ⅈ⋅θ₀                                                         ⅈ⋅θ₀       
-⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0          ⅈ⋅ℯ    ⋅sin(φ)
+⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0          ⅈ⋅ℯ    ⋅sin(φ)
 ⎢                                                                                                     
-⎢           0                        0                    0               cosh(r)                 0   
+⎢           0                        0                    0               cosh(ξ)                 0   
 ⎢                                                                                                     
-⎢           0                     sinh(r)                 0                  0                 cosh(r)
+⎢           0                     sinh(ξ)                 0                  0                 cosh(ξ)
 ⎢                                                                                                     
 ⎢  -ⅈ⋅θ₀                                                                                              
-⎢ ℯ     ⋅cos(φ)⋅sinh(r)              0                    0          -ⅈ⋅sin(φ)⋅sinh(r)            0   
+⎢ ℯ     ⋅cos(φ)⋅sinh(ξ)              0                    0          -ⅈ⋅sin(φ)⋅sinh(ξ)            0   
 ⎢                                                                                                     
 ⎢    -ⅈ⋅θ₀                                                                                            
-⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(r)            0                    0           cos(φ)⋅sinh(r)              0   
+⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(ξ)            0                    0           cos(φ)⋅sinh(ξ)              0   
 ⎢                                                                                                     
-⎣           0                        0                 sinh(r)               0                    0   
+⎣           0                        0                 sinh(ξ)               0                    0   
 
-                  sinh(r)                   0                 0        ⎤                
+                  sinh(ξ)                   0                 0        ⎤                
                                                                        ⎥                
                                                                        ⎥ ⎡⎡b(0)⎤ ⎤      
-sinh(r)              0                      0          ⅈ⋅sin(φ)⋅sinh(r)⎥ ⎢⎢    ⎥ ⎥      
+sinh(ξ)              0                      0          ⅈ⋅sin(φ)⋅sinh(ξ)⎥ ⎢⎢    ⎥ ⎥      
                                                                        ⎥ ⎢⎢b(1)⎥ ⎥      
                                                                        ⎥ ⎢⎢    ⎥ ⎥      
-⋅sinh(r)             0                      0           cos(φ)⋅sinh(r) ⎥ ⎢⎢b(2)⎥ ⎥      
+⋅sinh(ξ)             0                      0           cos(φ)⋅sinh(ξ) ⎥ ⎢⎢b(2)⎥ ⎥      
                                                                        ⎥ ⎢⎢    ⎥ ⎥      
-                     0                   sinh(r)              0        ⎥ ⎢⎣b(3)⎦ ⎥      
+                     0                   sinh(ξ)              0        ⎥ ⎢⎣b(3)⎦ ⎥      
                                                                        ⎥⋅⎢       ⎥[:8, ]
                      0                      0                 0        ⎥ ⎢⎡b+(0)⎤⎥      
                                                                        ⎥ ⎢⎢     ⎥⎥      
             -ⅈ⋅θ₀                                                      ⎥ ⎢⎢b+(1)⎥⎥      
-           ℯ     ⋅cos(φ)⋅cosh(r)    -ⅈ⋅sin(φ)⋅cosh(r)         0        ⎥ ⎢⎢     ⎥⎥      
+           ℯ     ⋅cos(φ)⋅cosh(ξ)    -ⅈ⋅sin(φ)⋅cosh(ξ)         0        ⎥ ⎢⎢     ⎥⎥      
                                                                        ⎥ ⎢⎢b+(2)⎥⎥      
               -ⅈ⋅θ₀                                                    ⎥ ⎢⎢     ⎥⎥      
-          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0        ⎥ ⎣⎣b+(3)⎦⎦      
+          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0        ⎥ ⎣⎣b+(3)⎦⎦      
                                                                        ⎥                
-                     0                      0              cosh(r)     ⎦                
+                     0                      0              cosh(ξ)     ⎦                
 
  g4
 gamma
  ⅈ⋅θ₀    2        2        2   
-ℯ    ⋅cos (φ)⋅sinh (r)⋅cosh (r)
+ℯ    ⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ)
 gamma
 0
 gamma
   ⅈ⋅θ₀    2        2        2   
--ℯ    ⋅sin (φ)⋅sinh (r)⋅cosh (r)
+-ℯ    ⋅sin (φ)⋅sinh (ξ)⋅cosh (ξ)
 
  gamma 
 
    4        4        4           2       2        4        4         4        4        4   
-sin (φ)⋅sinh (r)⋅cosh (r) - 2⋅sin (φ)⋅cos (φ)⋅sinh (r)⋅cosh (r) + cos (φ)⋅sinh (r)⋅cosh (r)
+sin (φ)⋅sinh (ξ)⋅cosh (ξ) - 2⋅sin (φ)⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ)⋅cosh (ξ)
 
 BBdag diag terms
 
                                      2         
 ⎛   2        2         2        2   ⎞      4   
-⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠ ⋅sinh (r)
+⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠ ⋅sinh (ξ)
 g4 not normalised
                                      2                                                                
 ⎛   2        2         2        2   ⎞      4        ⎛   2        2         2        2   ⎞    2        
-⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠ ⋅sinh (r) + 2⋅⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠⋅sin (φ)⋅sinh
+⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠ ⋅sinh (ξ) + 2⋅⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠⋅sin (φ)⋅sinh
 
                                                                                                       
 4        2        ⎛   2        2         2        2   ⎞    2        4        2         4        4     
- (r)⋅cosh (r) + 2⋅⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠⋅cos (φ)⋅sinh (r)⋅cosh (r) + sin (φ)⋅sinh (r)⋅c
+ (ξ)⋅cosh (ξ) + 2⋅⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + sin (φ)⋅sinh (ξ)⋅c
 
                                                                          
    4           2       2        4        4         4        4        4   
-osh (r) - 2⋅sin (φ)⋅cos (φ)⋅sinh (r)⋅cosh (r) + cos (φ)⋅sinh (r)⋅cosh (r)
+osh (ξ) - 2⋅sin (φ)⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ)⋅cosh (ξ)
                                      2                                                                
 ⎛   2        2         2        2   ⎞      4        ⎛   2        2         2        2   ⎞    2        
-⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠ ⋅sinh (r) + 2⋅⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠⋅sin (φ)⋅sinh
+⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠ ⋅sinh (ξ) + 2⋅⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠⋅sin (φ)⋅sinh
 
                                                                                                       
 4        2        ⎛   2        2         2        2   ⎞    2        4        2         4        4     
- (r)⋅cosh (r) + 2⋅⎝sin (φ)⋅sinh (r) + cos (φ)⋅sinh (r)⎠⋅cos (φ)⋅sinh (r)⋅cosh (r) + sin (φ)⋅sinh (r)⋅c
+ (ξ)⋅cosh (ξ) + 2⋅⎝sin (φ)⋅sinh (ξ) + cos (φ)⋅sinh (ξ)⎠⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + sin (φ)⋅sinh (ξ)⋅c
 
                                                                          
    4           2       2        4        4         4        4        4   
-osh (r) - 2⋅sin (φ)⋅cos (φ)⋅sinh (r)⋅cosh (r) + cos (φ)⋅sinh (r)⋅cosh (r)
+osh (ξ) - 2⋅sin (φ)⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ)⋅cosh (ξ)
 g4calc in opalg
 full transform subs
-⎡        cosh(r)                     0                    0                  0                    0   
+⎡        cosh(ξ)                     0                    0                  0                    0   
 ⎢                                                                                                     
 ⎢                            ⅈ⋅θ₀                                                         ⅈ⋅θ₀        
-⎢           0               ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)          0           ℯ    ⋅cos(φ)⋅
+⎢           0               ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)          0           ℯ    ⋅cos(φ)⋅
 ⎢                                                                                                     
 ⎢                             ⅈ⋅θ₀                                                         ⅈ⋅θ₀       
-⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0          ⅈ⋅ℯ    ⋅sin(φ)
+⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0          ⅈ⋅ℯ    ⋅sin(φ)
 ⎢                                                                                                     
-⎢           0                        0                    0               cosh(r)                 0   
+⎢           0                        0                    0               cosh(ξ)                 0   
 ⎢                                                                                                     
-⎢           0                     sinh(r)                 0                  0                 cosh(r)
+⎢           0                     sinh(ξ)                 0                  0                 cosh(ξ)
 ⎢                                                                                                     
 ⎢  -ⅈ⋅θ₀                                                                                              
-⎢ ℯ     ⋅cos(φ)⋅sinh(r)              0                    0          -ⅈ⋅sin(φ)⋅sinh(r)            0   
+⎢ ℯ     ⋅cos(φ)⋅sinh(ξ)              0                    0          -ⅈ⋅sin(φ)⋅sinh(ξ)            0   
 ⎢                                                                                                     
 ⎢    -ⅈ⋅θ₀                                                                                            
-⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(r)            0                    0           cos(φ)⋅sinh(r)              0   
+⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(ξ)            0                    0           cos(φ)⋅sinh(ξ)              0   
 ⎢                                                                                                     
-⎣           0                        0                 sinh(r)               0                    0   
+⎣           0                        0                 sinh(ξ)               0                    0   
 
-                  sinh(r)                   0                 0        ⎤
+                  sinh(ξ)                   0                 0        ⎤
                                                                        ⎥
                                                                        ⎥
-sinh(r)              0                      0          ⅈ⋅sin(φ)⋅sinh(r)⎥
+sinh(ξ)              0                      0          ⅈ⋅sin(φ)⋅sinh(ξ)⎥
                                                                        ⎥
                                                                        ⎥
-⋅sinh(r)             0                      0           cos(φ)⋅sinh(r) ⎥
+⋅sinh(ξ)             0                      0           cos(φ)⋅sinh(ξ) ⎥
                                                                        ⎥
-                     0                   sinh(r)              0        ⎥
+                     0                   sinh(ξ)              0        ⎥
                                                                        ⎥
                      0                      0                 0        ⎥
                                                                        ⎥
             -ⅈ⋅θ₀                                                      ⎥
-           ℯ     ⋅cos(φ)⋅cosh(r)    -ⅈ⋅sin(φ)⋅cosh(r)         0        ⎥
+           ℯ     ⋅cos(φ)⋅cosh(ξ)    -ⅈ⋅sin(φ)⋅cosh(ξ)         0        ⎥
                                                                        ⎥
               -ⅈ⋅θ₀                                                    ⎥
-          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0        ⎥
+          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0        ⎥
                                                                        ⎥
-                     0                      0              cosh(r)     ⎦
+                     0                      0              cosh(ξ)     ⎦
 phi=0
-⎡        cosh(r)                     0                    0                  0                    0   
+⎡        cosh(ξ)                     0                    0                  0                    0   
 ⎢                                                                                                     
 ⎢                            ⅈ⋅θ₀                                                         ⅈ⋅θ₀        
-⎢           0               ℯ    ⋅cos(φ)⋅cosh(r)   ⅈ⋅sin(φ)⋅cosh(r)          0           ℯ    ⋅cos(φ)⋅
+⎢           0               ℯ    ⋅cos(φ)⋅cosh(ξ)   ⅈ⋅sin(φ)⋅cosh(ξ)          0           ℯ    ⋅cos(φ)⋅
 ⎢                                                                                                     
 ⎢                             ⅈ⋅θ₀                                                         ⅈ⋅θ₀       
-⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0          ⅈ⋅ℯ    ⋅sin(φ)
+⎢           0              ⅈ⋅ℯ    ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0          ⅈ⋅ℯ    ⋅sin(φ)
 ⎢                                                                                                     
-⎢           0                        0                    0               cosh(r)                 0   
+⎢           0                        0                    0               cosh(ξ)                 0   
 ⎢                                                                                                     
-⎢           0                     sinh(r)                 0                  0                 cosh(r)
+⎢           0                     sinh(ξ)                 0                  0                 cosh(ξ)
 ⎢                                                                                                     
 ⎢  -ⅈ⋅θ₀                                                                                              
-⎢ ℯ     ⋅cos(φ)⋅sinh(r)              0                    0          -ⅈ⋅sin(φ)⋅sinh(r)            0   
+⎢ ℯ     ⋅cos(φ)⋅sinh(ξ)              0                    0          -ⅈ⋅sin(φ)⋅sinh(ξ)            0   
 ⎢                                                                                                     
 ⎢    -ⅈ⋅θ₀                                                                                            
-⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(r)            0                    0           cos(φ)⋅sinh(r)              0   
+⎢-ⅈ⋅ℯ     ⋅sin(φ)⋅sinh(ξ)            0                    0           cos(φ)⋅sinh(ξ)              0   
 ⎢                                                                                                     
-⎣           0                        0                 sinh(r)               0                    0   
+⎣           0                        0                 sinh(ξ)               0                    0   
 
-                  sinh(r)                   0                 0        ⎤
+                  sinh(ξ)                   0                 0        ⎤
                                                                        ⎥
                                                                        ⎥
-sinh(r)              0                      0          ⅈ⋅sin(φ)⋅sinh(r)⎥
+sinh(ξ)              0                      0          ⅈ⋅sin(φ)⋅sinh(ξ)⎥
                                                                        ⎥
                                                                        ⎥
-⋅sinh(r)             0                      0           cos(φ)⋅sinh(r) ⎥
+⋅sinh(ξ)             0                      0           cos(φ)⋅sinh(ξ) ⎥
                                                                        ⎥
-                     0                   sinh(r)              0        ⎥
+                     0                   sinh(ξ)              0        ⎥
                                                                        ⎥
                      0                      0                 0        ⎥
                                                                        ⎥
             -ⅈ⋅θ₀                                                      ⎥
-           ℯ     ⋅cos(φ)⋅cosh(r)    -ⅈ⋅sin(φ)⋅cosh(r)         0        ⎥
+           ℯ     ⋅cos(φ)⋅cosh(ξ)    -ⅈ⋅sin(φ)⋅cosh(ξ)         0        ⎥
                                                                        ⎥
               -ⅈ⋅θ₀                                                    ⎥
-          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(r)   cos(φ)⋅cosh(r)           0        ⎥
+          -ⅈ⋅ℯ     ⋅sin(φ)⋅cosh(ξ)   cos(φ)⋅cosh(ξ)           0        ⎥
                                                                        ⎥
-                     0                      0              cosh(r)     ⎦
+                     0                      0              cosh(ξ)     ⎦
 Factorised G4 normalised
 ⎛   2        2         2        2                          2         2        2         2        2   ⎞
-⎝sin (φ)⋅sinh (r) + sin (φ)⋅cosh (r) - 2⋅sin(φ)⋅cos(φ)⋅cosh (r) + cos (φ)⋅sinh (r) + cos (φ)⋅cosh (r)⎠
+⎝sin (φ)⋅sinh (ξ) + sin (φ)⋅cosh (ξ) - 2⋅sin(φ)⋅cos(φ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ) + cos (φ)⋅cosh (ξ)⎠
 ──────────────────────────────────────────────────────────────────────────────────────────────────────
                                                                                                       
                                                                                             ⎛    2    
-                                                                                            ⎝sinh (r) 
+                                                                                            ⎝sinh (ξ) 
 
  ⎛   2        2         2        2                          2         2        2         2        2   
-⋅⎝sin (φ)⋅sinh (r) + sin (φ)⋅cosh (r) + 2⋅sin(φ)⋅cos(φ)⋅cosh (r) + cos (φ)⋅sinh (r) + cos (φ)⋅cosh (r)
+⋅⎝sin (φ)⋅sinh (ξ) + sin (φ)⋅cosh (ξ) + 2⋅sin(φ)⋅cos(φ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ) + cos (φ)⋅cosh (ξ)
 ──────────────────────────────────────────────────────────────────────────────────────────────────────
            2                                                                                          
       2   ⎞                                                                                           
-+ cosh (r)⎠                                                                                           
++ cosh (ξ)⎠                                                                                           
 
 ⎞
 ⎠

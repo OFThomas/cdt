@@ -38,8 +38,9 @@ class Makeelements():
         # squeeze param
         self.xi = [None] * (self.n**2)
         for i in range(0, self.n**2):
-            self.xi[i] = symbols('r%d' % (i))
-            self.xi[i] = symbols('r', real=True)
+            self.xi[i] = symbols('xi%d' % (i))
+            self.xi[i] = symbols('xi', real=True)
+        self.xi=[symbols('xi', real=True)]*self.n**2 
 
         # beamsplitter angle
         self.phi = symbols('phi', real=True)

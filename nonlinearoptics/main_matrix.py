@@ -6,6 +6,8 @@ from makeelements import Makeelements
 from makeelements import *
 from operatoralg import Operatoralg
 import mpmath as mp
+import numpy
+import math
 init_printing(use_unicode=True)
 
 
@@ -133,6 +135,71 @@ g4norm = factor(g4) / factor(g4_nobs)
 
 print('Factorised G4 normalised')
 pprint(factor(g4norm))
+################################################################
+##### open data file
+
+g4file = open("g4data.txt", "w+")
+
+g4file.write('xi phi g4\n')
+
+# set increments
+xi_start = 0.0
+xi_end = 1.0
+xi_incr = 0.5
+
+xi_steps = math.ceil((xi_end - xi_start) / float(xi_incr))
+
+phi_start = 0.0
+phi_end = float(2 * pi)
+phi_incr = float(0.1 * pi)
+
+phi_steps = math.ceil((phi_end - phi_start) / float(phi_incr))
+
+xi_val = xi_start
+phi_val = phi_start
+####################################
+
+for i in range(0, xi_steps):
+
+    # reset phi for each xi
+    phi_val = phi_start
+
+    f_g4norm = g4norm
+
+    #pprint(f_g4norm)
+    #f_g4norm = factor(g4norm)
+
+    #print(f_g4norm.free_symbols)
+    thing = [None] * len(m.xi)
+
+    # to subs xi
+    #xivalue = 0.0
+
+    for i in range(0, len(m.xi)):
+        thing[i] = f_g4norm.subs(m.xi[i], xi_val)
+        #pprint(thing[i])
+    final_g4norm = thing[(len(m.xi) - 1)]
+
+    #pprint(final_g4norm)
+
+    #to subs phi
+
+    # pass phi as arg now
+    func = lambdify(m.phi, final_g4norm, "numpy")
+
+    for j in range(0, phi_steps):
+        #print('xi= %f, phi= %f, g4= %f' % (xi_val, phi_val, func(phi_val)))
+        g4file.write('%f %f %f\n' % (xi_val, phi_val, func(phi_val)))
+        phi_val = phi_val + phi_incr
+
+    xi_val = xi_val + xi_incr
+
+g4file.close()
+# close data file
+
+print('ran for %d xi vals and %d phi vals for each xi, %d total points' %
+      (xi_steps, phi_steps, xi_steps * phi_steps))
+exit()
 
 
 def jordanblock(i, j):
@@ -258,6 +325,30 @@ with open('temp.txt', 'w') as f:
     mpmatout = (mp.matrix(N(simp)))
     pprint(mpmatout)
     matrixprinter(f, simp)
+"""
+f_g4norm = factor(g4norm)
+
+thing = [None] * len(m.xi)
+
+# to subs xi
+xivalue = 0.0
+
+for i in range(0, len(m.xi)):
+    thing[i] = f_g4norm.subs(m.xi[i], xivalue)
+
+final_g4norm = thing[(len(m.xi) - 1)]
+
+pprint(final_g4norm)
+
+#to subs phi
+
+# pass phi as arg now
+func = lambdify(m.phi, final_g4norm)
+
+print(func(0))
+"""
+#
+
 #
 #
 #
