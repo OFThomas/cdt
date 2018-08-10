@@ -35,7 +35,7 @@ showexplicit = 0
 # spatial dim
 nspace = 4
 # spectral dim
-nspectral =25
+nspectral = 2
 
 # make total dimension
 n = nspace * nspectral

@@ -1,0 +1,51 @@
+\begin{theindex}
+
+  \item {alloc\+\_\+complex\+\_\+eigenvects}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{5}
+  \item {alloc\+\_\+complex\+\_\+svd}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{5}
+
+  \indexspace
+
+  \item {c\+\_\+inv2}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+  \item {complex\+\_\+eigenvects}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+  \item {complex\+\_\+svd}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+  \item {complextrace}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+
+  \indexspace
+
+  \item {matrixnorm}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+
+  \indexspace
+
+  \item {olis\+\_\+f90stdlib}, \hyperpage{5}
+    \subitem {alloc\+\_\+complex\+\_\+eigenvects}, \hyperpage{5}
+    \subitem {alloc\+\_\+complex\+\_\+svd}, \hyperpage{5}
+    \subitem {c\+\_\+inv2}, \hyperpage{6}
+    \subitem {complex\+\_\+eigenvects}, \hyperpage{6}
+    \subitem {complex\+\_\+svd}, \hyperpage{6}
+    \subitem {complextrace}, \hyperpage{6}
+    \subitem {matrixnorm}, \hyperpage{6}
+    \subitem {outerproduct}, \hyperpage{6}
+    \subitem {printvectors}, \hyperpage{7}
+    \subitem {randseed}, \hyperpage{7}
+  \item {olis\+\_\+f90stdlib.\+f90}, \hyperpage{9}
+  \item {outerproduct}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{6}
+
+  \indexspace
+
+  \item {printvectors}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{7}
+
+  \indexspace
+
+  \item {randseed}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{7}
+
+\end{theindex}
