@@ -140,7 +140,7 @@ pprint(factor(g4norm))
 
 g4file = open("g4data.txt", "w+")
 
-g4file.write('xi phi g4\n')
+g4file.write('#xi phi g4\n')
 
 # set increments
 xi_start = -8.0
