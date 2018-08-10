@@ -1,5 +1,5 @@
 from sympy import *
-from sympy.abc import alpha, beta, omega, phi, theta, xi, zeta
+from sympy.abc import alpha, beta, omega, theta, xi, zeta
 from sympy.physics.secondquant import NO
 from sympy.physics.secondquant import Commutator as Com
 from sympy.physics.secondquant import wicks
@@ -8,10 +8,11 @@ from makeelements import *
 
 
 class Operatoralg():
-    def __init__(self, bmodes, amodes, modetransform, fulltransform):
+    def __init__(self, nspec,bmodes, amodes, modetransform, fulltransform):
         self.fulltransform = fulltransform
         self.amodes = amodes
         self.bmodes = bmodes
+        self.nspec=nspec
         #        self.n = len(bmodes[:, 0])
         self.n = int((amodes.shape)[0])
         print('n', self.n)
@@ -51,8 +52,8 @@ class Operatoralg():
 
         return Com(A, B)
 
-    def ABT(self, i0, i1):
-        ft = self.fulltransform
+    def ABT(self, i0, i1, transform):
+        ft = transform
         n = int(0.5 * self.n)
         if (i0 < n) and (i1 < n):
             a = 0
@@ -64,13 +65,19 @@ class Operatoralg():
             i1 = i1 - n
 
         matel = ft[a:b, 0:n] * ft[a:b, n:2 * n].T
-        return matel[i0, i1]
+        res=0
+        for i in range(0,self.nspec):
+            res=res+matel[(i0*self.nspec)+i,(i1*self.nspec)+i]
+        return res
 
-    def BBD(self, i0, i1):
-        ft = self.fulltransform
+    def BBD(self, i0, i1, transform):
+        ft = transform
         n = int(0.5 * self.n)
         matel = ft[0:n, n:2 * n] * ft[n:2 * n, 0:n].T
-        return matel[i0, i1]
+        res=0
+        for i in range(0,self.nspec):
+            res=res+matel[(i0*self.nspec)+i,(i1*self.nspec)+i]
+        return res
 
     def matrixel(self, index, A):
         n = int(0.5 * self.n)
@@ -126,18 +133,19 @@ class Operatoralg():
         pprint(simplify(A))
         return (A)
 
-    def calcg4(self):
+    def calcg4(self, transform):
         def amp(a):
             return abs(a)**2
-
+        
+        trans=transform
         g4 = 0
 
-        gam10 = self.ABT(1, 0)
-        gam32 = self.ABT(3, 2)
-        gam21 = self.ABT(2, 1)
-        gam30 = self.ABT(3, 0)
-        gam20 = self.ABT(2, 0)
-        gam31 = self.ABT(3, 1)
+        gam10 = self.ABT(1, 0,trans)
+        gam32 = self.ABT(3, 2,trans)
+        gam21 = self.ABT(2, 1, trans)
+        gam30 = self.ABT(3, 0,trans)
+        gam20 = self.ABT(2, 0, trans)
+        gam31 = self.ABT(3, 1,trans)
 
         print('gamma')
         pprint(gam10 * gam32)
@@ -147,11 +155,11 @@ class Operatoralg():
         pprint(gam20 * gam31)
         gam = amp(gam10 * gam32 + gam21 * gam30 + gam20 * gam31)
 
-        bbdag00 = self.BBD(0, 0)
-        bbdag11 = self.BBD(1, 1)
-        bbdag22 = self.BBD(2, 2)
-        bbdag33 = self.BBD(3, 3)
-
+        bbdag00 = self.BBD(0, 0, trans)
+        bbdag11 = self.BBD(1, 1, trans)
+        bbdag22 = self.BBD(2, 2, trans)
+        bbdag33 = self.BBD(3, 3, trans)
+        print('beta beta 00', self.BBD(0,0, trans))
         bdiag = bbdag00 * bbdag11 * bbdag22 * bbdag33
 
         term = [None] * 6
@@ -164,7 +172,9 @@ class Operatoralg():
         term[5] = amp(gam30) * bbdag11 * bbdag22
 
         g4 = gam + bdiag + term[0] + term[1] + term[2] + term[3] + term[4] + term[5]
+        return g4
 
+        """
         #print('\n no beamsplitter\n')
         G4_no_bs = (g4.subs(phi, 0))
         #pprint(G4_no_bs)
@@ -188,3 +198,4 @@ class Operatoralg():
         print('phi=0')
         pprint(self.fulltransform.subs(phi, 0))
         return g4
+        """

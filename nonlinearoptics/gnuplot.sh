@@ -3,10 +3,10 @@
 
 # very colourful but lags
 # save it
-gnuplot -e "set key off;set xlabel 'Squeezing'; set ylabel 'Beamsplitter angle'; set zlabel 'G4'; splot 'g4data.txt' with linespoints palette pointtype 7; set term png; set output 'g4plot1.png'; set view 60,30,1,1; replot; set output 'g4plot2.png'; set view 80,0,1,1; replot; set output 'g4plot3.png'; set view 80,91,1,1; replot; pause 1"
+#gnuplot -e "set key off;set xlabel 'Squeezing'; set ylabel 'Beamsplitter angle'; set zlabel 'G4'; splot 'g4data.txt' with linespoints palette pointtype 7; set term png; set output 'g4plot1.png'; set view 60,30,1,1; replot; set output 'g4plot2.png'; set view 80,0,1,1; replot; set output 'g4plot3.png'; set view 80,91,1,1; replot; pause 1"
 
 # interactive plot
-#gnuplot -e "set key off;set xlabel 'Squeezing'; set ylabel 'Beamsplitter angle'; set zlabel 'G4'; splot 'g4data.txt' with linespoints palette pointtype 7; pause -1"
+gnuplot -e "set key off;set xlabel 'Squeezing'; set ylabel 'Beamsplitter angle'; set zlabel 'G4'; splot 'g4data.txt' with linespoints palette pointtype 7; pause -1"
 
 
 

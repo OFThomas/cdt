@@ -1,13 +1,17 @@
-from sympy import Matrix, init_printing, pi, pprint, symbols, simplify, expand, factor, apart, cancel
-from sympy.abc import alpha, beta, omega, phi, zeta
-from sympy.physics.secondquant import B, Dagger, BKet, NO
-from sympy import *
-from makeelements import Makeelements
-from makeelements import *
-from operatoralg import Operatoralg
+import math
+
 import mpmath as mp
 import numpy
-import math
+from sympy import *
+from sympy import (Matrix, apart, cancel, expand, factor, init_printing, pi,
+                   pprint, simplify, symbols)
+from sympy.abc import alpha, beta, omega, phi, zeta
+from sympy.physics.secondquant import NO, B, BKet, Dagger
+
+from makeelements import *
+from makeelements import Makeelements
+from operatoralg import Operatoralg
+
 init_printing(use_unicode=True)
 
 
@@ -31,7 +35,7 @@ showexplicit = 0
 # spatial dim
 nspace = 4
 # spectral dim
-nspectral = 1
+nspectral =2
 
 # make total dimension
 n = nspace * nspectral
@@ -69,7 +73,7 @@ m = Makeelements(nspace, nspectral, sq1_modes, sq2_modes, phasemode,
 
 # ############## numerics ###################################
 
-transform = [None] * 4
+transform = [None] * 3
 
 squeezer1 = m.makesq(mode=[0, 1])  #, sqparam=xi)
 squeezer2 = m.makesq(mode=[2, 3])  #, sqparam=xi)
@@ -78,8 +82,9 @@ beamsplitter = m.makebs(mode=[1, 2])  #, theta=phi)
 
 transform[0] = squeezer1
 transform[1] = squeezer2 * transform[0]
-transform[2] = phaseshift * transform[1]
-transform[3] = beamsplitter * transform[2]
+# no phase for testing
+#transform[2] = phaseshift * transform[1]
+transform[2] = beamsplitter * transform[1]
 
 # do mode transformation
 for i in range(0, len(transform)):
@@ -118,7 +123,7 @@ pprint(rel)
 # a modes are input modes
 # modetrans is matrix of mode transformation b=Ma
 # fulltransform is fulltransform
-opalg = Operatoralg(bmodes, amodes, modetrans, fulltransform)
+opalg = Operatoralg(nspectral, bmodes, amodes, modetrans, fulltransform)
 
 # use relational to make d final mode transforms
 d = opalg.constructmodeops()
@@ -134,8 +139,14 @@ pprint(d)
 # commutation relations using matrix elements
 
 print('\n g4')
-g4 = opalg.calcg4()
-g4_nobs = g4.subs(m.phi, 0)
+g4 = opalg.calcg4(fulltransform)
+print('\n\n g4 \n\n')
+pprint(g4)
+
+print('\n\n no bs \n')
+pprint(fulltransform.subs(m.phi, 0))
+g4_nobs = opalg.calcg4(fulltransform.subs(m.phi, 0))
+pprint(g4_nobs)
 g4norm = factor(g4) / factor(g4_nobs)
 
 print('Factorised G4 normalised')
@@ -212,8 +223,7 @@ print('ran for %d xi vals and %d phi vals for each xi, %d total points' %
 # end of g4 stuff now putting in a f
 #
 #
-
-
+"""
 def jordanblock(i, j):
     if i == j - 1:
         return 1
@@ -310,6 +320,7 @@ def cpp_generator(mat, name, label, args=1):
 simp = simpexpha.subs(f, 13)
 #simp = simpexpha
 pprint(simp)
+"""
 """
 
 label = 'M_matrix'
