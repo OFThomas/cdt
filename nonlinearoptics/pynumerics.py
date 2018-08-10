@@ -31,7 +31,7 @@ showexplicit = 0
 # spatial dim
 nspace = 4
 # spectral dim
-nspectral = 1
+nspectral = 2
 
 # make total dimension
 n = nspace * nspectral
@@ -138,79 +138,6 @@ g4 = opalg.calcg4()
 g4_nobs = g4.subs(m.phi, 0)
 g4norm = factor(g4) / factor(g4_nobs)
 
-print('Factorised G4 normalised')
-pprint(factor(g4norm))
-################################################################
-##### open data file
-
-g4file = open("g4data.txt", "w+")
-
-g4file.write('#xi phi g4\n')
-
-# set increments
-xi_start = -5.0
-xi_end = -xi_start
-xi_incr = 0.1
-
-xi_steps = math.ceil((xi_end - xi_start) / float(xi_incr))
-
-phi_start = 0.0
-phi_end = float(2 * pi)
-phi_incr = float(0.005 * pi)
-
-phi_steps = math.ceil((phi_end - phi_start) / float(phi_incr))
-
-xi_val = xi_start
-phi_val = phi_start
-####################################
-
-for i in range(0, xi_steps):
-
-    #   g4analytic=
-    # reset phi for each xi
-    phi_val = phi_start
-
-    f_g4norm = g4norm
-
-    #pprint(f_g4norm)
-    #f_g4norm = factor(g4norm)
-
-    #print(f_g4norm.free_symbols)
-    thing = [None] * len(m.xi)
-
-    # to subs xi
-    #xivalue = 0.0
-
-    for i in range(0, len(m.xi)):
-        thing[i] = f_g4norm.subs(m.xi[i], xi_val)
-        #pprint(thing[i])
-    final_g4norm = thing[(len(m.xi) - 1)]
-
-    #pprint(final_g4norm)
-
-    #to subs phi
-
-    # pass phi as arg now
-    func = lambdify(m.phi, final_g4norm, "numpy")
-
-    for j in range(0, phi_steps):
-        #print('xi= %f, phi= %f, g4= %f' % (xi_val, phi_val, func(phi_val)))
-        g4file.write('%f %f %f\n' % (xi_val, phi_val, func(phi_val)))
-        phi_val = phi_val + phi_incr
-
-    xi_val = xi_val + xi_incr
-
-g4file.close()
-# close data file
-
-print('ran for %d xi vals and %d phi vals for each xi, %d total points' %
-      (xi_steps, phi_steps, xi_steps * phi_steps))
-
-#exit()
-#########################################################################################
-#
-# end of g4 stuff now putting in a f
-#
 #
 
 
@@ -292,114 +219,7 @@ pprint(expha)
 simpexpha = simplify(factor(expha))
 pprint(simpexpha)
 
-
 #
-#
-def cpp_generator(mat, name, label, args=1):
-    update_cpp = '\nvoid {0}::{1}_update()'.format(label, name) + '{'
-    for n in range(mat.shape[1]):
-        for m in range(mat.shape[0]):
-            expr = (mat[m, n])
-            #symbs = expr.free_symbols
-            c = ccode(expr)  #, dereference=args)
-            update_cpp += '\n_{0}({1}, {2}) = {3};'.format(name, m, n, c)
-    update_cpp += '\n};'
-    return update_cpp
-
-
 simp = simpexpha.subs(f, 13)
 #simp = simpexpha
 pprint(simp)
-"""
-
-label = 'M_matrix'
-mat = simp
-name = 'F'
-code = cpp_generator(mat, name, label)
-print(code)
-
-
-def matrixprinter(outfile, mat):
-    nmat = mp.matrix(N(mat))
-    outfile.write(str(mat.shape[1]) + ' ')
-    outfile.write(str(mat.shape[0]) + '\n')
-    for j in range(0, mat.shape[1]):
-        for i in range(0, mat.shape[0]):
-
-            print(nmat[i, j])
-            outfile.write(str(nmat[i, j]) + ' ')
-        outfile.write('\n')
-    return 0
-
-
-with open('temp.txt', 'w') as f:
-    #f.write(cxxcode(N(simp)))
-    #matrixprinter(f, simp)
-    mpmatout = (mp.matrix(N(simp)))
-    pprint(mpmatout)
-    matrixprinter(f, simp)
-"""
-"""
-f_g4norm = factor(g4norm)
-
-thing = [None] * len(m.xi)
-
-# to subs xi
-xivalue = 0.0
-
-for i in range(0, len(m.xi)):
-    thing[i] = f_g4norm.subs(m.xi[i], xivalue)
-
-final_g4norm = thing[(len(m.xi) - 1)]
-
-pprint(final_g4norm)
-
-#to subs phi
-
-# pass phi as arg now
-func = lambdify(m.phi, final_g4norm)
-
-print(func(0))
-"""
-#
-
-#
-#
-#
-#
-#
-"""
-matx = Matrix([[x[0], x[1]], [0, x[3]]])
-
-matx = Matrix(3, 3, jordanblock)
-pprint(matx)
-# ###############################
-coshx = matrixcosh(matx)
-print('\n Cosh of matrix')
-print('\n unsimplified')
-# pprint(coshx)
-
-print('\nsimplified')
-pprint(simplify(coshx))
-
-# ###############################################
-print('\nSinh of matrix')
-sinhx = matrixsinh(matx)
-print('\nunsimplified')
-# pprint(sinhx)
-
-print('\nsimplified')
-pprint(simplify(sinhx))
-
-beta=prints(fulltransform)
-betadag=conjugate(prints(fulltransform))
-print('BB^ =')
-pprint(beta*betadag.T)
-
-
-"""
-#
-#
-#
-
-#
