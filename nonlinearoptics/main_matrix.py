@@ -143,7 +143,7 @@ g4file = open("g4data.txt", "w+")
 g4file.write('#xi phi g4\n')
 
 # set increments
-xi_start = -8.0
+xi_start = -5.0
 xi_end = -xi_start
 xi_incr = 0.1
 
