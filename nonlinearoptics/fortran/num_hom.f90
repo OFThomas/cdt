@@ -238,7 +238,7 @@ contains
     complex(kind=dp) :: f
     real(kind=dp), intent(in) :: w1,w2, sig
     
-    f=(1.0_dp/(sig*sqrt(2.0_dp*pi)))**2 * exp(-0.5_dp*(w1/sig)**2)*exp(-0.5_dp*(w2/sig)**2)
+    f=(3.0_dp/(sig*sqrt(2.0_dp*pi)))**2 * exp(-0.5_dp*(w1/sig)**2)*exp(-0.5_dp*(w2/sig)**2)
 
     end function f
 end program num_hom

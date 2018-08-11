@@ -174,9 +174,9 @@ function g4(ft, nspec)
 real(kind=dp) :: g4
 complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
 integer, intent(in) :: nspec
-complex(kind=dp), dimension(6) :: term
+real(kind=dp), dimension(6) :: term
 complex(kind=dp) :: gam21, gam43, gam32, gam41, gam31, gam42
-complex(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
+real(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
 real(kind=dp) :: gam, bdiag
 g4=0.0_dp
 
@@ -206,7 +206,7 @@ term(5) = amp(gam42) * bbdag11 * bbdag33
 term(6) = amp(gam41) * bbdag22 * bbdag33
 
 g4 = gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6)
-
+print*, 'gam', gam, 'bdiag', bdiag
 end function g4
 
 !>@brief returns the absolute value squared |a|**2
