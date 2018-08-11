@@ -42,7 +42,10 @@ integer :: sizeofexp, f_size, alpha_size
 !>@param temp vaaibles for building exp on correct spatial modes
 complex(kind=dp), dimension(:,:), allocatable :: alpha_temp, beta_temp
 
-nspace=3
+! temp for transform
+complex(kind=dp), dimension(:,:), allocatable :: transform
+
+nspace=4
 nspec=1
 n=nspace*nspec
 
@@ -51,15 +54,15 @@ call alloc_temparrays(nspace,nspec)
 
 open(unit=15,file='fplot.dat', status='replace')
 
-w1_start=-2.0_dp
-w2_start=-2.0_dp
+w1_start=-1.0_dp
+w2_start=-1.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=2.00_dp
-w2_incr=2.00_dp
+w1_incr=1.00_dp
+w2_incr=1.00_dp
 
 w1_steps=ceiling((w1_end-w1_start)/w1_incr)
 w2_steps=ceiling((w2_end-w2_start)/w2_incr)
@@ -79,10 +82,11 @@ do j=1,w2_steps
     w2=w2+w2_incr
 end do
 
+nspec=size(f_mat,1)
 ! modes 2 & 3 
-!call make_bs(nspace,nspec,mat_bs,2,3,pi/4.0_dp)
+call make_bs(nspace,nspec,mat_bs,2,3,pi/4.0_dp)
 
-!call printvectors(mat_bs, 'beamsplitter')
+call printvectors(mat_bs, 'beamsplitter')
 !call printvectors( matmul(mat_bs,conjg(transpose(mat_bs))), 'print bs pi/4')
 !do i=1, size(f_mat,1)
 !    write(15,*) j,i, (real(f_mat(i,j)), j=1, size(f_mat,1))
@@ -144,6 +148,9 @@ allocate(beta_temp(alpha_size,alpha_size))
 alpha_temp(:,:)=m_sq(1:alpha_size,1:alpha_size)
 beta_temp(:,:)=m_sq(1:alpha_size, alpha_size+1:2*alpha_size)
 
+call printvectors(alpha_temp, 'alpa')
+call printvectors(beta_temp, 'beta')
+
 !@brief inset squeezing hamiltonian in correct spatial modes
 !>@note allocate for sq on modes 1&2
 allocate(mat_sq1(2*nspace*f_size,2*nspace*f_size))
@@ -154,15 +161,38 @@ mat_sq1=0.0_dp
 ! check how many modes there are,
 ! if more modes than alpha make the rest of sq ident
 
+! do for modes 3&4
+! 0 to 2*n
+allocate(mat_sq2(2*nspace*f_size, 2*nspace*f_size))
 
-! beta
 
 
 call make_sq(nspace, f_size, mat_sq1,1,2,alpha_temp,beta_temp)
 call printvectors(mat_sq1, 'sq on modes 1&2')
 
-call printvectors(alpha_temp, 'alpa')
-call printvectors(beta_temp, 'beta')
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
+
+call make_sq(nspace, f_size, mat_sq2, 3,4,alpha_temp,beta_temp)
+call printvectors(mat_sq2, 'sq on modes 3&4')
+
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
+
+
+
+
+
+transform=matmul(mat_sq1,mat_sq2)
+
+call printvectors(transform, 'sq1 * sq2')
+
+print*, 'now do beam splitter on modes 2&3'
+
+transform=matmul(mat_bs,transform)
+
+call printvectors(transform, 'sq1*sq2*BS')
+
 close(15)
 contains 
 
