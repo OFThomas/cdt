@@ -16,7 +16,7 @@ module olis_f90stdlib
 implicit none
 
 integer, parameter, private :: dp=selected_real_kind(15,300)
-
+real(kind=dp), parameter :: pi=4.0_dp*atan(1.0)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! make temp arrays for complex_eigenvects
