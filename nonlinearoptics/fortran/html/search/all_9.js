@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tprod',['tprod',['../namespaceolis__f90stdlib.html#af055cdf442d596810974e4f63eaeb119',1,'olis_f90stdlib']]]
+  ['num_5fhom',['num_hom',['../num__hom_8f90.html#a7dae3af56c12300a9c9fb1deb246e6e7',1,'num_hom.f90']]],
+  ['num_5fhom_2ef90',['num_hom.f90',['../num__hom_8f90.html',1,'']]]
 ];

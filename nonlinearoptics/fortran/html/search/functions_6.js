@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printvectors',['printvectors',['../namespaceolis__f90stdlib.html#a9780b39329025edfdef71ce07e250808',1,'olis_f90stdlib']]]
+  ['g4',['g4',['../namespacemakeopticalelements.html#af1a18704c55aa2efeb60157c81a80723',1,'makeopticalelements']]]
 ];

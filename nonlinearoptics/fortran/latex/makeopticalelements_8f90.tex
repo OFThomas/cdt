@@ -10,7 +10,19 @@ module \hyperlink{namespacemakeopticalelements}{makeopticalelements}
 \item 
 subroutine \hyperlink{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}{makeopticalelements\+::make\+\_\+bs} (nspace, nspec, symp\+\_\+mat, m1, m2, theta)
 \begin{DoxyCompactList}\small\item\em makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident\+\_\+spec, spatial\+\_\+work, n\+\_\+work arrays \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacemakeopticalelements_a6658c2ce879c0bc4b2e5918064a6a308}{makeopticalelements\+::make\+\_\+sq} (nspace, nspec, symp\+\_\+mat, m1, m2, alpha, beta)
+\begin{DoxyCompactList}\small\item\em make symplectic squeezing matrix from exponetiated J\+SA  a lot is broken... \end{DoxyCompactList}\item 
+real(kind=dp) function \hyperlink{namespacemakeopticalelements_af1a18704c55aa2efeb60157c81a80723}{makeopticalelements\+::g4} (ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates g4 using matrix elements sum  \end{DoxyCompactList}\item 
+real(kind=dp) function \hyperlink{namespacemakeopticalelements_a0649740479f47221d009b8d496b78c8b}{makeopticalelements\+::amp} (a)
+\begin{DoxyCompactList}\small\item\em returns the absolute value squared $\vert$a$\vert$$\ast$$\ast$2 \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_a1b408449683f6bcc96ee25d4bbc1aa8b}{makeopticalelements\+::abt} (i, j, ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates matrix elements Alpha-\/\+Beta$\ast$$\ast$T  for M = (A B ) (B$\ast$ A$\ast$) computes A\+B$\ast$$\ast$T and returns the i,j-\/th element \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_a7d0e54a1c7f830fd961f3c99d0a49b30}{makeopticalelements\+::bbd} (i, j, ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates the matrix elements Beta$\ast$\+Beta$\ast$$\ast$H  for M = (A B ) (B$\ast$ A$\ast$) computes B$\ast$\+B$\ast$$\ast$H (Hermitian conjg) and returns the i,j-\/th element \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}{makeopticalelements\+::alloc\+\_\+temparrays} (nspace, nspec)
+\begin{DoxyCompactList}\small\item\em allocates temp arrays for matrices \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacemakeopticalelements_aab212aad9e53b7ae643456f9bc0b68cb}{makeopticalelements\+::dealloc\+\_\+temparrays}
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}

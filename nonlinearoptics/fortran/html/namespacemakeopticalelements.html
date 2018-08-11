@@ -74,8 +74,26 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a593a6ee34afdeebc8b4667791c8a144f"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a593a6ee34afdeebc8b4667791c8a144f">make_bs</a> (nspace, nspec, symp_mat, m1, m2, theta)</td></tr>
 <tr class="memdesc:a593a6ee34afdeebc8b4667791c8a144f"><td class="mdescLeft">&#160;</td><td class="mdescRight">makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident_spec, spatial_work, n_work arrays  <a href="#a593a6ee34afdeebc8b4667791c8a144f">More...</a><br /></td></tr>
 <tr class="separator:a593a6ee34afdeebc8b4667791c8a144f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6658c2ce879c0bc4b2e5918064a6a308"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a6658c2ce879c0bc4b2e5918064a6a308">make_sq</a> (nspace, nspec, symp_mat, m1, m2, alpha, beta)</td></tr>
+<tr class="memdesc:a6658c2ce879c0bc4b2e5918064a6a308"><td class="mdescLeft">&#160;</td><td class="mdescRight">make symplectic squeezing matrix from exponetiated JSA  a lot is broken...  <a href="#a6658c2ce879c0bc4b2e5918064a6a308">More...</a><br /></td></tr>
+<tr class="separator:a6658c2ce879c0bc4b2e5918064a6a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a18704c55aa2efeb60157c81a80723"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#af1a18704c55aa2efeb60157c81a80723">g4</a> (ft, nspec)</td></tr>
+<tr class="memdesc:af1a18704c55aa2efeb60157c81a80723"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates g4 using matrix elements sum   <a href="#af1a18704c55aa2efeb60157c81a80723">More...</a><br /></td></tr>
+<tr class="separator:af1a18704c55aa2efeb60157c81a80723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0649740479f47221d009b8d496b78c8b"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a0649740479f47221d009b8d496b78c8b">amp</a> (a)</td></tr>
+<tr class="memdesc:a0649740479f47221d009b8d496b78c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the absolute value squared |a|**2  <a href="#a0649740479f47221d009b8d496b78c8b">More...</a><br /></td></tr>
+<tr class="separator:a0649740479f47221d009b8d496b78c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b408449683f6bcc96ee25d4bbc1aa8b"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a1b408449683f6bcc96ee25d4bbc1aa8b">abt</a> (i, j, ft, nspec)</td></tr>
+<tr class="memdesc:a1b408449683f6bcc96ee25d4bbc1aa8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates matrix elements Alpha-Beta**T  for M = (A B ) (B* A*) computes AB**T and returns the i,j-th element  <a href="#a1b408449683f6bcc96ee25d4bbc1aa8b">More...</a><br /></td></tr>
+<tr class="separator:a1b408449683f6bcc96ee25d4bbc1aa8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d0e54a1c7f830fd961f3c99d0a49b30"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a7d0e54a1c7f830fd961f3c99d0a49b30">bbd</a> (i, j, ft, nspec)</td></tr>
+<tr class="memdesc:a7d0e54a1c7f830fd961f3c99d0a49b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the matrix elements Beta*Beta**H  for M = (A B ) (B* A*) computes B*B**H (Hermitian conjg) and returns the i,j-th element  <a href="#a7d0e54a1c7f830fd961f3c99d0a49b30">More...</a><br /></td></tr>
+<tr class="separator:a7d0e54a1c7f830fd961f3c99d0a49b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefda61530c80eccf75e7065015af413d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#aefda61530c80eccf75e7065015af413d">alloc_temparrays</a> (nspace, nspec)</td></tr>
+<tr class="memdesc:aefda61530c80eccf75e7065015af413d"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocates temp arrays for matrices  <a href="#aefda61530c80eccf75e7065015af413d">More...</a><br /></td></tr>
 <tr class="separator:aefda61530c80eccf75e7065015af413d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab212aad9e53b7ae643456f9bc0b68cb"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#aab212aad9e53b7ae643456f9bc0b68cb">dealloc_temparrays</a></td></tr>
+<tr class="separator:aab212aad9e53b7ae643456f9bc0b68cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -85,6 +103,58 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>module for building symplectic matrices for optical elements </p>
 </div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a1b408449683f6bcc96ee25d4bbc1aa8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b408449683f6bcc96ee25d4bbc1aa8b">&#9670;&nbsp;</a></span>abt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function makeopticalelements::abt </td>
+          <td>(</td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(in), allocatable&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>nspec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculates matrix elements Alpha-Beta**T  for M = (A B ) (B* A*) computes AB**T and returns the i,j-th element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>input index 1 </td></tr>
+    <tr><td class="paramname">j</td><td>input index 2 </td></tr>
+    <tr><td class="paramname">ft</td><td>input symplectic transform matrix for the optical circuit </td></tr>
+    <tr><td class="paramname">nspec</td><td>input number of spectral DOF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>check this </dd></dl>
+
+</div>
+</div>
 <a id="aefda61530c80eccf75e7065015af413d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aefda61530c80eccf75e7065015af413d">&#9670;&nbsp;</a></span>alloc_temparrays()</h2>
 
@@ -110,6 +180,149 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>allocates temp arrays for matrices </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nspace</td><td>input </td></tr>
+    <tr><td class="paramname">nspec</td><td>input  allocates memory for ident_spec a spectral size matrix for tensor producting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>allocates mem for spatial_work, array size of spatial modes</p>
+<p>allocates mem for n_work, work array size of alpha or beta in sympectic matrix </p>
+
+</div>
+</div>
+<a id="a0649740479f47221d009b8d496b78c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0649740479f47221d009b8d496b78c8b">&#9670;&nbsp;</a></span>amp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=dp) function makeopticalelements::amp </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp)&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>returns the absolute value squared |a|**2 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>input complex number to be |a|**2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d0e54a1c7f830fd961f3c99d0a49b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0e54a1c7f830fd961f3c99d0a49b30">&#9670;&nbsp;</a></span>bbd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function makeopticalelements::bbd </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(in), allocatable&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>nspec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculates the matrix elements Beta*Beta**H  for M = (A B ) (B* A*) computes B*B**H (Hermitian conjg) and returns the i,j-th element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>input index 1 </td></tr>
+    <tr><td class="paramname">j</td><td>input index 2 </td></tr>
+    <tr><td class="paramname">ft</td><td>input symplectic transform matrix for the optical circuit </td></tr>
+    <tr><td class="paramname">nspec</td><td>input number of spectral DOF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>check this </dd></dl>
+
+</div>
+</div>
+<a id="aab212aad9e53b7ae643456f9bc0b68cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab212aad9e53b7ae643456f9bc0b68cb">&#9670;&nbsp;</a></span>dealloc_temparrays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine makeopticalelements::dealloc_temparrays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1a18704c55aa2efeb60157c81a80723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a18704c55aa2efeb60157c81a80723">&#9670;&nbsp;</a></span>g4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=dp) function makeopticalelements::g4 </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(in), allocatable&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>nspec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculates g4 using matrix elements sum  </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ft</td><td>input is the full symplectic transform </td></tr>
+    <tr><td class="paramname">nspec</td><td>input spectral DOF </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -174,6 +387,72 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6658c2ce879c0bc4b2e5918064a6a308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6658c2ce879c0bc4b2e5918064a6a308">&#9670;&nbsp;</a></span>make_sq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine makeopticalelements::make_sq </td>
+          <td>(</td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>nspace</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>nspec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), allocatable&#160;</td>
+          <td class="paramname"><em>symp_mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>m1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>m2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>alpha</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>beta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>make symplectic squeezing matrix from exponetiated JSA  a lot is broken... </p>
+<dl class="section note"><dt>Note</dt><dd>only works if modes are consectutive </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>alpha &amp; beta are 2 spatial modes and all spectral modes dim 2*nspace*nspec</dd></dl>
+<p>loop for alpha</p>
+<p>check this is legal... full diag sq symp_mat(m1s:m1s+nspec, m1s+n:m1s+nspec+n)=beta(1:nspec, 1+nspec:2*nspec)</p>
+<p>probably not legal symp_mat(m2s:m2s+nspec, m2s+n:m2s+nspec+n)=beta(nspec+1:2*nspec, 1:nspec)</p>
+<p>loop for beta, offset to col+n </p>
 
 </div>
 </div>

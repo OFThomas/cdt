@@ -104,11 +104,19 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a43175b11cfecf961b5e6e597cfb2f848"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a43175b11cfecf961b5e6e597cfb2f848">matrixnorm</a> (c)</td></tr>
 <tr class="memdesc:a43175b11cfecf961b5e6e597cfb2f848"><td class="mdescLeft">&#160;</td><td class="mdescRight">computed Frobenieus matrix norm of complex matrix using lapack zlange  <a href="#a43175b11cfecf961b5e6e597cfb2f848">More...</a><br /></td></tr>
 <tr class="separator:a43175b11cfecf961b5e6e597cfb2f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a309c2107f5d5071bb8c1bad4362f88e1"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(size(matrix, 1), size(matrix, 2))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a309c2107f5d5071bb8c1bad4362f88e1">expmatrix</a> (matrix, n)</td></tr>
+<tr class="separator:a309c2107f5d5071bb8c1bad4362f88e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af70533a90b595522cd1bf47b37a2319d"><td class="memItemLeft" align="right" valign="top">recursive complex(kind=dp) function, dimension(size(x, 1), size(x, 2))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#af70533a90b595522cd1bf47b37a2319d">matrixmul</a> (x, n)</td></tr>
+<tr class="separator:af70533a90b595522cd1bf47b37a2319d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e4f304a609e1d8c088778344f1aa67"><td class="memItemLeft" align="right" valign="top">recursive real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#ad0e4f304a609e1d8c088778344f1aa67">factorial</a> (n)</td></tr>
+<tr class="separator:ad0e4f304a609e1d8c088778344f1aa67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a106e09303fbf05972f0635ff67f73c9d"><td class="memItemLeft" align="right" valign="top">real(kind=dp), parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a106e09303fbf05972f0635ff67f73c9d">pi</a> =4.0_dp*atan(1.0)</td></tr>
 <tr class="separator:a106e09303fbf05972f0635ff67f73c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a22d30625256a14acc49cd749e88cb7"><td class="memItemLeft" align="right" valign="top">complex(kind=dp), parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a0a22d30625256a14acc49cd749e88cb7">imaginary</a> =(0.0_dp, 1.0_dp)</td></tr>
+<tr class="separator:a0a22d30625256a14acc49cd749e88cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="af0119bd404337367bc0727decf6dd89c"></a>
@@ -396,6 +404,86 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a309c2107f5d5071bb8c1bad4362f88e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a309c2107f5d5071bb8c1bad4362f88e1">&#9670;&nbsp;</a></span>expmatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function, dimension(size(matrix,1),size(matrix,2)) olis_f90stdlib::expmatrix </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:)&#160;</td>
+          <td class="paramname"><em>matrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>is the number of terms in taylor expansion to consider </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad0e4f304a609e1d8c088778344f1aa67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0e4f304a609e1d8c088778344f1aa67">&#9670;&nbsp;</a></span>factorial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">recursive real(kind=dp) function olis_f90stdlib::factorial </td>
+          <td>(</td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af70533a90b595522cd1bf47b37a2319d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af70533a90b595522cd1bf47b37a2319d">&#9670;&nbsp;</a></span>matrixmul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">recursive complex(kind=dp) function, dimension(size(x,1),size(x,2)) olis_f90stdlib::matrixmul </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:)&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a43175b11cfecf961b5e6e597cfb2f848"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a43175b11cfecf961b5e6e597cfb2f848">&#9670;&nbsp;</a></span>matrixnorm()</h2>
 
@@ -567,6 +655,20 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a0a22d30625256a14acc49cd749e88cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a22d30625256a14acc49cd749e88cb7">&#9670;&nbsp;</a></span>imaginary</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp), parameter olis_f90stdlib::imaginary =(0.0_dp, 1.0_dp)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a106e09303fbf05972f0635ff67f73c9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a106e09303fbf05972f0635ff67f73c9d">&#9670;&nbsp;</a></span>pi</h2>
 

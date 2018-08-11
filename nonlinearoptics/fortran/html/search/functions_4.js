@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['num_5fhom',['num_hom',['../num__hom_8f90.html#a7dae3af56c12300a9c9fb1deb246e6e7',1,'num_hom.f90']]]
+  ['expmatrix',['expmatrix',['../namespaceolis__f90stdlib.html#a309c2107f5d5071bb8c1bad4362f88e1',1,'olis_f90stdlib']]]
 ];

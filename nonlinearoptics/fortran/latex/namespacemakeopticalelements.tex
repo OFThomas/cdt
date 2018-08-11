@@ -10,7 +10,19 @@ module for building symplectic matrices for optical elements
 \item 
 subroutine \hyperlink{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}{make\+\_\+bs} (nspace, nspec, symp\+\_\+mat, m1, m2, theta)
 \begin{DoxyCompactList}\small\item\em makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident\+\_\+spec, spatial\+\_\+work, n\+\_\+work arrays \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacemakeopticalelements_a6658c2ce879c0bc4b2e5918064a6a308}{make\+\_\+sq} (nspace, nspec, symp\+\_\+mat, m1, m2, alpha, beta)
+\begin{DoxyCompactList}\small\item\em make symplectic squeezing matrix from exponetiated J\+SA  a lot is broken... \end{DoxyCompactList}\item 
+real(kind=dp) function \hyperlink{namespacemakeopticalelements_af1a18704c55aa2efeb60157c81a80723}{g4} (ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates g4 using matrix elements sum  \end{DoxyCompactList}\item 
+real(kind=dp) function \hyperlink{namespacemakeopticalelements_a0649740479f47221d009b8d496b78c8b}{amp} (a)
+\begin{DoxyCompactList}\small\item\em returns the absolute value squared $\vert$a$\vert$$\ast$$\ast$2 \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_a1b408449683f6bcc96ee25d4bbc1aa8b}{abt} (i, j, ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates matrix elements Alpha-\/\+Beta$\ast$$\ast$T  for M = (A B ) (B$\ast$ A$\ast$) computes A\+B$\ast$$\ast$T and returns the i,j-\/th element \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_a7d0e54a1c7f830fd961f3c99d0a49b30}{bbd} (i, j, ft, nspec)
+\begin{DoxyCompactList}\small\item\em calculates the matrix elements Beta$\ast$\+Beta$\ast$$\ast$H  for M = (A B ) (B$\ast$ A$\ast$) computes B$\ast$\+B$\ast$$\ast$H (Hermitian conjg) and returns the i,j-\/th element \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}{alloc\+\_\+temparrays} (nspace, nspec)
+\begin{DoxyCompactList}\small\item\em allocates temp arrays for matrices \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacemakeopticalelements_aab212aad9e53b7ae643456f9bc0b68cb}{dealloc\+\_\+temparrays}
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -23,12 +35,109 @@ real(kind=dp), public \hyperlink{namespacemakeopticalelements_ab4e48a98a0fb0756b
 module for building symplectic matrices for optical elements 
 
 \subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemakeopticalelements_a1b408449683f6bcc96ee25d4bbc1aa8b}\label{namespacemakeopticalelements_a1b408449683f6bcc96ee25d4bbc1aa8b}} 
+\index{makeopticalelements@{makeopticalelements}!abt@{abt}}
+\index{abt@{abt}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{abt()}{abt()}}
+{\footnotesize\ttfamily complex(kind=dp) function makeopticalelements\+::abt (\begin{DoxyParamCaption}\item[{integer}]{i,  }\item[{integer}]{j,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(in), allocatable}]{ft,  }\item[{integer}]{nspec }\end{DoxyParamCaption})}
+
+
+
+calculates matrix elements Alpha-\/\+Beta$\ast$$\ast$T  for M = (A B ) (B$\ast$ A$\ast$) computes A\+B$\ast$$\ast$T and returns the i,j-\/th element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & input index 1 \\
+\hline
+{\em j} & input index 2 \\
+\hline
+{\em ft} & input symplectic transform matrix for the optical circuit \\
+\hline
+{\em nspec} & input number of spectral D\+OF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]check this \end{DoxyRefDesc}
 \mbox{\Hypertarget{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}\label{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}} 
 \index{makeopticalelements@{makeopticalelements}!alloc\+\_\+temparrays@{alloc\+\_\+temparrays}}
 \index{alloc\+\_\+temparrays@{alloc\+\_\+temparrays}!makeopticalelements@{makeopticalelements}}
 \subsubsection{\texorpdfstring{alloc\+\_\+temparrays()}{alloc\_temparrays()}}
 {\footnotesize\ttfamily subroutine makeopticalelements\+::alloc\+\_\+temparrays (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{nspace,  }\item[{integer, intent(in)}]{nspec }\end{DoxyParamCaption})}
 
+
+
+allocates temp arrays for matrices 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nspace} & input \\
+\hline
+{\em nspec} & input  allocates memory for ident\+\_\+spec a spectral size matrix for tensor producting.\\
+\hline
+\end{DoxyParams}
+allocates mem for spatial\+\_\+work, array size of spatial modes
+
+allocates mem for n\+\_\+work, work array size of alpha or beta in sympectic matrix \mbox{\Hypertarget{namespacemakeopticalelements_a0649740479f47221d009b8d496b78c8b}\label{namespacemakeopticalelements_a0649740479f47221d009b8d496b78c8b}} 
+\index{makeopticalelements@{makeopticalelements}!amp@{amp}}
+\index{amp@{amp}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{amp()}{amp()}}
+{\footnotesize\ttfamily real(kind=dp) function makeopticalelements\+::amp (\begin{DoxyParamCaption}\item[{complex(kind=dp)}]{a }\end{DoxyParamCaption})}
+
+
+
+returns the absolute value squared $\vert$a$\vert$$\ast$$\ast$2 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & input complex number to be $\vert$a$\vert$$\ast$$\ast$2 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemakeopticalelements_a7d0e54a1c7f830fd961f3c99d0a49b30}\label{namespacemakeopticalelements_a7d0e54a1c7f830fd961f3c99d0a49b30}} 
+\index{makeopticalelements@{makeopticalelements}!bbd@{bbd}}
+\index{bbd@{bbd}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{bbd()}{bbd()}}
+{\footnotesize\ttfamily complex(kind=dp) function makeopticalelements\+::bbd (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{i,  }\item[{integer, intent(in)}]{j,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(in), allocatable}]{ft,  }\item[{integer, intent(in)}]{nspec }\end{DoxyParamCaption})}
+
+
+
+calculates the matrix elements Beta$\ast$\+Beta$\ast$$\ast$H  for M = (A B ) (B$\ast$ A$\ast$) computes B$\ast$\+B$\ast$$\ast$H (Hermitian conjg) and returns the i,j-\/th element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & input index 1 \\
+\hline
+{\em j} & input index 2 \\
+\hline
+{\em ft} & input symplectic transform matrix for the optical circuit \\
+\hline
+{\em nspec} & input number of spectral D\+OF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]check this \end{DoxyRefDesc}
+\mbox{\Hypertarget{namespacemakeopticalelements_aab212aad9e53b7ae643456f9bc0b68cb}\label{namespacemakeopticalelements_aab212aad9e53b7ae643456f9bc0b68cb}} 
+\index{makeopticalelements@{makeopticalelements}!dealloc\+\_\+temparrays@{dealloc\+\_\+temparrays}}
+\index{dealloc\+\_\+temparrays@{dealloc\+\_\+temparrays}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{dealloc\+\_\+temparrays()}{dealloc\_temparrays()}}
+{\footnotesize\ttfamily subroutine makeopticalelements\+::dealloc\+\_\+temparrays (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacemakeopticalelements_af1a18704c55aa2efeb60157c81a80723}\label{namespacemakeopticalelements_af1a18704c55aa2efeb60157c81a80723}} 
+\index{makeopticalelements@{makeopticalelements}!g4@{g4}}
+\index{g4@{g4}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{g4()}{g4()}}
+{\footnotesize\ttfamily real(kind=dp) function makeopticalelements\+::g4 (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in), allocatable}]{ft,  }\item[{integer, intent(in)}]{nspec }\end{DoxyParamCaption})}
+
+
+
+calculates g4 using matrix elements sum  
+
+
+\begin{DoxyParams}{Parameters}
+{\em ft} & input is the full symplectic transform \\
+\hline
+{\em nspec} & input spectral D\+OF \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}\label{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}} 
 \index{makeopticalelements@{makeopticalelements}!make\+\_\+bs@{make\+\_\+bs}}
 \index{make\+\_\+bs@{make\+\_\+bs}!makeopticalelements@{makeopticalelements}}
@@ -52,7 +161,29 @@ makes beamsplitter symplectic matrix  takes in an allocated matrix for the beams
 {\em m2} & is spatial mode 2 for beam splitter \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{namespacemakeopticalelements_a6658c2ce879c0bc4b2e5918064a6a308}\label{namespacemakeopticalelements_a6658c2ce879c0bc4b2e5918064a6a308}} 
+\index{makeopticalelements@{makeopticalelements}!make\+\_\+sq@{make\+\_\+sq}}
+\index{make\+\_\+sq@{make\+\_\+sq}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{make\+\_\+sq()}{make\_sq()}}
+{\footnotesize\ttfamily subroutine makeopticalelements\+::make\+\_\+sq (\begin{DoxyParamCaption}\item[{integer}]{nspace,  }\item[{integer}]{nspec,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{symp\+\_\+mat,  }\item[{integer}]{m1,  }\item[{integer}]{m2,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout)}]{alpha,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout)}]{beta }\end{DoxyParamCaption})}
 
+
+
+make symplectic squeezing matrix from exponetiated J\+SA  a lot is broken... 
+
+\begin{DoxyNote}{Note}
+only works if modes are consectutive 
+\end{DoxyNote}
+\begin{DoxyNote}{Note}
+alpha \& beta are 2 spatial modes and all spectral modes dim 2$\ast$nspace$\ast$nspec
+\end{DoxyNote}
+loop for alpha
+
+check this is legal... full diag sq symp\+\_\+mat(m1s\+:m1s+nspec, m1s+n\+:m1s+nspec+n)=beta(1\+:nspec, 1+nspec\+:2$\ast$nspec)
+
+probably not legal symp\+\_\+mat(m2s\+:m2s+nspec, m2s+n\+:m2s+nspec+n)=beta(nspec+1\+:2$\ast$nspec, 1\+:nspec)
+
+loop for beta, offset to col+n 
 
 \subsection{Variable Documentation}
 \mbox{\Hypertarget{namespacemakeopticalelements_ab4e48a98a0fb0756bb4eff6ece9623a8}\label{namespacemakeopticalelements_ab4e48a98a0fb0756bb4eff6ece9623a8}} 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ident',['ident',['../namespacemakeopticalelements.html#ab4e48a98a0fb0756bb4eff6ece9623a8',1,'makeopticalelements']]]
+  ['dealloc_5ftemparrays',['dealloc_temparrays',['../namespacemakeopticalelements.html#aab212aad9e53b7ae643456f9bc0b68cb',1,'makeopticalelements']]]
 ];

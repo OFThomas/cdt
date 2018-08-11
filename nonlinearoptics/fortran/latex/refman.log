@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.7.7)  11 AUG 2018 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.7.7)  11 AUG 2018 23:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1192,7 +1192,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 8.
+(Font)              scaled to size 6.29996pt on input line 9.
  [1
 
 ])
@@ -1215,6 +1215,13 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 141.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 18.66588pt on input line 141.
+(./todo.tex) [1
+
+
+] [2
+
+]
+Chapter 2.
 (./namespaces.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
@@ -1222,17 +1229,14 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-) [1
-
-
-] [2
-
-]
-Chapter 2.
-(./files.tex) [3] [4
+) [3] [4
 
 ]
 Chapter 3.
+(./files.tex) [5] [6
+
+]
+Chapter 4.
 (./namespacemakeopticalelements.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 8.
@@ -1260,80 +1264,116 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.29996pt on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 29.
+(Font)              scaled to size 8.99994pt on input line 41.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 30.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 30.
+(Font)              scaled to size 7.19995pt on input line 42.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 42.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 30.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 42.
+ [7] [8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 36.
- [5])
-(./namespaceolis__f90stdlib.tex [6]
-Underfull \hbox (badness 10000) detected at line 48
-[][][]
- []
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 145.
 
-[7] [8]
-Underfull \hbox (badness 10000) detected at line 134
+Underfull \hbox (badness 10000) detected at line 174
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 158
+Underfull \hbox (badness 10000) detected at line 177
 [][][]
  []
 
-[9]
-Overfull \vbox (7.33153pt too high) has occurred while \output is active []
+[10]) (./namespaceolis__f90stdlib.tex [11]
+Underfull \hbox (badness 10000) detected at line 56
+[][][]
+ []
+
+[12]
+Underfull \hbox (badness 10000) detected at line 142
+[][][]
+ []
+
+[13]
+Underfull \hbox (badness 10000) detected at line 166
+[][][]
+ []
 
 
-[10]) [11] [12
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
+\T1/pcr/m/n/8 complex(kind=dp) function, dimension(size(matrix,1),size(matrix,2
+)) olis[]_[]f90stdlib[]::expmatrix
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+\T1/pcr/m/n/8 recursive complex(kind=dp) function, dimension(size(x,1),size(x,2
+)) olis[]_[]f90stdlib[]::matrixmul
+ []
+
+[15]) [16] [17] [18
 
 ]
-Chapter 4.
-(./makeopticalelements_8f90.tex) (./num__hom_8f90.tex [13])
-(./olis__f90stdlib_8f90.tex) [14] (./refman.ind [15
+Chapter 5.
+(./makeopticalelements_8f90.tex) (./num__hom_8f90.tex [19]
+Underfull \hbox (badness 10000) detected at line 23
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 32
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+[20]) (./olis__f90stdlib_8f90.tex [21]) [22] (./refman.ind [23
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 162.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 162.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 186172410B5F4BBB717E8DE4A3AE1486;6818.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 162.
+(rerunfilecheck)             Checksum: E0EB0F7495A3BD002E9C8B4EA6A5582C;8601.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
  ) 
 Here is how much of TeX's memory you used:
- 14973 strings out of 494923
- 213089 string characters out of 6180743
- 301785 words of memory out of 5000000
- 17931 multiletter control sequences out of 15000+600000
- 65101 words of font info for 82 fonts, out of 8000000 for 9000
+ 15058 strings out of 494923
+ 215164 string characters out of 6180743
+ 303709 words of memory out of 5000000
+ 17969 multiletter control sequences out of 15000+600000
+ 66860 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,607b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,608b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
-ier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (19 pages, 125172 bytes).
+ublic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (27 pages, 148134 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 436 compressed objects within 5 object streams
- 101 named destinations out of 1000 (max. 500000)
- 289 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 640 PDF objects out of 1000 (max. 8388607)
+ 591 compressed objects within 6 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 377 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,90 +1,132 @@
 \begin{theindex}
 
+  \item {abt}
+    \subitem {makeopticalelements}, \hyperpage{8}
   \item {alloc\+\_\+complex\+\_\+eigenvects}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{7}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{12}
   \item {alloc\+\_\+complex\+\_\+svd}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{7}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{12}
   \item {alloc\+\_\+temparrays}
-    \subitem {makeopticalelements}, \hyperpage{5}
+    \subitem {makeopticalelements}, \hyperpage{8}
+  \item {amp}
+    \subitem {makeopticalelements}, \hyperpage{8}
+
+  \indexspace
+
+  \item {bbd}
+    \subitem {makeopticalelements}, \hyperpage{9}
 
   \indexspace
 
   \item {c\+\_\+identity}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{8}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{12}
   \item {c\+\_\+inv2}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{8}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{13}
   \item {complex\+\_\+eigenvects}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{8}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{13}
   \item {complex\+\_\+svd}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{9}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{13}
   \item {complextrace}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{9}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{14}
+
+  \indexspace
+
+  \item {dealloc\+\_\+temparrays}
+    \subitem {makeopticalelements}, \hyperpage{9}
+
+  \indexspace
+
+  \item {expmatrix}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{14}
 
   \indexspace
 
   \item {f}
-    \subitem {num\+\_\+hom.\+f90}, \hyperpage{13}
+    \subitem {num\+\_\+hom.\+f90}, \hyperpage{20}
+  \item {factorial}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{14}
+
+  \indexspace
+
+  \item {g4}
+    \subitem {makeopticalelements}, \hyperpage{9}
 
   \indexspace
 
   \item {ident}
-    \subitem {makeopticalelements}, \hyperpage{6}
+    \subitem {makeopticalelements}, \hyperpage{11}
+  \item {imaginary}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{16}
 
   \indexspace
 
   \item {make\+\_\+bs}
-    \subitem {makeopticalelements}, \hyperpage{5}
-  \item {makeopticalelements}, \hyperpage{5}
-    \subitem {alloc\+\_\+temparrays}, \hyperpage{5}
-    \subitem {ident}, \hyperpage{6}
-    \subitem {make\+\_\+bs}, \hyperpage{5}
-  \item {makeopticalelements.\+f90}, \hyperpage{13}
+    \subitem {makeopticalelements}, \hyperpage{10}
+  \item {make\+\_\+sq}
+    \subitem {makeopticalelements}, \hyperpage{10}
+  \item {makeopticalelements}, \hyperpage{7}
+    \subitem {abt}, \hyperpage{8}
+    \subitem {alloc\+\_\+temparrays}, \hyperpage{8}
+    \subitem {amp}, \hyperpage{8}
+    \subitem {bbd}, \hyperpage{9}
+    \subitem {dealloc\+\_\+temparrays}, \hyperpage{9}
+    \subitem {g4}, \hyperpage{9}
+    \subitem {ident}, \hyperpage{11}
+    \subitem {make\+\_\+bs}, \hyperpage{10}
+    \subitem {make\+\_\+sq}, \hyperpage{10}
+  \item {makeopticalelements.\+f90}, \hyperpage{19}
+  \item {matrixmul}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{15}
   \item {matrixnorm}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{10}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{15}
 
   \indexspace
 
   \item {num\+\_\+hom}
-    \subitem {num\+\_\+hom.\+f90}, \hyperpage{14}
-  \item {num\+\_\+hom.\+f90}, \hyperpage{13}
-    \subitem {f}, \hyperpage{13}
-    \subitem {num\+\_\+hom}, \hyperpage{14}
+    \subitem {num\+\_\+hom.\+f90}, \hyperpage{21}
+  \item {num\+\_\+hom.\+f90}, \hyperpage{20}
+    \subitem {f}, \hyperpage{20}
+    \subitem {num\+\_\+hom}, \hyperpage{21}
 
   \indexspace
 
-  \item {olis\+\_\+f90stdlib}, \hyperpage{6}
-    \subitem {alloc\+\_\+complex\+\_\+eigenvects}, \hyperpage{7}
-    \subitem {alloc\+\_\+complex\+\_\+svd}, \hyperpage{7}
-    \subitem {c\+\_\+identity}, \hyperpage{8}
-    \subitem {c\+\_\+inv2}, \hyperpage{8}
-    \subitem {complex\+\_\+eigenvects}, \hyperpage{8}
-    \subitem {complex\+\_\+svd}, \hyperpage{9}
-    \subitem {complextrace}, \hyperpage{9}
-    \subitem {matrixnorm}, \hyperpage{10}
-    \subitem {outerproduct}, \hyperpage{10}
-    \subitem {pi}, \hyperpage{11}
-    \subitem {printvectors}, \hyperpage{10}
-    \subitem {randseed}, \hyperpage{11}
-    \subitem {tprod}, \hyperpage{11}
-  \item {olis\+\_\+f90stdlib.\+f90}, \hyperpage{14}
+  \item {olis\+\_\+f90stdlib}, \hyperpage{11}
+    \subitem {alloc\+\_\+complex\+\_\+eigenvects}, \hyperpage{12}
+    \subitem {alloc\+\_\+complex\+\_\+svd}, \hyperpage{12}
+    \subitem {c\+\_\+identity}, \hyperpage{12}
+    \subitem {c\+\_\+inv2}, \hyperpage{13}
+    \subitem {complex\+\_\+eigenvects}, \hyperpage{13}
+    \subitem {complex\+\_\+svd}, \hyperpage{13}
+    \subitem {complextrace}, \hyperpage{14}
+    \subitem {expmatrix}, \hyperpage{14}
+    \subitem {factorial}, \hyperpage{14}
+    \subitem {imaginary}, \hyperpage{16}
+    \subitem {matrixmul}, \hyperpage{15}
+    \subitem {matrixnorm}, \hyperpage{15}
+    \subitem {outerproduct}, \hyperpage{15}
+    \subitem {pi}, \hyperpage{16}
+    \subitem {printvectors}, \hyperpage{15}
+    \subitem {randseed}, \hyperpage{16}
+    \subitem {tprod}, \hyperpage{16}
+  \item {olis\+\_\+f90stdlib.\+f90}, \hyperpage{21}
   \item {outerproduct}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{10}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{15}
 
   \indexspace
 
   \item {pi}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{11}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{16}
   \item {printvectors}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{10}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{15}
 
   \indexspace
 
   \item {randseed}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{11}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{16}
 
   \indexspace
 
   \item {tprod}
-    \subitem {olis\+\_\+f90stdlib}, \hyperpage{11}
+    \subitem {olis\+\_\+f90stdlib}, \hyperpage{16}
 
 \end{theindex}

@@ -26,11 +26,19 @@ subroutine \hyperlink{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}{c\+\_\+inv2} (m\+\_\+in)
 \begin{DoxyCompactList}\small\item\em inverse for a complex 2x2 matrix \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{matrixnorm} (c)
-\begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(size(matrix, 1), size(matrix, 2)) \hyperlink{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}{expmatrix} (matrix, n)
+\item 
+recursive complex(kind=dp) function, dimension(size(x, 1), size(x, 2)) \hyperlink{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}{matrixmul} (x, n)
+\item 
+recursive real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}{factorial} (n)
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 real(kind=dp), parameter \hyperlink{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}{pi} =4.\+0\+\_\+dp$\ast$atan(1.\+0)
+\item 
+complex(kind=dp), parameter \hyperlink{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}{imaginary} =(0.\+0\+\_\+dp, 1.\+0\+\_\+dp)
 \end{DoxyCompactItemize}
 
 
@@ -173,6 +181,29 @@ computes the trace of a complex matrix
 {\em a} & is the complex matrix in \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}\label{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!expmatrix@{expmatrix}}
+\index{expmatrix@{expmatrix}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{expmatrix()}{expmatrix()}}
+{\footnotesize\ttfamily complex(kind=dp) function, dimension(size(matrix,1),size(matrix,2)) olis\+\_\+f90stdlib\+::expmatrix (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{matrix,  }\item[{integer}]{n }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & is the number of terms in taylor expansion to consider \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}\label{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!factorial@{factorial}}
+\index{factorial@{factorial}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{factorial()}{factorial()}}
+{\footnotesize\ttfamily recursive real(kind=dp) function olis\+\_\+f90stdlib\+::factorial (\begin{DoxyParamCaption}\item[{integer}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}\label{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!matrixmul@{matrixmul}}
+\index{matrixmul@{matrixmul}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{matrixmul()}{matrixmul()}}
+{\footnotesize\ttfamily recursive complex(kind=dp) function, dimension(size(x,1),size(x,2)) olis\+\_\+f90stdlib\+::matrixmul (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{x,  }\item[{integer}]{n }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}\label{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!matrixnorm@{matrixnorm}}
 \index{matrixnorm@{matrixnorm}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
@@ -259,6 +290,12 @@ tensor product for complex matrices a\+Xb
 
 
 \subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}\label{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!imaginary@{imaginary}}
+\index{imaginary@{imaginary}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{imaginary}{imaginary}}
+{\footnotesize\ttfamily complex(kind=dp), parameter olis\+\_\+f90stdlib\+::imaginary =(0.\+0\+\_\+dp, 1.\+0\+\_\+dp)}
+
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}\label{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!pi@{pi}}
 \index{pi@{pi}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}

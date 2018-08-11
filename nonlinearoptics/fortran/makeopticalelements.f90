@@ -174,10 +174,10 @@ function g4(ft, nspec)
 real(kind=dp) :: g4
 complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
 integer, intent(in) :: nspec
-real(kind=dp), dimension(6) :: term
+complex(kind=dp), dimension(6) :: term
 complex(kind=dp) :: gam21, gam43, gam32, gam41, gam31, gam42
-real(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
-real(kind=dp) :: gam, bdiag
+complex(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
+complex(kind=dp) :: gam, bdiag
 g4=0.0_dp
 
 !print*, 'did abt'
@@ -188,7 +188,7 @@ gam41 = abt(4,1,ft, nspec)
 gam31 = abt(3,1,ft, nspec)
 gam42 = abt(4,2,ft, nspec)
 
-gam=amp(gam21*gam41 + gam32*gam41 + gam31*gam42)
+gam=amp(gam21*gam43 + gam32*gam41 + gam31*gam42)
 
 bbdag11 = bbd(1,1,ft, nspec)
 bbdag22 = bbd(2,2,ft, nspec)
@@ -198,14 +198,14 @@ bbdag44 = bbd(4,4,ft, nspec)
 !print*, 'gam21 abt'
 bdiag= bbdag11*bbdag22*bbdag33*bbdag44
 
-term(1) = amp(gam21) * bbdag33 * bbdag22
+term(1) = amp(gam21) * bbdag44 * bbdag33
 term(2) = amp(gam32) * bbdag11 * bbdag44
 term(3) = amp(gam31) * bbdag22 * bbdag44
 term(4) = amp(gam43) * bbdag11 * bbdag22
 term(5) = amp(gam42) * bbdag11 * bbdag33
 term(6) = amp(gam41) * bbdag22 * bbdag33
 
-g4 = gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6)
+g4 = real((gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6)),kind=dp)
 print*, 'gam', gam, 'bdiag', bdiag
 end function g4
 
