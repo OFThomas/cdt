@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printvectors',['printvectors',['../namespaceolis__f90stdlib.html#a9780b39329025edfdef71ce07e250808',1,'olis_f90stdlib']]]
+  ['num_5fhom',['num_hom',['../num__hom_8f90.html#a7dae3af56c12300a9c9fb1deb246e6e7',1,'num_hom.f90']]]
 ];

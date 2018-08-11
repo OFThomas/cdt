@@ -1,0 +1,63 @@
+\hypertarget{namespacemakeopticalelements}{}\section{makeopticalelements Module Reference}
+\label{namespacemakeopticalelements}\index{makeopticalelements@{makeopticalelements}}
+
+
+module for building symplectic matrices for optical elements  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}{make\+\_\+bs} (nspace, nspec, symp\+\_\+mat, m1, m2, theta)
+\begin{DoxyCompactList}\small\item\em makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident\+\_\+spec, spatial\+\_\+work, n\+\_\+work arrays \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}{alloc\+\_\+temparrays} (nspace, nspec)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(kind=dp), public \hyperlink{namespacemakeopticalelements_ab4e48a98a0fb0756bb4eff6ece9623a8}{ident}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+module for building symplectic matrices for optical elements 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}\label{namespacemakeopticalelements_aefda61530c80eccf75e7065015af413d}} 
+\index{makeopticalelements@{makeopticalelements}!alloc\+\_\+temparrays@{alloc\+\_\+temparrays}}
+\index{alloc\+\_\+temparrays@{alloc\+\_\+temparrays}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{alloc\+\_\+temparrays()}{alloc\_temparrays()}}
+{\footnotesize\ttfamily subroutine makeopticalelements\+::alloc\+\_\+temparrays (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{nspace,  }\item[{integer, intent(in)}]{nspec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}\label{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a144f}} 
+\index{makeopticalelements@{makeopticalelements}!make\+\_\+bs@{make\+\_\+bs}}
+\index{make\+\_\+bs@{make\+\_\+bs}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{make\+\_\+bs()}{make\_bs()}}
+{\footnotesize\ttfamily subroutine makeopticalelements\+::make\+\_\+bs (\begin{DoxyParamCaption}\item[{integer}]{nspace,  }\item[{integer}]{nspec,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{symp\+\_\+mat,  }\item[{integer}]{m1,  }\item[{integer}]{m2,  }\item[{real(kind=dp)}]{theta }\end{DoxyParamCaption})}
+
+
+
+makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident\+\_\+spec, spatial\+\_\+work, n\+\_\+work arrays 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nspace} & is number of total spatial modes \\
+\hline
+{\em nspec} & is number of total spectral modes \\
+\hline
+{\em m\+\_\+bs} & allocated n$\ast$n matrix for beamsplitter \\
+\hline
+{\em m1} & is spatial mode 1 for beam splitter \\
+\hline
+{\em m2} & is spatial mode 2 for beam splitter \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemakeopticalelements_ab4e48a98a0fb0756bb4eff6ece9623a8}\label{namespacemakeopticalelements_ab4e48a98a0fb0756bb4eff6ece9623a8}} 
+\index{makeopticalelements@{makeopticalelements}!ident@{ident}}
+\index{ident@{ident}!makeopticalelements@{makeopticalelements}}
+\subsubsection{\texorpdfstring{ident}{ident}}
+{\footnotesize\ttfamily real(kind=dp), public makeopticalelements\+::ident}
+

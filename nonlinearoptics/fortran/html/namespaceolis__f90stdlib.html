@@ -59,7 +59,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions/Subroutines</a>  </div>
+<a href="#func-members">Functions/Subroutines</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">olis_f90stdlib Module Reference</div>  </div>
 </div><!--header-->
@@ -76,12 +77,18 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a560e235cbabaf74da88a2ec97eda5628"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a560e235cbabaf74da88a2ec97eda5628">randseed</a> (seed)</td></tr>
 <tr class="memdesc:a560e235cbabaf74da88a2ec97eda5628"><td class="mdescLeft">&#160;</td><td class="mdescRight">generates random seed  <a href="#a560e235cbabaf74da88a2ec97eda5628">More...</a><br /></td></tr>
 <tr class="separator:a560e235cbabaf74da88a2ec97eda5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9780b39329025edfdef71ce07e250808"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a9780b39329025edfdef71ce07e250808">printvectors</a> (vect, desc, f)</td></tr>
+<tr class="memitem:a9780b39329025edfdef71ce07e250808"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a9780b39329025edfdef71ce07e250808">printvectors</a> (vect, desc, <a class="el" href="num__hom_8f90.html#a2ea4612463aead6dff28d647f3800909">f</a>)</td></tr>
 <tr class="memdesc:a9780b39329025edfdef71ce07e250808"><td class="mdescLeft">&#160;</td><td class="mdescRight">print formatted matrices  can take optional args for labels or write directly to a file  <a href="#a9780b39329025edfdef71ce07e250808">More...</a><br /></td></tr>
 <tr class="separator:a9780b39329025edfdef71ce07e250808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b646e61678500e78a9c48747a07bdf0"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(2, 2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a9b646e61678500e78a9c48747a07bdf0">outerproduct</a> (a, b)</td></tr>
 <tr class="memdesc:a9b646e61678500e78a9c48747a07bdf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">outerproduct of two complex vectors, returns a complex matrix  <a href="#a9b646e61678500e78a9c48747a07bdf0">More...</a><br /></td></tr>
 <tr class="separator:a9b646e61678500e78a9c48747a07bdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff3837ae1f9273552a2716064a46fce"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(n, n)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a2ff3837ae1f9273552a2716064a46fce">c_identity</a> (n)</td></tr>
+<tr class="memdesc:a2ff3837ae1f9273552a2716064a46fce"><td class="mdescLeft">&#160;</td><td class="mdescRight">makes complex identity matrix dim (nxn)  <a href="#a2ff3837ae1f9273552a2716064a46fce">More...</a><br /></td></tr>
+<tr class="separator:a2ff3837ae1f9273552a2716064a46fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af055cdf442d596810974e4f63eaeb119"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#af055cdf442d596810974e4f63eaeb119">tprod</a> (a, b)</td></tr>
+<tr class="memdesc:af055cdf442d596810974e4f63eaeb119"><td class="mdescLeft">&#160;</td><td class="mdescRight">tensor product for complex matrices aXb  <a href="#af055cdf442d596810974e4f63eaeb119">More...</a><br /></td></tr>
+<tr class="separator:af055cdf442d596810974e4f63eaeb119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#aaa6e9aabcf33a6f7052e1db5aa5dcf70">complextrace</a> (a)</td></tr>
 <tr class="memdesc:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes the trace of a complex matrix  <a href="#aaa6e9aabcf33a6f7052e1db5aa5dcf70">More...</a><br /></td></tr>
 <tr class="separator:aaa6e9aabcf33a6f7052e1db5aa5dcf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,6 +104,11 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a43175b11cfecf961b5e6e597cfb2f848"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a43175b11cfecf961b5e6e597cfb2f848">matrixnorm</a> (c)</td></tr>
 <tr class="memdesc:a43175b11cfecf961b5e6e597cfb2f848"><td class="mdescLeft">&#160;</td><td class="mdescRight">computed Frobenieus matrix norm of complex matrix using lapack zlange  <a href="#a43175b11cfecf961b5e6e597cfb2f848">More...</a><br /></td></tr>
 <tr class="separator:a43175b11cfecf961b5e6e597cfb2f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a106e09303fbf05972f0635ff67f73c9d"><td class="memItemLeft" align="right" valign="top">real(kind=dp), parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceolis__f90stdlib.html#a106e09303fbf05972f0635ff67f73c9d">pi</a> =4.0_dp*atan(1.0)</td></tr>
+<tr class="separator:a106e09303fbf05972f0635ff67f73c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="af0119bd404337367bc0727decf6dd89c"></a>
@@ -196,6 +208,32 @@ Functions/Subroutines</h2></td></tr>
     <tr><td class="paramname">sigma</td><td>real vector of singular values sorted in descending order </td></tr>
     <tr><td class="paramname">u</td><td>unitary matrix </td></tr>
     <tr><td class="paramname">vt</td><td>unitary matrix returns V**H NOT v </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ff3837ae1f9273552a2716064a46fce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff3837ae1f9273552a2716064a46fce">&#9670;&nbsp;</a></span>c_identity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function, dimension(n,n) olis_f90stdlib::c_identity </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>makes complex identity matrix dim (nxn) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>input dimension </td></tr>
   </table>
   </dd>
 </dl>
@@ -488,6 +526,58 @@ Functions/Subroutines</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af055cdf442d596810974e4f63eaeb119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af055cdf442d596810974e4f63eaeb119">&#9670;&nbsp;</a></span>tprod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function, dimension(:,:), allocatable olis_f90stdlib::tprod </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp), dimension (:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension (:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tensor product for complex matrices aXb </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>complex matrix in </td></tr>
+    <tr><td class="paramname">b</td><td>complex matrix in </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a106e09303fbf05972f0635ff67f73c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106e09303fbf05972f0635ff67f73c9d">&#9670;&nbsp;</a></span>pi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=dp), parameter olis_f90stdlib::pi =4.0_dp*atan(1.0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -1,6 +1,7 @@
 !>@brief program to compute matrix of a JSA
 program num_hom
 use olis_f90stdlib
+use makeopticalelements 
 implicit none
 
 !>@param dp 
@@ -11,6 +12,8 @@ integer, parameter :: dp=selected_real_kind(15,300)
 !>@param k counter
 integer :: i,j,k
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! params for plotting f(w1,w2)
 integer :: w1_steps, w2_steps
 
 !>@param w1 signal freq
@@ -22,7 +25,20 @@ real(kind=dp) :: w1, w2, sigma
 real(kind=dp) :: w1_start, w1_end, w2_start, w2_end
 real(kind=dp) :: w1_incr, w2_incr
 !>@param f_mat matrix for values of function, f
-complex(kind=dp), dimension(:,:), allocatable :: f_mat
+complex(kind=dp), dimension(:,:), allocatable :: f_mat, mat_bs
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!>@param nspace number of spatial modes
+!>@param nspec number of spectral modes per spatial mode
+!>@param n=nspace*nspec = total number of all modes
+integer :: nspace, nspec, n
+
+nspace=4
+nspec=1
+n=nspace*nspec
+
+allocate(mat_bs(2*n,2*n))
+call alloc_temparrays(nspace,nspec)
 
 open(unit=15,file='fplot.dat', status='replace')
 
@@ -53,6 +69,11 @@ do j=1,w2_steps
     w2=w2+w2_incr
 end do
 
+! modes 2 & 3 
+call make_bs(nspace,nspec,mat_bs,2,3,pi/4.0_dp)
+
+call printvectors(mat_bs, 'beamsplitter')
+!call printvectors( matmul(mat_bs,conjg(transpose(mat_bs))), 'print bs pi/4')
 !do i=1, size(f_mat,1)
 !    write(15,*) j,i, (real(f_mat(i,j)), j=1, size(f_mat,1))
 !end do

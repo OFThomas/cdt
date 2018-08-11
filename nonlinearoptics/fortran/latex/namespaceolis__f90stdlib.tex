@@ -9,10 +9,14 @@ subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612
 \begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{randseed} (seed)
 \begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{printvectors} (vect, desc, f)
+subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{printvectors} (vect, desc, \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f3800909}{f})
 \begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{outerproduct} (a, b)
 \begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(n, n) \hyperlink{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}{c\+\_\+identity} (n)
+\begin{DoxyCompactList}\small\item\em makes complex identity matrix dim (nxn) \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}{tprod} (a, b)
+\begin{DoxyCompactList}\small\item\em tensor product for complex matrices a\+Xb \end{DoxyCompactList}\item 
 complex(kind=dp) function \hyperlink{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}{complextrace} (a)
 \begin{DoxyCompactList}\small\item\em computes the trace of a complex matrix \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}{complex\+\_\+eigenvects} (a, w, vl, vr)
@@ -23,6 +27,11 @@ complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a
 \begin{DoxyCompactList}\small\item\em inverse for a complex 2x2 matrix \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{matrixnorm} (c)
 \begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(kind=dp), parameter \hyperlink{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}{pi} =4.\+0\+\_\+dp$\ast$atan(1.\+0)
+\end{DoxyCompactItemize}
 
 
 \subsection{Function/\+Subroutine Documentation}
@@ -69,6 +78,21 @@ allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp wor
 {\em u} & unitary matrix \\
 \hline
 {\em vt} & unitary matrix returns V$\ast$$\ast$H N\+OT v \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}\label{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!c\+\_\+identity@{c\+\_\+identity}}
+\index{c\+\_\+identity@{c\+\_\+identity}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{c\+\_\+identity()}{c\_identity()}}
+{\footnotesize\ttfamily complex(kind=dp) function, dimension(n,n) olis\+\_\+f90stdlib\+::c\+\_\+identity (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n }\end{DoxyParamCaption})}
+
+
+
+makes complex identity matrix dim (nxn) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & input dimension \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}\label{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}} 
@@ -215,3 +239,29 @@ generates random seed
 {\em seed} & is input allocatable 1d array \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}\label{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!tprod@{tprod}}
+\index{tprod@{tprod}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{tprod()}{tprod()}}
+{\footnotesize\ttfamily complex(kind=dp) function, dimension(\+:,\+:), allocatable olis\+\_\+f90stdlib\+::tprod (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{a,  }\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{b }\end{DoxyParamCaption})}
+
+
+
+tensor product for complex matrices a\+Xb 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & complex matrix in \\
+\hline
+{\em b} & complex matrix in \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}\label{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}} 
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!pi@{pi}}
+\index{pi@{pi}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection{\texorpdfstring{pi}{pi}}
+{\footnotesize\ttfamily real(kind=dp), parameter olis\+\_\+f90stdlib\+::pi =4.\+0\+\_\+dp$\ast$atan(1.\+0)}
+

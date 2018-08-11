@@ -1,7 +1,6 @@
 
 module olis_f90stdlib
 !>@file olis_f90stdlib
-!>
 !> linear alg and random number subroutines
 !> oli's standard FORTRAN LIb
 !> @author Oliver Thomas
@@ -163,15 +162,63 @@ subroutine printvectors(vect, desc, f)
   
   ! the return value is the function name
   n=size(a)
-  do j=1,n
-          do k=1, n
+  do k=1,n
+          do j=1, n
                   outerproduct(j,k)=a(j)*b(k)
           end do
   end do
   end function outerproduct
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  !>@brief computes the trace of a complex matrix
+  !------------------------------ Identity function--------------------------
+
+  !>@brief makes complex identity matrix dim (nxn)
+  !>@param n input dimension
+  function c_identity(n)
+  complex(kind=dp), dimension(n,n) :: c_identity
+  integer, intent(in) :: n
+  integer :: i
+  c_identity=0.0_dp
+!make identity matrix nxn
+  do i=1,n
+    c_identity(i,i)=1
+  end do
+end function c_identity
+
+!---------------------- Tensor Product function --------------------
+!>@brief tensor product for complex matrices aXb
+!>@param a complex matrix in
+!>@param b complex matrix in
+function tprod(a,b)
+
+  complex(kind=dp), dimension (:,:), intent(in) :: a, b
+  complex(kind=dp), allocatable, dimension(:,:) :: tprod
+  !complex(kind=dp), dimension(:,:) :: tprod
+  integer :: ierr, sindex1, sindex2, i,j,k,l, n_a1, n_a2, n_b1, n_b2
+
+  sindex1=size(a, 1)*size(b, 1)
+  sindex2=size(a, 2)*size(b, 2)
+  
+  allocate(tprod(sindex1, sindex2), stat=ierr)
+    if (ierr/=0) stop 'Error in allocating tproduct'
+  n_a1=size(a,1)
+  n_a2=size(a,2)
+  n_b1=size(b,1)
+  n_b2=size(b,2)
+
+  do j=1, n_a2
+    do i=1, n_a1
+      do l=1, n_b2
+        do k=1, n_b1
+          tprod(k+(i-1)*n_b1, l+(j-1)*n_b2) = a(i,j)*b(k,l)
+        end do !k
+      end do !l
+    end do !i
+  end do !j
+
+end function tprod
+
+!>@brief computes the trace of a complex matrix
   !>@param a is the complex matrix in
 function complextrace(a)
         complex(kind=dp), dimension(:,:) :: a

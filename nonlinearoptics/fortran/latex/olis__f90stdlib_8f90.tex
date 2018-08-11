@@ -14,10 +14,14 @@ subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612
 \begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{olis\+\_\+f90stdlib\+::randseed} (seed)
 \begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{olis\+\_\+f90stdlib\+::printvectors} (vect, desc, f)
+subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{olis\+\_\+f90stdlib\+::printvectors} (vect, desc, \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f3800909}{f})
 \begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{olis\+\_\+f90stdlib\+::outerproduct} (a, b)
 \begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(n, n) \hyperlink{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}{olis\+\_\+f90stdlib\+::c\+\_\+identity} (n)
+\begin{DoxyCompactList}\small\item\em makes complex identity matrix dim (nxn) \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}{olis\+\_\+f90stdlib\+::tprod} (a, b)
+\begin{DoxyCompactList}\small\item\em tensor product for complex matrices a\+Xb \end{DoxyCompactList}\item 
 complex(kind=dp) function \hyperlink{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}{olis\+\_\+f90stdlib\+::complextrace} (a)
 \begin{DoxyCompactList}\small\item\em computes the trace of a complex matrix \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}{olis\+\_\+f90stdlib\+::complex\+\_\+eigenvects} (a, w, vl, vr)
@@ -28,3 +32,8 @@ complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a
 \begin{DoxyCompactList}\small\item\em inverse for a complex 2x2 matrix \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{olis\+\_\+f90stdlib\+::matrixnorm} (c)
 \begin{DoxyCompactList}\small\item\em computed Frobenieus matrix norm of complex matrix using lapack zlange \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(kind=dp), parameter \hyperlink{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}{olis\+\_\+f90stdlib\+::pi} =4.\+0\+\_\+dp$\ast$atan(1.\+0)
+\end{DoxyCompactItemize}
