@@ -10,7 +10,7 @@ integer, parameter :: dp=selected_real_kind(15,300)
 !>@param i counter
 !>@param j counter
 !>@param k counter
-integer :: i,j,k
+integer :: i,j,k, l
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! params for plotting f(w1,w2)
@@ -43,26 +43,24 @@ integer :: sizeofexp, f_size, alpha_size
 complex(kind=dp), dimension(:,:), allocatable :: alpha_temp, beta_temp
 
 ! temp for transform
-complex(kind=dp), dimension(:,:), allocatable :: transform
+complex(kind=dp), dimension(:,:), allocatable :: transform, transform_no_bs
 
-nspace=4
-nspec=1
-n=nspace*nspec
+! beamsplitter angle
+real(kind=dp) :: theta, g4norm, g4_nobs, g4un_norm
 
-allocate(mat_bs(2*n,2*n))
-call alloc_temparrays(nspace,nspec)
 
 open(unit=15,file='fplot.dat', status='replace')
+open(unit=16, file='g4f90data.dat', status='replace')
 
-w1_start=-1.0_dp
-w2_start=-1.0_dp
+w1_start=-4.0_dp
+w2_start=-4.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=1.00_dp
-w2_incr=1.00_dp
+w1_incr=0.20_dp
+w2_incr=0.20_dp
 
 w1_steps=ceiling((w1_end-w1_start)/w1_incr)
 w2_steps=ceiling((w2_end-w2_start)/w2_incr)
@@ -70,6 +68,8 @@ w2_steps=ceiling((w2_end-w2_start)/w2_incr)
 sigma=1.0_dp
 
 allocate(f_mat(w1_steps,w2_steps))
+
+!do l=1,2
 
 w2=w2_start
 do j=1,w2_steps
@@ -82,11 +82,18 @@ do j=1,w2_steps
     w2=w2+w2_incr
 end do
 
-nspec=size(f_mat,1)
-! modes 2 & 3 
-call make_bs(nspace,nspec,mat_bs,2,3,pi/4.0_dp)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
-call printvectors(mat_bs, 'beamsplitter')
+nspace=4
+!nspec=1
+
+nspec=size(f_mat,1)
+print*, nspec
+n=nspace*nspec
+allocate(mat_bs(2*n,2*n))
+
+call alloc_temparrays(nspace,nspec)
+
 !call printvectors( matmul(mat_bs,conjg(transpose(mat_bs))), 'print bs pi/4')
 !do i=1, size(f_mat,1)
 !    write(15,*) j,i, (real(f_mat(i,j)), j=1, size(f_mat,1))
@@ -132,10 +139,10 @@ m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=transpose(f_mat(:,:))
 m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=-conjg(f_mat(:,:))
 ! bot left
 m_sq(3*f_size+1:4*f_size, 1:1*f_size)=-conjg(transpose(f_mat(:,:)))
-call printvectors(m_sq)
+!call printvectors(m_sq)
 
 m_sq=expmatrix(imaginary*m_sq,50)
-call printvectors(m_sq, 'after exp')
+!call printvectors(m_sq, 'after exp')
 
 alpha_size=2*f_size
 allocate(alpha_temp(alpha_size,alpha_size))
@@ -148,8 +155,8 @@ allocate(beta_temp(alpha_size,alpha_size))
 alpha_temp(:,:)=m_sq(1:alpha_size,1:alpha_size)
 beta_temp(:,:)=m_sq(1:alpha_size, alpha_size+1:2*alpha_size)
 
-call printvectors(alpha_temp, 'alpa')
-call printvectors(beta_temp, 'beta')
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
 
 !@brief inset squeezing hamiltonian in correct spatial modes
 !>@note allocate for sq on modes 1&2
@@ -164,36 +171,63 @@ mat_sq1=0.0_dp
 ! do for modes 3&4
 ! 0 to 2*n
 allocate(mat_sq2(2*nspace*f_size, 2*nspace*f_size))
-
+mat_sq2=0.0_dp
 
 
 call make_sq(nspace, f_size, mat_sq1,1,2,alpha_temp,beta_temp)
-call printvectors(mat_sq1, 'sq on modes 1&2')
+!call printvectors(mat_sq1, 'sq on modes 1&2')
 
 !call printvectors(alpha_temp, 'alpa')
 !call printvectors(beta_temp, 'beta')
 
 call make_sq(nspace, f_size, mat_sq2, 3,4,alpha_temp,beta_temp)
-call printvectors(mat_sq2, 'sq on modes 3&4')
+!call printvectors(mat_sq2, 'sq on modes 3&4')
 
 !call printvectors(alpha_temp, 'alpa')
 !call printvectors(beta_temp, 'beta')
 
+print*, 'transform_no_bs'
+
+transform_no_bs=matmul(mat_sq1,mat_sq2)
+print*, 'nspec',  nspec
+g4_nobs=g4(transform_no_bs,nspec)
+
+theta=0.0_dp
+do i=1, 200
+    theta=theta+0.01_dp*pi
+
+    ! modes 2 & 3 
+    call make_bs(nspace,nspec,mat_bs,2,3,theta)
+    !call printvectors(mat_bs, 'beamsplitter')
 
 
+!transform_no_bs=matmul(mat_sq1,mat_sq2)
+!g4_nobs=g4(transform_no_bs,nspec)
 
+    !call printvectors(transform, 'sq1 * sq2')
 
-transform=matmul(mat_sq1,mat_sq2)
+    !print*, 'now do beam splitter on modes 2&3'
 
-call printvectors(transform, 'sq1 * sq2')
+    transform=matmul(mat_bs,transform_no_bs)
+    !call printvectors(transform(1:n,1:n), 'sq1*sq2*BS') 
+    g4un_norm= g4(transform, nspec)
+    g4norm=g4un_norm/g4_nobs
+    print*, 'theta', theta, 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm
+    write(16,*) theta, g4_nobs,g4un_norm
 
-print*, 'now do beam splitter on modes 2&3'
+end do
 
-transform=matmul(mat_bs,transform)
+deallocate(mat_bs)
+deallocate(m_sq)
+deallocate(alpha_temp)
+deallocate(beta_temp)
+deallocate(mat_sq1)
+deallocate(mat_sq2)
+call dealloc_temparrays()
 
-call printvectors(transform, 'sq1*sq2*BS')
-
+!end do
 close(15)
+close(16)
 contains 
 
 !>@brief JSA function taking two freq

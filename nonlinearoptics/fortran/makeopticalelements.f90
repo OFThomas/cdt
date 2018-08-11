@@ -62,6 +62,8 @@ contains
     symp_mat(n+1:2*n,n+1:2*n)=conjg(n_work)
 end subroutine make_bs
 
+!>@brief make symplectic squeezing matrix from exponetiated JSA
+!>@TODO a lot is broken...
 !>@note only works if modes are consectutive
 subroutine make_sq(nspace,nspec,symp_mat,m1,m2, alpha, beta)
 
@@ -164,6 +166,126 @@ subroutine make_sq(nspace,nspec,symp_mat,m1,m2, alpha, beta)
 end subroutine make_sq
 
 
+!>@brief calculates g4 using matrix elements sum
+!>@TODO
+!>@param ft input is the full symplectic transform
+!>@param nspec input spectral DOF
+function g4(ft, nspec)
+real(kind=dp) :: g4
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
+integer, intent(in) :: nspec
+complex(kind=dp), dimension(6) :: term
+complex(kind=dp) :: gam21, gam43, gam32, gam41, gam31, gam42
+complex(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
+real(kind=dp) :: gam, bdiag
+g4=0.0_dp
+
+!print*, 'did abt'
+gam21 = abt(2,1,ft, nspec)
+gam43 = abt(4,3,ft, nspec)
+gam32 = abt(3,2,ft, nspec)
+gam41 = abt(4,1,ft, nspec)
+gam31 = abt(3,1,ft, nspec)
+gam42 = abt(4,2,ft, nspec)
+
+gam=amp(gam21*gam41 + gam32*gam41 + gam31*gam42)
+
+bbdag11 = bbd(1,1,ft, nspec)
+bbdag22 = bbd(2,2,ft, nspec)
+bbdag33 = bbd(3,3,ft, nspec)
+bbdag44 = bbd(4,4,ft, nspec)
+
+!print*, 'gam21 abt'
+bdiag= bbdag11*bbdag22*bbdag33*bbdag44
+
+term(1) = amp(gam21) * bbdag33 * bbdag22
+term(2) = amp(gam32) * bbdag11 * bbdag44
+term(3) = amp(gam31) * bbdag22 * bbdag44
+term(4) = amp(gam43) * bbdag11 * bbdag22
+term(5) = amp(gam42) * bbdag11 * bbdag33
+term(6) = amp(gam41) * bbdag22 * bbdag33
+
+g4 = gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6)
+
+end function g4
+
+!>@brief returns the absolute value squared |a|**2
+!>@param a input complex number to be |a|**2
+function amp(a)
+real(kind=dp) :: amp
+complex(kind=dp) ::a
+amp=abs(a)**2
+end function amp
+
+!>@brief calculates matrix elements Alpha-Beta**T
+!>@detail for M = (A  B )
+!>                (B* A*)
+!> computes AB**T and returns the i,j-th element
+!>@param i input index 1
+!>@param j input index 2
+!>@param ft input symplectic transform matrix for the optical circuit
+!>@param nspec input number of spectral DOF
+function abt(i,j,ft, nspec)
+complex(kind=dp) :: abt
+integer :: i,j, nspec
+integer :: n, a, b, k
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
+complex(kind=dp), dimension(:,:), allocatable :: temp
+!total dim 2*n
+n=nint(0.5_dp*size(ft,1))
+
+if ((i < n).and.(j<n)) then 
+    a=1
+    b=n
+else if ((i>=n).and.(j>=n)) then
+    a=n+1
+    b=2*n
+    i=i-n
+    j=j-n
+end if
+
+temp=matmul( ft(a:b, 1:n), transpose(ft(a:b, n+1:2*n)) ) 
+abt=0.0_dp
+!>@todo check this
+do k=1,nspec
+    abt=abt+temp(((i-1)*nspec)+k, ((j-1)*nspec)+k)
+end do
+end function abt
+
+
+!>@brief calculates the matrix elements Beta*Beta**H
+!>@detail for M = (A  B )
+!>                (B* A*)
+!> computes B*B**H (Hermitian conjg) and returns the i,j-th element
+!>@param i input index 1
+!>@param j input index 2
+!>@param ft input symplectic transform matrix for the optical circuit
+!>@param nspec input number of spectral DOF
+function bbd(i,j,ft,nspec)
+complex(kind=dp) :: bbd
+integer, intent(in) :: i,j, nspec
+integer :: n, k
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
+complex(kind=dp), dimension(:,:), allocatable :: temp
+
+n=nint(0.5_dp*size(ft,1))
+!print*, 'n', n, 'nspec', nspec
+!print*, 'i', i, 'j', j
+temp=matmul(ft(1:n, n+1: 2*n), conjg(transpose(ft(1:n, n+1:2*n))))
+bbd=0.0_dp
+!>@todo check this
+do k=1, nspec
+    bbd=bbd+temp(((i-1)*nspec)+k, ((j-1)*nspec)+k)
+    !print*, 'bbd sum', bbd
+    !print*, ((i-1)*nspec)+k, ((j-1)*nspec)+k
+end do
+end function bbd
+
+
+
+
+
+
 !>@brief allocates temp arrays for matrices
 !>@param nspace input
 !>@param nspec input
@@ -180,6 +302,13 @@ allocate(spatial_work(nspace,nspace))
 allocate(n_work(nspace*nspec,nspace*nspec))
 
 end subroutine alloc_temparrays
+
+subroutine dealloc_temparrays
+
+deallocate(ident_spec)
+deallocate(spatial_work)
+deallocate(n_work)
+end subroutine dealloc_temparrays
 
 
 
