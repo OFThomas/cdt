@@ -16,6 +16,7 @@ implicit none
 
 integer, parameter, private :: dp=selected_real_kind(15,300)
 real(kind=dp), parameter :: pi=4.0_dp*atan(1.0)
+complex(kind=dp), parameter :: imaginary=(0.0_dp,1.0_dp)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! make temp arrays for complex_eigenvects
@@ -379,5 +380,40 @@ function matrixnorm(c)
     matrixnorm= zlange('F', m,n,c,lda,work )
 end function matrixnorm
 
+!------------------------ Exponential of a matrix ----------------------------
+function expmatrix(matrix)
+!n is order to truncate to
+complex(kind=dp), dimension(:,:) :: matrix
+complex(kind=dp), dimension(size(matrix,1),size(matrix,2)) :: expmatrix
+integer :: n, i
+expmatrix=0.0_dp
+!matrix = matrix * imaginary *pi
+do i=0,size(matrix,1)
+expmatrix=expmatrix+ (matrixmul(matrix,i)/ factorial(i))
+end do
+end function expmatrix
+
+!recursive matrix multiplication up to order n
+recursive function matrixmul(x,n) result(matout)
+complex(kind=dp), dimension(:,:) :: x
+complex(kind=dp), dimension(size(x,1),size(x,2)) :: matout
+integer :: n
+if (n == 0) then
+  matout=c_identity(size(x,1))
+else 
+  matout=matmul(x,matrixmul(x,n-1))
+end if 
+end function matrixmul
+
+!Factorial function 
+recursive function factorial(n) result(nfact)
+integer :: n
+real(kind=dp) :: nfact
+if (n == 0) then
+  nfact=1
+else 
+  nfact=n*factorial(n-1)
+end if 
+end function factorial
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 end module olis_f90stdlib
