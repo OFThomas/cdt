@@ -26,8 +26,8 @@ complex(kind=dp), dimension(:,:), allocatable :: f_mat
 
 open(unit=15,file='fplot.dat', status='replace')
 
-w1_start=-2.0_dp
-w2_start=-2.0_dp
+w1_start=-4.0_dp
+w2_start=-4.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -52,6 +52,10 @@ do j=1,w2_steps
     end do
     w2=w2+w2_incr
 end do
+
+!do i=1, size(f_mat,1)
+!    write(15,*) j,i, (real(f_mat(i,j)), j=1, size(f_mat,1))
+!end do
 
 close(15)
 contains 
