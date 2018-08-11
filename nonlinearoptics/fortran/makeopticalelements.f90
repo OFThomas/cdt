@@ -93,7 +93,28 @@ subroutine make_sq(nspace,nspec,symp_mat,m1,m2, alpha, beta)
     symp_mat(n+1:2*n, n+1:2*n)=conjg(symp_mat(1:n, 1:n))
 
     ! beta is much easier
+    !same as alpha but second index is off-set by n
+   
+
+    ! for mode 1
+    !>@TODO check this is legal...
+    !> full diag sq
+    !> symp_mat(m1s:m1s+nspec, m1s+n:m1s+nspec+n)=beta(1:nspec, 1+nspec:2*nspec)
+   
+    ! mode 1
+    symp_mat(m1s:m1s+nspec, m2s+n:m2s+nspec+n)=beta(1:nspec, 1+nspec:2*nspec)
     
+    ! for mode 2
+    symp_mat(m2s:m2s+nspec, m1s+n:m1s+nspec+n)=beta(nspec+1:2*nspec, 1:nspec)
+    
+    !>@TODO
+    !> probably not legal
+    !>symp_mat(m2s:m2s+nspec, m2s+n:m2s+nspec+n)=beta(nspec+1:2*nspec, 1:nspec)
+
+    ! beta conjg is then
+    symp_mat(n+1:2*n, 1:n)=conjg(symp_mat(1:n, n+1:2*n))
+
+
 end subroutine make_sq
 
 
