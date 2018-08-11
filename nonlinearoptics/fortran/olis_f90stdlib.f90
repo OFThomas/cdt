@@ -381,14 +381,15 @@ function matrixnorm(c)
 end function matrixnorm
 
 !------------------------ Exponential of a matrix ----------------------------
-function expmatrix(matrix)
+!>@param n is the number of terms in taylor expansion to consider
+function expmatrix(matrix,n)
 !n is order to truncate to
 complex(kind=dp), dimension(:,:) :: matrix
 complex(kind=dp), dimension(size(matrix,1),size(matrix,2)) :: expmatrix
 integer :: n, i
 expmatrix=0.0_dp
 !matrix = matrix * imaginary *pi
-do i=0,size(matrix,1)
+do i=0,n
 expmatrix=expmatrix+ (matrixmul(matrix,i)/ factorial(i))
 end do
 end function expmatrix

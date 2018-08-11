@@ -62,11 +62,39 @@ contains
     symp_mat(n+1:2*n,n+1:2*n)=conjg(n_work)
 end subroutine make_bs
 
-!subroutine make_sq(nspace,nspec,symp_mat,m1,m2,f_jsa)
+subroutine make_sq(nspace,nspec,symp_mat,m1,m2, alpha, beta)
 
+    integer :: nspace, nspec, m1, m2
+    complex(kind=dp), dimension(:,:), allocatable :: symp_mat, alpha, beta
+    
+    !counters
+    integer :: i,j, n
+    integer :: m1s, m2s
 
+    n=nspace*nspec
+    m1s=m1*nspec-1
+    m2s=m2*nspec-1
 
-!end subroutine make_sq
+    !if ((m1s <= i < m1s + nspec) .or. (m2s <= i < m2s + nspec)) then
+    !>@note alpha & beta are 2 spatial modes and all spectral modes
+    !> dim 2*nspace*nspec
+   
+    ! make passives identity 
+    symp_mat(:,:)=c_identity(n*2)
+
+    !then overwrite values from alpha
+    ! do alpha first on modes m1, m2 
+    ! for m1 do for all spectral modes copy alpha
+    symp_mat(m1s:m1s+nspec, m1s:m1s+nspec)=alpha(1:nspec, 1:nspec)
+    ! for m2 do the same
+    symp_mat(m2s:m2s+nspec, m2s:m2s+nspec)=alpha(nspec+1:2*nspec, nspec+1:2*nspec)
+
+    ! alpha conjg is then 
+    symp_mat(n+1:2*n, n+1:2*n)=conjg(symp_mat(1:n, 1:n))
+
+    ! beta is much easier
+    
+end subroutine make_sq
 
 
 !>@brief allocates temp arrays for matrices
