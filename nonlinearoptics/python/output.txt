@@ -1,0 +1,388 @@
+Spatial modes = 4
+Spectral modes = 2
+Total dim = 8
+
+ Two mode squeezing on modes,  0 , 1
+Two mode squeezer on modes,  2 , 3
+Phase shift on modes.  2 phase angle pi/2
+Beamsplitter on modes,  1 , 2 angle=  pi/4
+
+ mode transform
+
+C matrix
+
+⎡cosh(ξ)     0        0        0     0  0  0  0⎤
+⎢                                              ⎥
+⎢   0     cosh(ξ)     0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0     cosh(ξ)     0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0     cosh(ξ)  0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     1  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     0  1  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     0  0  1  0⎥
+⎢                                              ⎥
+⎣   0        0        0        0     0  0  0  1⎦
+
+S matrix
+
+⎡   0        0     sinh(ξ)     0     0  0  0  0⎤
+⎢                                              ⎥
+⎢   0        0        0     sinh(ξ)  0  0  0  0⎥
+⎢                                              ⎥
+⎢sinh(ξ)     0        0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0     sinh(ξ)     0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎢   0        0        0        0     0  0  0  0⎥
+⎢                                              ⎥
+⎣   0        0        0        0     0  0  0  0⎦
+
+
+ mode transform
+
+C matrix
+
+⎡cosh(ξ)     0        0        0        0        0        0        0   ⎤
+⎢                                                                      ⎥
+⎢   0     cosh(ξ)     0        0        0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0     cosh(ξ)     0        0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0     cosh(ξ)     0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0     cosh(ξ)     0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0        0     cosh(ξ)     0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0        0        0     cosh(ξ)     0   ⎥
+⎢                                                                      ⎥
+⎣   0        0        0        0        0        0        0     cosh(ξ)⎦
+
+S matrix
+
+⎡   0        0     sinh(ξ)     0        0        0        0        0   ⎤
+⎢                                                                      ⎥
+⎢   0        0        0     sinh(ξ)     0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢sinh(ξ)     0        0        0        0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0     sinh(ξ)     0        0        0        0        0        0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0        0        0     sinh(ξ)     0   ⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0        0        0        0     sinh(ξ)⎥
+⎢                                                                      ⎥
+⎢   0        0        0        0     sinh(ξ)     0        0        0   ⎥
+⎢                                                                      ⎥
+⎣   0        0        0        0        0     sinh(ξ)     0        0   ⎦
+
+
+ mode transform
+
+C matrix
+
+⎡cosh(ξ)     0            0                 0                 0                 0             0       
+⎢                                                                                                     
+⎢   0     cosh(ξ)         0                 0                 0                 0             0       
+⎢                                                                                                     
+⎢   0        0      cos(φ)⋅cosh(ξ)          0          ⅈ⋅sin(φ)⋅cosh(ξ)         0             0       
+⎢                                                                                                     
+⎢   0        0            0           cos(φ)⋅cosh(ξ)          0          ⅈ⋅sin(φ)⋅cosh(ξ)     0       
+⎢                                                                                                     
+⎢   0        0     ⅈ⋅sin(φ)⋅cosh(ξ)         0           cos(φ)⋅cosh(ξ)          0             0       
+⎢                                                                                                     
+⎢   0        0            0          ⅈ⋅sin(φ)⋅cosh(ξ)         0           cos(φ)⋅cosh(ξ)      0       
+⎢                                                                                                     
+⎢   0        0            0                 0                 0                 0          cosh(ξ)    
+⎢                                                                                                     
+⎣   0        0            0                 0                 0                 0             0     co
+
+ 0   ⎤
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+sh(ξ)⎦
+
+S matrix
+
+⎡       0                 0          sinh(ξ)     0        0        0            0                 0   
+⎢                                                                                                     
+⎢       0                 0             0     sinh(ξ)     0        0            0                 0   
+⎢                                                                                                     
+⎢ cos(φ)⋅sinh(ξ)          0             0        0        0        0     ⅈ⋅sin(φ)⋅sinh(ξ)         0   
+⎢                                                                                                     
+⎢       0           cos(φ)⋅sinh(ξ)      0        0        0        0            0          ⅈ⋅sin(φ)⋅si
+⎢                                                                                                     
+⎢ⅈ⋅sin(φ)⋅sinh(ξ)         0             0        0        0        0      cos(φ)⋅sinh(ξ)          0   
+⎢                                                                                                     
+⎢       0          ⅈ⋅sin(φ)⋅sinh(ξ)     0        0        0        0            0           cos(φ)⋅sin
+⎢                                                                                                     
+⎢       0                 0             0        0     sinh(ξ)     0            0                 0   
+⎢                                                                                                     
+⎣       0                 0             0        0        0     sinh(ξ)         0                 0   
+
+     ⎤
+     ⎥
+     ⎥
+     ⎥
+     ⎥
+     ⎥
+nh(ξ)⎥
+     ⎥
+     ⎥
+     ⎥
+h(ξ) ⎥
+     ⎥
+     ⎥
+     ⎥
+     ⎦
+
+
+C matrix
+
+⎡cosh(ξ)     0            0                 0                 0                 0             0       
+⎢                                                                                                     
+⎢   0     cosh(ξ)         0                 0                 0                 0             0       
+⎢                                                                                                     
+⎢   0        0      cos(φ)⋅cosh(ξ)          0          ⅈ⋅sin(φ)⋅cosh(ξ)         0             0       
+⎢                                                                                                     
+⎢   0        0            0           cos(φ)⋅cosh(ξ)          0          ⅈ⋅sin(φ)⋅cosh(ξ)     0       
+⎢                                                                                                     
+⎢   0        0     ⅈ⋅sin(φ)⋅cosh(ξ)         0           cos(φ)⋅cosh(ξ)          0             0       
+⎢                                                                                                     
+⎢   0        0            0          ⅈ⋅sin(φ)⋅cosh(ξ)         0           cos(φ)⋅cosh(ξ)      0       
+⎢                                                                                                     
+⎢   0        0            0                 0                 0                 0          cosh(ξ)    
+⎢                                                                                                     
+⎣   0        0            0                 0                 0                 0             0     co
+
+ 0   ⎤
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+ 0   ⎥
+     ⎥
+sh(ξ)⎦
+
+S matrix
+
+⎡       0                 0          sinh(ξ)     0        0        0            0                 0   
+⎢                                                                                                     
+⎢       0                 0             0     sinh(ξ)     0        0            0                 0   
+⎢                                                                                                     
+⎢ cos(φ)⋅sinh(ξ)          0             0        0        0        0     ⅈ⋅sin(φ)⋅sinh(ξ)         0   
+⎢                                                                                                     
+⎢       0           cos(φ)⋅sinh(ξ)      0        0        0        0            0          ⅈ⋅sin(φ)⋅si
+⎢                                                                                                     
+⎢ⅈ⋅sin(φ)⋅sinh(ξ)         0             0        0        0        0      cos(φ)⋅sinh(ξ)          0   
+⎢                                                                                                     
+⎢       0          ⅈ⋅sin(φ)⋅sinh(ξ)     0        0        0        0            0           cos(φ)⋅sin
+⎢                                                                                                     
+⎢       0                 0             0        0     sinh(ξ)     0            0                 0   
+⎢                                                                                                     
+⎣       0                 0             0        0        0     sinh(ξ)         0                 0   
+
+     ⎤
+     ⎥
+     ⎥
+     ⎥
+     ⎥
+     ⎥
+nh(ξ)⎥
+     ⎥
+     ⎥
+     ⎥
+h(ξ) ⎥
+     ⎥
+     ⎥
+     ⎥
+     ⎦
+
+rel
+n 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+
+
+
+
+
+ g4
+gamma
+     2        2        2   
+4⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ)
+gamma
+0
+gamma
+      2        2        2   
+-4⋅sin (φ)⋅sinh (ξ)⋅cosh (ξ)
+beta beta 00 2*sinh(xi)**2
+
+
+ g4 
+
+
+                                           2                                                          
+  ⎛     2        2           2        2   ⎞      4         ⎛     2        2           2        2   ⎞  
+4⋅⎝2⋅sin (φ)⋅sinh (ξ) + 2⋅cos (φ)⋅sinh (ξ)⎠ ⋅sinh (ξ) + 16⋅⎝2⋅sin (φ)⋅sinh (ξ) + 2⋅cos (φ)⋅sinh (ξ)⎠⋅s
+
+                                                                                                      
+  2        4        2         ⎛     2        2           2        2   ⎞    2        4        2      ⎛ 
+in (φ)⋅sinh (ξ)⋅cosh (ξ) + 16⋅⎝2⋅sin (φ)⋅sinh (ξ) + 2⋅cos (φ)⋅sinh (ξ)⎠⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ) + ⎝4
+
+                                                         2
+    2        2        2           2        2        2   ⎞ 
+⋅sin (φ)⋅sinh (ξ)⋅cosh (ξ) - 4⋅cos (φ)⋅sinh (ξ)⋅cosh (ξ)⎠ 
+
+
+ no bs 
+
+⎡cosh(ξ)     0        0        0        0        0        0        0        0        0     sinh(ξ)    
+⎢                                                                                                     
+⎢   0     cosh(ξ)     0        0        0        0        0        0        0        0        0     si
+⎢                                                                                                     
+⎢   0        0     cosh(ξ)     0        0        0        0        0     sinh(ξ)     0        0       
+⎢                                                                                                     
+⎢   0        0        0     cosh(ξ)     0        0        0        0        0     sinh(ξ)     0       
+⎢                                                                                                     
+⎢   0        0        0        0     cosh(ξ)     0        0        0        0        0        0       
+⎢                                                                                                     
+⎢   0        0        0        0        0     cosh(ξ)     0        0        0        0        0       
+⎢                                                                                                     
+⎢   0        0        0        0        0        0     cosh(ξ)     0        0        0        0       
+⎢                                                                                                     
+⎢   0        0        0        0        0        0        0     cosh(ξ)     0        0        0       
+⎢                                                                                                     
+⎢   0        0     sinh(ξ)     0        0        0        0        0     cosh(ξ)     0        0       
+⎢                                                                                                     
+⎢   0        0        0     sinh(ξ)     0        0        0        0        0     cosh(ξ)     0       
+⎢                                                                                                     
+⎢sinh(ξ)     0        0        0        0        0        0        0        0        0     cosh(ξ)    
+⎢                                                                                                     
+⎢   0     sinh(ξ)     0        0        0        0        0        0        0        0        0     co
+⎢                                                                                                     
+⎢   0        0        0        0        0        0     sinh(ξ)     0        0        0        0       
+⎢                                                                                                     
+⎢   0        0        0        0        0        0        0     sinh(ξ)     0        0        0       
+⎢                                                                                                     
+⎢   0        0        0        0     sinh(ξ)     0        0        0        0        0        0       
+⎢                                                                                                     
+⎣   0        0        0        0        0     sinh(ξ)     0        0        0        0        0       
+
+ 0        0        0        0        0   ⎤
+                                         ⎥
+nh(ξ)     0        0        0        0   ⎥
+                                         ⎥
+ 0        0        0        0        0   ⎥
+                                         ⎥
+ 0        0        0        0        0   ⎥
+                                         ⎥
+ 0        0        0     sinh(ξ)     0   ⎥
+                                         ⎥
+ 0        0        0        0     sinh(ξ)⎥
+                                         ⎥
+ 0     sinh(ξ)     0        0        0   ⎥
+                                         ⎥
+ 0        0     sinh(ξ)     0        0   ⎥
+                                         ⎥
+ 0        0        0        0        0   ⎥
+                                         ⎥
+ 0        0        0        0        0   ⎥
+                                         ⎥
+ 0        0        0        0        0   ⎥
+                                         ⎥
+sh(ξ)     0        0        0        0   ⎥
+                                         ⎥
+ 0     cosh(ξ)     0        0        0   ⎥
+                                         ⎥
+ 0        0     cosh(ξ)     0        0   ⎥
+                                         ⎥
+ 0        0        0     cosh(ξ)     0   ⎥
+                                         ⎥
+ 0        0        0        0     cosh(ξ)⎦
+gamma
+      2        2   
+4⋅sinh (ξ)⋅cosh (ξ)
+gamma
+0
+gamma
+0
+beta beta 00 2*sinh(xi)**2
+       8             6        2             4        4   
+16⋅sinh (ξ) + 32⋅sinh (ξ)⋅cosh (ξ) + 16⋅sinh (ξ)⋅cosh (ξ)
+Factorised G4 normalised
+⎛   2        2         2        2                          2         2        2         2        2   ⎞
+⎝sin (φ)⋅sinh (ξ) + sin (φ)⋅cosh (ξ) - 2⋅sin(φ)⋅cos(φ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ) + cos (φ)⋅cosh (ξ)⎠
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                      
+                                                                                            ⎛    2    
+                                                                                            ⎝sinh (ξ) 
+
+ ⎛   2        2         2        2                          2         2        2         2        2   
+⋅⎝sin (φ)⋅sinh (ξ) + sin (φ)⋅cosh (ξ) + 2⋅sin(φ)⋅cos(φ)⋅cosh (ξ) + cos (φ)⋅sinh (ξ) + cos (φ)⋅cosh (ξ)
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+           2                                                                                          
+      2   ⎞                                                                                           
++ cosh (ξ)⎠                                                                                           
+
+⎞
+⎠
+─
+ 
+ 
+ 
+ran for 100 xi vals and 400 phi vals for each xi, 40000 total points

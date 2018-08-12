@@ -116,7 +116,7 @@ modetrans, rel = m.justdoitplease(fulltransform, m.modes, showmodes=n)
 # end of characterising
 
 print('rel')
-pprint(rel)
+#pprint(rel)
 
 # from operatoralg import commutation stuff
 # bmodes are new modes for output of transformation
@@ -134,7 +134,8 @@ print('\n\n\n')
 # c_d0dagd0 = opalg.c(d[0], d[n + 0])
 
 # mode transforms
-pprint(d)
+#pprint(d)
+
 
 # commutation relations using matrix elements
 
