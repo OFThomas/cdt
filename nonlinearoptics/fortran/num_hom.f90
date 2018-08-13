@@ -65,6 +65,10 @@ complex(kind=dp), dimension(:,:), allocatable :: transform, transform_no_bs
 !>@param g4norm is the normalised g4 matrix
 real(kind=dp) :: theta, g4norm, g4_nobs, g4un_norm
 
+
+
+!!!!
+complex(kind=dp), dimension(:,:), allocatable :: f_mat1, f_mat2
 !>@note files to write to  
 open(unit=15,file='fplot.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
@@ -79,33 +83,37 @@ w2_end=-w2_start
 w1_incr=0.20_dp
 w2_incr=0.20_dp
 
-w1_steps=ceiling((w1_end-w1_start)/w1_incr)
-w2_steps=ceiling((w2_end-w2_start)/w2_incr)
+!w1_steps=ceiling((w1_end-w1_start)/w1_incr)
+!w2_steps=ceiling((w2_end-w2_start)/w2_incr)
 
 sigma=1.0_dp
 
-allocate(f_mat(w1_steps,w2_steps))
+!allocate(f_mat(w1_steps,w2_steps))
 
 !do l=1,2
 
-w2=w2_start
-do j=1,w2_steps
-    w1=w1_start
-    do i= 1,w1_steps 
-        write(15,*) w1, w2, real(f(w1,w2,sigma),kind=dp)
-        f_mat(i,j)=real(f(w1,w2,sigma),kind=dp)
-        w1=w1+w1_incr
-    end do
-    w2=w2+w2_incr
-end do
+!w2=w2_start
+!do j=1,w2_steps
+!    w1=w1_start
+!    do i= 1,w1_steps 
+!        write(15,*) w1, w2, real(f(w1,w2,sigma),kind=dp)
+!        f_mat(i,j)=real(f(w1,w2,sigma),kind=dp)
+!        w1=w1+w1_incr
+!    end do
+!    w2=w2+w2_incr
+!end do
 
+
+f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma)
+f_mat2=gen_jsa(w1_start,w1_end,w1_incr,w2_start,w2_end,w2_incr,2.0_dp)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
-nspace=4
-!nspec=1
 
-nspec=size(f_mat,1)
-print*, nspec
+
+
+nspace=4
+nspec=size(f_mat1,1)
+print*, 'nspectral dof', nspec
 n=nspace*nspec
 allocate(mat_bs(2*n,2*n))
 
@@ -116,9 +124,72 @@ call alloc_temparrays(nspace,nspec)
 !    write(15,*) j,i, (real(f_mat(i,j)), j=1, size(f_mat,1))
 !end do
 
-f_size=size(f_mat,1)
+f_size=size(f_mat1,1)
 sizeofexp=4*f_size
 print*, 'dim of exp', sizeofexp
+print*, 'transform_no_bs'
+
+
+!
+mat_sq1=make_squeezer(1,2,f_mat1)
+
+!
+mat_sq2=make_squeezer(3,4,f_mat2)
+
+
+transform_no_bs=matmul(mat_sq1,mat_sq2)
+print*, 'nspec',  nspec
+g4_nobs=g4(transform_no_bs,nspec)
+
+theta=0.0_dp
+do i=1, 200
+    theta=theta+0.01_dp*pi
+
+    ! modes 2 & 3 
+    call make_bs(nspace,nspec,mat_bs,2,3,theta)
+    !call printvectors(mat_bs, 'beamsplitter')
+
+
+!transform_no_bs=matmul(mat_sq1,mat_sq2)
+!g4_nobs=g4(transform_no_bs,nspec)
+
+    !call printvectors(transform, 'sq1 * sq2')
+
+    !print*, 'now do beam splitter on modes 2&3'
+
+    transform=matmul(mat_bs,transform_no_bs)
+    !call printvectors(transform(1:n,1:n), 'sq1*sq2*BS') 
+    g4un_norm= g4(transform, nspec)
+    g4norm=g4un_norm/g4_nobs
+    print*, 'theta', theta, 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm
+    write(16,*) theta, g4_nobs,g4un_norm
+
+end do
+
+deallocate(mat_bs)
+deallocate(m_sq)
+deallocate(alpha_temp)
+deallocate(beta_temp)
+deallocate(mat_sq1)
+deallocate(mat_sq2)
+call dealloc_temparrays()
+
+!end do
+close(15)
+close(16)
+contains 
+
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!>@brief make sqq matrix from jsa function
+function make_squeezer(mode1, mode2, jsa) 
+
+integer, intent(in) :: mode1, mode2
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: jsa
+complex(kind=dp), dimension(:,:), allocatable :: make_squeezer
+
+integer :: f_size, sizeofexp
+f_size=size(f_mat1,1)
+sizeofexp=4*f_size
 allocate(m_sq(sizeofexp,sizeofexp))
 
 !!!!!!!!!
@@ -149,13 +220,13 @@ allocate(m_sq(sizeofexp,sizeofexp))
 
 m_sq=0.0_dp
 ! top right
-m_sq(1:1*f_size, 3*f_size+1:4*f_size)=f_mat(:,:)
+m_sq(1:1*f_size, 3*f_size+1:4*f_size)=f_mat1(:,:)
 ! mid right
-m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=transpose(f_mat(:,:)) 
+m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=transpose(f_mat1(:,:)) 
 ! mid left
-m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=-conjg(f_mat(:,:))
+m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=-conjg(f_mat1(:,:))
 ! bot left
-m_sq(3*f_size+1:4*f_size, 1:1*f_size)=-conjg(transpose(f_mat(:,:)))
+m_sq(3*f_size+1:4*f_size, 1:1*f_size)=-conjg(transpose(f_mat1(:,:)))
 !call printvectors(m_sq)
 
 m_sq=expmatrix(imaginary*m_sq,50)
@@ -203,49 +274,42 @@ call make_sq(nspace, f_size, mat_sq2, 3,4,alpha_temp,beta_temp)
 !call printvectors(alpha_temp, 'alpa')
 !call printvectors(beta_temp, 'beta')
 
-print*, 'transform_no_bs'
+end function make_squeezer
 
-transform_no_bs=matmul(mat_sq1,mat_sq2)
-print*, 'nspec',  nspec
-g4_nobs=g4(transform_no_bs,nspec)
-
-theta=0.0_dp
-do i=1, 200
-    theta=theta+0.01_dp*pi
-
-    ! modes 2 & 3 
-    call make_bs(nspace,nspec,mat_bs,2,3,theta)
-    !call printvectors(mat_bs, 'beamsplitter')
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 
 
-!transform_no_bs=matmul(mat_sq1,mat_sq2)
-!g4_nobs=g4(transform_no_bs,nspec)
+!>@brief samples the given jsa for frequency ranges w1, w2
+!>@param f_mat allocatable Jsa matrix values out
+!>@param w_start, 
+!>@param w_end
+!>@param w_incr
+!>@param sigma is jsa parameter
+!>@param outfile is unit number of file to write to 
+function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma)
+real(kind=dp), dimension (:,:), allocatable :: gen_jsa
+real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
+real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
+real(kind=dp), intent(in) :: sigma 
+real(kind=dp) :: w1, w2
+integer :: w1_steps, w2_steps, outfile
+integer :: i, j
 
-    !call printvectors(transform, 'sq1 * sq2')
-
-    !print*, 'now do beam splitter on modes 2&3'
-
-    transform=matmul(mat_bs,transform_no_bs)
-    !call printvectors(transform(1:n,1:n), 'sq1*sq2*BS') 
-    g4un_norm= g4(transform, nspec)
-    g4norm=g4un_norm/g4_nobs
-    print*, 'theta', theta, 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm
-    write(16,*) theta, g4_nobs,g4un_norm
-
+w1_steps=ceiling((w1_end-w1_start)/w1_incr)
+w2_steps=ceiling((w2_end-w2_start)/w2_incr)
+allocate(gen_jsa(w1_steps,w2_steps))
+!do l=1,2
+w2=w2_start
+do j=1,w2_steps
+    w1=w1_start
+    do i= 1,w1_steps 
+        write(15,*) w1, w2, real(f(w1,w2,sigma),kind=dp)
+        gen_jsa(i,j)=real(f(w1,w2,sigma),kind=dp)
+        w1=w1+w1_incr
+    end do
+    w2=w2+w2_incr
 end do
-
-deallocate(mat_bs)
-deallocate(m_sq)
-deallocate(alpha_temp)
-deallocate(beta_temp)
-deallocate(mat_sq1)
-deallocate(mat_sq2)
-call dealloc_temparrays()
-
-!end do
-close(15)
-close(16)
-contains 
+end function gen_jsa 
 
 !>@brief JSA function taking two freq
 !>@param w1 input signal freq
