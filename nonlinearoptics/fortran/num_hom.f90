@@ -43,20 +43,29 @@ integer :: nspace, nspec, n
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 ! for JSA calcs
-!>@param 
+!>@param h 
+!>@param m_sq 
+!>@param m_sq1
+!<@param m_sq2 h 
+!>@param m_sq 
+!>@param m_sq1
+!<@param m_sq2
 complex(kind=dp), dimension(:,:), allocatable :: h, m_sq, m_sq1, m_sq2
 integer :: sizeofexp, f_size, alpha_size
 
 !>@param temp vaaibles for building exp on correct spatial modes
 complex(kind=dp), dimension(:,:), allocatable :: alpha_temp, beta_temp
 
-! temp for transform
+!>@param transform allocatable array for storing total symplectic matrix transform in
+!> temp for transform
+!>@param transform_no_bs array for storing symplectic transform without beam splitter for normalising g4  
 complex(kind=dp), dimension(:,:), allocatable :: transform, transform_no_bs
 
-! beamsplitter angle
+!>@param theta beamsplitter angle
+!>@param g4norm is the normalised g4 matrix
 real(kind=dp) :: theta, g4norm, g4_nobs, g4un_norm
 
-
+!>@note files to write to  
 open(unit=15,file='fplot.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
 
