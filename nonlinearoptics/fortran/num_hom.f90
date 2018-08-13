@@ -22,9 +22,16 @@ integer :: w1_steps, w2_steps
 real(kind=dp) :: w1, w2, sigma
 
 ! loop params
+!>@param w1_start the start frequency range for signaler
+!>@param w2_start the start frequency range for idler
+!>@param w1_incr spectral dof mesh
+!>@param w2_incr spectral dof mesh
 real(kind=dp) :: w1_start, w1_end, w2_start, w2_end
 real(kind=dp) :: w1_incr, w2_incr
 !>@param f_mat matrix for values of function, f
+!>@param mat_bs symplectic matrix for the beamsplitter
+!>@param mat_sq1 symplectic matrix for the squeezer on mode 1&2
+!>@param mat_sq2 syplectic matrix for squeezer on modes 3&4
 complex(kind=dp), dimension(:,:), allocatable :: f_mat, mat_bs, mat_sq1, mat_sq2
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -36,6 +43,7 @@ integer :: nspace, nspec, n
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 ! for JSA calcs
+!>@param 
 complex(kind=dp), dimension(:,:), allocatable :: h, m_sq, m_sq1, m_sq2
 integer :: sizeofexp, f_size, alpha_size
 
