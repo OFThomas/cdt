@@ -42,41 +42,50 @@
 
 % slide 1
 \begin{frame}
-\frametitle{Why you should use version control}
+\frametitle{Overview}
 \begin{itemize}
 	\item What is nonlinear optics?
     \item Why do we care about it?
-    \item  
+    \item What I have been doing
+    \item Gaussian optics 
+    \item Outlook
 \end{itemize}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.26\textwidth]{xkcdversion.png}
-	\caption{Integrated optical chip with 16 single photon sources }
-    \label{fig:big chip}
-\end{figure}
 \end{frame}
 
 %slide 2
 \begin{frame}
-\frametitle{What is Git?}
-\begin{itemize}
-\item Git is one of most used version control software in the world 
-\item Git is cross-platform and easy to use \footnotemark.
-\end{itemize}
-\footnotetext[2]{\url{https://try.github.io/levels/1/challenges/1}}
+\frametitle{Motivation}
+\begin{columns}
+\column{0.5\textwidth}
+    \begin{block}{The good}
+    Spontaneous Parametric processes, SPDC, SFWM
+    \begin{itemize}
+        \item Heralded single photon sources
+        \item Entangled photon pair generation (polarisation, spatial)
+    \end{itemize}
+    Kerr processes 
+    \begin{itemize}
+        \item Self-Phase modulation (SPM) for generating Bannana states (CV)
+        \item Cross-Phase modulation (XPM) for sensing
+    \end{itemize}
+    \end{block}
+%
+\column{0.5\textwidth}
+    \begin{block}{The bad}
+    All Kerr nonlinear processes 
+    \end{block}
+\end{columns}
+
 \end{frame}
 
 %slide 2
 \begin{frame}
-\frametitle{What is GitHub?}
+\frametitle{What do we mean by nonlinear optics?}
 \begin{itemize} 
-\item Github is a cloud service for git which lets you store your repository online
-\item Why would you store your repository online?
-\begin{itemize}
-\item Working remotely
-\item Collaborative work  
-\item Hard drive failure!
-\end{itemize}
+    \item Roughly processes that conserve energy but do not conserve photon number. 
+        \begin{equation}
+            \vect{E}= \vectE +\chi
+        \end{equation}
 \end{itemize}
 \end{frame}
 
