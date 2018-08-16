@@ -1,0 +1,21 @@
+Wicks theorem <a1a2a3a4a4^a3^a2^a1^> = SUM 
+single contractions
+                                        
+1). <a1a2a3[a4,a4^]a3^a2^a1^> + <a1a2a4[a3,a3^]a4^a2^a1^> + <a1a3a4[a2,a2^]a4^a3^a1^> ...
+
+Double contractions
+2). <a1a2[a3,a3^][a4,a4^]a2^a1^> + <a1a3[a2,a2^][a4,a4^]a3^a1^> + ... doesn't have to be matching pairs but if there are a diffent number of say mode1 operators after the contracton the term vanishes.
+
+Triple contractions
+3). <a1[a2,a2^][a3,a3^][a4,a4^]a1^> +....
+
+Full contractions
+4). <>[a1,a1^][a2,a2^][a3,a3^][a4,a4^] + <>[a1,a2^][a2,a3^][a3,a4^][a4,a1^] + ... 
+
+These are the terms we want, inner prod =1 so the term evaules to the products of the contractionsThere are always n annihilation and n creation operators one for each mode. for 4 modes we have 4 annihilation and 4 creation ops, total 2*n = 8 ops.
+
+g(4) = <d1^d2^d3^d4^d4d3d2d1> 
+E-summation convention
+where di= Aijaj + Bijbj^
+
+
