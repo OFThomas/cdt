@@ -19,7 +19,7 @@ integer :: w1_steps, w2_steps
 !>@param w1 signal freq
 !>@param w2 idler freq
 !>@param sigma is gaussian width
-real(kind=dp) :: w1, w2, sigma
+real(kind=dp) :: w1, w2, sigma1, sigma2
 
 ! loop params
 !>@param w1_start the start frequency range for signaler
@@ -81,14 +81,14 @@ w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=0.15_dp
-w2_incr=0.15_dp
+w1_incr=0.20_dp
+w2_incr=0.20_dp
 
 !w1_steps=ceiling((w1_end-w1_start)/w1_incr)
 !w2_steps=ceiling((w2_end-w2_start)/w2_incr)
 
-sigma=1.0_dp
-
+sigma1=1.0_dp
+sigma2=2.0_dp*sigma1
 !allocate(f_mat(w1_steps,w2_steps))
 
 !do l=1,2
@@ -105,12 +105,12 @@ sigma=1.0_dp
 !end do
 
 
-f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma,14)
-f_mat2=gen_jsa(w1_start,w1_end,w1_incr,w2_start,w2_end,w2_incr,2.0_dp,15)
+f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1,14)
+f_mat2=gen_jsa(w1_start,w1_end,w1_incr,w2_start,w2_end,w2_incr,sigma2,15)
 
 ! normalise?
-f_mat1=f_mat1/sum(f_mat1)
-f_mat2=f_mat2/sum(f_mat2)
+f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr*sigma1)
+f_mat2=f_mat2/(sum(f_mat2)*w1_incr*w2_incr*sigma2)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 
@@ -167,7 +167,7 @@ do i=1, 200
     g4un_norm= g4(transform, nspec)
     g4norm=g4un_norm/g4_nobs
     print*, 'theta', theta, 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm
-    write(16,*) theta, g4_nobs,g4un_norm
+    write(16,*) theta, g4norm, g4_nobs,g4un_norm
 
 end do
 
@@ -327,7 +327,7 @@ end function gen_jsa
     complex(kind=dp) :: f
     real(kind=dp), intent(in) :: w1,w2, sig
     
-    f=(3.0_dp/(sig*sqrt(2.0_dp*pi)))**2 * exp(-0.5_dp*(w1/sig)**2)*exp(-0.5_dp*(w2/sig)**2)
+    f=(1.0_dp/(sig*sqrt(2.0_dp*pi)))**2 * exp(-0.5_dp*(w1/sig)**2)*exp(-0.5_dp*(w2/sig)**2)
 
     end function f
 end program num_hom

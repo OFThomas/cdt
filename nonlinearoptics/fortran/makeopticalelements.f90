@@ -171,13 +171,13 @@ end subroutine make_sq
 !>@param ft input is the full symplectic transform
 !>@param nspec input spectral DOF
 function g4(ft, nspec)
-complex(kind=dp) :: g4
+real(kind=dp) :: g4
 complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
 integer, intent(in) :: nspec
 complex(kind=dp), dimension(6) :: term
 complex(kind=dp) :: gam21, gam43, gam32, gam41, gam31, gam42
-complex(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
-complex(kind=dp) :: gam, bdiag
+real(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
+real(kind=dp) :: gam, bdiag
 g4=0.0_dp
 
 !print*, 'did abt'
