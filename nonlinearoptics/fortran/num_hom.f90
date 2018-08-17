@@ -74,8 +74,8 @@ open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
 
-w1_start=-5.0_dp
-w2_start=-5.0_dp
+w1_start=-6.0_dp
+w2_start=-6.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -105,12 +105,14 @@ sigma2=2.0_dp*sigma1
 !end do
 
 
-f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1,14)
-f_mat2=gen_jsa(w1_start,w1_end,w1_incr,w2_start,w2_end,w2_incr,sigma2,15)
+f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14)
+f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15)
 
 ! normalise?
-f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr*sigma1)
-f_mat2=f_mat2/(sum(f_mat2)*w1_incr*w2_incr*sigma2)
+f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr)
+f_mat2=f_mat2/(sum(f_mat2)*w1_incr*w2_incr)
+write(*,*) 'sum f1',  sum(f_mat1)*w1_incr*w2_incr,  'sum f2', sum(f_mat2)*w1_incr*w2_incr
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 
@@ -150,7 +152,8 @@ theta=0.0_dp
 do i=1, 200
     theta=theta+0.01_dp*pi
 
-    ! modes 2 & 3 
+    ! modes 2 & 3
+    mat_bs=0.0_dp
     call make_bs(nspace,nspec,mat_bs,2,3,theta)
     !call printvectors(mat_bs, 'beamsplitter')
 
@@ -294,11 +297,11 @@ end function make_squeezer
 !>@param w_incr
 !>@param sigma is jsa parameter
 !>@param outfile is unit number of file to write to 
-function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma, outfile)
+function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile)
 real(kind=dp), dimension (:,:), allocatable :: gen_jsa
 real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
 real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
-real(kind=dp), intent(in) :: sigma 
+real(kind=dp), intent(in) :: sigma1, sigma2 
 real(kind=dp) :: w1, w2
 integer :: w1_steps, w2_steps, outfile
 integer :: i, j
@@ -311,8 +314,8 @@ w2=w2_start
 do j=1,w2_steps
     w1=w1_start
     do i= 1,w1_steps 
-        write(outfile,*) w1, w2, real(f(w1,w2,sigma),kind=dp)
-        gen_jsa(i,j)=real(f(w1,w2,sigma),kind=dp)
+        write(outfile,*) w1, w2, real(f(w1,w2,sigma1, sigma2),kind=dp)
+        gen_jsa(i,j)=real(f(w1,w2,sigma1, sigma2),kind=dp)
         w1=w1+w1_incr
     end do
     w2=w2+w2_incr
@@ -323,11 +326,11 @@ end function gen_jsa
 !>@param w1 input signal freq
 !>@param w2 input idler freq
 !>@param sig input variance
-    function f(w1,w2, sig)
+    function f(w1,w2, sigma1, sigma2)
     complex(kind=dp) :: f
-    real(kind=dp), intent(in) :: w1,w2, sig
+    real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2
     
-    f=(1.0_dp/(sig*sqrt(2.0_dp*pi)))**2 * exp(-0.5_dp*(w1/sig)**2)*exp(-0.5_dp*(w2/sig)**2)
+    f=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*(w1/sigma1)**2)*exp(-0.5_dp*(w2/sigma2)**2)
 
     end function f
 end program num_hom

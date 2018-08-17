@@ -250,6 +250,7 @@ abt=0.0_dp
 do k=1,nspec
     abt=abt+temp(((i-1)*nspec)+k, ((j-1)*nspec)+k)
 end do
+abt=abt/real(nspec,kind=dp)
 end function abt
 
 
@@ -279,6 +280,7 @@ do k=1, nspec
     !print*, 'bbd sum', bbd
     !print*, ((i-1)*nspec)+k, ((j-1)*nspec)+k
 end do
+bbd=bbd/real(nspec,kind=dp)
 end function bbd
 
 
