@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: num_hom.f90 File Reference</title>
+<title>Bloch-Messiah reduction on a two source HOM Dip: num_hom.f90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Bloch-Messiah reduction on a two source HOM Dip
    </div>
   </td>
  </tr>
@@ -93,6 +93,12 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a7dae3af56c12300a9c9fb1deb246e6e7"><td class="memItemLeft" align="right" valign="top">program&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num__hom_8f90.html#a7dae3af56c12300a9c9fb1deb246e6e7">num_hom</a></td></tr>
 <tr class="memdesc:a7dae3af56c12300a9c9fb1deb246e6e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">program to compute matrix of a JSA  <a href="#a7dae3af56c12300a9c9fb1deb246e6e7">More...</a><br /></td></tr>
 <tr class="separator:a7dae3af56c12300a9c9fb1deb246e6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46646f61eac84fbee805643cedf29738"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num__hom_8f90.html#a46646f61eac84fbee805643cedf29738">make_squeezer</a> (mode1, mode2, jsa)</td></tr>
+<tr class="memdesc:a46646f61eac84fbee805643cedf29738"><td class="mdescLeft">&#160;</td><td class="mdescRight">make sqq matrix from jsa function  <a href="#a46646f61eac84fbee805643cedf29738">More...</a><br /></td></tr>
+<tr class="separator:a46646f61eac84fbee805643cedf29738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95124ae7a4e77fa94e21c1efd865334a"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num__hom_8f90.html#a95124ae7a4e77fa94e21c1efd865334a">gen_jsa</a> (w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma, outfile)</td></tr>
+<tr class="memdesc:a95124ae7a4e77fa94e21c1efd865334a"><td class="mdescLeft">&#160;</td><td class="mdescRight">samples the given jsa for frequency ranges w1, w2  <a href="#a95124ae7a4e77fa94e21c1efd865334a">More...</a><br /></td></tr>
+<tr class="separator:a95124ae7a4e77fa94e21c1efd865334a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ea4612463aead6dff28d647f3800909"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num__hom_8f90.html#a2ea4612463aead6dff28d647f3800909">f</a> (w1, w2, sig)</td></tr>
 <tr class="memdesc:a2ea4612463aead6dff28d647f3800909"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSA function taking two freq.  <a href="#a2ea4612463aead6dff28d647f3800909">More...</a><br /></td></tr>
 <tr class="separator:a2ea4612463aead6dff28d647f3800909"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,21 +135,6 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>JSA function taking two freq. </p>
-<dl class="section note"><dt>Note</dt><dd>files to write to</dd>
-<dd>
-to make off diagonal for fmatrix m_sq=0.0_dp ! top right m_sq(1:1*f_size, 3*f_size+1:4*f_size)=1 ! mid right m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=2 ! mid left m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=3 ! bot left m_sq(3*f_size+1:4*f_size, 1:1*f_size)=4</dd>
-<dd>
-!h= 0.0 F_JSA F_JSA*T 0.0</dd></dl>
-<p>f_jsa = f_mat</p>
-<p>M_sq = exp(i ( 0 H ) (-H* 0)</p>
-<p>M_sq = exp(i (0 0 0 F_JSA) (0 0 F_JSA**T 0) (0 -conjg(F_JSA) 0 0) (-F_JSA**H 0 0 0)</p><dl class="section note"><dt>Note</dt><dd>alpha beta are top left and top right of M M = (A B ) (B* A*) </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">alpha_size</td><td>is 2*f_size as all spectral modes for 2 spatial</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>allocate for sq on modes 1&amp;2</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">w1</td><td>input signal freq </td></tr>
@@ -152,6 +143,126 @@ to make off diagonal for fmatrix m_sq=0.0_dp ! top right m_sq(1:1*f_size, 3*f_si
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a95124ae7a4e77fa94e21c1efd865334a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=dp) function, dimension (:,:), allocatable num_hom::gen_jsa </td>
+          <td>(</td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1_incr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2_incr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>outfile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>samples the given jsa for frequency ranges w1, w2 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_mat</td><td>allocatable Jsa matrix values out </td></tr>
+    <tr><td class="paramname">w_start</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a46646f61eac84fbee805643cedf29738"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function, dimension(:,:), allocatable num_hom::make_squeezer </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>mode1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>mode2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(in), allocatable&#160;</td>
+          <td class="paramname"><em>jsa</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>make sqq matrix from jsa function </p>
+<dl class="section note"><dt>Note</dt><dd>files to write to </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>to make off diagonal for fmatrix m_sq=0.0_dp ! top right m_sq(1:1*f_size, 3*f_size+1:4*f_size)=1 ! mid right m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=2 ! mid left m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=3 ! bot left m_sq(3*f_size+1:4*f_size, 1:1*f_size)=4</dd>
+<dd>
+!h= 0.0 F_JSA F_JSA*T 0.0</dd></dl>
+<p>f_jsa = f_mat</p>
+<p>M_sq = exp(i ( 0 H ) (-H* 0)</p>
+<p>M_sq = exp(i (0 0 0 F_JSA) (0 0 F_JSA**T 0) (0 -conjg(F_JSA) 0 0) (-F_JSA**H 0 0 0)</p>
+<dl class="section note"><dt>Note</dt><dd>alpha beta are top left and top right of M M = (A B ) (B* A*) </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha_size</td><td>is 2*f_size as all spectral modes for 2 spatial</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>allocate for sq on modes 1&amp;2 </dd></dl>
 
 </div>
 </div>

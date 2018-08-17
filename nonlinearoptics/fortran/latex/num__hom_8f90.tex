@@ -5,6 +5,10 @@
 \item 
 program \hyperlink{num__hom_8f90_a7dae3af56c12300a9c9fb1deb246e6e7}{num\+\_\+hom}
 \begin{DoxyCompactList}\small\item\em program to compute matrix of a J\+SA \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{num__hom_8f90_a46646f61eac84fbee805643cedf29738}{make\+\_\+squeezer} (mode1, mode2, jsa)
+\begin{DoxyCompactList}\small\item\em make sqq matrix from jsa function \end{DoxyCompactList}\item 
+real(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{num__hom_8f90_a95124ae7a4e77fa94e21c1efd865334a}{gen\+\_\+jsa} (w1\+\_\+start, w1\+\_\+end, w1\+\_\+incr, w2\+\_\+start, w2\+\_\+end, w2\+\_\+incr, sigma, outfile)
+\begin{DoxyCompactList}\small\item\em samples the given jsa for frequency ranges w1, w2 \end{DoxyCompactList}\item 
 complex(kind=dp) function \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f3800909}{f} (w1, w2, sig)
 \begin{DoxyCompactList}\small\item\em J\+SA function taking two freq. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -23,28 +27,6 @@ complex(kind=dp) function \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f380
 
 J\+SA function taking two freq. 
 
-\begin{DoxyNote}{Note}
-files to write to
-
-to make off diagonal for fmatrix m\+\_\+sq=0.\+0\+\_\+dp ! top right m\+\_\+sq(1\+:1$\ast$f\+\_\+size, 3$\ast$f\+\_\+size+1\+:4$\ast$f\+\_\+size)=1 ! mid right m\+\_\+sq(1$\ast$f\+\_\+size+1\+:2$\ast$f\+\_\+size, 2$\ast$f\+\_\+size+1\+:3$\ast$f\+\_\+size)=2 ! mid left m\+\_\+sq(2$\ast$f\+\_\+size+1\+:3$\ast$f\+\_\+size, 1$\ast$f\+\_\+size+1\+:2$\ast$f\+\_\+size)=3 ! bot left m\+\_\+sq(3$\ast$f\+\_\+size+1\+:4$\ast$f\+\_\+size, 1\+:1$\ast$f\+\_\+size)=4
-
-!h= 0.\+0 F\+\_\+\+J\+SA F\+\_\+\+J\+S\+A$\ast$T 0.\+0
-\end{DoxyNote}
-f\+\_\+jsa = f\+\_\+mat
-
-M\+\_\+sq = exp(i ( 0 H ) (-\/\+H$\ast$ 0)
-
-M\+\_\+sq = exp(i (0 0 0 F\+\_\+\+J\+SA) (0 0 F\+\_\+\+J\+S\+A$\ast$$\ast$T 0) (0 -\/conjg(F\+\_\+\+J\+SA) 0 0) (-\/\+F\+\_\+\+J\+S\+A$\ast$$\ast$H 0 0 0)\begin{DoxyNote}{Note}
-alpha beta are top left and top right of M M = (A B ) (B$\ast$ A$\ast$) 
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em alpha\+\_\+size} & is 2$\ast$f\+\_\+size as all spectral modes for 2 spatial\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-allocate for sq on modes 1\&2
-\end{DoxyNote}
 
 \begin{DoxyParams}{Parameters}
 {\em w1} & input signal freq \\
@@ -54,6 +36,69 @@ allocate for sq on modes 1\&2
 {\em sig} & input variance \\
 \hline
 \end{DoxyParams}
+\index{num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}!gen\+\_\+jsa@{gen\+\_\+jsa}}
+\index{gen\+\_\+jsa@{gen\+\_\+jsa}!num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}}
+\subsubsection[{\texorpdfstring{gen\+\_\+jsa(w1\+\_\+start, w1\+\_\+end, w1\+\_\+incr, w2\+\_\+start, w2\+\_\+end, w2\+\_\+incr, sigma, outfile)}{gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma, outfile)}}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=dp) function, dimension (\+:,\+:), allocatable num\+\_\+hom\+::gen\+\_\+jsa (
+\begin{DoxyParamCaption}
+\item[{real(kind=dp), intent(in)}]{w1\+\_\+start, }
+\item[{real(kind=dp), intent(in)}]{w1\+\_\+end, }
+\item[{real(kind=dp), intent(in)}]{w1\+\_\+incr, }
+\item[{real(kind=dp), intent(in)}]{w2\+\_\+start, }
+\item[{real(kind=dp), intent(in)}]{w2\+\_\+end, }
+\item[{real(kind=dp), intent(in)}]{w2\+\_\+incr, }
+\item[{real(kind=dp), intent(in)}]{sigma, }
+\item[{integer}]{outfile}
+\end{DoxyParamCaption}
+)}\hypertarget{num__hom_8f90_a95124ae7a4e77fa94e21c1efd865334a}{}\label{num__hom_8f90_a95124ae7a4e77fa94e21c1efd865334a}
+
+
+samples the given jsa for frequency ranges w1, w2 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f\+\_\+mat} & allocatable Jsa matrix values out \\
+\hline
+{\em w\+\_\+start} & \\
+\hline
+\end{DoxyParams}
+\index{num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}!make\+\_\+squeezer@{make\+\_\+squeezer}}
+\index{make\+\_\+squeezer@{make\+\_\+squeezer}!num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}}
+\subsubsection[{\texorpdfstring{make\+\_\+squeezer(mode1, mode2, jsa)}{make_squeezer(mode1, mode2, jsa)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(\+:,\+:), allocatable num\+\_\+hom\+::make\+\_\+squeezer (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{mode1, }
+\item[{integer, intent(in)}]{mode2, }
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(in), allocatable}]{jsa}
+\end{DoxyParamCaption}
+)}\hypertarget{num__hom_8f90_a46646f61eac84fbee805643cedf29738}{}\label{num__hom_8f90_a46646f61eac84fbee805643cedf29738}
+
+
+make sqq matrix from jsa function 
+
+\begin{DoxyNote}{Note}
+files to write to 
+\end{DoxyNote}
+\begin{DoxyNote}{Note}
+to make off diagonal for fmatrix m\+\_\+sq=0.\+0\+\_\+dp ! top right m\+\_\+sq(1\+:1$\ast$f\+\_\+size, 3$\ast$f\+\_\+size+1\+:4$\ast$f\+\_\+size)=1 ! mid right m\+\_\+sq(1$\ast$f\+\_\+size+1\+:2$\ast$f\+\_\+size, 2$\ast$f\+\_\+size+1\+:3$\ast$f\+\_\+size)=2 ! mid left m\+\_\+sq(2$\ast$f\+\_\+size+1\+:3$\ast$f\+\_\+size, 1$\ast$f\+\_\+size+1\+:2$\ast$f\+\_\+size)=3 ! bot left m\+\_\+sq(3$\ast$f\+\_\+size+1\+:4$\ast$f\+\_\+size, 1\+:1$\ast$f\+\_\+size)=4
+
+!h= 0.\+0 F\+\_\+\+J\+SA F\+\_\+\+J\+S\+A$\ast$T 0.\+0
+\end{DoxyNote}
+f\+\_\+jsa = f\+\_\+mat
+
+M\+\_\+sq = exp(i ( 0 H ) (-\/\+H$\ast$ 0)
+
+M\+\_\+sq = exp(i (0 0 0 F\+\_\+\+J\+SA) (0 0 F\+\_\+\+J\+S\+A$\ast$$\ast$T 0) (0 -\/conjg(F\+\_\+\+J\+SA) 0 0) (-\/\+F\+\_\+\+J\+S\+A$\ast$$\ast$H 0 0 0)
+
+\begin{DoxyNote}{Note}
+alpha beta are top left and top right of M M = (A B ) (B$\ast$ A$\ast$) 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em alpha\+\_\+size} & is 2$\ast$f\+\_\+size as all spectral modes for 2 spatial\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+allocate for sq on modes 1\&2 
+\end{DoxyNote}
 \index{num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}!num\+\_\+hom@{num\+\_\+hom}}
 \index{num\+\_\+hom@{num\+\_\+hom}!num\+\_\+hom.\+f90@{num\+\_\+hom.\+f90}}
 \subsubsection[{\texorpdfstring{num\+\_\+hom}{num_hom}}]{\setlength{\rightskip}{0pt plus 5cm}program num\+\_\+hom (

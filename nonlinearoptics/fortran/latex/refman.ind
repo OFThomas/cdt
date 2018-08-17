@@ -50,6 +50,8 @@
 
   \item {g4}
     \subitem {makeopticalelements}, \hyperpage{9}
+  \item {gen\+\_\+jsa}
+    \subitem {num\+\_\+hom.\+f90}, \hyperpage{16}
 
   \indexspace
 
@@ -64,6 +66,8 @@
     \subitem {makeopticalelements}, \hyperpage{9}
   \item {make\+\_\+sq}
     \subitem {makeopticalelements}, \hyperpage{9}
+  \item {make\+\_\+squeezer}
+    \subitem {num\+\_\+hom.\+f90}, \hyperpage{16}
   \item {makeopticalelements}, \hyperpage{7}
     \subitem {abt}, \hyperpage{7}
     \subitem {alloc\+\_\+temparrays}, \hyperpage{8}
@@ -83,10 +87,12 @@
   \indexspace
 
   \item {num\+\_\+hom}
-    \subitem {num\+\_\+hom.\+f90}, \hyperpage{16}
+    \subitem {num\+\_\+hom.\+f90}, \hyperpage{17}
   \item {num\+\_\+hom.\+f90}, \hyperpage{16}
     \subitem {f}, \hyperpage{16}
-    \subitem {num\+\_\+hom}, \hyperpage{16}
+    \subitem {gen\+\_\+jsa}, \hyperpage{16}
+    \subitem {make\+\_\+squeezer}, \hyperpage{16}
+    \subitem {num\+\_\+hom}, \hyperpage{17}
 
   \indexspace
 
