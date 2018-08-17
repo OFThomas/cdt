@@ -26,7 +26,7 @@ class Operatoralg():
         #self.moderel[i] = Eq(self.bmodes[i, 0], self.modetrans[i, 0])
 
         # whole mode transform matrix
-        pprint(Eq(self.bmodes[:, 0], self.modetrans[:, 0]))
+        #pprint(Eq(self.bmodes[:, 0], self.modetrans[:, 0]))
 
         # for formatting
         print('\n\n\n\n\n\n\n\n\n\n\n\n\n')

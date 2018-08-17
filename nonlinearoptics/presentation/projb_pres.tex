@@ -1,0 +1,438 @@
+\documentclass{beamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Packages  %%%%%%%%%%%%%
+\usepackage{amsmath} 
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amssymb}
+\usepackage{mathptmx}
+\usepackage{array}
+  
+%%%%%%%%% FIGurES %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{caption} 
+\usepackage{subcaption}
+\usepackage{scrextend}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{hyperref}
+\graphicspath{{./figures/}}
+\hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
+\renewcommand{\equationautorefname}{Eq.}
+\renewcommand{\figureautorefname}{Fig.}
+ 
+%%%%%%%%%%%% LaNgUaGe %%%%%%%%%%%%%%%%%%
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%%%%% PhYsIcS %%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\annia}{\hat{a}}
+\renewcommand{\annib}{\hat{b}}
+\renewcommand{\creata}{\hat{a}^\dagger}
+\renewcommand{\creatb}{\hat{b}^\dagger}
+
+\renewcommand{\a}{a^ }
+\renewcommand{\b}{b^ }
+\renewcommand{\adag}{a^\dagger}
+\renewcommand{\bdag}{b^\dagger}
+
+\usepackage{qcircuit}
+
+\usetheme{PaloAlto}
+
+\title{Modelling Nonlinear optics with the Bloch-Messiah reduction}
+\author{Oliver Thomas}
+\institute{Quantum Engineering CDT \\ University of Bristol}
+\date{\today}
+
+% plan
+
+\begin{document}
+
+\frame{\titlepage}
+
+% slide 1
+\begin{frame}
+\frametitle{Overview}
+\begin{itemize}
+	\item What is nonlinear optics?
+    \item Why do we care about it?
+    \item What I have been doing
+    \item Gaussian optics 
+    \item Outlook
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Motivation}
+\begin{columns}
+\column{0.5\textwidth}
+    \begin{block}{The good}
+    Spontaneous Parametric processes, SPDC, SFWM
+    \begin{itemize}
+        \item Heralded single photon sources
+        \item Entangled photon pair generation (polarisation, spatial)
+    \end{itemize}
+    Kerr processes 
+    \begin{itemize}
+        \item Self-Phase modulation (SPM) for generating Bannana states (CV)
+        \item Cross-Phase modulation (XPM) for sensing
+    \end{itemize}
+    \end{block}
+%
+\column{0.5\textwidth}
+    \begin{block}{The bad}
+        \begin{itemize}
+            \item Generating more than two photons -$>$ bad for quantum computing
+            \item  
+        \end{itemize}
+        All Kerr nonlinear processes 
+        \begin{itemize}
+            \item SPM -$>$ Spectral broadening
+            \item XPM -$>$ Unwanted phase shifts on single photons due to propagation of the pump 
+        \end{itemize}
+        \end{block}
+\end{columns}
+
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{What do we mean by nonlinear optics?}
+\begin{itemize} 
+    \item Roughly processes that conserve energy but do not conserve photon number. 
+        \begin{equation}
+            \vect{P}= \vect{E_1} +\chi^{(1)} \vect{E_1}\vect{E_2} + \chi^{(2)}\vect{E_1}\vect{E_2}\vect{E_3} + \chi^{(3)}\vect{E_1}\vect{E_2}\vect{E_3}\vect{E_4} + \dots
+        \end{equation}
+\end{itemize}
+Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are then of the form, 
+\begin{equation} 
+    \hat{H} = A \creata_S \creata_I \annia_P + h.c.
+\end{equation}
+\begin{equation} 
+    \hat{H} = A \creata_S \creata_I \annia_P \annia_P + h.c.
+\end{equation}
+\textbf{Note} for the rest of this presentation I will drop the hat notatiaion and using the convention a, b are annihilation operators in modes a \& b
+\end{frame}
+
+
+%slide 3
+\begin{frame}
+\frametitle{Gaussian Optics}
+\begin{itemize}
+    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
+    \item These are Gaussian transforms, they take Gaussian states to Gaussian states 
+
+\begin{equation}
+    \begin{bmatrix} 
+        \vec{\b}   \\
+        \vec{\bdag}
+    \end{bmatrix}
+    = 
+    M
+    \begin{bmatrix}
+        \vec{\a} \\
+        \vec{\adag}
+    \end{bmatrix}
+\end{equation}
+\end{itemize}
+\begin{align*}
+\centering
+    \Qcircuit @C=0.5cm @R=0.5cm{
+    %1
+        &\lstick{a_1} &\qw &\multigate{1}{Squeezer} &\qw &\qw &\measureD{} \\
+    %2
+        &\lstick{a_2} &\qw &\ghost{Squeezer} &\qw  &\multigate{1}{BS} &\measureD{} \\
+    %3
+        &\lstick{a_3} &\qw &\multigate{1}{Squeezer} &\qw &\ghost{BS} &\measureD{} \\
+    %4
+        &\lstick{a_4} &\qw &\ghost{Squeezer} &\qw &\qw &\measureD{} \\
+}
+\end{align*}
+
+\end{frame}
+
+%slide 3
+\begin{frame}
+\frametitle{Making a repository}
+\begin{itemize}
+	\item Go to the folder and right click \texttt{git with bash}
+\item You are now able to use bash for the rest of the talk!
+\end{itemize}
+\end{frame}
+
+%slide 4
+\begin{frame}
+\frametitle{Basic Git commands}
+\begin{itemize}
+	\item There are four\footnotemark\ important commands you will need for git:
+	\item \texttt{git pull}
+	\item \texttt{git add *}
+	\item \texttt{git commit -a}
+	\item \texttt{git push}
+\end{itemize}
+\footnotetext[1]{I cheat here and write a bash script which does these in order so I only have to run a single command.}
+\end{frame}
+
+%slide 4
+\begin{frame}
+\frametitle{Advanced Git commands}
+\begin{itemize}
+	\item One of the great things about Git is that you can get by with just the four above commands.
+	\item The git man page is very useful, especially, \\
+	\texttt{man gittutorial} \\
+	\texttt{man giteveryday} \\ 
+\item \texttt{giteveryday} is a super useful collection of the 20 commands you will need regularly.
+\end{itemize}
+\end{frame}
+
+%slide 4
+\begin{frame}
+\frametitle{Adding Collaborators}
+\begin{itemize}
+	\item Go to a repository and on the settings tab click collaborators, you can then search for the github username
+\end{itemize}
+\end{frame}
+
+
+
+%slide 5
+\begin{frame}
+\frametitle{Why Python?} 
+\begin{itemize}
+	\item Python is popular, multi-platform and becoming a standard language\footnotemark\ 
+	\item It is a good high level language to know, it is a very flexible interpreted language.
+\end{itemize}
+\footnotetext[2]{standard on most of the popular linux distributions}
+\end{frame}
+
+%slide 5
+\begin{frame}
+\frametitle{Python syntax} 
+\begin{itemize}
+	\item As with every programming language we should figure out how to do \textit{Hello, world!}
+\end{itemize}
+Open python and type:
+\begin{verbatim}
+print 'Hello, world!'
+\end{verbatim}
+\begin{itemize}
+\item As Python is an interpreted language you can run command by command in python or use an IDE and then use python to run the program. For plotting it is more useful to write the program out in an IDE first. 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+	\frametitle{Adding your first commit}
+\begin{itemize}
+	\item Save your \textit{hello, world!} program. 
+	\item Then either run: 
+	\item \texttt{git add *}
+	\item \texttt{git commit -a}
+	\item \texttt{git push}
+\end{itemize}
+
+Or use the windows GUI version and commit them to your repository.
+\end{frame}
+
+
+%slide 6
+\begin{frame}
+\frametitle{Plotting}
+\begin{itemize}
+	\item Python requires the \texttt{numpy} library\footnotemark\ for a lot of basic maths functions (and arrays).
+	\item We are going to use the \texttt{matplotlib} library\footnotemark\ for the remainder of this talk. 
+\end{itemize}
+\footnotetext[3]{\url{http://www.numpy.org/}}
+\footnotetext[4]{\url{https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html}}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 1, Plotting functions}
+\begin{itemize}
+	\item Go to the \texttt{src} folder and open \texttt{ex1functions.py} 
+	\item Run \texttt{all.py} and choose 1 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 1, Plotting functions}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\begin{itemize}
+	\item It could do with some axis labels. 
+	\item go into the program and find the line called \texttt{plt.ylabel=} and \texttt{plt.xlabel=}  
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 2, Complicated functions!}
+\begin{itemize}
+\item In the \texttt{src} folder open \texttt{ex2compfunctions.py} 
+\item Run all.py and choose 2 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 2, Complicated functions!}
+\begin{itemize}
+\item Figures!
+\item
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{aex2.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+
+%slide 2
+\begin{frame}
+\frametitle{Example 3, Plotting data!}
+\begin{itemize}
+	\item once again, in the \texttt{src} folder open \texttt{ex3data.py}
+	\item Run all.py and choose 3 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 3, Plotting data!}
+\begin{itemize}
+	\item figure 
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex3.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 4, Histograms!}
+\begin{itemize}
+\item once again, in the \texttt{src} folder open \texttt{ex4hist.py}
+	\item Run all.py and choose 4 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 4, Histograms!}
+\begin{itemize}
+\item figure
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex4.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 5, Subplots!}
+\begin{itemize}
+\item In the \texttt{src} folder open \texttt{ex5subplots.py} 
+	\item Run all.py and choose 5 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 5, Subplots!}
+\begin{itemize}
+\item Figures!
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex5.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 6, Art!}
+\begin{itemize}
+\item In the \texttt{src} folder open \texttt{ex6art.py} 
+	\item Run all.py and choose 6 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 6, Art!}
+\begin{itemize}
+\item Figures!
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{aex6.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Branching}
+\begin{itemize}
+\item Branching is useful, it lets you test something out separately to the main branch.
+\item To make a new branch called \texttt{test} \\
+\texttt{git branch test} 
+\item You can check all of the current branches and which branch you are on with \\
+	\texttt{git branch}
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Branching}
+\begin{itemize}
+	\item To switch to the test branch type: \\ 
+	\texttt{git checkout test} \\
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Thanks for listening!}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{xkcdgit.png}
+	\caption{If it all goes wrong \ldots \footnotemark }
+	\label{fig:xkcdversion}
+\end{figure}
+\footnotetext[1]{\url{https://xkcd.com/1597/}}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

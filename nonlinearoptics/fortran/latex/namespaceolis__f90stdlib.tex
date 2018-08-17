@@ -43,12 +43,16 @@ complex(kind=dp), parameter \hyperlink{namespaceolis__f90stdlib_a0a22d30625256a1
 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}\label{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!alloc\+\_\+complex\+\_\+eigenvects@{alloc\+\_\+complex\+\_\+eigenvects}}
 \index{alloc\+\_\+complex\+\_\+eigenvects@{alloc\+\_\+complex\+\_\+eigenvects}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{alloc\+\_\+complex\+\_\+eigenvects()}{alloc\_complex\_eigenvects()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+eigenvects (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix,  }\item[{complex(kind=dp), dimension(\+:), intent(inout), allocatable}]{eigenvals,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{v }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{alloc\+\_\+complex\+\_\+eigenvects(matrix, eigenvals, u, v)}{alloc_complex_eigenvects(matrix, eigenvals, u, v)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+eigenvects (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix, }
+\item[{complex(kind=dp), dimension(\+:), intent(inout), allocatable}]{eigenvals, }
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u, }
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}{}\label{namespaceolis__f90stdlib_af0119bd404337367bc0727decf6dd89c}
 
 
 allocates eigenvals, u \& v arrays for eigenvals \& eigenvects 
@@ -67,12 +71,16 @@ Oliver Thomas August 2018
 {\em v} & 3d array of right eigenvectors \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}\label{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!alloc\+\_\+complex\+\_\+svd@{alloc\+\_\+complex\+\_\+svd}}
 \index{alloc\+\_\+complex\+\_\+svd@{alloc\+\_\+complex\+\_\+svd}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{alloc\+\_\+complex\+\_\+svd()}{alloc\_complex\_svd()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+svd (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix,  }\item[{real(kind=dp), dimension(\+:), intent(inout), allocatable}]{sigma,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{vt }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{alloc\+\_\+complex\+\_\+svd(matrix, sigma, u, vt)}{alloc_complex_svd(matrix, sigma, u, vt)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::alloc\+\_\+complex\+\_\+svd (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{matrix, }
+\item[{real(kind=dp), dimension(\+:), intent(inout), allocatable}]{sigma, }
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{u, }
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{vt}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}{}\label{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612}
 
 
 allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too 
@@ -88,12 +96,13 @@ allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp wor
 {\em vt} & unitary matrix returns V$\ast$$\ast$H N\+OT v \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}\label{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!c\+\_\+identity@{c\+\_\+identity}}
 \index{c\+\_\+identity@{c\+\_\+identity}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{c\+\_\+identity()}{c\_identity()}}
-{\footnotesize\ttfamily complex(kind=dp) function, dimension(n,n) olis\+\_\+f90stdlib\+::c\+\_\+identity (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{c\+\_\+identity(n)}{c_identity(n)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(n,n) olis\+\_\+f90stdlib\+::c\+\_\+identity (
+\begin{DoxyParamCaption}
+\item[{integer, intent(in)}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}{}\label{namespaceolis__f90stdlib_a2ff3837ae1f9273552a2716064a46fce}
 
 
 makes complex identity matrix dim (nxn) 
@@ -103,12 +112,13 @@ makes complex identity matrix dim (nxn)
 {\em n} & input dimension \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}\label{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!c\+\_\+inv2@{c\+\_\+inv2}}
 \index{c\+\_\+inv2@{c\+\_\+inv2}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{c\+\_\+inv2()}{c\_inv2()}}
-{\footnotesize\ttfamily complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::c\+\_\+inv2 (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(2,2), intent(in)}]{m\+\_\+in }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{c\+\_\+inv2(m\+\_\+in)}{c_inv2(m_in)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::c\+\_\+inv2 (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(2,2), intent(in)}]{m\+\_\+in}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}{}\label{namespaceolis__f90stdlib_a162dd5131a39a62d7b95e2ebca4664a4}
 
 
 inverse for a complex 2x2 matrix 
@@ -118,12 +128,16 @@ inverse for a complex 2x2 matrix
 {\em m\+\_\+in} & is input complex 2x2 matrix \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}\label{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complex\+\_\+eigenvects@{complex\+\_\+eigenvects}}
 \index{complex\+\_\+eigenvects@{complex\+\_\+eigenvects}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{complex\+\_\+eigenvects()}{complex\_eigenvects()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::complex\+\_\+eigenvects (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{a,  }\item[{complex(kind=dp), dimension(\+:), allocatable}]{w,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vl,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vr }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{complex\+\_\+eigenvects(a, w, vl, vr)}{complex_eigenvects(a, w, vl, vr)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::complex\+\_\+eigenvects (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{a, }
+\item[{complex(kind=dp), dimension(\+:), allocatable}]{w, }
+\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vl, }
+\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vr}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}{}\label{namespaceolis__f90stdlib_a71c5b363b52932a5c69053149ac8cc25}
 
 
 computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack 
@@ -142,12 +156,16 @@ computes the complex eigenvalues and eigenvectors  overwrites matrix in, input e
 \begin{DoxyNote}{Note}
 need to check this is optimised 
 \end{DoxyNote}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}\label{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complex\+\_\+svd@{complex\+\_\+svd}}
 \index{complex\+\_\+svd@{complex\+\_\+svd}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{complex\+\_\+svd()}{complex\_svd()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::complex\+\_\+svd (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{a,  }\item[{real(kind=dp), dimension(\+:), allocatable}]{sigma,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{u,  }\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vt }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{complex\+\_\+svd(a, sigma, u, vt)}{complex_svd(a, sigma, u, vt)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::complex\+\_\+svd (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{a, }
+\item[{real(kind=dp), dimension(\+:), allocatable}]{sigma, }
+\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{u, }
+\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vt}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}{}\label{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}
 
 
 computes the complex eigenvalues and eigenvectors  overwrites matrix in, input eigenvalue array and eigenvector arrays uses the zgeev subroutine from lapack 
@@ -166,12 +184,13 @@ computes the complex eigenvalues and eigenvectors  overwrites matrix in, input e
 \begin{DoxyNote}{Note}
 need to check this is optimised 
 \end{DoxyNote}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}\label{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!complextrace@{complextrace}}
 \index{complextrace@{complextrace}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{complextrace()}{complextrace()}}
-{\footnotesize\ttfamily complex(kind=dp) function olis\+\_\+f90stdlib\+::complextrace (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{a }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{complextrace(a)}{complextrace(a)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function olis\+\_\+f90stdlib\+::complextrace (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}{}\label{namespaceolis__f90stdlib_aaa6e9aabcf33a6f7052e1db5aa5dcf70}
 
 
 computes the trace of a complex matrix 
@@ -181,35 +200,41 @@ computes the trace of a complex matrix
 {\em a} & is the complex matrix in \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}\label{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!expmatrix@{expmatrix}}
 \index{expmatrix@{expmatrix}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{expmatrix()}{expmatrix()}}
-{\footnotesize\ttfamily complex(kind=dp) function, dimension(size(matrix,1),size(matrix,2)) olis\+\_\+f90stdlib\+::expmatrix (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{matrix,  }\item[{integer}]{n }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{expmatrix(matrix, n)}{expmatrix(matrix, n)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(size(matrix,1),size(matrix,2)) olis\+\_\+f90stdlib\+::expmatrix (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{matrix, }
+\item[{integer}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}{}\label{namespaceolis__f90stdlib_a309c2107f5d5071bb8c1bad4362f88e1}
 
 \begin{DoxyParams}{Parameters}
 {\em n} & is the number of terms in taylor expansion to consider \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}\label{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!factorial@{factorial}}
 \index{factorial@{factorial}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{factorial()}{factorial()}}
-{\footnotesize\ttfamily recursive real(kind=dp) function olis\+\_\+f90stdlib\+::factorial (\begin{DoxyParamCaption}\item[{integer}]{n }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}\label{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}} 
+\subsubsection[{\texorpdfstring{factorial(n)}{factorial(n)}}]{\setlength{\rightskip}{0pt plus 5cm}recursive real(kind=dp) function olis\+\_\+f90stdlib\+::factorial (
+\begin{DoxyParamCaption}
+\item[{integer}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}{}\label{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!matrixmul@{matrixmul}}
 \index{matrixmul@{matrixmul}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{matrixmul()}{matrixmul()}}
-{\footnotesize\ttfamily recursive complex(kind=dp) function, dimension(size(x,1),size(x,2)) olis\+\_\+f90stdlib\+::matrixmul (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{x,  }\item[{integer}]{n }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}\label{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}} 
+\subsubsection[{\texorpdfstring{matrixmul(x, n)}{matrixmul(x, n)}}]{\setlength{\rightskip}{0pt plus 5cm}recursive complex(kind=dp) function, dimension(size(x,1),size(x,2)) olis\+\_\+f90stdlib\+::matrixmul (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{x, }
+\item[{integer}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}{}\label{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!matrixnorm@{matrixnorm}}
 \index{matrixnorm@{matrixnorm}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{matrixnorm()}{matrixnorm()}}
-{\footnotesize\ttfamily real(kind=dp) function olis\+\_\+f90stdlib\+::matrixnorm (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:)}]{c }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{matrixnorm(c)}{matrixnorm(c)}}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=dp) function olis\+\_\+f90stdlib\+::matrixnorm (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}{}\label{namespaceolis__f90stdlib_a43175b11cfecf961b5e6e597cfb2f848}
 
 
 computed Frobenieus matrix norm of complex matrix using lapack zlange 
@@ -219,12 +244,14 @@ computed Frobenieus matrix norm of complex matrix using lapack zlange
 {\em c} & input complex matrix \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}\label{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!outerproduct@{outerproduct}}
 \index{outerproduct@{outerproduct}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{outerproduct()}{outerproduct()}}
-{\footnotesize\ttfamily complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::outerproduct (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:), intent(in)}]{a,  }\item[{complex(kind=dp), dimension(\+:), intent(in)}]{b }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{outerproduct(a, b)}{outerproduct(a, b)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(2,2) olis\+\_\+f90stdlib\+::outerproduct (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:), intent(in)}]{a, }
+\item[{complex(kind=dp), dimension(\+:), intent(in)}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{}\label{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}
 
 
 outerproduct of two complex vectors, returns a complex matrix 
@@ -236,12 +263,15 @@ outerproduct of two complex vectors, returns a complex matrix
 {\em b} & is input vector 2, $<$bra$\vert$ \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}\label{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!printvectors@{printvectors}}
 \index{printvectors@{printvectors}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{printvectors()}{printvectors()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::printvectors (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{vect,  }\item[{character(len=$\ast$), intent(in), optional}]{desc,  }\item[{integer, intent(in), optional}]{f }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{printvectors(vect, desc, f)}{printvectors(vect, desc, f)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::printvectors (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(in)}]{vect, }
+\item[{character(len=$\ast$), intent(in), optional}]{desc, }
+\item[{integer, intent(in), optional}]{f}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{}\label{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}
 
 
 print formatted matrices  can take optional args for labels or write directly to a file 
@@ -255,12 +285,13 @@ print formatted matrices  can take optional args for labels or write directly to
 {\em f} & is the optional file output unit to write to, default is console \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}\label{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!randseed@{randseed}}
 \index{randseed@{randseed}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{randseed()}{randseed()}}
-{\footnotesize\ttfamily subroutine olis\+\_\+f90stdlib\+::randseed (\begin{DoxyParamCaption}\item[{integer, dimension(\+:), allocatable}]{seed }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{randseed(seed)}{randseed(seed)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::randseed (
+\begin{DoxyParamCaption}
+\item[{integer, dimension(\+:), allocatable}]{seed}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{}\label{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}
 
 
 generates random seed 
@@ -270,12 +301,14 @@ generates random seed
 {\em seed} & is input allocatable 1d array \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}\label{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!tprod@{tprod}}
 \index{tprod@{tprod}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{tprod()}{tprod()}}
-{\footnotesize\ttfamily complex(kind=dp) function, dimension(\+:,\+:), allocatable olis\+\_\+f90stdlib\+::tprod (\begin{DoxyParamCaption}\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{a,  }\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{b }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{tprod(a, b)}{tprod(a, b)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(\+:,\+:), allocatable olis\+\_\+f90stdlib\+::tprod (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{a, }
+\item[{complex(kind=dp), dimension (\+:,\+:), intent(in)}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}{}\label{namespaceolis__f90stdlib_af055cdf442d596810974e4f63eaeb119}
 
 
 tensor product for complex matrices a\+Xb 
@@ -290,15 +323,9 @@ tensor product for complex matrices a\+Xb
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}\label{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}} 
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!imaginary@{imaginary}}
 \index{imaginary@{imaginary}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{imaginary}{imaginary}}
-{\footnotesize\ttfamily complex(kind=dp), parameter olis\+\_\+f90stdlib\+::imaginary =(0.\+0\+\_\+dp, 1.\+0\+\_\+dp)}
-
-\mbox{\Hypertarget{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}\label{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}} 
+\subsubsection[{\texorpdfstring{imaginary}{imaginary}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp), parameter olis\+\_\+f90stdlib\+::imaginary =(0.\+0\+\_\+dp, 1.\+0\+\_\+dp)}\hypertarget{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}{}\label{namespaceolis__f90stdlib_a0a22d30625256a14acc49cd749e88cb7}
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!pi@{pi}}
 \index{pi@{pi}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
-\subsubsection{\texorpdfstring{pi}{pi}}
-{\footnotesize\ttfamily real(kind=dp), parameter olis\+\_\+f90stdlib\+::pi =4.\+0\+\_\+dp$\ast$atan(1.\+0)}
-
+\subsubsection[{\texorpdfstring{pi}{pi}}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=dp), parameter olis\+\_\+f90stdlib\+::pi =4.\+0\+\_\+dp$\ast$atan(1.\+0)}\hypertarget{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}{}\label{namespaceolis__f90stdlib_a106e09303fbf05972f0635ff67f73c9d}

@@ -176,8 +176,8 @@ complex(kind=dp), dimension(:,:), allocatable, intent(in) :: ft
 integer, intent(in) :: nspec
 complex(kind=dp), dimension(6) :: term
 complex(kind=dp) :: gam21, gam43, gam32, gam41, gam31, gam42
-complex(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
-complex(kind=dp) :: gam, bdiag
+real(kind=dp) :: bbdag11, bbdag22, bbdag33, bbdag44
+real(kind=dp) :: gam, bdiag
 g4=0.0_dp
 
 !print*, 'did abt'
@@ -205,7 +205,7 @@ term(4) = amp(gam43) * bbdag11 * bbdag22
 term(5) = amp(gam42) * bbdag11 * bbdag33
 term(6) = amp(gam41) * bbdag22 * bbdag33
 
-g4 = real((gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6)),kind=dp)
+g4 = abs(gam + bdiag + term(1) + term(2) + term(3) + term(4) + term(5) +term(6))
 print*, 'gam', gam, 'bdiag', bdiag
 end function g4
 
@@ -250,6 +250,7 @@ abt=0.0_dp
 do k=1,nspec
     abt=abt+temp(((i-1)*nspec)+k, ((j-1)*nspec)+k)
 end do
+abt=abt/real(nspec,kind=dp)
 end function abt
 
 
@@ -279,6 +280,7 @@ do k=1, nspec
     !print*, 'bbd sum', bbd
     !print*, ((i-1)*nspec)+k, ((j-1)*nspec)+k
 end do
+bbd=bbd/real(nspec,kind=dp)
 end function bbd
 
 
