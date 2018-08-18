@@ -63,8 +63,10 @@ complex(kind=dp), dimension(:,:), allocatable :: transform, transform_no_bs
 
 !>@param theta beamsplitter angle
 !>@param g4norm is the normalised g4 matrix
-real(kind=dp) :: theta, g4norm, g4_nobs, g4un_norm
+real(kind=dp) :: thetaincr, g4_nobs, g4un_norm, jsaamp
+real(kind=dp), dimension(:), allocatable :: g4norm, theta
 
+integer :: theta_samples
 
 
 !!!!
@@ -73,9 +75,10 @@ complex(kind=dp), dimension(:,:), allocatable :: f_mat1, f_mat2
 open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
+open(unit=17, file='g4splot.dat', status='replace')
 
-w1_start=-6.0_dp
-w2_start=-6.0_dp
+w1_start=-0.2_dp
+w2_start=-0.2_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -136,25 +139,43 @@ sizeofexp=4*f_size
 print*, 'dim of exp', sizeofexp
 print*, 'transform_no_bs'
 
+jsaamp=1.0_dp
+do j=1,1
+
+f_mat1=f_mat1*jsaamp
+f_mat2=f_mat2*jsaamp 
 
 !
-mat_sq1=make_squeezer(1,2,f_mat1)
+101 format (2f10.2) 
+102 format (16f10.2) 
 
+mat_sq1=make_squeezer(nspace, nspec, 1,2,f_mat1)
+write(*,101) real(f_mat1)
+print*, 'fmat1'
+write(*,102) real(mat_sq1) 
+print*, 'mat sq 12' 
 !
-mat_sq2=make_squeezer(3,4,f_mat2)
+mat_sq2=make_squeezer(nspace, nspec, 3,4,f_mat2)
 
 
 transform_no_bs=matmul(mat_sq1,mat_sq2)
 print*, 'nspec',  nspec
 g4_nobs=g4(transform_no_bs,nspec)
 
+theta_samples=10
+allocate(g4norm(theta_samples))
+allocate(theta(theta_samples))
+
 theta=0.0_dp
-do i=1, 200
-    theta=theta+0.01_dp*pi
+thetaincr=0.0_dp
+do i=1, theta_samples
+    
+    theta(i)=thetaincr
+    thetaincr=thetaincr+0.02*pi
 
     ! modes 2 & 3
     mat_bs=0.0_dp
-    call make_bs(nspace,nspec,mat_bs,2,3,theta)
+    call make_bs(nspace,nspec,mat_bs,2,3,theta(i))
     !call printvectors(mat_bs, 'beamsplitter')
 
 
@@ -168,11 +189,26 @@ do i=1, 200
     transform=matmul(mat_bs,transform_no_bs)
     !call printvectors(transform(1:n,1:n), 'sq1*sq2*BS') 
     g4un_norm= g4(transform, nspec)
-    g4norm=g4un_norm/g4_nobs
-    print*, 'theta', theta, 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm
-    write(16,*) theta, g4norm, g4_nobs,g4un_norm
+    g4norm(i)=g4un_norm/g4_nobs
+    ! normalise 
 
+    print*, 'theta', theta(i), 'g4 no BS', g4_nobs, 'g4 un',g4un_norm, 'g4norm', g4norm(i)
+    write(16,*) theta(i), g4norm(i), g4_nobs,g4un_norm
+end do ! theta 
+    
+g4norm=g4norm/(sum(g4norm))
+
+do k=1, size(g4norm)
+    write(17,*) jsaamp, theta(k), g4norm(k)
 end do
+
+deallocate(g4norm)
+deallocate(theta)
+
+! 1 is no scaling
+    jsaamp=jsaamp+0.1_dp
+
+end do ! jsa amp
 
 deallocate(mat_bs)
 !deallocate(alpha_temp)
@@ -187,150 +223,6 @@ close(15)
 close(16)
 contains 
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!>@brief make sqq matrix from jsa function
-function make_squeezer(mode1, mode2, jsa) 
-
-integer, intent(in) :: mode1, mode2
-complex(kind=dp), dimension(:,:), allocatable, intent(in) :: jsa
-complex(kind=dp), dimension(:,:), allocatable :: make_squeezer
-
-complex(kind=dp), dimension(:,:), allocatable :: h_sq, alpha_temp, beta_temp
-integer :: f_size, sizeofexp
-f_size=size(f_mat1,1)
-sizeofexp=4*f_size
-allocate(h_sq(sizeofexp,sizeofexp))
-
-!!!!!!!!!
-!>@note to make off diagonal for fmatrix
-!>m_sq=0.0_dp
-!>! top right
-!>m_sq(1:1*f_size, 3*f_size+1:4*f_size)=1
-!>! mid right
-!>m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=2 
-!>! mid left
-!>m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=3
-!>! bot left
-!>m_sq(3*f_size+1:4*f_size, 1:1*f_size)=4
-!call printvectors(m_sq)
-
-!>@note !h= 0.0       F_JSA
-!>           F_JSA*T   0.0
-!>
-!>f_jsa = f_mat
-!>
-!> M_sq = exp(i ( 0 H )
-!>              (-H* 0)
-!>
-!> M_sq = exp(i  (0              0           0       F_JSA) 
-!>               (0              0         F_JSA**T      0)
-!>               (0         -conjg(F_JSA)    0           0)
-!>               (-F_JSA**H      0           0           0)
-
-h_sq=0.0_dp
-! top right
-h_sq(1:1*f_size, 3*f_size+1:4*f_size)=jsa(:,:)
-! mid right
-h_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=transpose(jsa(:,:)) 
-! mid left
-h_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=-conjg(jsa(:,:))
-! bot left
-h_sq(3*f_size+1:4*f_size, 1:1*f_size)=-conjg(transpose(jsa(:,:)))
-!call printvectors(m_sq)
-
-! do exponentiation
-h_sq=expmatrix(imaginary*h_sq,50)
-!call printvectors(m_sq, 'after exp')
-
-alpha_size=2*f_size
-allocate(alpha_temp(alpha_size,alpha_size))
-allocate(beta_temp(alpha_size,alpha_size))
-
-!>@note alpha beta are top left and top right of M
-!> M = (A  B )
-!>     (B* A*)
-!>@param alpha_size is 2*f_size as all spectral modes for 2 spatial
-alpha_temp(:,:)=h_sq(1:alpha_size,1:alpha_size)
-beta_temp(:,:)=h_sq(1:alpha_size, alpha_size+1:2*alpha_size)
-
-!call printvectors(alpha_temp, 'alpa')
-!call printvectors(beta_temp, 'beta')
-
-!@brief inset squeezing hamiltonian in correct spatial modes
-!>@note allocate for sq on modes 1&2
-allocate(make_squeezer(2*nspace*f_size,2*nspace*f_size))
-make_squeezer=0.0_dp
-! 0.25 of matrix, need other 0.25 to be ident
-! half of the alpha block
-
-! check how many modes there are,
-! if more modes than alpha make the rest of sq ident
-
-! do for modes 3&4
-! 0 to 2*n
-
-!allocate(mat_sq2(2*nspace*f_size, 2*nspace*f_size))
-!mat_sq2=0.0_dp
-
-
-call make_sq(nspace, f_size, make_squeezer,mode1,mode2,alpha_temp,beta_temp)
-!call printvectors(mat_sq1, 'sq on modes 1&2')
-
-!call printvectors(alpha_temp, 'alpa')
-!call printvectors(beta_temp, 'beta')
-
-!call make_sq(nspace, f_size, mat_sq2, 3,4,alpha_temp,beta_temp)
-!call printvectors(mat_sq2, 'sq on modes 3&4')
-
-!call printvectors(alpha_temp, 'alpa')
-!call printvectors(beta_temp, 'beta')
-
-end function make_squeezer
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 
-
-!>@brief samples the given jsa for frequency ranges w1, w2
-!>@param f_mat allocatable Jsa matrix values out
-!>@param w_start, 
-!>@param w_end
-!>@param w_incr
-!>@param sigma is jsa parameter
-!>@param outfile is unit number of file to write to 
-function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile)
-real(kind=dp), dimension (:,:), allocatable :: gen_jsa
-real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
-real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
-real(kind=dp), intent(in) :: sigma1, sigma2 
-real(kind=dp) :: w1, w2
-integer :: w1_steps, w2_steps, outfile
-integer :: i, j
-
-w1_steps=ceiling((w1_end-w1_start)/w1_incr)
-w2_steps=ceiling((w2_end-w2_start)/w2_incr)
-allocate(gen_jsa(w1_steps,w2_steps))
-!do l=1,2
-w2=w2_start
-do j=1,w2_steps
-    w1=w1_start
-    do i= 1,w1_steps 
-        write(outfile,*) w1, w2, real(f(w1,w2,sigma1, sigma2),kind=dp)
-        gen_jsa(i,j)=real(f(w1,w2,sigma1, sigma2),kind=dp)
-        w1=w1+w1_incr
-    end do
-    w2=w2+w2_incr
-end do
-end function gen_jsa 
-
-!>@brief JSA function taking two freq
-!>@param w1 input signal freq
-!>@param w2 input idler freq
-!>@param sig input variance
-    function f(w1,w2, sigma1, sigma2)
-    complex(kind=dp) :: f
-    real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2
-    
-    f=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*(w1/sigma1)**2)*exp(-0.5_dp*(w2/sigma2)**2)
-
-    end function f
 end program num_hom

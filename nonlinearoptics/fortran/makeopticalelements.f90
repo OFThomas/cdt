@@ -165,6 +165,152 @@ subroutine make_sq(nspace,nspec,symp_mat,m1,m2, alpha, beta)
 
 end subroutine make_sq
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!>@brief make sqq matrix from jsa function
+function make_squeezer(nspace, nspec, mode1, mode2, jsa) 
+
+integer, intent(in) :: mode1, mode2, nspace, nspec
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: jsa
+complex(kind=dp), dimension(:,:), allocatable :: make_squeezer
+
+
+complex(kind=dp), dimension(:,:), allocatable :: h_sq, alpha_temp, beta_temp
+integer :: f_size, sizeofexp, alpha_size, beta_size
+f_size=size(jsa,1)
+sizeofexp=4*f_size
+allocate(h_sq(sizeofexp,sizeofexp))
+
+!!!!!!!!!
+!>@note to make off diagonal for fmatrix
+!>m_sq=0.0_dp
+!>! top right
+!>m_sq(1:1*f_size, 3*f_size+1:4*f_size)=1
+!>! mid right
+!>m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=2 
+!>! mid left
+!>m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=3
+!>! bot left
+!>m_sq(3*f_size+1:4*f_size, 1:1*f_size)=4
+!call printvectors(m_sq)
+
+!>@note !h= 0.0       F_JSA
+!>           F_JSA*T   0.0
+!>
+!>f_jsa = f_mat
+!>
+!> M_sq = exp(i ( 0 H )
+!>              (-H* 0)
+!>
+!> M_sq = exp(i  (0              0           0       F_JSA) 
+!>               (0              0         F_JSA**T      0)
+!>               (0         -conjg(F_JSA)    0           0)
+!>               (-F_JSA**H      0           0           0)
+
+h_sq=0.0_dp
+! top right
+h_sq(1 : 1*f_size,            (3*f_size)+1 : 4*f_size)=jsa(:,:)
+! mid right
+h_sq((1*f_size)+1 : 2*f_size, (2*f_size)+1 : 3*f_size)=transpose(jsa(:,:)) 
+! mid left
+h_sq((2*f_size)+1 : 3*f_size, (1*f_size)+1 : 2*f_size)=-conjg(jsa(:,:))
+! bot left
+h_sq((3*f_size)+1 : 4*f_size,  1 : 1*f_size)=-conjg(transpose(jsa(:,:)))
+!call printvectors(m_sq)
+
+! do exponentiation
+h_sq=expmatrix(imaginary*h_sq,50)
+!call printvectors(m_sq, 'after exp')
+
+alpha_size=2*f_size
+allocate(alpha_temp(alpha_size,alpha_size))
+allocate(beta_temp(alpha_size,alpha_size))
+
+!>@note alpha beta are top left and top right of M
+!> M = (A  B )
+!>     (B* A*)
+!>@param alpha_size is 2*f_size as all spectral modes for 2 spatial
+alpha_temp(:,:)=h_sq(1:alpha_size,1:alpha_size)
+beta_temp(:,:)=h_sq(1:alpha_size, alpha_size+1:2*alpha_size)
+
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
+
+!@brief inset squeezing hamiltonian in correct spatial modes
+!>@note allocate for sq on modes 1&2
+allocate(make_squeezer(2*nspace*f_size,2*nspace*f_size))
+make_squeezer=0.0_dp
+! 0.25 of matrix, need other 0.25 to be ident
+! half of the alpha block
+
+! check how many modes there are,
+! if more modes than alpha make the rest of sq ident
+
+! do for modes 3&4
+! 0 to 2*n
+
+!allocate(mat_sq2(2*nspace*f_size, 2*nspace*f_size))
+!mat_sq2=0.0_dp
+
+
+call make_sq(nspace, f_size, make_squeezer,mode1,mode2,alpha_temp,beta_temp)
+!call printvectors(mat_sq1, 'sq on modes 1&2')
+
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
+
+!call make_sq(nspace, f_size, mat_sq2, 3,4,alpha_temp,beta_temp)
+!call printvectors(mat_sq2, 'sq on modes 3&4')
+
+!call printvectors(alpha_temp, 'alpa')
+!call printvectors(beta_temp, 'beta')
+
+end function make_squeezer
+
+
+!>@brief samples the given jsa for frequency ranges w1, w2
+!>@param f_mat allocatable Jsa matrix values out
+!>@param w_start, 
+!>@param w_end
+!>@param w_incr
+!>@param sigma is jsa parameter
+!>@param outfile is unit number of file to write to 
+function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile)
+real(kind=dp), dimension (:,:), allocatable :: gen_jsa
+real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
+real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
+real(kind=dp), intent(in) :: sigma1, sigma2 
+real(kind=dp) :: w1, w2
+integer :: w1_steps, w2_steps, outfile
+integer :: i, j
+
+w1_steps=ceiling((w1_end-w1_start)/w1_incr)
+w2_steps=ceiling((w2_end-w2_start)/w2_incr)
+allocate(gen_jsa(w1_steps,w2_steps))
+!do l=1,2
+w2=w2_start
+do j=1,w2_steps
+    w1=w1_start
+    do i= 1,w1_steps 
+        write(outfile,*) w1, w2, real(f(w1,w2,sigma1, sigma2),kind=dp)
+        gen_jsa(i,j)=real(f(w1,w2,sigma1, sigma2),kind=dp)
+        w1=w1+w1_incr
+    end do
+    w2=w2+w2_incr
+end do
+end function gen_jsa 
+
+!>@brief JSA function taking two freq
+!>@param w1 input signal freq
+!>@param w2 input idler freq
+!>@param sig input variance
+    function f(w1,w2, sigma1, sigma2)
+    complex(kind=dp) :: f
+    real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2
+    
+    f=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*(w1/sigma1)**2)*exp(-0.5_dp*(w2/sigma2)**2)
+
+    end function f
+
 
 !>@brief calculates g4 using matrix elements sum
 !>@TODO
@@ -250,7 +396,7 @@ abt=0.0_dp
 do k=1,nspec
     abt=abt+temp(((i-1)*nspec)+k, ((j-1)*nspec)+k)
 end do
-abt=abt/real(nspec,kind=dp)
+!abt=abt/real(nspec,kind=dp)
 end function abt
 
 
@@ -280,7 +426,7 @@ do k=1, nspec
     !print*, 'bbd sum', bbd
     !print*, ((i-1)*nspec)+k, ((j-1)*nspec)+k
 end do
-bbd=bbd/real(nspec,kind=dp)
+!bbd=bbd/real(nspec,kind=dp)
 end function bbd
 
 
