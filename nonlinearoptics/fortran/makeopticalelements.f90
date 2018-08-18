@@ -285,7 +285,16 @@ integer :: i, j
 
 w1_steps=ceiling((w1_end-w1_start)/w1_incr)
 w2_steps=ceiling((w2_end-w2_start)/w2_incr)
-allocate(gen_jsa(w1_steps,w2_steps))
+print*, 'dim of JSA is', w1_steps, w2_steps
+
+if (w1_steps >= w2_steps) then 
+    allocate(gen_jsa(w1_steps,w1_steps))
+else if (w1_steps < w2_steps) then
+    allocate(gen_jsa(w2_steps,w2_steps))
+else 
+    stop 'what the hell is wrong with the spectral range'
+end if
+
 !do l=1,2
 w2=w2_start
 do j=1,w2_steps

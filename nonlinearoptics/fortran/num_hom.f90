@@ -71,13 +71,20 @@ integer :: theta_samples
 
 !!!!
 complex(kind=dp), dimension(:,:), allocatable :: f_mat1, f_mat2
+
+!>@param uf1 is u matrix from f_mat1 svd
+!>@param vtf1 is vt matrix from f_mat1 svd
+complex(kind=dp), dimension(:,:), allocatable :: uf1, vtf1
+!>@param svf1 singular values for f_mat1
+real(kind=dp), dimension(:), allocatable :: svf1
+
 !>@note files to write to  
 open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
 open(unit=17, file='g4splot.dat', status='replace')
 
-w1_start=-0.2_dp
+w1_start=-0.3_dp
 w2_start=-0.2_dp
 
 w1_end=-w1_start
@@ -87,26 +94,8 @@ w2_end=-w2_start
 w1_incr=0.20_dp
 w2_incr=0.20_dp
 
-!w1_steps=ceiling((w1_end-w1_start)/w1_incr)
-!w2_steps=ceiling((w2_end-w2_start)/w2_incr)
-
 sigma1=1.0_dp
 sigma2=2.0_dp*sigma1
-!allocate(f_mat(w1_steps,w2_steps))
-
-!do l=1,2
-
-!w2=w2_start
-!do j=1,w2_steps
-!    w1=w1_start
-!    do i= 1,w1_steps 
-!        write(15,*) w1, w2, real(f(w1,w2,sigma),kind=dp)
-!        f_mat(i,j)=real(f(w1,w2,sigma),kind=dp)
-!        w1=w1+w1_incr
-!    end do
-!    w2=w2+w2_incr
-!end do
-
 
 f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14)
 f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15)
@@ -118,9 +107,6 @@ write(*,*) 'sum f1',  sum(f_mat1)*w1_incr*w2_incr,  'sum f2', sum(f_mat2)*w1_inc
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
-
-
-
 nspace=4
 nspec=size(f_mat1,1)
 print*, 'nspectral dof', nspec
@@ -128,6 +114,64 @@ n=nspace*nspec
 allocate(mat_bs(2*n,2*n))
 
 call alloc_temparrays(nspace,nspec)
+
+! jsa to be decomp, singular vals,
+! u, vt
+!>@brief allocates the singular values, u and vt matrices for svd
+print*, 's1 f', size(f_mat1,1), 's2 f', size(f_mat1,2)
+
+call alloc_complex_svd(f_mat1, svf1, uf1, vtf1)
+call complex_svd(f_mat1, svf1, uf1, vtf1)
+
+103 format (3f10.2) 
+write(*,103) svf1
+print*, 'singular vals'
+write(*,103) real(f_mat1)
+print*, 'u'
+write(*,103) real(uf1)
+print*, 'vt'
+write(*,103) real(vtf1)
+
+print*, 'matmul'
+!write(*,103) real
+call printvectors(matmul(uf1,matmul(f_mat1,vtf1)))
+
+print*, 'so f = singular*u*vt?'
+!write(*,103) real
+call printvectors(matmul(f_mat1,matmul(uf1,vtf1)))
+
+
+print*, 'find element' 
+!>@note returns the w1,w2 element from the Jsa
+print*, find_element(3,2,uf1,vtf1, svf1)
+
+!call matrixexp
+
+contains 
+
+!>@brief does the SVD of the Jsa 
+!>@detail takes w1, w2 and u, vt, sv from SVD and returns the f(w1,w2) element
+!> A * f(w1,w2) = SUM_k (r_k*Psi_k(w1)*Phi_k(w2)
+!> the k-th row and w1-th column of PSI
+!> the w2-th row and k-th column of PHI
+function find_element(w1,w2,a,b, sv)
+complex(kind=dp) :: find_element
+integer, intent(in) :: w1, w2
+integer :: k
+complex(kind=dp), dimension(:,:), allocatable, intent(in) :: a, b
+real(kind=dp), dimension(:), allocatable, intent(in) :: sv
+
+complex(kind=dp) :: summation 
+summation=0.0_dp
+!print*, 'test'!size(a,1)
+do k=1, size(a,1)
+    summation=summation + sv(k) * a(w1,k) * b(k,w2)
+!    !print*, 'k', k, 'find el', summation
+end do
+find_element=summation
+end function find_element
+
+subroutine matrixexp
 
 !call printvectors( matmul(mat_bs,conjg(transpose(mat_bs))), 'print bs pi/4')
 !do i=1, size(f_mat,1)
@@ -221,7 +265,11 @@ call dealloc_temparrays()
 close(14)
 close(15)
 close(16)
-contains 
+
+
+
+end subroutine matrixexp
+
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 
