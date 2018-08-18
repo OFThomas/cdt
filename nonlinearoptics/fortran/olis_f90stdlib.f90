@@ -323,7 +323,7 @@ lda=size(a,1)
 ! rows m =size(a,1) ! cols n= size(a,2) ! a is matrix ! lda =size(a,1)
 ! s vector svd ! u matrix ! ldu = m  ! vt matrix hermitian conjg
 ! ldvt = n  ! work ! lwork! rwork
-call printvectors(a, 'Matrix to be decomposed')
+!call printvectors(a, 'Matrix to be decomposed')
 
 ! quiery the workspace size
 lwork = -1

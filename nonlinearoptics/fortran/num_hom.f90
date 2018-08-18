@@ -78,14 +78,22 @@ complex(kind=dp), dimension(:,:), allocatable :: uf1, vtf1
 !>@param svf1 singular values for f_mat1
 real(kind=dp), dimension(:), allocatable :: svf1
 
+!>@param signalfreq array of schmidt decomp values (u matrix)
+real(kind=dp) :: signalfreq
+!>@param idlerfreq array of schmidt decomp values (vt matrix)
+real(kind=dp) :: idlerfreq
+
 !>@note files to write to  
 open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
 open(unit=17, file='g4splot.dat', status='replace')
+!>
+open(unit=20, file='signalfreq.dat', status='replace')
+open(unit=21, file='idlerfreq.dat', status='replace')
 
-w1_start=-0.3_dp
-w2_start=-0.2_dp
+w1_start=-1.2_dp
+w2_start=-1.2_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -134,16 +142,55 @@ write(*,103) real(vtf1)
 
 print*, 'matmul'
 !write(*,103) real
-call printvectors(matmul(uf1,matmul(f_mat1,vtf1)))
+!call printvectors(matmul(uf1,matmul(f_mat1,vtf1)))
 
 print*, 'so f = singular*u*vt?'
 !write(*,103) real
-call printvectors(matmul(f_mat1,matmul(uf1,vtf1)))
+!call printvectors(matmul(f_mat1,matmul(uf1,vtf1)))
 
 
 print*, 'find element' 
 !>@note returns the w1,w2 element from the Jsa
 print*, find_element(3,2,uf1,vtf1, svf1)
+
+! make a list of w1 & signalfreq from schmidt decomp
+!>@note k is the k modes from schmidt decomp
+!> l is the frequency range 
+do k=1, size(uf1,1)
+    do l=1, size(uf1,2)
+        print*, 'k', k, 'l', l
+        write(20,*) k,l, calc_sig(k,l,uf1)
+    end do
+end do 
+! make a list of w2 and idlerfreq from schmidt decomp
+!>@note k is the k modes from schmidt decomp
+!> l is the frequency range 
+do k=1, size(vtf1,2)
+    do l=1, size(vtf1,1) 
+        print*, 'k', k, 'l', l
+        write(21,*) k,l, calc_idler(k,l,vtf1)
+    end do
+end do
+
+print*, 'end of prog?'
+
+!close(14)
+!close(15)
+!close(16)
+!close(17)
+!close(18)
+!close(19)
+!close(20)
+!close(21)
+
+!>@note after doing svd
+!> Unitary  = exp(SUM_k r_k * A^H_k * B^H_k -h.c.)
+!>          = X_k exp(r_k * A^H_k * B^H_K -h.c.)
+!>          = X_k S^ab_k(-r_k)
+!>
+!> A_k -> cosh(r_k)A_k + sinh(r_k)B^H_k
+!> B_k -> cosh(r_k)B_k + sinh(r_k)A^H_k
+
 
 !call matrixexp
 
@@ -154,6 +201,12 @@ contains
 !> A * f(w1,w2) = SUM_k (r_k*Psi_k(w1)*Phi_k(w2)
 !> the k-th row and w1-th column of PSI
 !> the w2-th row and k-th column of PHI
+!>
+!> A_k = INT  dw1 * Psi_k(w1)*a_1(w1)
+!> which is integral u(w1,k) 
+!>
+!> B_k = INT dw2 * Phis_k(w2)*a_2(w2)
+!> which is integral vt(k,w2) 
 function find_element(w1,w2,a,b, sv)
 complex(kind=dp) :: find_element
 integer, intent(in) :: w1, w2
@@ -170,6 +223,20 @@ do k=1, size(a,1)
 end do
 find_element=summation
 end function find_element
+
+function calc_sig(k, ws,u)
+real(kind=dp) :: calc_sig
+complex(kind=dp), dimension(:,:), intent(in) :: u
+integer, intent(in) :: k,ws
+calc_sig=u(ws,k)
+end function calc_sig
+
+function calc_idler(k, wi, vt)
+real(kind=dp) :: calc_idler
+complex(kind=dp), dimension(:,:), intent(in) :: vt
+integer, intent(in) ::  k, wi
+calc_idler=vt(k,wi)
+end function calc_idler    
 
 subroutine matrixexp
 
