@@ -87,7 +87,7 @@ allocate(vt( n, m ))
 allocate(sigma(n))
 
 !allocate( work_svd( 10*size(matrix)))
-allocate(rwork_svd(5*min(size(matrix,1),size(matrix,2))))
+!allocate(rwork_svd(5*min(size(matrix,1),size(matrix,2))))
 
 print*, 'Allocated temp work arrays for SVD'
 end subroutine alloc_complex_svd
@@ -335,7 +335,8 @@ print*, m,n, lda, ldu, ldvt
 print*, 
 write(*,*) work_svd
 
-allocate(work_svd(2*min(m,n)+max(m,n)))
+if (.not. allocated(work_svd)) allocate(work_svd(2*min(m,n)+max(m,n)))
+if (.not. allocated(rwork_svd)) allocate(rwork_svd(5*min(m,n)))
 ! quiery the workspace size
 lwork = -1
 call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwork_svd, info )
@@ -358,6 +359,8 @@ a=0.0_dp
 do i =1, min(n,m)
     a(i,i)=sigma(i)
 end do
+
+
 end subroutine complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

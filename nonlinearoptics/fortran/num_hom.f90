@@ -74,9 +74,9 @@ complex(kind=dp), dimension(:,:), allocatable :: f_mat1, f_mat2
 
 !>@param uf1 is u matrix from f_mat1 svd
 !>@param vtf1 is vt matrix from f_mat1 svd
-complex(kind=dp), dimension(:,:), allocatable :: uf1, vtf1
+complex(kind=dp), dimension(:,:), allocatable :: uf1, vtf1, uf2, vtf2
 !>@param svf1 singular values for f_mat1
-real(kind=dp), dimension(:), allocatable :: svf1
+real(kind=dp), dimension(:), allocatable :: svf1, svf2
 
 !>@param signalfreq array of schmidt decomp values (u matrix)
 real(kind=dp) :: signalfreq
@@ -89,8 +89,12 @@ open(unit=15,file='fplotw3w4.dat', status='replace')
 open(unit=16, file='g4f90data.dat', status='replace')
 open(unit=17, file='g4splot.dat', status='replace')
 !>
-open(unit=20, file='signalfreq.dat', status='replace')
-open(unit=21, file='idlerfreq.dat', status='replace')
+!> jsa 1 
+open(unit=20, file='signalfreq1.dat', status='replace')
+open(unit=21, file='idlerfreq1.dat', status='replace')
+!> jsa 2
+open(unit=22, file='signalfreq2.dat', status='replace')
+open(unit=23, file='idlerfreq2.dat', status='replace')
 
 w1_start=-6.0_dp
 w2_start=-6.0_dp
@@ -132,8 +136,11 @@ write(*,*) size(f_mat1)
 
 call alloc_complex_svd(f_mat1, svf1, uf1, vtf1)
 
+call alloc_complex_svd(f_mat2, svf2, uf2, vtf2)
+
 call complex_svd(f_mat1, svf1, uf1, vtf1)
 
+call complex_svd(f_mat2, svf2, uf2, vtf2)
 print*, 'done svd'
 
 103 format (3f10.2) 
@@ -158,28 +165,12 @@ print*, 'find element'
 !>@note returns the w1,w2 element from the Jsa
 print*, find_element(3,2,uf1,vtf1, svf1)
 
-! make a list of w1 & signalfreq from schmidt decomp
-!>@note k is the k modes from schmidt decomp
-!> l is the frequency range 
-
-! only print the non-zero k-th singular vals
-do k=1, size(uf1,1)
-    if (abs(svf1(k)) >= 1e-10) then
-    do l=1, size(uf1,2)
-        !print*, 'k', k, 'l', l
-        write(20,*) k,l, calc_sig(k,l,uf1)
-    end do
-! make a list of w2 and idlerfreq from schmidt decomp
-!>@note k is the k modes from schmidt decomp
-!> l is the frequency range 
-    do l=1, size(vtf1,1) 
-        !print*, 'k', k, 'l', l
-        write(21,*) k,l, calc_idler(k,l,vtf1)
-    end do
-end if
-end do
-
 print*, 'end of prog?'
+
+call write_sigidler(svf1, uf1, vtf1, 20, 21)
+
+call write_sigidler(svf2, uf2, vtf2, 22, 23)
+
 
 !close(14)
 !close(15)
@@ -202,6 +193,33 @@ print*, 'end of prog?'
 !call matrixexp
 
 contains 
+
+! make a list of w1 & signalfreq from schmidt decomp
+!>@note k is the k modes from schmidt decomp
+!> l is the frequency range 
+
+! only print the non-zero k-th singular vals
+subroutine write_sigidler(sv,u,vt, sigout, idlerout)
+    real(kind=dp), dimension(:) :: sv
+    complex(kind=dp), dimension(:,:) :: u, vt
+    integer :: sigout, idlerout
+
+do k=1, size(u,1)
+    if (abs(sv(k)) >= 1e-10) then
+    do l=1, size(u,2)
+        !print*, 'k', k, 'l', l
+        write(sigout,*)k,l, calc_sig(k,l,u)
+    end do
+! make a list of w2 and idlerfreq from schmidt decomp
+!>@note k is the k modes from schmidt decomp
+!> l is the frequency range 
+    do l=1, size(vt,1) 
+        !print*, 'k', k, 'l', l
+        write(idlerout,*) k,l, calc_idler(k,l,vt)
+    end do
+end if
+end do
+end subroutine write_sigidler
 
 !>@brief does the SVD of the Jsa 
 !>@detail takes w1, w2 and u, vt, sv from SVD and returns the f(w1,w2) element
