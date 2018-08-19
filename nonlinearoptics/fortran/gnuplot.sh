@@ -5,7 +5,9 @@
 
 gnuplot -e "set key off; set xlabel 'w1'; set ylabel 'w2'; set zlabel 'F(x,y)'; splot 'fplotw1w2.dat' with linespoints pointtype 7, 'fplotw3w4.dat' with linespoints pointtype 6; pause -1"
 
-gnuplot -e "plot 'g4f90data.dat'; pause -1"
+./plotsigidler.sh
+
+#gnuplot -e "plot 'g4f90data.dat'; pause -1"
 
 
 

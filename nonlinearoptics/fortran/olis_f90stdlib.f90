@@ -86,8 +86,8 @@ allocate(vt( n, m ))
 ! need to check which is smallest
 allocate(sigma(n))
 
-allocate( work_svd( lwmax ))
-allocate(rwork_svd(2*size(matrix,1)))
+!allocate( work_svd( 10*size(matrix)))
+allocate(rwork_svd(5*min(size(matrix,1),size(matrix,2))))
 
 print*, 'Allocated temp work arrays for SVD'
 end subroutine alloc_complex_svd
@@ -311,11 +311,11 @@ complex(kind=dp), dimension(:,:), allocatable :: u, vt
 
 ! use size of input matrix
 ! might have got n & m the wrong way round
-n=size(a,1)
-m=size(a,2)
-ldu=size(a,1)
-ldvt=size(a,1)
-lda=size(a,1)
+m=size(a,1)
+n=size(a,2)
+ldu=m
+ldvt=n
+lda=m
 
 ! eigen vectors, eigen vals & temp arrays
 
@@ -325,13 +325,27 @@ lda=size(a,1)
 ! ldvt = n  ! work ! lwork! rwork
 !call printvectors(a, 'Matrix to be decomposed')
 
+write(*,*) a
+write(*,*)  sigma
+write(*,*) u
+write(*,*) vt
+
+print*,
+print*, m,n, lda, ldu, ldvt
+print*, 
+write(*,*) work_svd
+
+allocate(work_svd(2*min(m,n)+max(m,n)))
 ! quiery the workspace size
 lwork = -1
-call zgesvd('S','S', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwork_svd, info )
+call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwork_svd, info )
 
 ! do svd
 lwork = min( lwmax, int( work_svd( 1 ) ) )
-call zgesvd('S','S', m, n, a, lda, sigma, u, ldu, vt, ldvt,  work_svd, lwork, rwork_svd, info )
+!allocate(work_svd(lwork))
+
+
+call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt,  work_svd, lwork, rwork_svd, info )
 
 !     cHECK FOR CONVERGENCE.
 if( info.gt.0 ) then
@@ -341,7 +355,7 @@ end if
 
 ! write singular vals back to matrix a
 a=0.0_dp
-do i =1, n
+do i =1, min(n,m)
     a(i,i)=sigma(i)
 end do
 end subroutine complex_svd
