@@ -92,21 +92,21 @@ open(unit=17, file='g4splot.dat', status='replace')
 open(unit=20, file='signalfreq.dat', status='replace')
 open(unit=21, file='idlerfreq.dat', status='replace')
 
-w1_start=-8.0_dp
-w2_start=-8.0_dp
+w1_start=-6.0_dp
+w2_start=-6.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=0.20_dp
-w2_incr=0.20_dp
+w1_incr=0.10_dp
+w2_incr=0.10_dp
 
 sigma1=1.0_dp
-sigma2=2.0_dp*sigma1
+sigma2=0.5_dp*sigma1
 
 f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14)
-f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15)
+f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=2.0_dp, w2offset=2.0_dp)
 
 ! normalise?
 f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr)
@@ -139,11 +139,11 @@ print*, 'done svd'
 103 format (3f10.2) 
 write(*,103) svf1
 print*, 'singular vals'
-write(*,103) real(f_mat1)
+!write(*,103) real(f_mat1)
 print*, 'u'
-write(*,103) real(uf1)
+!write(*,103) real(uf1)
 print*, 'vt'
-write(*,103) real(vtf1)
+!write(*,103) real(vtf1)
 
 print*, 'matmul'
 !write(*,103) real
