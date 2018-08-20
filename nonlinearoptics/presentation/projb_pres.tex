@@ -21,6 +21,8 @@
 \usepackage{multimedia}
 %\usepackage{xmpmulti}
 
+%\usepackage{media9}
+
 %\graphicspath{{./figures/}}
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
 \renewcommand{\equationautorefname}{Eq.}
@@ -62,7 +64,16 @@
 \begin{frame}{Animation}
 
     \begin{figure}
-        \movie[height=0.6\textwidth, width=\textwidth, loop]{}{rot.mp4}
+       \movie[height=0.6\textwidth, width=\textwidth, loop, autostart]{}{jsa.mp4}
+    
+        %\includemedia[
+        %width=0.5\linewidth,
+        %totalheight=0.225\linewidth,
+        %activate=pageopen,
+        %addresource=rot.mp4,
+        %flashvars={source=rot.mp4}
+        %]
+    %{}{VPlayer.swf}
     \end{figure}
 \end{frame}
 

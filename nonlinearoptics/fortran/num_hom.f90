@@ -96,8 +96,8 @@ open(unit=21, file='idlerfreq1.dat', status='replace')
 open(unit=22, file='signalfreq2.dat', status='replace')
 open(unit=23, file='idlerfreq2.dat', status='replace')
 
-w1_start=-5.0_dp
-w2_start=-5.0_dp
+w1_start=-6.0_dp
+w2_start=-6.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -144,7 +144,7 @@ call complex_svd(f_mat2, svf2, uf2, vtf2)
 print*, 'done svd'
 
 103 format (3f10.2) 
-write(*,103) svf1
+write(*,*) maxval(svf1)
 print*, 'singular vals'
 !write(*,103) real(f_mat1)
 print*, 'u'
@@ -204,8 +204,8 @@ subroutine write_sigidler(sv,u,vt, sigout, idlerout)
     complex(kind=dp), dimension(:,:) :: u, vt
     integer :: sigout, idlerout
 
-do k=1, size(u,1)
-    if (abs(sv(k)) >= 1e-10) then
+do k=1, 1!size(u,1)
+    if (abs(sv(k)) >= 1e-7) then
     do l=1, size(u,2)
         !print*, 'k', k, 'l', l
         write(sigout,*)k,l, calc_sig(k,l,u)

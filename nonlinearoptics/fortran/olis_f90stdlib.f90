@@ -325,15 +325,15 @@ lda=m
 ! ldvt = n  ! work ! lwork! rwork
 !call printvectors(a, 'Matrix to be decomposed')
 
-write(*,*) a
-write(*,*)  sigma
-write(*,*) u
-write(*,*) vt
+!write(*,*) a
+!write(*,*)  sigma
+!write(*,*) u
+!write(*,*) vt
 
-print*,
-print*, m,n, lda, ldu, ldvt
-print*, 
-write(*,*) work_svd
+!print*,
+!print*, m,n, lda, ldu, ldvt
+!print*, 
+!write(*,*) work_svd
 
 if (.not. allocated(work_svd)) allocate(work_svd(2*min(m,n)+max(m,n)))
 if (.not. allocated(rwork_svd)) allocate(rwork_svd(5*min(m,n)))
