@@ -16,7 +16,12 @@
 \usepackage{rotating}
 \usepackage{float}
 \usepackage{hyperref}
-\graphicspath{{./figures/}}
+
+%\usepackage[loop,controls,buttonsize=0.24cm,buttonbg=0.8,autoplay]{animate}
+\usepackage{multimedia}
+%\usepackage{xmpmulti}
+
+%\graphicspath{{./figures/}}
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
 \renewcommand{\equationautorefname}{Eq.}
 \renewcommand{\figureautorefname}{Fig.}
@@ -53,6 +58,14 @@
 \begin{document}
 
 \frame{\titlepage}
+
+\begin{frame}{Animation}
+
+    \begin{figure}
+        \movie[height=0.6\textwidth, width=\textwidth, loop]{}{/figures/rot.mp4}
+    \end{figure}
+\end{frame}
+
 
 % slide 1
 \begin{frame}
