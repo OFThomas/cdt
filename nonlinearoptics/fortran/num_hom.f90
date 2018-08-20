@@ -96,8 +96,8 @@ open(unit=21, file='idlerfreq1.dat', status='replace')
 open(unit=22, file='signalfreq2.dat', status='replace')
 open(unit=23, file='idlerfreq2.dat', status='replace')
 
-w1_start=-6.0_dp
-w2_start=-6.0_dp
+w1_start=-5.0_dp
+w2_start=-5.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
@@ -224,8 +224,10 @@ end subroutine write_sigidler
 !>@brief does the SVD of the Jsa 
 !>@detail takes w1, w2 and u, vt, sv from SVD and returns the f(w1,w2) element
 !> A * f(w1,w2) = SUM_k (r_k*Psi_k(w1)*Phi_k(w2)
-!> the k-th row and w1-th column of PSI
-!> the w2-th row and k-th column of PHI
+!> the w1-th row and k-th column of PSI
+!> the k-th row and w2-th column of PHI
+!>
+!> SUM_k u(w1,k) * vt(k,w2)
 !>
 !> A_k = INT  dw1 * Psi_k(w1)*a_1(w1)
 !> which is integral u(w1,k) 
