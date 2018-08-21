@@ -302,11 +302,11 @@ integer :: lda, ldu, ldvt
 integer :: lwmax
 
 ! matrix in is a
-complex(kind=dp), dimension(:,:), allocatable, intent(inout) :: a
+complex(kind=dp), dimension(:,:), intent(inout) :: a
 ! singular values sigma
-real(kind=dp), dimension(:), allocatable :: sigma
+real(kind=dp), dimension(:) :: sigma
 ! left & right vectors
-complex(kind=dp), dimension(:,:), allocatable :: u, vt
+complex(kind=dp), dimension(:,:) :: u, vt
 ! eigen values are w
 
 ! use size of input matrix

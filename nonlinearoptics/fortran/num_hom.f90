@@ -2,6 +2,7 @@
 program num_hom
 use olis_f90stdlib
 use makeopticalelements 
+use schmidt_decomp
 implicit none
 
 !>@param dp 
@@ -14,15 +15,10 @@ integer :: i,j,k, l
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! params for plotting f(w1,w2)
-!>@param w1_step increment for signal freq precision
-!>@param w2_step increment for idler freq precision
-integer :: w1_steps, w2_steps
 
-!>@param w1 signal freq
-!>@param w2 idler freq
 !>@param sigma1 is gaussian width for signal
 !>@param sigma2 is gaussian width for idler
-real(kind=dp) :: w1, w2, sigma1, sigma2
+real(kind=dp) :: sigma1, sigma2
 
 ! loop params
 !>@param w1_start the start frequency range for signaler
@@ -35,7 +31,7 @@ real(kind=dp) :: w1_incr, w2_incr
 !>@param mat_bs symplectic matrix for the beamsplitter
 !>@param mat_sq1 symplectic matrix for the squeezer on mode 1&2
 !>@param mat_sq2 syplectic matrix for squeezer on modes 3&4
-complex(kind=dp), dimension(:,:), allocatable :: f_mat, mat_bs, mat_sq1, mat_sq2
+complex(kind=dp), dimension(:,:), allocatable :: mat_bs, mat_sq1, mat_sq2
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !>@param nspace number of spatial modes
@@ -46,18 +42,15 @@ integer :: nspace, nspec, n
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 ! for JSA calcs
-!>@param h 
-!>@param m_sq 
-!>@param m_sq1
-!<@param m_sq2  
-complex(kind=dp), dimension(:,:), allocatable :: h, m_sq, m_sq1, m_sq2
+!>@param m_sq list of arrays of squeezing matrices
+complex(kind=dp), dimension(:,:,:), allocatable :: m_sq
+
 !>@param sizeofexp is size of the whole symplectic space
 !>@param f_size is number of dicrete freq vals
 !>@param alpha_size is the size of the passive block in symplectic matrix
 integer :: sizeofexp, f_size, alpha_size
 
 !>@param temp variables for building exp on correct spatial modes
-complex(kind=dp), dimension(:,:), allocatable :: alpha_temp, beta_temp
 
 !>@param transform allocatable array for storing total symplectic matrix transform in
 !> temp for transform
@@ -74,21 +67,28 @@ integer :: theta_samples
 
 !!!!
 complex(kind=dp), dimension(:,:), allocatable :: f_mat1, f_mat2
-
+complex(kind=dp), dimension(:,:,:), allocatable :: f_mat
 !>@param uf1 is u matrix from f_mat1 svd
 !>@param vtf1 is vt matrix from f_mat1 svd
-complex(kind=dp), dimension(:,:), allocatable :: uf1, vtf1, uf2, vtf2
+complex(kind=dp), dimension(:,:,:), allocatable :: uf, vtf, uf2, vtf2
 !>@param svf1 singular values for f_mat1
-real(kind=dp), dimension(:), allocatable :: svf1, svf2
+real(kind=dp), dimension(:,:), allocatable :: svf, svf2
 
 !>@param signalfreq array of schmidt decomp values (u matrix)
 real(kind=dp) :: signalfreq
 !>@param idlerfreq array of schmidt decomp values (vt matrix)
 real(kind=dp) :: idlerfreq
 
+
+integer :: num_sq
+integer, dimension(:,:), allocatable :: units
+
+
+
 !>@note files to write to  
 open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
+
 open(unit=16, file='g4f90data.dat', status='replace')
 open(unit=17, file='g4splot.dat', status='replace')
 !>
@@ -98,6 +98,8 @@ open(unit=21, file='idlerfreq1.dat', status='replace')
 !> jsa 2
 open(unit=22, file='signalfreq2.dat', status='replace')
 open(unit=23, file='idlerfreq2.dat', status='replace')
+
+num_sq=2
 
 w1_start=-6.0_dp
 w2_start=-6.0_dp
@@ -112,70 +114,48 @@ w2_incr=0.10_dp
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1
 
-f_mat1= gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
+allocate(f_mat(ceiling((w1_end-w1_start)/w1_incr),ceiling((w1_end-w1_start)/w1_incr),num_sq))
+f_mat(:,:,1)= gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, &
+    sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
 
-f_mat2=gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
+f_mat(:,:,2)=gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, &
+    sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
 ! normalise?
-f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr)
-f_mat2=f_mat2/(sum(f_mat2)*w1_incr*w2_incr)
-write(*,*) 'sum f1',  sum(f_mat1)*w1_incr*w2_incr,  'sum f2', sum(f_mat2)*w1_incr*w2_incr
-
+do i =1, num_sq
+f_mat(:,:,i)=f_mat(:,:,i)/(sum(f_mat(:,:,i))*w1_incr*w2_incr)
+write(*,*) 'sum f1',i,  sum(f_mat(:,:,i))*w1_incr*w2_incr
+print*, 's1 f', size(f_mat,1)
+print*, 'total f size', size(f_mat)
+end do
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 nspace=4
-nspec=size(f_mat1,1)
+nspec=size(f_mat,1)
 print*, 'nspectral dof', nspec
 n=nspace*nspec
-allocate(mat_bs(2*n,2*n))
 
-call alloc_temparrays(nspace,nspec)
 
 ! jsa to be decomp, singular vals,
 ! u, vt
 !>@brief allocates the singular values, u and vt matrices for svd
-print*, 's1 f', size(f_mat1,1), 's2 f', size(f_mat1,2)
 
-write(*,*) size(f_mat1)
+call alloc_temparrays(nspace,nspec)
 
-call alloc_complex_svd(f_mat1, svf1, uf1, vtf1)
+allocate(units(2,num_sq))
+units(:,1)=(/20,21/)
+units(:,2)=(/22,23/)
 
-call alloc_complex_svd(f_mat2, svf2, uf2, vtf2)
+!>@note call schmidt_modes(jsa_func, sv, u, vt, units )
 
-call complex_svd(f_mat1, svf1, uf1, vtf1)
+allocate(svf(nspec,num_sq))
+allocate(uf(nspec,nspec,num_sq))
+allocate(vtf(nspec,nspec,num_sq))
 
-call complex_svd(f_mat2, svf2, uf2, vtf2)
-print*, 'done svd'
-
-103 format (3f10.2) 
-write(*,*) maxval(svf1)
-print*, 'singular vals'
-!write(*,103) real(f_mat1)
-print*, 'u'
-!write(*,103) real(uf1)
-print*, 'vt'
-!write(*,103) real(vtf1)
-
-print*, 'matmul'
-!write(*,103) real
-!call printvectors(matmul(uf1,matmul(f_mat1,vtf1)))
-
-print*, 'so f = singular*u*vt?'
-!write(*,103) real
-!call printvectors(matmul(f_mat1,matmul(uf1,vtf1)))
-
-
-print*, 'find element' 
-!>@note returns the w1,w2 element from the Jsa
-!print*, find_element(3,2,uf1,vtf1, svf1)
-
-print*, 'end of prog?'
-
-
-call write_sigidler(svf1, uf1, vtf1, 20, 21)
-
-call write_sigidler(svf2, uf2, vtf2, 22, 23)
-
+do i=1,num_sq
+!call alloc_complex_svd(f_mat(:,:,i), svf(:,i), uf(:,:,i), vtf(:,:,i))
+call schmidt_modes(f_mat(:,:,i), svf(:,i), uf(:,:,i), vtf(:,:,i), units(:,i)) 
+end do
 !call printvectors(uf1, 'uf1')
 
 !close(14)
@@ -187,93 +167,9 @@ call write_sigidler(svf2, uf2, vtf2, 22, 23)
 !close(20)
 !close(21)
 
-!>@note after doing svd
-!> Unitary  = exp(SUM_k r_k * A^H_k * B^H_k -h.c.)
-!>          = X_k exp(r_k * A^H_k * B^H_K -h.c.)
-!>          = X_k S^ab_k(-r_k)
-!>
-!> A_k -> cosh(r_k)A_k + sinh(r_k)B^H_k
-!> B_k -> cosh(r_k)B_k + sinh(r_k)A^H_k
-
-
 !call matrixexp
 
 contains 
-
-! make a list of w1 & signalfreq from schmidt decomp
-!>@note k is the k modes from schmidt decomp
-!> l is the frequency range 
-
-! only print the non-zero k-th singular vals
-subroutine write_sigidler(sv,u,vt, sigout, idlerout)
-    real(kind=dp), dimension(:) :: sv
-    complex(kind=dp), dimension(:,:) :: u, vt
-    integer :: sigout, idlerout
-
-do k=1, size(u,1)
-    if (abs(sv(k)) >= 1e-1) then
-    print*, sv(k)
-        do l=1, size(u,2)
-        !print*, 'k', k, 'l', l
-        write(sigout,*)k,l, abs(calc_sig(k,l,u))
- 
-    
-    ! make a list of w2 and idlerfreq from schmidt decomp
-!>@note k is the k modes from schmidt decomp
-!> l is the frequency range 
-    !do l=1, size(vt,1) 
-        !print*, 'k', k, 'l', l
-        write(idlerout,*) k,l, abs(calc_idler(k,l,vt))
-    end do
-    write(sigout,*) char(10), char(10)
-    write(idlerout,*) char(10), char(10)
-end if
-end do
-end subroutine write_sigidler
-
-!>@brief does the SVD of the Jsa 
-!>@detail takes w1, w2 and u, vt, sv from SVD and returns the f(w1,w2) element
-!> A * f(w1,w2) = SUM_k (r_k*Psi_k(w1)*Phi_k(w2)
-!> the w1-th row and k-th column of PSI
-!> the k-th row and w2-th column of PHI
-!>
-!> SUM_k u(w1,k) * vt(k,w2)
-!>
-!> A_k = INT  dw1 * Psi_k(w1)*a_1(w1)
-!> which is integral u(w1,k) 
-!>
-!> B_k = INT dw2 * Phis_k(w2)*a_2(w2)
-!> which is integral vt(k,w2) 
-function find_element(w1,w2,a,b, sv)
-complex(kind=dp) :: find_element
-integer, intent(in) :: w1, w2
-integer :: k
-complex(kind=dp), dimension(:,:), allocatable, intent(in) :: a, b
-real(kind=dp), dimension(:), allocatable, intent(in) :: sv
-
-complex(kind=dp) :: summation 
-summation=0.0_dp
-!print*, 'test'!size(a,1)
-do k=1, size(a,1)
-    summation=summation + sv(k) * a(w1,k) * b(k,w2)
-!    !print*, 'k', k, 'find el', summation
-end do
-find_element=summation
-end function find_element
-
-function calc_sig(k, ws,u)
-real(kind=dp) :: calc_sig
-complex(kind=dp), dimension(:,:), intent(in) :: u
-integer, intent(in) :: k,ws
-calc_sig=u(ws,k)
-end function calc_sig
-
-function calc_idler(k, wi, vt)
-real(kind=dp) :: calc_idler
-complex(kind=dp), dimension(:,:), intent(in) :: vt
-integer, intent(in) ::  k, wi
-calc_idler=vt(k,wi)
-end function calc_idler    
 
 subroutine matrixexp
 
