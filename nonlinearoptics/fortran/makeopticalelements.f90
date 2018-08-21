@@ -274,7 +274,7 @@ end function make_squeezer
 !>@param w_incr
 !>@param sigma is jsa parameter
 !>@param outfile is unit number of file to write to 
-function gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile, w1offset, w2offset)
+function gen_jsa(f,w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile, w1offset, w2offset)
 real(kind=dp), dimension (:,:), allocatable :: gen_jsa
 real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
 real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
@@ -283,6 +283,8 @@ real(kind=dp) :: w1, w2
 real(kind=dp) :: w1off, w2off
 integer :: w1_steps, w2_steps, outfile
 integer :: i, j
+
+complex(kind=dp) :: f
 
 
 real(kind=dp), optional :: w1offset, w2offset
@@ -321,14 +323,20 @@ end function gen_jsa
 !>@param w1 input signal freq
 !>@param w2 input idler freq
 !>@param sig input variance
-    function f(w1,w2, sigma1, sigma2, w1off, w2off)
-    complex(kind=dp) :: f
+    function f_gauss(w1,w2, sigma1, sigma2, w1off, w2off)
+    complex(kind=dp) :: f_gauss
     real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2, w1off, w2off
     
-    f=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*((w1-w1off)/sigma1)**2)*exp(-0.5_dp*((w2-w2off)/sigma2)**2)
+    f_gauss=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*((w1-w1off)/sigma1)**2)*exp(-0.5_dp*((w2-w2off)/sigma2)**2)
 
-    end function f
+    end function f_gauss
 
+    function f_sine(w1,w2,sigma1,sigma2,w1off,w2off)
+    complex(kind=dp) :: f_sine
+    real(kind=dp), intent(in) :: w1,w2,sigma1,sigma2, w1off,w2off
+
+    f_sine=sinc(2.0_dp*(w1-w2))*exp(-0.5*(w1**2+w2**2))
+    end function f_sine
 
 !>@brief calculates g4 using matrix elements sum
 !>@TODO

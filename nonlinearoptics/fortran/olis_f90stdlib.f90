@@ -433,5 +433,13 @@ else
   nfact=n*factorial(n-1)
 end if 
 end function factorial
+
+!>@brief sinc function
+function sinc(x)
+    real(kind=dp) :: sinc, x
+    sinc=1.0_dp
+    if(x /= 0.0) sinc = sin(x)/x
+    end function sinc
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 end module olis_f90stdlib

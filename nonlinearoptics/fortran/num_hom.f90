@@ -109,8 +109,9 @@ w2_incr=0.10_dp
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1
 
-f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
-f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
+f_mat1= gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
+
+f_mat2=gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
 ! normalise?
 f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr)
@@ -172,7 +173,7 @@ call write_sigidler(svf1, uf1, vtf1, 20, 21)
 
 call write_sigidler(svf2, uf2, vtf2, 22, 23)
 
-call printvectors(uf1, 'uf1')
+!call printvectors(uf1, 'uf1')
 
 !close(14)
 !close(15)
@@ -206,8 +207,8 @@ subroutine write_sigidler(sv,u,vt, sigout, idlerout)
     complex(kind=dp), dimension(:,:) :: u, vt
     integer :: sigout, idlerout
 
-do k=1, 1!size(u,1)
-    if (abs(sv(k)) >= 1e-7) then
+do k=1, size(u,1)
+    if (abs(sv(k)) >= 1e-1) then
     print*, sv(k)
         do l=1, size(u,2)
         !print*, 'k', k, 'l', l
@@ -221,6 +222,8 @@ do k=1, 1!size(u,1)
         !print*, 'k', k, 'l', l
         write(idlerout,*) k,l, abs(calc_idler(k,l,vt))
     end do
+    write(sigout,*) char(10), char(10)
+    write(idlerout,*) char(10), char(10)
 end if
 end do
 end subroutine write_sigidler
