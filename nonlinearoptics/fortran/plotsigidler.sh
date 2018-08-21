@@ -9,6 +9,10 @@ set multiplot layout 1,2
 #set format y "%.1f"
 set yrange [0:0.35]
 
+<<<<<<< HEAD
+=======
+#set format y "%.1f"
+>>>>>>> 732d5106599e5bbe2a52e471720567f5638835e3
 set key box opaque
 
 set ylabel 'Amplitude'
@@ -32,6 +36,7 @@ unset multiplot
 #pause 1
 EOF
 
+<<<<<<< HEAD
 # show plots while waiting for animation
 display single_sig_idler12.png & 
 
@@ -63,3 +68,6 @@ set output
 EOF
 
 animate jsa12.gif 
+=======
+
+>>>>>>> 732d5106599e5bbe2a52e471720567f5638835e3
