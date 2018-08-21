@@ -21,7 +21,7 @@ complex(kind=dp), parameter :: imaginary=(0.0_dp,1.0_dp)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! make temp arrays for complex_eigenvects
 integer, private :: lda, ldvl, ldvr
-integer, parameter, private   :: lwmax = 1000 
+integer, private   :: lwmax  
 
 ! temp scalars
 integer, private :: info, lwork
@@ -85,7 +85,7 @@ allocate(u(m,n))
 allocate(vt( n, m ))
 ! need to check which is smallest
 allocate(sigma(n))
-
+lwmax=n*m
 !allocate( work_svd( 10*size(matrix)))
 !allocate(rwork_svd(5*min(size(matrix,1),size(matrix,2))))
 
@@ -299,7 +299,7 @@ implicit none
 
 integer :: n, m, i
 integer :: lda, ldu, ldvt
-integer, parameter   :: lwmax = 1000 
+integer :: lwmax
 
 ! matrix in is a
 complex(kind=dp), dimension(:,:), allocatable, intent(inout) :: a
@@ -316,7 +316,7 @@ n=size(a,2)
 ldu=m
 ldvt=n
 lda=m
-
+lwmax=n*m
 ! eigen vectors, eigen vals & temp arrays
 
 !no left and right col vectors
@@ -344,7 +344,7 @@ call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwo
 ! do svd
 lwork = min( lwmax, int( work_svd( 1 ) ) )
 !allocate(work_svd(lwork))
-
+print*, lwmax
 
 call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt,  work_svd, lwork, rwork_svd, info )
 

@@ -208,14 +208,14 @@ do k=1, 1!size(u,1)
     if (abs(sv(k)) >= 1e-7) then
     do l=1, size(u,2)
         !print*, 'k', k, 'l', l
-        write(sigout,*)k,l, calc_sig(k,l,u)
+        write(sigout,*)k,l, abs(calc_sig(k,l,u))
     end do
 ! make a list of w2 and idlerfreq from schmidt decomp
 !>@note k is the k modes from schmidt decomp
 !> l is the frequency range 
     do l=1, size(vt,1) 
         !print*, 'k', k, 'l', l
-        write(idlerout,*) k,l, calc_idler(k,l,vt)
+        write(idlerout,*) k,l, abs(calc_idler(k,l,vt))
     end do
 end if
 end do
