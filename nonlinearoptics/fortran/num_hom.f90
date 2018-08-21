@@ -211,14 +211,10 @@ do k=1, 1!size(u,1)
     print*, sv(k)
         do l=1, size(u,2)
         !print*, 'k', k, 'l', l
-<<<<<<< HEAD
         write(sigout,*)k,l, abs(calc_sig(k,l,u))
-    end do
-=======
-        write(sigout,*)k,l, calc_sig(k,l,u)
-    !end do
->>>>>>> 732d5106599e5bbe2a52e471720567f5638835e3
-! make a list of w2 and idlerfreq from schmidt decomp
+ 
+    
+    ! make a list of w2 and idlerfreq from schmidt decomp
 !>@note k is the k modes from schmidt decomp
 !> l is the frequency range 
     !do l=1, size(vt,1) 
