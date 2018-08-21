@@ -101,8 +101,8 @@ open(unit=23, file='idlerfreq2.dat', status='replace')
 
 num_sq=2
 
-w1_start=-6.0_dp
-w2_start=-6.0_dp
+w1_start=-10.0_dp
+w2_start=-10.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
