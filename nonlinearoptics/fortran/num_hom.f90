@@ -109,8 +109,8 @@ w2_incr=0.10_dp
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1
 
-f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14)
-f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=2.0_dp, w2offset=2.0_dp)
+f_mat1= gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
+f_mat2=gen_jsa(w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
 ! normalise?
 f_mat1=f_mat1/(sum(f_mat1)*w1_incr*w2_incr)
@@ -163,14 +163,16 @@ print*, 'so f = singular*u*vt?'
 
 print*, 'find element' 
 !>@note returns the w1,w2 element from the Jsa
-print*, find_element(3,2,uf1,vtf1, svf1)
+!print*, find_element(3,2,uf1,vtf1, svf1)
 
 print*, 'end of prog?'
+
 
 call write_sigidler(svf1, uf1, vtf1, 20, 21)
 
 call write_sigidler(svf2, uf2, vtf2, 22, 23)
 
+call printvectors(uf1, 'uf1')
 
 !close(14)
 !close(15)
@@ -206,14 +208,15 @@ subroutine write_sigidler(sv,u,vt, sigout, idlerout)
 
 do k=1, 1!size(u,1)
     if (abs(sv(k)) >= 1e-7) then
-    do l=1, size(u,2)
+    print*, sv(k)
+        do l=1, size(u,2)
         !print*, 'k', k, 'l', l
         write(sigout,*)k,l, calc_sig(k,l,u)
-    end do
+    !end do
 ! make a list of w2 and idlerfreq from schmidt decomp
 !>@note k is the k modes from schmidt decomp
 !> l is the frequency range 
-    do l=1, size(vt,1) 
+    !do l=1, size(vt,1) 
         !print*, 'k', k, 'l', l
         write(idlerout,*) k,l, calc_idler(k,l,vt)
     end do
