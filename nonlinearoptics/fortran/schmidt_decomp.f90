@@ -73,12 +73,12 @@ subroutine write_sigidler(sv,u,vt, sigout, idlerout)
     complex(kind=dp), dimension(:,:) :: u, vt
     integer :: sigout, idlerout
 
-do k=1, size(u,1)
+do k=1, 3!size(u,1)
     if (abs(sv(k)) >= 1e-1) then
     print*, sv(k)
         do l=1, size(u,2)
         !print*, 'k', k, 'l', l
-        write(sigout,*)k,l, abs(calc_sig(k,l,u))
+        write(sigout,*)k,l, -(calc_sig(k,l,u))
  
     
     ! make a list of w2 and idlerfreq from schmidt decomp
@@ -86,7 +86,7 @@ do k=1, size(u,1)
 !> l is the frequency range 
     !do l=1, size(vt,1) 
         !print*, 'k', k, 'l', l
-        write(idlerout,*) k,l, abs(calc_idler(k,l,vt))
+        write(idlerout,*) k,l, -(calc_idler(k,l,vt))
     end do
     write(sigout,*) char(10), char(10)
     write(idlerout,*) char(10), char(10)
