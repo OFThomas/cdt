@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.20)  22 AUG 2018 11:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.20)  22 AUG 2018 12:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2543,7 +2543,7 @@ Package xypdf Info: Line width: 0.43788pt on input line 60.
  (./projb_pres.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 62.
+(Font)              size <5> substituted on input line 63.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -2560,51 +2560,44 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 ] [7
 
 ]
-Overfull \hbox (13.08412pt too wide) in paragraph at lines 174--174
+Overfull \hbox (13.08412pt too wide) in paragraph at lines 175--175
 [][][][] 
  []
 
 <single_sig_idler1.png, id=228, 481.8pt x 361.35pt>
 File: single_sig_idler1.png Graphic file (type png)
  <use single_sig_idler1.png>
-Package pdftex.def Info: single_sig_idler1.png used on input line 174.
+Package pdftex.def Info: single_sig_idler1.png used on input line 175.
 (pdftex.def)             Requested size: 130.83328pt x 98.12268pt.
  [8
 
  <./single_sig_idler1.png>]
-Overfull \hbox (13.08412pt too wide) in paragraph at lines 190--190
+Overfull \hbox (13.08412pt too wide) in paragraph at lines 191--191
 [][][][] 
  []
 
 <single_sig_idler1_sinc.png, id=260, 481.8pt x 361.35pt>
 File: single_sig_idler1_sinc.png Graphic file (type png)
  <use single_sig_idler1_sinc.png>
-Package pdftex.def Info: single_sig_idler1_sinc.png used on input line 190.
+Package pdftex.def Info: single_sig_idler1_sinc.png used on input line 191.
 (pdftex.def)             Requested size: 130.83328pt x 98.12268pt.
  [9
 
- <./single_sig_idler1_sinc.png>] <single_sig_idler12.png, id=291, 481.8pt x 361.35pt>
-File: single_sig_idler12.png Graphic file (type png)
- <use single_sig_idler12.png>
-Package pdftex.def Info: single_sig_idler12.png used on input line 207.
-(pdftex.def)             Requested size: 130.83328pt x 98.12268pt.
- [10
-
- <./single_sig_idler12.png>]
-./projb_pres.tex:230: Missing { inserted.
+ <./single_sig_idler1_sinc.png>]
+./projb_pres.tex:216: Missing { inserted.
 <to be read again> 
                    $
-l.230 \end{frame}
+l.216 \end{frame}
                  
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
-./projb_pres.tex:230: Missing } inserted.
+./projb_pres.tex:216: Missing } inserted.
 <inserted text> 
                 }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2612,39 +2605,39 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./projb_pres.tex:230: Missing { inserted.
+./projb_pres.tex:216: Missing { inserted.
 <to be read again> 
                    }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
-./projb_pres.tex:230: Missing } inserted.
+./projb_pres.tex:216: Missing } inserted.
 <inserted text> 
                 }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-./projb_pres.tex:230: Missing { inserted.
+./projb_pres.tex:216: Missing { inserted.
 <to be read again> 
                    $
-l.230 \end{frame}
+l.216 \end{frame}
                  
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
-./projb_pres.tex:230: Missing } inserted.
+./projb_pres.tex:216: Missing } inserted.
 <inserted text> 
                 }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2652,35 +2645,42 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./projb_pres.tex:230: Missing { inserted.
+./projb_pres.tex:216: Missing { inserted.
 <to be read again> 
                    }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
-./projb_pres.tex:230: Missing } inserted.
+./projb_pres.tex:216: Missing } inserted.
 <inserted text> 
                 }
-l.230 \end{frame}
+l.216 \end{frame}
                  
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
+
+[10
+
+] <xymatrix 7x4 1034> <xymatrix 7x4 1034> <xymatrix 8x4 1137> <xymatrix 8x4 1137>
+Overfull \vbox (10.64813pt too high) detected at line 260
+ []
 
 [11
 
-] <xymatrix 7x4 1034> <xymatrix 7x4 1034> <xymatrix 8x4 1137> <xymatrix 8x4 1137>
-Overfull \vbox (7.91063pt too high) detected at line 273
- []
+] <single_sig_idler12.png, id=343, 481.8pt x 361.35pt>
+File: single_sig_idler12.png Graphic file (type png)
+ <use single_sig_idler12.png>
+Package pdftex.def Info: single_sig_idler12.png used on input line 275.
+(pdftex.def)             Requested size: 130.83328pt x 98.12268pt.
+ [12
 
-[12
-
-]
-Overfull \vbox (74.27283pt too high) detected at line 289
+ <./single_sig_idler12.png>]
+Overfull \vbox (30.66321pt too high) detected at line 291
  []
 
 [13
@@ -2697,11 +2697,11 @@ Overfull \vbox (74.27283pt too high) detected at line 289
 \tf@snm=\write9
 \openout9 = `projb_pres.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 303.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 303.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
  (./projb_pres.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 303.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 303.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 301.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
 Package rerunfilecheck Info: File `projb_pres.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -2709,18 +2709,18 @@ Package rerunfilecheck Info: File `projb_pres.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 303.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
  ) 
 Here is how much of TeX's memory you used:
  30863 strings out of 493029
  566335 string characters out of 6136234
- 704296 words of memory out of 5000000
+ 705634 words of memory out of 5000000
  33784 multiletter control sequences out of 15000+600000
  24383 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,27n,61p,10406b,1125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on projb_pres.pdf (14 pages, 141248 bytes).
+Output written on projb_pres.pdf (14 pages, 141293 bytes).
 PDF statistics:
  474 PDF objects out of 1000 (max. 8388607)
  422 compressed objects within 5 object streams
