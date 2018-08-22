@@ -89,8 +89,8 @@ integer, dimension(:,:), allocatable :: units
 open(unit=14,file='fplotw1w2.dat', status='replace')
 open(unit=15,file='fplotw3w4.dat', status='replace')
 
-open(unit=16, file='g4f90data.dat', status='replace')
-open(unit=17, file='g4splot.dat', status='replace')
+!open(unit=16, file='g4f90data.dat', status='replace')
+!open(unit=17, file='g4splot.dat', status='replace')
 !>
 !> jsa 1 
 open(unit=20, file='signalfreq1.dat', status='replace')
@@ -101,15 +101,15 @@ open(unit=23, file='idlerfreq2.dat', status='replace')
 
 num_sq=2
 
-w1_start=-10.0_dp
-w2_start=-10.0_dp
+w1_start=-5.0_dp
+w2_start=-5.0_dp
 
 w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=0.10_dp
-w2_incr=0.10_dp
+w1_incr=0.08_dp
+w2_incr=0.08_dp
 
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1

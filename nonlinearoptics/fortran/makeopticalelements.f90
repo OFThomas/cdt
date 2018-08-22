@@ -298,7 +298,7 @@ end function gen_jsa
     complex(kind=dp) :: f_sine
     real(kind=dp), intent(in) :: w1,w2,sigma1,sigma2, w1off,w2off
 
-    f_sine=sinc(2.0_dp*(w1-w2))*exp(-(1/2.0_dp)*(w1+w2)**2)
+    f_sine=sinc(2.0_dp*(w1-w2))*exp(-0.5_dp*((w1/sigma1)**2+(w2/sigma2)**2))
     end function f_sine
 
 

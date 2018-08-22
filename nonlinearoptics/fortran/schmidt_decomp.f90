@@ -74,7 +74,7 @@ subroutine write_sigidler(sv,u,vt, sigout, idlerout)
     integer :: sigout, idlerout
 
 do k=1, 3!size(u,1)
-    if (abs(sv(k)) >= 1e-1) then
+    if (abs(sv(k)) >= 1e-2) then
     print*, sv(k)
         do l=1, size(u,2)
         !print*, 'k', k, 'l', l
