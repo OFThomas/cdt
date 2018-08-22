@@ -63,4 +63,4 @@ set output
 #pause 30
 EOF
 
-#animate jsa1.gif 
+animate jsa1.gif 

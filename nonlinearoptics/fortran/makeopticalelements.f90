@@ -235,10 +235,10 @@ end function make_squeezer
 !>@param w_incr
 !>@param sigma is jsa parameter
 !>@param outfile is unit number of file to write to 
-function gen_jsa(f,w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, sigma1, sigma2, outfile, w1offset, w2offset)
+function gen_jsa(f,w1_start, w1_steps, w1_incr, w2_start, w2_steps, w2_incr, sigma1, sigma2, outfile, w1offset, w2offset)
 real(kind=dp), dimension (:,:), allocatable :: gen_jsa
-real(kind=dp), intent(in) :: w1_start, w1_end, w1_incr
-real(kind=dp), intent(in) :: w2_start, w2_end, w2_incr
+real(kind=dp), intent(in) :: w1_start, w1_incr
+real(kind=dp), intent(in) :: w2_start, w2_incr
 real(kind=dp), intent(in) :: sigma1, sigma2 
 real(kind=dp) :: w1, w2
 real(kind=dp) :: w1off, w2off
@@ -255,8 +255,8 @@ w1off=0.0_dp; w2off=0.0_dp
 if(present(w1offset)) w1off=w1offset
 if(present(w2offset)) w2off=w2offset
 
-w1_steps=ceiling((w1_end-w1_start)/w1_incr)
-w2_steps=ceiling((w2_end-w2_start)/w2_incr)
+!w1_steps=ceiling((w1_end-w1_start)/w1_incr)
+!w2_steps=ceiling((w2_end-w2_start)/w2_incr)
 print*, 'dim of JSA is', w1_steps, w2_steps
 
 if (w1_steps >= w2_steps) then 
@@ -267,17 +267,29 @@ else
     stop 'what the hell is wrong with the spectral range'
 end if
 
+gen_jsa=0.0_dp
+
+! -1, 0, 1 
+! steps of 1 
+! (1-(-1))/1 = 2 
+!
+! steps of 0.5
+! (1-(-1))/0.5 = 2/0.5 = 4 
+! =1, -0.5, 0.0, 0.5, 1
+
 !do l=1,2
-w2=w2_start
+w2=w2_start - w2_incr
 do j=1,w2_steps
-    w1=w1_start
+    w2=w2+w2_incr
+    w1=w1_start-w1_incr
     do i= 1,w1_steps 
+    w1=w1+w1_incr
         write(outfile,*) w1, w2, real(f(w1,w2,sigma1, sigma2, w1off,w2off),kind=dp)
         gen_jsa(i,j)=real(f(w1,w2,sigma1, sigma2, w1off, w2off),kind=dp)
-        w1=w1+w1_incr
     end do
-    w2=w2+w2_incr
 end do
+print*, 'start w1', w1_start, 'start w2', w2_start
+print*,' end w1', w1, 'end w2', w2
 end function gen_jsa 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -289,7 +301,8 @@ end function gen_jsa
     complex(kind=dp) :: f_gauss
     real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2, w1off, w2off
     
-    f_gauss=(1.0_dp/(sigma1*sigma2)) * exp(-0.5_dp*((w1-w1off)/sigma1)**2)*exp(-0.5_dp*((w2-w2off)/sigma2)**2)
+    !f_gauss=(1.0_dp/(sigma1*sigma2)) *
+    f_gauss=exp(-0.5_dp*((w1-w1off)/sigma1)**2)*exp(-0.5_dp*((w2-w2off)/sigma2)**2)
 
     end function f_gauss
 

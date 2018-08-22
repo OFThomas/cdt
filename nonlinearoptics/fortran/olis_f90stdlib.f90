@@ -336,7 +336,11 @@ lwmax=n*m
 !write(*,*) work_svd
 
 if (.not. allocated(work_svd)) allocate(work_svd(2*min(m,n)+max(m,n)))
+!if (.not. allocated(lwork)) allocate(lwork(lwmax))
 if (.not. allocated(rwork_svd)) allocate(rwork_svd(5*min(m,n)))
+
+!lwork=lwmax
+
 ! quiery the workspace size
 lwork = -1
 call zgesvd('A','A', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwork_svd, info )

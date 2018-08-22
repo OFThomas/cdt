@@ -40,13 +40,16 @@ complex(kind=dp), dimension(:,:) :: f_mat
 !open(unit=22, file='signalfreq2.dat', status='replace')
 !open(unit=23, file='idlerfreq2.dat', status='replace')
 
+svf=0.0_dp
+uf=0.0_dp
+vtf=0.0_dp
 call complex_svd(f_mat, svf, uf, vtf)
 
 print*, 'done svd'
 
-write(*,*) maxval(svf)
+write(*,*) 'max singular val',  maxval(svf)
 
-print*, 'find element' 
+!print*, 'find element' 
 !>@note returns the w1,w2 element from the Jsa
 !print*, find_element(3,2,uf1,vtf1, svf1)
 

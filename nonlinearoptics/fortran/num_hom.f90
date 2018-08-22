@@ -37,7 +37,9 @@ complex(kind=dp), dimension(:,:), allocatable :: mat_bs, mat_sq1, mat_sq2
 !>@param nspace number of spatial modes
 !>@param nspec number of spectral modes per spatial mode
 !>@param n=nspace*nspec = total number of all modes
-integer :: nspace, nspec, n
+integer :: nspace, n
+! 2 spectral photons signal #& idler
+integer, dimension(2) :: nspec
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -80,7 +82,7 @@ real(kind=dp) :: signalfreq
 real(kind=dp) :: idlerfreq
 
 
-integer :: num_sq
+integer :: f_dim1, f_dim2 ,num_sq
 integer, dimension(:,:), allocatable :: units
 
 
@@ -108,39 +110,44 @@ w1_end=-w1_start
 w2_end=-w2_start
 
 !0.05 
-w1_incr=0.08_dp
-w2_incr=0.08_dp
+w1_incr=0.10_dp
+w2_incr=0.02_dp
 
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1
 
-allocate(f_mat(ceiling((w1_end-w1_start)/w1_incr),ceiling((w1_end-w1_start)/w1_incr),num_sq))
-f_mat(:,:,1)= gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, &
+
+f_dim1=nint((w1_end-w1_start)/w1_incr)+1
+f_dim2=nint((w2_end-w2_start)/w2_incr)+1
+allocate(f_mat(f_dim1,f_dim2,num_sq))
+
+f_mat(:,:,1)= gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
 
-f_mat(:,:,2)=gen_jsa(f_sine, w1_start, w1_end, w1_incr, w2_start, w2_end, w2_incr, &
+f_mat(:,:,2)=gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
 ! normalise?
 do i =1, num_sq
 f_mat(:,:,i)=f_mat(:,:,i)/(sum(f_mat(:,:,i))*w1_incr*w2_incr)
 write(*,*) 'sum f1',i,  sum(f_mat(:,:,i))*w1_incr*w2_incr
-print*, 's1 f', size(f_mat,1)
+print*, 's1 f', size(f_mat,1), 'f_dim', f_dim1, f_dim2
 print*, 'total f size', size(f_mat)
 end do
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 nspace=4
-nspec=size(f_mat,1)
+nspec(1)=f_dim1
+nspec(2)=f_dim2
 print*, 'nspectral dof', nspec
-n=nspace*nspec
+n=nspace*maxval(nspec)
 
 
 ! jsa to be decomp, singular vals,
 ! u, vt
 !>@brief allocates the singular values, u and vt matrices for svd
 
-call alloc_temparrays(nspace,nspec)
+call alloc_temparrays(nspace,nspec(1))
 
 allocate(units(2,num_sq))
 units(:,1)=(/20,21/)
@@ -148,9 +155,10 @@ units(:,2)=(/22,23/)
 
 !>@note call schmidt_modes(jsa_func, sv, u, vt, units )
 
-allocate(svf(nspec,num_sq))
-allocate(uf(nspec,nspec,num_sq))
-allocate(vtf(nspec,nspec,num_sq))
+!>@note this is wrong...
+allocate(svf(nspec(1),num_sq))
+allocate(uf(nspec(2),nspec(2),num_sq))
+allocate(vtf(nspec(2),nspec(2),num_sq))
 
 do i=1,num_sq
 !call alloc_complex_svd(f_mat(:,:,i), svf(:,i), uf(:,:,i), vtf(:,:,i))
@@ -193,18 +201,18 @@ f_mat2=f_mat2*jsaamp
 101 format (2f10.2) 
 102 format (16f10.2) 
 
-mat_sq1=make_squeezer(nspace, nspec, 1,2,f_mat1)
+mat_sq1=make_squeezer(nspace, nspec(1), 1,2,f_mat1)
 write(*,101) real(f_mat1)
 print*, 'fmat1'
 write(*,102) real(mat_sq1) 
 print*, 'mat sq 12' 
 !
-mat_sq2=make_squeezer(nspace, nspec, 3,4,f_mat2)
+mat_sq2=make_squeezer(nspace, nspec(1), 3,4,f_mat2)
 
 
 transform_no_bs=matmul(mat_sq1,mat_sq2)
 print*, 'nspec',  nspec
-g4_nobs=g4(transform_no_bs,nspec)
+g4_nobs=g4(transform_no_bs,nspec(1))
 
 theta_samples=10
 allocate(g4norm(theta_samples))
@@ -219,7 +227,7 @@ do i=1, theta_samples
 
     ! modes 2 & 3
     mat_bs=0.0_dp
-    call make_bs(nspace,nspec,mat_bs,2,3,theta(i))
+    call make_bs(nspace,nspec(1),mat_bs,2,3,theta(i))
     !call printvectors(mat_bs, 'beamsplitter')
 
 
@@ -232,7 +240,7 @@ do i=1, theta_samples
 
     transform=matmul(mat_bs,transform_no_bs)
     !call printvectors(transform(1:n,1:n), 'sq1*sq2*BS') 
-    g4un_norm= g4(transform, nspec)
+    g4un_norm= g4(transform, nspec(1))
     g4norm(i)=g4un_norm/g4_nobs
     ! normalise 
 
