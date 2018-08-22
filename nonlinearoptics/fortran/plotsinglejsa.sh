@@ -6,7 +6,8 @@ set output "single_sig_idler1.png"
 set multiplot layout 1,2 
 
 #set format y "%.1f"
-#set yrange [0:0.35]
+set yrange [-0.3:0.35]
+set xrange [20:105]
 
 set key box opaque
 
@@ -18,9 +19,9 @@ set style line 2 lc 3
 
 unset key
 
-plot for [IDX=0:*] 'signalfreq1.dat' i IDX using 2:3 with lines 
+plot for [IDX=0:*] 'signalfreq1.dat' i IDX using 2:3 with lines linewidth 3
 
-plot for [IDX=0:*] 'idlerfreq1.dat' i IDX using 2:3 with lines
+plot for [IDX=0:*] 'idlerfreq1.dat' i IDX using 2:3 with lines linewidth 3
 
 #plot 'signalfreq1.dat' using 2:3 with lines ls 1
 #plot 'idlerfreq1.dat' using 2:3 with lines ls 2
@@ -62,4 +63,4 @@ set output
 #pause 30
 EOF
 
-animate jsa1.gif 
+#animate jsa1.gif 
