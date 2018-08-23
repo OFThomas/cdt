@@ -76,10 +76,10 @@
 \begin{frame}
 \frametitle{Overview}
 \begin{itemize}
-	\item What is nonlinear optics?
+    \item What is nonlinear optics?
     \item Why do we care about it?
+    \item Gaussian optics
     \item What I have been doing
-    \item Gaussian optics 
     \item Outlook
 \end{itemize}
 \end{frame}
@@ -143,7 +143,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \frametitle{Gaussian Optics}
 
     \begin{itemize}
-    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
+    \item Using the undepleted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
 \end{itemize}
         \begin{equation}
         \hat{U} = \exp[-\frac{i}{\hbar}\left( \tikzmark{P}{P} \int d\omega_1 \int d\omega_2 \tikzmark{f}{f(\omega_1,\omega_2)} \tikzmark{aa}{ \creata_s(\omega_1) \creata_i(\omega_2)} + h.c. \right) ]
@@ -225,7 +225,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 
 
     % slide 
-\begin{frame}{Reducing the size of the state-space}
+\begin{frame}{Schmidt decomposition}
     We can re-write the Hamiltonian using a Schmidt-decomposition as,
     \begin{equation}
     P' F(\omega_1,\omega_2) = \sum_k r_k \psi_k(\omega_1) \phi_k(\omega_2)
@@ -292,6 +292,37 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 
 \end{frame} 
 
+\begin{frame}{Reducing the size of the state-space}
+    \begin{itemize}
+        \item The Schmidt decomposition lets us represent the system in a finite number of broadband modes ($\psi_k(\omega_1), \phi_k(\omega_2)$) 
+        \item 
+
+    \end{itemize}
+
+\end{frame}
+
+% slide 10
+\begin{frame}
+\frametitle{Correlations in a HOM dip}
+%
+
+\begin{figure}[h]
+\begin{align*}
+\centering
+    \Qcircuit @C=0.6cm @R=0.2cm{
+    %1
+        &\lstick{a_1} &\qw &\multigate{1}{Squeezer 1} &\qw &\qw &\measureD{} \\
+    %2
+        &\lstick{a_2} &\qw &\ghost{Squeezer 1} &\qw  &\multigate{1}{BS} &\measureD{} \\
+    %3
+        &\lstick{a_3} &\qw &\multigate{1}{Squeezer 2} &\qw &\ghost{BS} &\measureD{} \\
+    %4
+        &\lstick{a_4} &\qw &\ghost{Squeezer 2} &\qw &\qw &\measureD{} \\
+}
+\end{align*}
+\caption{Two source HOM dip}
+\end{figure}
+\end{frame}
 %slide 11
 \begin{frame}{Two squeezers JSA} 
     \begin{figure}
@@ -307,28 +338,6 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 
 \end{frame} 
 
-% slide 10
-\begin{frame}
-\frametitle{Correlations in a HOM dip}
-%
-
-\begin{figure}[h]
-\begin{align*}
-\centering
-    \Qcircuit @C=0.6cm @R=0.2cm{
-    %1
-        &\lstick{a_1} &\qw &\multigate{1}{Squeezer} &\qw &\qw &\measureD{} \\
-    %2
-        &\lstick{a_2} &\qw &\ghost{Squeezer} &\qw  &\multigate{1}{BS} &\measureD{} \\
-    %3
-        &\lstick{a_3} &\qw &\multigate{1}{Squeezer} &\qw &\ghost{BS} &\measureD{} \\
-    %4
-        &\lstick{a_4} &\qw &\ghost{Squeezer} &\qw &\qw &\measureD{} \\
-}
-\end{align*}
-\caption{Two source HOM dip}
-\end{figure}
-\end{frame}
 % slide 12
 \begin{frame}
     \frametitle{G(4) correlation function}
@@ -340,7 +349,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
     \begin{equation}
         a_i = \sum_j a_{i}(\omega_j)
     \end{equation}
-    Meaning we sum over all of the spectral modes of the spatial modes (1,2,3,4) seperately.
+    Meaning we sum over all of the spectral modes of the spatial modes (1,2,3,4) separately.
     We end up with, 
     \begin{equation}
         G^{(4)} = 1 - \left( \frac{2 \mid cosh(r) \mid^2}{\mid cosh(r) \mid ^2 + \mid sinh(r) \mid^2} sin(\theta) cos(\theta) \right)^2
@@ -361,13 +370,6 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{itemize}
 \end{frame}
 
-
-%slide 13
-\begin{frame}
-\frametitle{Outlook}
-\begin{itemize}
-\end{itemize}
-\end{frame}
 
 \bibliographystyle{unsrt}
 \bibliography{refs}
