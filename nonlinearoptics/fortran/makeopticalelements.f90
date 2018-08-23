@@ -288,6 +288,8 @@ do j=1,w2_steps
         gen_jsa(i,j)=real(f(w1,w2,sigma1, sigma2, w1off, w2off),kind=dp)
     end do
 end do
+
+
 print*, 'start w1', w1_start, 'start w2', w2_start
 print*,' end w1', w1, 'end w2', w2
 end function gen_jsa 
@@ -311,7 +313,7 @@ end function gen_jsa
     complex(kind=dp) :: f_sine
     real(kind=dp), intent(in) :: w1,w2,sigma1,sigma2, w1off,w2off
 
-    f_sine=sinc(2.0_dp*(w1-w2))*exp(-0.5_dp*((w1/sigma1)**2+(w2/sigma2)**2))
+    f_sine=sinc(2.0_dp*(w1-w2))*exp(-0.1_dp*((w1/sigma1)**2+(w2/sigma2)**2))
     end function f_sine
 
 

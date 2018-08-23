@@ -111,7 +111,7 @@ w2_end=-w2_start
 
 !0.05 
 w1_incr=0.10_dp
-w2_incr=0.02_dp
+w2_incr=0.10_dp
 
 sigma1=1.0_dp
 sigma2=0.5_dp*sigma1
@@ -121,10 +121,10 @@ f_dim1=nint((w1_end-w1_start)/w1_incr)+1
 f_dim2=nint((w2_end-w2_start)/w2_incr)+1
 allocate(f_mat(f_dim1,f_dim2,num_sq))
 
-f_mat(:,:,1)= gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
+f_mat(:,:,1)= gen_jsa(f_sine, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
 
-f_mat(:,:,2)=gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
+f_mat(:,:,2)=gen_jsa(f_sine, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
 ! normalise?
