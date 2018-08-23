@@ -104,8 +104,10 @@
 %
 \column{0.5\textwidth}
     \begin{block}{The bad}
+        Spontaneous parametric processes
         \begin{itemize}
             \item Generating more than two photons -$>$ bad for quantum computing
+            \item Understanding filtering
         \end{itemize}
         All Kerr nonlinear processes 
         \begin{itemize}
@@ -140,7 +142,10 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \begin{frame}
 \frametitle{Gaussian Optics}
 
-    \begin{equation}
+    \begin{itemize}
+    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
+\end{itemize}
+        \begin{equation}
         \hat{U} = \exp[-\frac{i}{\hbar}\left( \tikzmark{P}{P} \int d\omega_1 \int d\omega_2 \tikzmark{f}{f(\omega_1,\omega_2)} \tikzmark{aa}{ \creata_s(\omega_1) \creata_i(\omega_2)} + h.c. \right) ]
     \end{equation}
 
@@ -150,14 +155,13 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
     \draw[red,->,thick] (power) to [in=-90,out=45] (P);
     
     \node[blue,xshift=0cm] (jsa) [below =of f]{JSA};
-    \draw[blue,->,thick] (jsa) to [in=-90,out=90] (f.south);
+    \draw[blue,->,thick] (jsa) to [in=-90,out=135] (f.south);
     
     \node[purple] (sigidler) [below =of aa]{Signal \& Idler};
     \draw[purple,->,thick] (sigidler) to [in=-90,out=45] (aa.south);
 \end{tikzpicture}
 \vspace{10pt} 
 \begin{itemize}
-    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
     \item These are Gaussian transforms, they take Gaussian states to Gaussian states \footnote{These are linear symplectic transforms which conviently can be written as a matrix}
 
 \end{itemize}
@@ -168,7 +172,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
         \vec{\bdag}
     \end{bmatrix}
     = 
-    M
+    \textbf{M}
     \begin{bmatrix}
         \vec{\a} \\
         \vec{\adag}
@@ -176,72 +180,6 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{equation}
 
 \end{frame}
-
-
-% slide 5
-\begin{frame}
-    \frametitle{Hamiltonian}
-    
-\end{frame}
-    %
-\begin{frame}
-    We can do re-write this Hamiltonian as a Schmidt-decomposition using SVD.
-    \begin{equation}
-    -\frac{i}{\hbar}P f(\omega_1,\omega_2) = \sum_k r_k \psi_k(\omega_1) \phi_k(\omega_2)
-    \end{equation}
-    Where $ \psi $ \& $\phi $ are unitary matrices,
-    \begin{itemize}
-        \item with $ \psi_k(\omega_1) $ is the k-th row and $\omega_1$-th column of $u_{(\omega_1, k)}$,
-        \item with $ \phi_k(\omega_2) $ is the $\omega_2$-th row and k-th column of $v^\dagger_{(k,\omega_2)}$
-    \end{itemize}
-    \begin{equation}
-        P' f(\omega_1, \omega_2) = \sum_k r_k u_{(\omega_1, k)} v_{(k, \omega_2)}^\dagger
-    \end{equation}
-\end{frame}
-
-% slide 6
-\begin{frame}
-    Recall SVD is defined as,
-    \begin{equation}
-    M=U \Sigma V^\dagger 
-    \end{equation}
-\end{frame}
-
-%slide 7
-\begin{frame}{The Joint Spectral Amplitude (JSA)} 
-    \begin{figure}
-        \centering
-        \begin{subfigure}{0.45\textwidth}
-            \movie[height=0.9\textwidth,width=1.1\textwidth, loop, autostart]{}{jsasepgauss.mp4}
-        \end{subfigure}
-        ~
-        \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=1\textwidth]{sepsingle_sig_idler1.png}
-        \caption{Signal (red) and Idler (blue)}
-        \end{subfigure}
-    \end{figure}
-
-\end{frame} 
-
-%slide 8
-\begin{frame}{Non-separable JSAs} 
-    \begin{figure}
-        \centering
-        \begin{subfigure}{0.45\textwidth}
-            \movie[height=0.9\textwidth,width=1.1\textwidth, loop, autostart]{}{jsanotsepsincgauss.mp4}
-        \end{subfigure}
-        ~
-        \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=1\textwidth]{notsepsingle_sig_idler1.png}
-        \caption{Signal (red) and Idler (blue)}
-        \end{subfigure}
-    \end{figure}
-
-\end{frame} 
-
-
-
-
 
 % slide 10
 \begin{frame}
@@ -285,8 +223,77 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 %
 \end{frame}
 
+
+    % slide 
+\begin{frame}{Reducing the size of the state-space}
+    We can re-write the Hamiltonian using a Schmidt-decomposition as,
+    \begin{equation}
+    P' F(\omega_1,\omega_2) = \sum_k r_k \psi_k(\omega_1) \phi_k(\omega_2)
+    \end{equation}
+
+    Where $r_k$ is the Schmidt number, $ \psi $ \& $\phi $ are unitaries.\newline
+
+    To solve this numerically we discretize the function and the Schmidt-decomposition is then the Singular value decomposition (SVD) of the JSA (F).
+    \begin{equation}
+        P' \textbf{F}_{(\omega_1, \omega_2)} = \sum_k r_k \textbf{U}_{(\omega_1, k)} \textbf{V}_{(k, \omega_2)}^\dagger
+    \end{equation}
+    \begin{itemize}
+        \item with $ \psi_k(\omega_1) $ is the k-th row and $\omega_1$-th column of $\textbf{U}_{(\omega_1, k)}$,
+        \item with $ \phi_k(\omega_2) $ is the $\omega_2$-th row and k-th column of $\textbf{V}^\dagger_{(k,\omega_2)}$
+    \end{itemize}
+\end{frame}
+
+%slide 7
+\begin{frame}{Joint Spectral Amplitudes (JSAs)} 
+    \centering
+        \begin{figure}
+            \movie[height=0.65\textwidth,width=1\textwidth, loop, autostart]{}{jsasepgauss.mp4}
+        \end{figure}
+        \footnotetext{Moving to the rotating frame...}
+    \end{frame}
+
+% slide 
+    \begin{frame}{Seperable JSAs Schmidt modes}
+        
+    \begin{figure}
+        \centering
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=1\textwidth]{sepschmidtmodesocc.png}
+    \end{subfigure}
+    ~
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\textwidth]{sepsingle_sig_idler1.png}
+        \caption{Signal (red) and Idler (blue)}
+        \end{subfigure}
+    \end{figure}
+
+\end{frame} 
+
+%slide 8
+\begin{frame}{Non-separable JSAs} 
+    \begin{figure}
+        \centering
+            \movie[height=0.65\textwidth,width=1\textwidth, loop, autostart]{}{jsanotsepsincgauss.mp4}
+        \end{figure}
+    \end{frame}
+%
+    \begin{frame}{Non-separable JSAs Schimdt modes}
+    \begin{figure}
+        \centering
+        \begin{subfigure}{0.4\textwidth}
+            \includegraphics[width=1\textwidth]{notsepschmidtmodesocc.png}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\textwidth]{notsepsingle_sig_idler1.png}
+        \caption{Signal (red) and Idler (blue)}
+        \end{subfigure}
+    \end{figure}
+
+\end{frame} 
+
 %slide 11
-\begin{frame}{Two  squeezers JSA} 
+\begin{frame}{Two squeezers JSA} 
     \begin{figure}
         \centering
         \begin{subfigure}{0.45\textwidth}
@@ -300,6 +307,28 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 
 \end{frame} 
 
+% slide 10
+\begin{frame}
+\frametitle{Correlations in a HOM dip}
+%
+
+\begin{figure}[h]
+\begin{align*}
+\centering
+    \Qcircuit @C=0.6cm @R=0.2cm{
+    %1
+        &\lstick{a_1} &\qw &\multigate{1}{Squeezer} &\qw &\qw &\measureD{} \\
+    %2
+        &\lstick{a_2} &\qw &\ghost{Squeezer} &\qw  &\multigate{1}{BS} &\measureD{} \\
+    %3
+        &\lstick{a_3} &\qw &\multigate{1}{Squeezer} &\qw &\ghost{BS} &\measureD{} \\
+    %4
+        &\lstick{a_4} &\qw &\ghost{Squeezer} &\qw &\qw &\measureD{} \\
+}
+\end{align*}
+\caption{Two source HOM dip}
+\end{figure}
+\end{frame}
 % slide 12
 \begin{frame}
     \frametitle{G(4) correlation function}
@@ -307,20 +336,36 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
         G^{(4)} = \frac{ \left< \creata_1 \creata_2 \creata_3 \creata_4 \annia_1 \annia_2 \annia_3 \annia_4 \right>}
         {\left< \creata_1 \annia_1 \right> \left< \creata_2 \annia_2 \right> \left< \creata_3 \annia_3 \right> \left< \creata_4 \annia_4 \right>}
     \end{equation}
-  
+    Where,
+    \begin{equation}
+        a_i = \sum_j a_{i}(\omega_j)
+    \end{equation}
+    Meaning we sum over all of the spectral modes of the spatial modes (1,2,3,4) seperately.
+    We end up with, 
+    \begin{equation}
+        G^{(4)} = 1 - \left( \frac{2 \mid cosh(r) \mid^2}{\mid cosh(r) \mid ^2 + \mid sinh(r) \mid^2} sin(\theta) cos(\theta) \right)^2
+    \end{equation}
+\end{frame}
+
+\begin{frame}{G(4) correlation function}
+
     \begin{figure}[h]
-       \movie[height=0.55\textwidth, width=1\textwidth, loop, autostart]{}{g4python.mp4}
+       \movie[height=0.7\textwidth, width=1\textwidth, loop, autostart]{}{g4python.mp4}
     \end{figure}
-    \begin{itemize}
-	\item   
+\end{frame}
+
+%slide 13
+\begin{frame}
+\frametitle{Summary}
+\begin{itemize}
 \end{itemize}
 \end{frame}
+
 
 %slide 13
 \begin{frame}
 \frametitle{Outlook}
 \begin{itemize}
-    \item There is much to do
 \end{itemize}
 \end{frame}
 
