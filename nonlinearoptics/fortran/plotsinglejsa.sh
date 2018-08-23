@@ -42,6 +42,7 @@ gnuplot << EOF
 set term png
 set output "schmidtmodesocc.png"
 
+unset key
 set ylabel "Occupation"
 set xlabel "Schimdt mode number"
 

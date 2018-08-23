@@ -88,7 +88,7 @@ do k=1, 3!size(u,1)
     print*, sv(k)
         do l=1, size(u,2)
         !print*, 'k', k, 'l', l
-        write(sigout,*)k,l, (calc_sig(k,l,u))
+        write(sigout,*)k,l, -(calc_sig(k,l,u))
  
     
     ! make a list of w2 and idlerfreq from schmidt decomp
@@ -96,7 +96,8 @@ do k=1, 3!size(u,1)
 !> l is the frequency range 
     !do l=1, size(vt,1) 
         !print*, 'k', k, 'l', l
-        write(idlerout,*) k,l, (calc_idler(k,l,vt))
+
+        write(idlerout,*) k,l, -(calc_idler(k,l,vt))
     end do
     write(sigout,*) char(10), char(10)
     write(idlerout,*) char(10), char(10)
