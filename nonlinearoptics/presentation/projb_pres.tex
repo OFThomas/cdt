@@ -7,6 +7,8 @@
 \usepackage{mathptmx}
 \usepackage{array}
   
+\usepackage[sort&compress]{natbib}     % bib
+
 %%%%%%%%% FIGurES %%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{textcomp}
 \usepackage{graphicx}
@@ -17,11 +19,7 @@
 \usepackage{float}
 \usepackage{hyperref}
 
-%\usepackage[loop,controls,buttonsize=0.24cm,buttonbg=0.8,autoplay]{animate}
 \usepackage{multimedia}
-%\usepackage{xmpmulti}
-
-%\usepackage{media9}
 
 %\graphicspath{{./figures/}}
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
@@ -48,10 +46,22 @@
 
 \usepackage{qcircuit}
 
+
+
+%%%%%%%%%%%%%%%%%5 TIKZ %%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+
+%\tikzset{>=stealth}
+
+%\newcommand{\tikzmark}[1]{\tikz[baseline,remember picture] \node[anchor=base, #1] (#1) {};}
+%\newcommand{\tikzmark}[3][]{\tikz[overlay,remember picture,baseline] \node [anchor=base,#1](#2) {#3};}
+\newcommand{\tikzmark}[3][]{\tikz[remember picture,baseline] \node [anchor=base,#1](#2) {$#3$};}
 \usetheme{PaloAlto}
 
 \title{Modelling Nonlinear optics with the Bloch-Messiah reduction}
-\author{Oliver Thomas}
+\author{Oliver Thomas, Dara McCutcheon, Will McCutcheon}
 \institute{Quantum Engineering CDT \\ University of Bristol}
 \date{\today}
 
@@ -76,7 +86,7 @@
 
 %slide 3
 \begin{frame}
-\frametitle{Motivation}
+\frametitle{Motivation quantum nonlinear optics}
 \begin{columns}
 \column{0.5\textwidth}
     \begin{block}{The good}
@@ -87,7 +97,7 @@
     \end{itemize}
     Kerr processes 
     \begin{itemize}
-        \item Self-Phase modulation (SPM) for generating Bannana states (CV)
+        \item Self-Phase modulation (SPM), generating Bannana states (CV)
         \item Cross-Phase modulation (XPM) for sensing
     \end{itemize}
     \end{block}
@@ -123,16 +133,55 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \begin{equation} 
     \hat{H} = A \creata_S \creata_I \annia_P \annia_P + h.c.
 \end{equation}
-\textbf{Note} for the rest of this presentation I will drop the hat notatiaion and using the convention a, b are annihilation operators in modes a \& b
+%\textbf{Note} for the rest of this presentation I will drop the hat notatiaion and using the convention a, b are annihilation operators in modes a \& b
 \end{frame}
+
+%slide 9
+\begin{frame}
+\frametitle{Gaussian Optics}
+
+    \begin{equation}
+        \hat{U} = \exp[-\frac{i}{\hbar}\left( \tikzmark{P}{P} \int d\omega_1 \int d\omega_2 \tikzmark{f}{f(\omega_1,\omega_2)} \tikzmark{aa}{ \creata_1(\omega_1) \creata_2(\omega_2)} + h.c. \right) ]
+    \end{equation}
+
+    \begin{tikzpicture}[overlay, remember picture, node distance=1cm]
+    
+    \node[red] (power) [below =of P]{Power};
+    \draw[red,->,thick] (power) to [in=-90,out=45] (P);
+    
+    \node[blue,xshift=0cm] (jsa) [below =of f]{JSA};
+    \draw[blue,->,thick] (jsa) to [in=-90,out=90] (f.south);
+    
+    \node[purple] (sigidler) [below =of aa]{Signal \& Idler};
+    \draw[purple,->,thick] (sigidler) to [in=-90,out=45] (aa.south);
+\end{tikzpicture}
+\vspace{10pt} 
+\begin{itemize}
+    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
+    \item These are Gaussian transforms, they take Gaussian states to Gaussian states \footnote{These are linear symplectic transforms which conviently can be written as a matrix}
+
+\end{itemize}
+
+    \begin{equation}
+    \begin{bmatrix} 
+        \vec{\b}   \\
+        \vec{\bdag}
+    \end{bmatrix}
+    = 
+    M
+    \begin{bmatrix}
+        \vec{\a} \\
+        \vec{\adag}
+    \end{bmatrix}
+\end{equation}
+
+\end{frame}
+
 
 % slide 5
 \begin{frame}
     \frametitle{Hamiltonian}
     
-    \begin{equation}
-        \hat{U} = \exp[-\frac{i}{\hbar}\left( P \int d\omega_1 \int d\omega_2 f(\omega_1,\omega_2) \creata_1(\omega_1) \creata_2(\omega_2) + h.c. \right) ]
-    \end{equation}
 \end{frame}
     %
 \begin{frame}
@@ -191,29 +240,6 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{frame} 
 
 
-
-
-%slide 9
-\begin{frame}
-\frametitle{Gaussian Optics}
-\begin{itemize}
-    \item Using the undelpeted pump approximation we can write the Hamiltonians as terms which are at most quadratic in creation and annihilation operators. 
-    \item These are Gaussian transforms, they take Gaussian states to Gaussian states 
-
-\end{itemize}
-\begin{equation}
-    \begin{bmatrix} 
-        \vec{\b}   \\
-        \vec{\bdag}
-    \end{bmatrix}
-    = 
-    M
-    \begin{bmatrix}
-        \vec{\a} \\
-        \vec{\adag}
-    \end{bmatrix}
-\end{equation}
-\end{frame}
 
 
 
@@ -298,4 +324,6 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{itemize}
 \end{frame}
 
+\bibliographystyle{unsrt}
+\bibliography{refs}
 \end{document}
