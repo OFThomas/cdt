@@ -304,7 +304,7 @@ end function gen_jsa
     real(kind=dp), intent(in) :: w1,w2, sigma1, sigma2, w1off, w2off
     
     !f_gauss=(1.0_dp/(sigma1*sigma2)) *
-    f_gauss=exp(-0.5_dp*((w1-w1off)/sigma1)**2)*exp(-0.5_dp*((w2-w2off)/sigma2)**2)
+    f_gauss=exp(-0.2_dp*(((w1-w1off)/sigma1)**2+((w2-w2off)/sigma2)**2))
 
     end function f_gauss
 

@@ -29,6 +29,9 @@ integer, dimension(:) :: writeout
 
 complex(kind=dp), dimension(:,:) :: f_mat
 
+integer :: schmidtout
+
+schmidtout=33
 !>@note files to write to  
 !open(unit=14,file='fplotw1w2.dat', status='replace')
 !open(unit=15,file='fplotw3w4.dat', status='replace')
@@ -64,6 +67,10 @@ write(*,*) 'max singular val',  maxval(svf)
 
 call write_sigidler(svf, uf, vtf, writeout(1), writeout(2))
 
+
+do i=1, nint(0.1_dp*size(svf))
+    write(schmidtout,*) i, svf(i)/sum(svf)
+end do
 end subroutine schmidt_modes
 
 ! make a list of w1 & signalfreq from schmidt decomp

@@ -7,7 +7,7 @@ set multiplot layout 1,2
 
 #set format y "%.1f"
 set yrange [-0.3:0.35]
-set xrange [20:105]
+#set xrange [20:105]
 
 set key box opaque
 
@@ -35,6 +35,24 @@ EOF
 
 # show plots while waiting for animation
 display single_sig_idler1.png & 
+
+#plot schmidt modes
+
+gnuplot << EOF
+set term png
+set output "schmidtmodesocc.png"
+
+set ylabel "Occupation"
+set xlabel "Schimdt mode number"
+
+set boxwidth 1.0
+set style fill solid
+plot "schmidtout.dat" with boxes
+
+EOF
+
+# ahow occupation
+display schmidtmodesocc.png &
 
 gnuplot << 'EOF'
 

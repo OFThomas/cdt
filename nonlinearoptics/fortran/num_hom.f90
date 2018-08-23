@@ -85,7 +85,7 @@ real(kind=dp) :: idlerfreq
 integer :: f_dim1, f_dim2 ,num_sq
 integer, dimension(:,:), allocatable :: units
 
-
+integer :: sep
 
 !>@note files to write to  
 open(unit=14,file='fplotw1w2.dat', status='replace')
@@ -100,6 +100,8 @@ open(unit=21, file='idlerfreq1.dat', status='replace')
 !> jsa 2
 open(unit=22, file='signalfreq2.dat', status='replace')
 open(unit=23, file='idlerfreq2.dat', status='replace')
+
+open(unit=33, file='schmidtout.dat', status='replace')
 
 num_sq=2
 
@@ -121,12 +123,24 @@ f_dim1=nint((w1_end-w1_start)/w1_incr)+1
 f_dim2=nint((w2_end-w2_start)/w2_incr)+1
 allocate(f_mat(f_dim1,f_dim2,num_sq))
 
+print*, 'Enter 1 for Seperable JSA, 0 for entangled:'
+read*, sep
+
+if (sep==0) then
 f_mat(:,:,1)= gen_jsa(f_sine, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
 
 f_mat(:,:,2)=gen_jsa(f_sine, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
     sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
 
+else 
+f_mat(:,:,1)= gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
+    sigma1, sigma2,14, w1offset=0.0_dp, w2offset=0.0_dp)
+
+f_mat(:,:,2)=gen_jsa(f_gauss, w1_start, f_dim1, w1_incr, w2_start, f_dim2, w2_incr, &
+    sigma1, sigma2,15, w1offset=1.0_dp, w2offset=1.0_dp)
+
+end if
 ! normalise?
 do i =1, num_sq
 f_mat(:,:,i)=f_mat(:,:,i)/(sum(f_mat(:,:,i))*w1_incr*w2_incr)
