@@ -162,10 +162,16 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{tikzpicture}
 \vspace{10pt} 
 \begin{itemize}
-    \item These are Gaussian transforms, they take Gaussian states to Gaussian states \footnote{These are linear symplectic transforms which conviently can be written as a matrix}
+    \item  Just like Beamsplitters can be written as unitary matrices,
+\end{itemize} 
+\begin{equation}
+    \begin{bmatrix} \vec{b} \end{bmatrix}= \textbf{U} \begin{bmatrix}\vec{a}\end{bmatrix}
+\end{equation}
 
+\begin{itemize}
+    \item We want to extend the type of transforms to all Gaussian transforms\footnote{These are linear symplectic transforms which conviently can be written as a matrix \cite{adesso2014continuous}} 
 \end{itemize}
-
+\vspace{-10pt}
     \begin{equation}
     \begin{bmatrix} 
         \vec{\b}   \\
@@ -188,7 +194,8 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \begin{figure}[h]
 \begin{align*}
 \centering
-    \Qcircuit @C=0.6cm @R=0.2cm{
+\vspace{-20pt}
+    \Qcircuit @C=0.6cm @R=0.1cm{
     %1
         &\lstick{a_1} &\qw &\multigate{1}{Squeezer} &\qw &\qw &\measureD{} \\
     %2
@@ -207,7 +214,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \begin{figure}[h]
 \begin{align*}
 \centering
-    \Qcircuit @C=0.5cm @R=0.2cm{
+    \Qcircuit @C=0.5cm @R=0.1cm{
     %1
         &\lstick{a_1} &\qw &\multigate{1}{Squeezer} &\qw &\qw &\measureD{} & \\
     %2
@@ -220,13 +227,14 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \end{align*}
 \caption{Type-1 Fusion gate}
 \end{figure}
+\footnotetext{These are two-mode squeezers}
 %
 \end{frame}
 
 
     % slide 
 \begin{frame}{Schmidt decomposition}
-    We can re-write the Hamiltonian using a Schmidt-decomposition as,
+    We can re-write the Hamiltonian using a Schmidt-decomposition \cite{lvovsky2007decomposing}as,
     \begin{equation}
     P' F(\omega_1,\omega_2) = \sum_k r_k \psi_k(\omega_1) \phi_k(\omega_2)
     \end{equation}
@@ -267,6 +275,13 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
         \end{subfigure}
     \end{figure}
 
+    \begin{equation}
+        F(\omega_1,\omega_2) = exp\left[-0.2 \left( \left(\frac{\omega_1}{\sigma_1} \right)^2+\left(\frac{\omega_2}{\sigma_2} \right)^2 \right) \right]
+    \end{equation}
+    normalised so that,
+    \begin{equation}
+    \int d\omega_1 \int d\omega_2 F(\omega_1,\omega_2) = 1
+    \end{equation}
 \end{frame} 
 
 %slide 8
@@ -288,17 +303,31 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
         \includegraphics[width=1\textwidth]{notsepsingle_sig_idler1.png}
         \caption{Signal (red) and Idler (blue)}
         \end{subfigure}
+
+    \begin{equation}
+        F(\omega_1,\omega_2) = sinc(2(\omega_1-\omega_2))exp\left[-0.1 \left( \left(\frac{\omega_1}{\sigma_1} \right)^2+\left(\frac{\omega_2}{\sigma_2} \right)^2 \right) \right]
+    \end{equation}
+    \vspace{-5pt}
+    normalised so that,
+    \begin{equation}
+    \int d\omega_1 \int d\omega_2 F(\omega_1,\omega_2) = 1
+    \end{equation}
     \end{figure}
 
 \end{frame} 
 
 \begin{frame}{Reducing the size of the state-space}
     \begin{itemize}
-        \item The Schmidt decomposition lets us represent the system in a finite number of broadband modes ($\psi_k(\omega_1), \phi_k(\omega_2)$) 
-        \item 
+        \item The Schmidt decomposition lets us represent the system in a finite number of broadband modes ($\psi_k(\omega_1), \phi_k(\omega_2)$) \cite{wasilewski2006pulsed}
+        \item Defining new mode operators for signals, $\hat{A}_k$ and idlers, $\hat{B}_k$
 
     \end{itemize}
-
+    \begin{equation}
+    \hat{A}_k = \int d\omega_s \psi_k(\omega_s) \annia_s
+    \end{equation}
+    \begin{equation}
+    \hat{B}_k = \int d\omega_i \phi_k(\omega_i) \annia_i
+    \end{equation}
 \end{frame}
 
 % slide 10
@@ -311,13 +340,13 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \centering
     \Qcircuit @C=0.6cm @R=0.2cm{
     %1
-        &\lstick{a_1} &\qw &\multigate{1}{Squeezer 1} &\qw &\qw &\measureD{} \\
+        &\lstick{A_1} &\qw &\multigate{1}{Squeezer 1} &\qw &\qw &\measureD{} \\
     %2
-        &\lstick{a_2} &\qw &\ghost{Squeezer 1} &\qw  &\multigate{1}{BS} &\measureD{} \\
+        &\lstick{A_2} &\qw &\ghost{Squeezer 1} &\qw  &\multigate{1}{BS} &\measureD{} \\
     %3
-        &\lstick{a_3} &\qw &\multigate{1}{Squeezer 2} &\qw &\ghost{BS} &\measureD{} \\
+        &\lstick{A_3} &\qw &\multigate{1}{Squeezer 2} &\qw &\ghost{BS} &\measureD{} \\
     %4
-        &\lstick{a_4} &\qw &\ghost{Squeezer 2} &\qw &\qw &\measureD{} \\
+        &\lstick{A_4} &\qw &\ghost{Squeezer 2} &\qw &\qw &\measureD{} \\
 }
 \end{align*}
 \caption{Two source HOM dip}
@@ -361,6 +390,23 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
     \begin{figure}[h]
        \movie[height=0.7\textwidth, width=1\textwidth, loop, autostart]{}{g4python.mp4}
     \end{figure}
+\end{frame}
+
+\begin{frame}{G(4) correlation function}
+
+    \begin{figure}
+    \centering
+        \begin{subfigure}{0.52\textwidth}
+        \includegraphics[width=\textwidth]{g4plot1.png} 
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.52\textwidth}
+        \includegraphics[width=\textwidth]{g4plot3.png}
+        \end{subfigure}
+
+        \end{figure}
+
+
 \end{frame}
 
 %slide 13

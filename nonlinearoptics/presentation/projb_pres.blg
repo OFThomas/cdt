@@ -2,47 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: projb_pres.aux
 The style file: unsrt.bst
-I found no \citation commands---while reading file projb_pres.aux
 Database file #1: refs.bib
-You've used 0 entries,
+You've used 3 entries,
             1791 wiz_defined-function locations,
-            445 strings with 3522 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
+            472 strings with 4138 characters,
+and the built_in function-call counts, 757 in all, are:
+= -- 63
+> -- 36
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 13
+- -- 10
+* -- 67
+:= -- 129
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 3
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 3
+duplicate$ -- 27
+empty$ -- 72
+format.name$ -- 10
+if$ -- 159
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 18
+num.names$ -- 3
+pop$ -- 3
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 9
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 64
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There was 1 error message)
+while$ -- 7
+width$ -- 4
+write$ -- 35
