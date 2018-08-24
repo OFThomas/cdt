@@ -340,16 +340,17 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \centering
     \Qcircuit @C=0.6cm @R=0.2cm{
     %1
-        &\lstick{A_1} &\qw &\multigate{1}{Squeezer 1} &\qw &\qw &\measureD{} \\
+        &\lstick{A_{1,k}} &\qw &\multigate{1}{Squeezer 1} &\qw &\qw &\measureD{} \\
     %2
-        &\lstick{A_2} &\qw &\ghost{Squeezer 1} &\qw  &\multigate{1}{BS} &\measureD{} \\
+        &\lstick{B_{2,k}} &\qw &\ghost{Squeezer 1} &\qw  &\multigate{1}{BS} &\measureD{} \\
     %3
-        &\lstick{A_3} &\qw &\multigate{1}{Squeezer 2} &\qw &\ghost{BS} &\measureD{} \\
+        &\lstick{B_{3,k}} &\qw &\multigate{1}{Squeezer 2} &\qw &\ghost{BS} &\measureD{} \\
     %4
-        &\lstick{A_4} &\qw &\ghost{Squeezer 2} &\qw &\qw &\measureD{} \\
+        &\lstick{A_{4,k}} &\qw &\ghost{Squeezer 2} &\qw &\qw &\measureD{} \\
 }
 \end{align*}
 \caption{Two source HOM dip}
+
 \end{figure}
 \end{frame}
 %slide 11
@@ -362,6 +363,7 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
         ~
         \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=1\textwidth]{single_sig_idler12.png}
+        \caption{The signals $A_k$ (red) and idlers $B_k$ (blue)}
     \end{subfigure}
    \end{figure}
 
@@ -413,10 +415,19 @@ Here we are going to talk about squeezing, i.e SPDC or SFWM, Hamiltonians are th
 \begin{frame}
 \frametitle{Summary}
 \begin{itemize}
+    \item The Schmidt decomposition is a useful technique to exactly reduce the continuum of spectral modes in a JSA to a discrete set of broadband modes.
+    \item We have derived a closed form expression for the $G^{(4)}$ and it agrees with computational simulation for two identical, seperable squeezers.
+    \end{itemize}
+Outlook,
+\begin{itemize}
+    \item Currently, the method creating the sympectic matrix $\textbf{M}$ involves using the Bloch-Messiah reduction which fully diagonalises it. 
+    \item This flattens all of the degrees of freedom and puts them on equal footing which is not the case experimentally!
+    \item We want to generalise the method so that it respects spatial and spectral degrees of freedom separately.
 \end{itemize}
 \end{frame}
 
-
+\begin{frame}{References}
 \bibliographystyle{unsrt}
 \bibliography{refs}
+\end{frame}
 \end{document}
