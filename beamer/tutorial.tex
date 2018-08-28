@@ -41,6 +41,14 @@
 
 \frame{\titlepage}
 
+\begin{frame}{Overview}
+    \begin{itemize}
+        \item Version control
+        \item Plotting using gnuplot
+        \item Vim
+    \end{itemize}
+\end{frame}
+
 % slide 1
 \begin{frame}
 \frametitle{Why you should use version control}
@@ -53,10 +61,9 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.26\textwidth]{xkcdversion.png}
-	\caption{Bad version control\footnotemark }
+	\caption{Bad version control\footnote{\url{https://xkcd.com/1459/}}}
 	\label{fig:xkcdversion}
 \end{figure}
-\footnotetext[1]{\url{https://xkcd.com/1459/}}
 \end{frame}
 
 %slide 2
@@ -64,9 +71,8 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \frametitle{What is Git?}
 \begin{itemize}
 \item Git is one of most used version control software in the world 
-\item Git is cross-platform and easy to use \footnotemark.
+\item Git is cross-platform and easy to use \footnote{\url{https://try.github.io/levels/1/challenges/1}}
 \end{itemize}
-\footnotetext[2]{\url{https://try.github.io/levels/1/challenges/1}}
 \end{frame}
 
 %slide 2
@@ -88,12 +94,11 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \begin{frame}
 \frametitle{Making a repository}
 \begin{itemize}
-\item You can do this online on the Github website \footnotemark  
+\item You can do this online on the Github website \footnote{\url{https://github.com/}}
 \item Create a new repository
 \item Then click clone to get the url, open git on your computer and type: \\ 
 	\texttt{git clone url}
 \end{itemize}
-\footnotetext[3]{\url{https://github.com/}}
 \end{frame}
 
 %slide 3
@@ -109,13 +114,12 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \begin{frame}
 \frametitle{Basic Git commands}
 \begin{itemize}
-	\item There are four\footnotemark\ important commands you will need for git:
+	\item There are four\footnote{I cheat here and write a bash script which does these in order so I only have to run a single command.} important commands you will need for git:
 	\item \texttt{git pull}
 	\item \texttt{git add *}
 	\item \texttt{git commit -a}
 	\item \texttt{git push}
 \end{itemize}
-\footnotetext[1]{I cheat here and write a bash script which does these in order so I only have to run a single command.}
 \end{frame}
 
 %slide 4
@@ -142,12 +146,11 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 
 %slide 5
 \begin{frame}
-\frametitle{Why Python?} 
+\frametitle{gnuplot} 
 \begin{itemize}
-	\item Python is popular, multi-platform and becoming a standard language\footnotemark\ 
-	\item It is a good high level language to know, it is a very flexible interpreted language.
+	\item Gnuplot is popular, multi-platform and standard software on computing clusters\footnote{standard on most of the popular linux distributions} 
+    \item \url{https://sourceforge.net/projects/gnuplot/files/gnuplot/5.2.4}
 \end{itemize}
-\footnotetext[2]{standard on most of the popular linux distributions}
 \end{frame}
 
 %slide 5
