@@ -14,7 +14,7 @@ subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612
 \begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{olis\+\_\+f90stdlib\+::randseed} (seed)
 \begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{olis\+\_\+f90stdlib\+::printvectors} (vect, desc, \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f3800909}{f})
+subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{olis\+\_\+f90stdlib\+::printvectors} (vect, desc, f)
 \begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{olis\+\_\+f90stdlib\+::outerproduct} (a, b)
 \begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
@@ -37,7 +37,9 @@ complex(kind=dp) function, dimension(size(matrix, 1), size(matrix, 2)) \hyperlin
 recursive complex(kind=dp) function, dimension(size(x, 1), size(x, 2)) \hyperlink{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}{olis\+\_\+f90stdlib\+::matrixmul} (x, n)
 \item 
 recursive real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}{olis\+\_\+f90stdlib\+::factorial} (n)
-\end{DoxyCompactItemize}
+\item 
+real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a686d3815f56b261f358b016fe0ff8253}{olis\+\_\+f90stdlib\+::sinc} (x)
+\begin{DoxyCompactList}\small\item\em sinc function \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 

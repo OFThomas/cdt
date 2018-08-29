@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Bloch-Messiah reduction on a two source HOM Dip: Modules List</title>
+<title>Bloch-Messiah reduction on a two source HOM Dip: schmidt_decomp Module Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,11 +61,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li class="current"><a href="namespaces.html"><span>Modules&#160;List</span></a></li>
+      <li><a href="namespaces.html"><span>Modules&#160;List</span></a></li>
       <li><a href="namespacemembers.html"><span>Module&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,18 +79,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions/Subroutines</a>  </div>
   <div class="headertitle">
-<div class="title">Modules List</div>  </div>
+<div class="title">schmidt_decomp Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all modules with brief descriptions:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemakeopticalelements.html" target="_self">makeopticalelements</a></td><td class="desc">Module for building symplectic matrices for optical elements </td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceolis__f90stdlib.html" target="_self">olis_f90stdlib</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceschmidt__decomp.html" target="_self">schmidt_decomp</a></td><td class="desc">Program to calculate occupied Schmidt-modes of a JSA </td></tr>
+
+<p>program to calculate occupied Schmidt-modes of a JSA  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:a1ecb1a8137ed80c2bb76c38ba9ebe773"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceschmidt__decomp.html#a1ecb1a8137ed80c2bb76c38ba9ebe773">schmidt_modes</a> (f_mat, svf, uf, vtf, writeout)</td></tr>
+<tr class="separator:a1ecb1a8137ed80c2bb76c38ba9ebe773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- directory -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>program to calculate occupied Schmidt-modes of a JSA </p>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a class="anchor" id="a1ecb1a8137ed80c2bb76c38ba9ebe773"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public schmidt_decomp::schmidt_modes </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:)&#160;</td>
+          <td class="paramname"><em>f_mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), dimension(:)&#160;</td>
+          <td class="paramname"><em>svf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:)&#160;</td>
+          <td class="paramname"><em>uf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:)&#160;</td>
+          <td class="paramname"><em>vtf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:)&#160;</td>
+          <td class="paramname"><em>writeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uf</td><td>uf1 is u matrix from f_mat1 svd </td></tr>
+    <tr><td class="paramname">vtf1</td><td>is vt matrix from f_mat1 svd</td></tr>
+    <tr><td class="paramname">vtf</td><td>uf1 is u matrix from f_mat1 svd </td></tr>
+    <tr><td class="paramname">vtf1</td><td>is vt matrix from f_mat1 svd</td></tr>
+    <tr><td class="paramname">svf</td><td>svf1 singular values for f_mat1 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>files to write to</dd></dl>
+<p>jsa 1</p>
+<p>jsa 2</p>
+<dl class="section note"><dt>Note</dt><dd>returns the w1,w2 element from the Jsa</dd>
+<dd>
+after doing svd Unitary = exp(SUM_k r_k * A^H_k * B^H_k -h.c.) = X_k exp(r_k * A^H_k * B^H_K -h.c.) = X_k S^ab_k(-r_k)</dd></dl>
+<p>A_k -&gt; cosh(r_k)A_k + sinh(r_k)B^H_k B_k -&gt; cosh(r_k)B_k + sinh(r_k)A^H_k </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,55 @@
+\hypertarget{namespaceschmidt__decomp}{}\section{schmidt\+\_\+decomp Module Reference}
+\label{namespaceschmidt__decomp}\index{schmidt\+\_\+decomp@{schmidt\+\_\+decomp}}
+
+
+program to calculate occupied Schmidt-\/modes of a J\+SA  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespaceschmidt__decomp_a1ecb1a8137ed80c2bb76c38ba9ebe773}{schmidt\+\_\+modes} (f\+\_\+mat, svf, uf, vtf, writeout)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+program to calculate occupied Schmidt-\/modes of a J\+SA 
+
+\subsection{Function/\+Subroutine Documentation}
+\index{schmidt\+\_\+decomp@{schmidt\+\_\+decomp}!schmidt\+\_\+modes@{schmidt\+\_\+modes}}
+\index{schmidt\+\_\+modes@{schmidt\+\_\+modes}!schmidt\+\_\+decomp@{schmidt\+\_\+decomp}}
+\subsubsection[{\texorpdfstring{schmidt\+\_\+modes(f\+\_\+mat, svf, uf, vtf, writeout)}{schmidt_modes(f_mat, svf, uf, vtf, writeout)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine, public schmidt\+\_\+decomp\+::schmidt\+\_\+modes (
+\begin{DoxyParamCaption}
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{f\+\_\+mat, }
+\item[{real(kind=dp), dimension(\+:)}]{svf, }
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{uf, }
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{vtf, }
+\item[{integer, dimension(\+:)}]{writeout}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceschmidt__decomp_a1ecb1a8137ed80c2bb76c38ba9ebe773}{}\label{namespaceschmidt__decomp_a1ecb1a8137ed80c2bb76c38ba9ebe773}
+
+\begin{DoxyParams}{Parameters}
+{\em uf} & uf1 is u matrix from f\+\_\+mat1 svd \\
+\hline
+{\em vtf1} & is vt matrix from f\+\_\+mat1 svd\\
+\hline
+{\em vtf} & uf1 is u matrix from f\+\_\+mat1 svd \\
+\hline
+{\em vtf1} & is vt matrix from f\+\_\+mat1 svd\\
+\hline
+{\em svf} & svf1 singular values for f\+\_\+mat1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+files to write to
+\end{DoxyNote}
+jsa 1
+
+jsa 2
+
+\begin{DoxyNote}{Note}
+returns the w1,w2 element from the Jsa
+
+after doing svd Unitary = exp(S\+U\+M\+\_\+k r\+\_\+k $\ast$ A$^\wedge$\+H\+\_\+k $\ast$ B$^\wedge$\+H\+\_\+k -\/h.\+c.) = X\+\_\+k exp(r\+\_\+k $\ast$ A$^\wedge$\+H\+\_\+k $\ast$ B$^\wedge$\+H\+\_\+K -\/h.\+c.) = X\+\_\+k S$^\wedge$ab\+\_\+k(-\/r\+\_\+k)
+\end{DoxyNote}
+A\+\_\+k -\/$>$ cosh(r\+\_\+k)A\+\_\+k + sinh(r\+\_\+k)B$^\wedge$\+H\+\_\+k B\+\_\+k -\/$>$ cosh(r\+\_\+k)B\+\_\+k + sinh(r\+\_\+k)A$^\wedge$\+H\+\_\+k 

@@ -100,6 +100,17 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a6658c2ce879c0bc4b2e5918064a6a308"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a6658c2ce879c0bc4b2e5918064a6a308">make_sq</a> (nspace, nspec, symp_mat, m1, m2, alpha, beta)</td></tr>
 <tr class="memdesc:a6658c2ce879c0bc4b2e5918064a6a308"><td class="mdescLeft">&#160;</td><td class="mdescRight">make symplectic squeezing matrix from exponetiated JSA  a lot is broken...  <a href="#a6658c2ce879c0bc4b2e5918064a6a308">More...</a><br /></td></tr>
 <tr class="separator:a6658c2ce879c0bc4b2e5918064a6a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae72bdfe443e711e230a7bf9c19d827d4"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#ae72bdfe443e711e230a7bf9c19d827d4">make_squeezer</a> (nspace, nspec, mode1, mode2, jsa)</td></tr>
+<tr class="memdesc:ae72bdfe443e711e230a7bf9c19d827d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">make sqq matrix from jsa function  <a href="#ae72bdfe443e711e230a7bf9c19d827d4">More...</a><br /></td></tr>
+<tr class="separator:ae72bdfe443e711e230a7bf9c19d827d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230fa3e5fad58bf78ec6aecff5747ca6"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#a230fa3e5fad58bf78ec6aecff5747ca6">gen_jsa</a> (f, w1_start, w1_steps, w1_incr, w2_start, w2_steps, w2_incr, sigma1, sigma2, outfile, w1offset, w2offset)</td></tr>
+<tr class="memdesc:a230fa3e5fad58bf78ec6aecff5747ca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">samples the given jsa for frequency ranges w1, w2  <a href="#a230fa3e5fad58bf78ec6aecff5747ca6">More...</a><br /></td></tr>
+<tr class="separator:a230fa3e5fad58bf78ec6aecff5747ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29454e6b6a33b50212c3af0c275173a"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#ae29454e6b6a33b50212c3af0c275173a">f_gauss</a> (w1, w2, sigma1, sigma2, w1off, w2off)</td></tr>
+<tr class="memdesc:ae29454e6b6a33b50212c3af0c275173a"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSA function taking two freq.  <a href="#ae29454e6b6a33b50212c3af0c275173a">More...</a><br /></td></tr>
+<tr class="separator:ae29454e6b6a33b50212c3af0c275173a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31d9c650a776cc4ebd4de3bcc370207"><td class="memItemLeft" align="right" valign="top">complex(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#ac31d9c650a776cc4ebd4de3bcc370207">f_sine</a> (w1, w2, sigma1, sigma2, w1off, w2off)</td></tr>
+<tr class="separator:ac31d9c650a776cc4ebd4de3bcc370207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1a18704c55aa2efeb60157c81a80723"><td class="memItemLeft" align="right" valign="top">real(kind=dp) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemakeopticalelements.html#af1a18704c55aa2efeb60157c81a80723">g4</a> (ft, nspec)</td></tr>
 <tr class="memdesc:af1a18704c55aa2efeb60157c81a80723"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates g4 using matrix elements sum   <a href="#af1a18704c55aa2efeb60157c81a80723">More...</a><br /></td></tr>
 <tr class="separator:af1a18704c55aa2efeb60157c81a80723"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,6 +313,116 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae29454e6b6a33b50212c3af0c275173a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function makeopticalelements::f_gauss </td>
+          <td>(</td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1off</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2off</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>JSA function taking two freq. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w1</td><td>input signal freq </td></tr>
+    <tr><td class="paramname">w2</td><td>input idler freq </td></tr>
+    <tr><td class="paramname">sig</td><td>input variance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac31d9c650a776cc4ebd4de3bcc370207"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function makeopticalelements::f_sine </td>
+          <td>(</td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1off</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2off</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="af1a18704c55aa2efeb60157c81a80723"></a>
 <div class="memitem">
 <div class="memproto">
@@ -331,6 +452,101 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">ft</td><td>input is the full symplectic transform </td></tr>
     <tr><td class="paramname">nspec</td><td>input spectral DOF </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a230fa3e5fad58bf78ec6aecff5747ca6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(kind=dp) function, dimension (:,:), allocatable makeopticalelements::gen_jsa </td>
+          <td>(</td>
+          <td class="paramtype">complex(kind=dp)&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>w1_steps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w1_incr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>w2_steps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>w2_incr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), intent(in)&#160;</td>
+          <td class="paramname"><em>sigma2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>outfile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), optional&#160;</td>
+          <td class="paramname"><em>w1offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind=dp), optional&#160;</td>
+          <td class="paramname"><em>w2offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>samples the given jsa for frequency ranges w1, w2 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_mat</td><td>allocatable Jsa matrix values out </td></tr>
+    <tr><td class="paramname">w_start</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -460,6 +676,66 @@ Variables</h2></td></tr>
 <p>check this is legal... full diag sq symp_mat(m1s:m1s+nspec, m1s+n:m1s+nspec+n)=beta(1:nspec, 1+nspec:2*nspec)</p>
 <p>probably not legal symp_mat(m2s:m2s+nspec, m2s+n:m2s+nspec+n)=beta(nspec+1:2*nspec, 1:nspec)</p>
 <p>loop for beta, offset to col+n </p>
+
+</div>
+</div>
+<a class="anchor" id="ae72bdfe443e711e230a7bf9c19d827d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complex(kind=dp) function, dimension(:,:), allocatable makeopticalelements::make_squeezer </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>nspace</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>nspec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>mode1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>mode2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(kind=dp), dimension(:,:), intent(in), allocatable&#160;</td>
+          <td class="paramname"><em>jsa</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>make sqq matrix from jsa function </p>
+<dl class="section note"><dt>Note</dt><dd>to make off diagonal for fmatrix m_sq=0.0_dp ! top right m_sq(1:1*f_size, 3*f_size+1:4*f_size)=1 ! mid right m_sq(1*f_size+1:2*f_size, 2*f_size+1:3*f_size)=2 ! mid left m_sq(2*f_size+1:3*f_size, 1*f_size+1:2*f_size)=3 ! bot left m_sq(3*f_size+1:4*f_size, 1:1*f_size)=4</dd>
+<dd>
+!h= 0.0 F_JSA F_JSA*T 0.0</dd></dl>
+<p>f_jsa = f_mat</p>
+<p>M_sq = exp(i ( 0 H ) (-H* 0)</p>
+<p>M_sq = exp(i (0 0 0 F_JSA) (0 0 F_JSA**T 0) (0 -conjg(F_JSA) 0 0) (-F_JSA**H 0 0 0)</p>
+<dl class="section note"><dt>Note</dt><dd>alpha beta are top left and top right of M M = (A B ) (B* A*) </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha_size</td><td>is 2*f_size as all spectral modes for 2 spatial</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>allocate for sq on modes 1&amp;2 </dd></dl>
 
 </div>
 </div>

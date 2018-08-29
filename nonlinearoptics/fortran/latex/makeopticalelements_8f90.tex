@@ -12,6 +12,14 @@ subroutine \hyperlink{namespacemakeopticalelements_a593a6ee34afdeebc8b4667791c8a
 \begin{DoxyCompactList}\small\item\em makes beamsplitter symplectic matrix  takes in an allocated matrix for the beamsplitter matrix to be written to uses the private ident\+\_\+spec, spatial\+\_\+work, n\+\_\+work arrays \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacemakeopticalelements_a6658c2ce879c0bc4b2e5918064a6a308}{makeopticalelements\+::make\+\_\+sq} (nspace, nspec, symp\+\_\+mat, m1, m2, alpha, beta)
 \begin{DoxyCompactList}\small\item\em make symplectic squeezing matrix from exponetiated J\+SA  a lot is broken... \end{DoxyCompactList}\item 
+complex(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{namespacemakeopticalelements_ae72bdfe443e711e230a7bf9c19d827d4}{makeopticalelements\+::make\+\_\+squeezer} (nspace, nspec, mode1, mode2, jsa)
+\begin{DoxyCompactList}\small\item\em make sqq matrix from jsa function \end{DoxyCompactList}\item 
+real(kind=dp) function, dimension(\+:,\+:), allocatable \hyperlink{namespacemakeopticalelements_a230fa3e5fad58bf78ec6aecff5747ca6}{makeopticalelements\+::gen\+\_\+jsa} (f, w1\+\_\+start, w1\+\_\+steps, w1\+\_\+incr, w2\+\_\+start, w2\+\_\+steps, w2\+\_\+incr, sigma1, sigma2, outfile, w1offset, w2offset)
+\begin{DoxyCompactList}\small\item\em samples the given jsa for frequency ranges w1, w2 \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_ae29454e6b6a33b50212c3af0c275173a}{makeopticalelements\+::f\+\_\+gauss} (w1, w2, sigma1, sigma2, w1off, w2off)
+\begin{DoxyCompactList}\small\item\em J\+SA function taking two freq. \end{DoxyCompactList}\item 
+complex(kind=dp) function \hyperlink{namespacemakeopticalelements_ac31d9c650a776cc4ebd4de3bcc370207}{makeopticalelements\+::f\+\_\+sine} (w1, w2, sigma1, sigma2, w1off, w2off)
+\item 
 real(kind=dp) function \hyperlink{namespacemakeopticalelements_af1a18704c55aa2efeb60157c81a80723}{makeopticalelements\+::g4} (ft, nspec)
 \begin{DoxyCompactList}\small\item\em calculates g4 using matrix elements sum  \end{DoxyCompactList}\item 
 real(kind=dp) function \hyperlink{namespacemakeopticalelements_a0649740479f47221d009b8d496b78c8b}{makeopticalelements\+::amp} (a)

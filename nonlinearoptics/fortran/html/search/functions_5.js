@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['f',['f',['../num__hom_8f90.html#a2ea4612463aead6dff28d647f3800909',1,'num_hom.f90']]],
+  ['f_5fgauss',['f_gauss',['../namespacemakeopticalelements.html#ae29454e6b6a33b50212c3af0c275173a',1,'makeopticalelements']]],
+  ['f_5fsine',['f_sine',['../namespacemakeopticalelements.html#ac31d9c650a776cc4ebd4de3bcc370207',1,'makeopticalelements']]],
   ['factorial',['factorial',['../namespaceolis__f90stdlib.html#ad0e4f304a609e1d8c088778344f1aa67',1,'olis_f90stdlib']]]
 ];

@@ -9,7 +9,7 @@ subroutine \hyperlink{namespaceolis__f90stdlib_a31420ff7579f33919c00c26753b56612
 \begin{DoxyCompactList}\small\item\em allocates sigma (singular vals), u and vt for complex\+S\+VD  allocates temp work arrays too \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespaceolis__f90stdlib_a560e235cbabaf74da88a2ec97eda5628}{randseed} (seed)
 \begin{DoxyCompactList}\small\item\em generates random seed \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{printvectors} (vect, desc, \hyperlink{num__hom_8f90_a2ea4612463aead6dff28d647f3800909}{f})
+subroutine \hyperlink{namespaceolis__f90stdlib_a9780b39329025edfdef71ce07e250808}{printvectors} (vect, desc, f)
 \begin{DoxyCompactList}\small\item\em print formatted matrices  can take optional args for labels or write directly to a file \end{DoxyCompactList}\item 
 complex(kind=dp) function, dimension(2, 2) \hyperlink{namespaceolis__f90stdlib_a9b646e61678500e78a9c48747a07bdf0}{outerproduct} (a, b)
 \begin{DoxyCompactList}\small\item\em outerproduct of two complex vectors, returns a complex matrix \end{DoxyCompactList}\item 
@@ -32,7 +32,9 @@ complex(kind=dp) function, dimension(size(matrix, 1), size(matrix, 2)) \hyperlin
 recursive complex(kind=dp) function, dimension(size(x, 1), size(x, 2)) \hyperlink{namespaceolis__f90stdlib_af70533a90b595522cd1bf47b37a2319d}{matrixmul} (x, n)
 \item 
 recursive real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_ad0e4f304a609e1d8c088778344f1aa67}{factorial} (n)
-\end{DoxyCompactItemize}
+\item 
+real(kind=dp) function \hyperlink{namespaceolis__f90stdlib_a686d3815f56b261f358b016fe0ff8253}{sinc} (x)
+\begin{DoxyCompactList}\small\item\em sinc function \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -160,10 +162,10 @@ need to check this is optimised
 \index{complex\+\_\+svd@{complex\+\_\+svd}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection[{\texorpdfstring{complex\+\_\+svd(a, sigma, u, vt)}{complex_svd(a, sigma, u, vt)}}]{\setlength{\rightskip}{0pt plus 5cm}subroutine olis\+\_\+f90stdlib\+::complex\+\_\+svd (
 \begin{DoxyParamCaption}
-\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout), allocatable}]{a, }
-\item[{real(kind=dp), dimension(\+:), allocatable}]{sigma, }
-\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{u, }
-\item[{complex(kind=dp), dimension(\+:,\+:), allocatable}]{vt}
+\item[{complex(kind=dp), dimension(\+:,\+:), intent(inout)}]{a, }
+\item[{real(kind=dp), dimension(\+:)}]{sigma, }
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{u, }
+\item[{complex(kind=dp), dimension(\+:,\+:)}]{vt}
 \end{DoxyParamCaption}
 )}\hypertarget{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}{}\label{namespaceolis__f90stdlib_a81e060e6ecfde9524a9732349a818db3}
 
@@ -301,6 +303,17 @@ generates random seed
 {\em seed} & is input allocatable 1d array \\
 \hline
 \end{DoxyParams}
+\index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!sinc@{sinc}}
+\index{sinc@{sinc}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
+\subsubsection[{\texorpdfstring{sinc(x)}{sinc(x)}}]{\setlength{\rightskip}{0pt plus 5cm}real(kind=dp) function olis\+\_\+f90stdlib\+::sinc (
+\begin{DoxyParamCaption}
+\item[{real(kind=dp)}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceolis__f90stdlib_a686d3815f56b261f358b016fe0ff8253}{}\label{namespaceolis__f90stdlib_a686d3815f56b261f358b016fe0ff8253}
+
+
+sinc function 
+
 \index{olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}!tprod@{tprod}}
 \index{tprod@{tprod}!olis\+\_\+f90stdlib@{olis\+\_\+f90stdlib}}
 \subsubsection[{\texorpdfstring{tprod(a, b)}{tprod(a, b)}}]{\setlength{\rightskip}{0pt plus 5cm}complex(kind=dp) function, dimension(\+:,\+:), allocatable olis\+\_\+f90stdlib\+::tprod (
