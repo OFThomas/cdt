@@ -1,4 +1,4 @@
-\frametitle{Example 2, Saving plots}
+\frametitle{Example 2 Saving plots}
 \begin{itemize}
 	\item Go to the \texttt{src} folder
     \item open gnuplot and type \\ \texttt{load 'ex2\_saving.p'}
