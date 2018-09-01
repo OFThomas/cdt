@@ -1,4 +1,3 @@
-
 \documentclass{beamer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Packages  %%%%%%%%%%%%%
 \usepackage{amsmath} 
@@ -33,6 +32,8 @@
 
 \usepackage[utf8]{inputenc}
 \usetheme{PaloAlto}
+
+\setminted[bash]{breaklines}
 
 \title{Version control using Git and Plotting Tutorial}
 \author{Oliver Thomas}
@@ -164,8 +165,6 @@
 Or use the windows GUI version and commit them to your repository.
 \end{frame}
 
-
-
 %slide 5
 \begin{frame}
 \frametitle{gnuplot} 
@@ -175,62 +174,63 @@ Or use the windows GUI version and commit them to your repository.
 \end{itemize}
 \end{frame}
 
-%slide 5
-
-%slide 2
-\begin{frame}[fragile]{Example 1, Plotting functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%slide gnuplot 1
+\begin{frame}[fragile]
+    \frametitle{Example 0, Quick plotting}
 \begin{itemize}
 	\item Go to the \texttt{src} folder
-    \item open gnuplot and type \\ \texttt{load 'ex1gnu.p'}
+    \item open gnuplot and type \\ \texttt{plot 'data.txt'}
 \end{itemize}
+\end{frame}
 
+%slide 2
+\begin{frame}{Example 0, Quick plotting}
+    \begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{src/data.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+Lets you very quickly see what the data is doing
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%slide gnuplot 1
+\begin{frame}[fragile]
+    \frametitle{Example 1, Plotting functions}
+\begin{itemize}
+	\item Go to the \texttt{src} folder
+    \item open gnuplot and type \\ \texttt{load 'ex1\_basic.p'}
+\end{itemize}
 \inputminted{bash}{src/ex1_basic.p}
 \end{frame}
 
+%slide saving plots gnuplot 
+\begin{frame}[fragile]
+    \frametitle{Example 2, Saving plots}
+\begin{itemize}
+	\item Go to the \texttt{src} folder
+    \item open gnuplot and type \\ \texttt{load 'ex2\_saving.p'}
+\end{itemize}
+\inputminted{bash}{src/ex2_saving.p}
+\end{frame}
+
 %slide 2
-\begin{frame}[fragile]{Example 1, Plotting functions}
+\begin{frame}{Example 2, Plotting functions}
     \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{ex1.png}
+	\includegraphics[width=0.6\textwidth]{src/ex2.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
-
-
-\begin{itemize}
-	\item It could do with some axis labels. 
-	\item go into the program and find the line called \texttt{plt.ylabel=} and \texttt{plt.xlabel=}  
-\end{itemize}
+Produces a png
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 2
 \begin{frame}
-\frametitle{Example 2, Complicated functions!}
-\begin{itemize}
-\item In the \texttt{src} folder open \texttt{ex2compfunctions.py} 
-\item Run all.py and choose 2 
-\end{itemize}
-\end{frame}
-
-%slide 2
-\begin{frame}
-\frametitle{Example 2, Complicated functions!}
-\begin{itemize}
-\item Figures!
-\item
-\end{itemize}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{aex2.png}
-	\caption{function plotting}
-	\label{fig:function}
-\end{figure}
-\end{frame}
-
-
-%slide 2
-\begin{frame}
-\frametitle{Example 3, Plotting data!}
+\frametitle{Example 2, Plotting data!}
 \begin{itemize}
 	\item once again, in the \texttt{src} folder open \texttt{ex3data.py}
 	\item Run all.py and choose 3 
@@ -239,7 +239,7 @@ Or use the windows GUI version and commit them to your repository.
 
 %slide 2
 \begin{frame}
-\frametitle{Example 3, Plotting data!}
+\frametitle{Example 2, Plotting data!}
 \begin{itemize}
 	\item figure 
 \end{itemize}
@@ -251,6 +251,34 @@ Or use the windows GUI version and commit them to your repository.
 \end{figure}
 \end{frame}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%slide subplots
+\begin{frame}
+\frametitle{Example 5, Subplots!}
+\begin{itemize}
+\item In the \texttt{src} folder open \texttt{ex5subplots.py} 
+	\item Run all.py and choose 5 
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Example 5, Subplots!}
+\begin{itemize}
+\item Figures!
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex5.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 2
 \begin{frame}
 \frametitle{Example 4, Histograms!}
@@ -274,57 +302,12 @@ Or use the windows GUI version and commit them to your repository.
 \end{figure}
 \end{frame}
 
-%slide 2
-\begin{frame}
-\frametitle{Example 5, Subplots!}
-\begin{itemize}
-\item In the \texttt{src} folder open \texttt{ex5subplots.py} 
-	\item Run all.py and choose 5 
-\end{itemize}
-\end{frame}
-
-%slide 2
-\begin{frame}
-\frametitle{Example 5, Subplots!}
-\begin{itemize}
-\item Figures!
-\end{itemize}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{ex5.png}
-	\caption{function plotting}
-	\label{fig:function}
-\end{figure}
-\end{frame}
-
-%slide 2
-\begin{frame}
-\frametitle{Example 6, Art!}
-\begin{itemize}
-\item In the \texttt{src} folder open \texttt{ex6art.py} 
-	\item Run all.py and choose 6 
-\end{itemize}
-\end{frame}
-
-%slide 2
-\begin{frame}
-\frametitle{Example 6, Art!}
-\begin{itemize}
-\item Figures!
-\end{itemize}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{aex6.png}
-	\caption{function plotting}
-	\label{fig:function}
-\end{figure}
-\end{frame}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 4
 \begin{frame}
 \frametitle{Advanced Git commands}
 \begin{itemize}
-	\item One of the great things about Git is that you can get by with just the four above commands.
+    \item One of the great things about Git is that you can get by with just the four (main) commands mentioned earlier.
 	\item The git man page is very useful, especially, \\
 	\texttt{man gittutorial} \\
 	\texttt{man giteveryday} \\ 
