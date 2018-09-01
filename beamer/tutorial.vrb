@@ -1,0 +1,9 @@
+\frametitle{Overview}
+
+\inputminted{bash}{src/ex1_basic.p}
+
+\begin{itemize}
+        \item Version control
+        \item Plotting using gnuplot
+        \item Vim
+    \end{itemize}

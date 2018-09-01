@@ -1,3 +1,4 @@
+
 \documentclass{beamer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Packages  %%%%%%%%%%%%%
 \usepackage{amsmath} 
@@ -16,6 +17,7 @@
 \usepackage{rotating}
 \usepackage{float}
 \usepackage{hyperref}
+
 \graphicspath{{./figures/}}
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
 \renewcommand{\equationautorefname}{Eq.}
@@ -26,6 +28,8 @@
 \usepackage{natbib}
 %\usepackage{qcircuit}
 \usepackage{wrapfig}
+
+\usepackage{minted}
 
 \usepackage[utf8]{inputenc}
 \usetheme{PaloAlto}
@@ -41,8 +45,13 @@
 
 \frame{\titlepage}
 
-\begin{frame}{Overview}
-    \begin{itemize}
+
+
+\begin{frame}[fragile]{Overview}
+
+\inputminted{bash}{src/ex1_basic.p}
+
+\begin{itemize}
         \item Version control
         \item Plotting using gnuplot
         \item Vim
@@ -54,10 +63,8 @@
 \frametitle{Why you should use version control}
 \begin{itemize}
 	\item Does this seem familiar? 
-\begin{verbatim}
-finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf 
-\end{verbatim}
 \end{itemize}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.26\textwidth]{xkcdversion.png}
@@ -122,24 +129,39 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \end{itemize}
 \end{frame}
 
-%slide 4
-\begin{frame}
-\frametitle{Advanced Git commands}
-\begin{itemize}
-	\item One of the great things about Git is that you can get by with just the four above commands.
-	\item The git man page is very useful, especially, \\
-	\texttt{man gittutorial} \\
-	\texttt{man giteveryday} \\ 
-\item \texttt{giteveryday} is a super useful collection of the 20 commands you will need regularly.
+
+% slide editors
+\begin{frame}{A brief note on text editors: Vim}
+    \begin{itemize}
+    \item Vim is a powerful cross-platform text editor, released in 1991 and is still regarded as one of the most popular editors \footnote{Along with Emacs}. 
+    \item Flexible with thousands of plugins available e.g. I use Vim to compile latex documents, this presentation was written in Vim.  
+    \item Computing clusters normally only have CLI so if you are running high performance code you will need to be familiar with Vim, Emacs or Nano.
+    \item You can feel like a Hacker.
 \end{itemize}
 \end{frame}
 
-%slide 4
+\begin{frame}{Vim commands}
+    \begin{itemize}
+        \item The most important thing to remember is that Vim has two main modes, \textit{NORMAL}, \texttt{ESC} and \textit{INSERT}, \texttt{i}
+        \item All commands are run from \textit{NORMAL} mode using \texttt{:}
+        \item to quit use, \texttt{ESC:q} (meaning go to \textit{NORMAL} mode, \texttt{:} means command and \texttt{q} is quit without saving)
+        \item to save and quit use, \texttt{ESC:wq} (\texttt{w} stands for write)
+    \end{itemize}
+
+\end{frame}
+
+%slide 2
 \begin{frame}
-\frametitle{Adding Collaborators}
+	\frametitle{Adding your first commit}
 \begin{itemize}
-	\item Go to a repository and on the settings tab click collaborators, you can then search for the github username
+    \item Every repository should contain a readme
+	\item Then either run: 
+	\item \texttt{git add *}
+	\item \texttt{git commit -a}
+	\item \texttt{git push}
 \end{itemize}
+
+Or use the windows GUI version and commit them to your repository.
 \end{frame}
 
 
@@ -154,53 +176,15 @@ finalx.pdf, finalxFORREAL.pdf, finalxIPromise.pdf, finalxyespickme.pdf
 \end{frame}
 
 %slide 5
-\begin{frame}
-\frametitle{Python syntax} 
-\begin{itemize}
-	\item As with every programming language we should figure out how to do \textit{Hello, world!}
-\end{itemize}
-Open python and type:
-\begin{verbatim}
-print 'Hello, world!'
-\end{verbatim}
-\begin{itemize}
-\item As Python is an interpreted language you can run command by command in python or use an IDE and then use python to run the program. For plotting it is more useful to write the program out in an IDE first. 
-\end{itemize}
-\end{frame}
-
-%slide 2
-\begin{frame}
-	\frametitle{Adding your first commit}
-\begin{itemize}
-	\item Save your \textit{hello, world!} program. 
-	\item Then either run: 
-	\item \texttt{git add *}
-	\item \texttt{git commit -a}
-	\item \texttt{git push}
-\end{itemize}
-
-Or use the windows GUI version and commit them to your repository.
-\end{frame}
-
-
-%slide 6
-\begin{frame}
-\frametitle{Plotting}
-\begin{itemize}
-	\item Python requires the \texttt{numpy} library\footnotemark\ for a lot of basic maths functions (and arrays).
-	\item We are going to use the \texttt{matplotlib} library\footnotemark\ for the remainder of this talk. 
-\end{itemize}
-\footnotetext[3]{\url{http://www.numpy.org/}}
-\footnotetext[4]{\url{https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html}}
-\end{frame}
 
 %slide 2
 \begin{frame}
 \frametitle{Example 1, Plotting functions}
 \begin{itemize}
-	\item Go to the \texttt{src} folder and open \texttt{ex1functions.py} 
-	\item Run \texttt{all.py} and choose 1 
+	\item Go to the \texttt{src} folder
+    \item open gnuplot and type \\ \texttt{load 'ex1gnu.p'}
 \end{itemize}
+
 \end{frame}
 
 %slide 2
@@ -212,6 +196,7 @@ Or use the windows GUI version and commit them to your repository.
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
+
 \begin{itemize}
 	\item It could do with some axis labels. 
 	\item go into the program and find the line called \texttt{plt.ylabel=} and \texttt{plt.xlabel=}  
@@ -335,6 +320,19 @@ Or use the windows GUI version and commit them to your repository.
 \end{figure}
 \end{frame}
 
+%slide 4
+\begin{frame}
+\frametitle{Advanced Git commands}
+\begin{itemize}
+	\item One of the great things about Git is that you can get by with just the four above commands.
+	\item The git man page is very useful, especially, \\
+	\texttt{man gittutorial} \\
+	\texttt{man giteveryday} \\ 
+\item \texttt{giteveryday} is a super useful collection of the 20 commands you will need regularly.
+\end{itemize}
+\end{frame}
+
+
 %slide 2
 \begin{frame}
 \frametitle{Branching}
@@ -356,6 +354,15 @@ Or use the windows GUI version and commit them to your repository.
 \end{itemize}
 \end{frame}
 
+%slide 4
+\begin{frame}
+\frametitle{Adding Collaborators}
+\begin{itemize}
+	\item Go to a repository and on the settings tab click collaborators, you can then search for the github username
+\end{itemize}
+\end{frame}
+
+
 %slide 2
 \begin{frame}
 \frametitle{Thanks for listening!}
@@ -367,15 +374,6 @@ Or use the windows GUI version and commit them to your repository.
 \end{figure}
 \footnotetext[1]{\url{https://xkcd.com/1597/}}
 \end{frame}
-
-
-
-
-
-
-
-
-
 
 
 \end{document}

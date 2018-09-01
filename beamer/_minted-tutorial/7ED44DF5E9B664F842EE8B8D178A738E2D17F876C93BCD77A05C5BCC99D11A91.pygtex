@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{set} title \PYG{l+s+s2}{\PYGZdq{}ex1 Simple Plots\PYGZdq{}} 
+\PYG{n+nb}{set} xlabel \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}
+\PYG{n+nb}{set} ylabel \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}
+
+plot \PYG{o}{[}\PYGZhy{}10:10\PYG{o}{]} sin\PYG{o}{(}x\PYG{o}{)},atan\PYG{o}{(}x\PYG{o}{)},cos\PYG{o}{(}atan\PYG{o}{(}x\PYG{o}{))}
+\end{Verbatim}
