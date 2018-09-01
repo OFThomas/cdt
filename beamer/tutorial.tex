@@ -41,15 +41,15 @@
 
 % plan
 
+
 \begin{document}
 
 \frame{\titlepage}
 
 
 
-\begin{frame}[fragile]{Overview}
+\begin{frame}{Overview}
 
-\inputminted{bash}{src/ex1_basic.p}
 
 \begin{itemize}
         \item Version control
@@ -178,24 +178,24 @@ Or use the windows GUI version and commit them to your repository.
 %slide 5
 
 %slide 2
-\begin{frame}
-\frametitle{Example 1, Plotting functions}
+\begin{frame}[fragile]{Example 1, Plotting functions}
 \begin{itemize}
 	\item Go to the \texttt{src} folder
     \item open gnuplot and type \\ \texttt{load 'ex1gnu.p'}
 \end{itemize}
 
+\inputminted{bash}{src/ex1_basic.p}
 \end{frame}
 
 %slide 2
-\begin{frame}
-\frametitle{Example 1, Plotting functions}
-\begin{figure}
+\begin{frame}[fragile]{Example 1, Plotting functions}
+    \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{ex1.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
+
 
 \begin{itemize}
 	\item It could do with some axis labels. 

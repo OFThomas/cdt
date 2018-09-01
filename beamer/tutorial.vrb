@@ -1,9 +1,13 @@
-\frametitle{Overview}
+\frametitle{Example 1, Plotting functions}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{ex1.png}
+	\caption{function plotting}
+	\label{fig:function}
+\end{figure}
 
-\inputminted{bash}{src/ex1_basic.p}
 
 \begin{itemize}
-        \item Version control
-        \item Plotting using gnuplot
-        \item Vim
-    \end{itemize}
+	\item It could do with some axis labels.
+	\item go into the program and find the line called \texttt{plt.ylabel=} and \texttt{plt.xlabel=}
+\end{itemize}
