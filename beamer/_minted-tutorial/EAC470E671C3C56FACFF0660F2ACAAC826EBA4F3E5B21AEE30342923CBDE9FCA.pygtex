@@ -1,5 +1,5 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n+nb}{set} terminal pngcairo enhanced font \PYG{l+s+s2}{\PYGZdq{}arial,10\PYGZdq{}} fontscale \PYG{l+m}{1}.0 size \PYG{l+m}{600}, \PYG{l+m}{400} 
+\PYG{n+nb}{set} terminal pngcairo 
 \PYG{n+nb}{set} output \PYG{l+s+s1}{\PYGZsq{}ex2.png\PYGZsq{}}
 
 \PYG{n+nb}{set} title \PYG{l+s+s2}{\PYGZdq{}ex2 Saving Simple Plots\PYGZdq{}} 

@@ -1,6 +1,5 @@
-\frametitle{Example 2 Saving plots}
+\frametitle{Example 5 Surface plots}
 \begin{itemize}
-	\item Go to the \texttt{src} folder
-    \item open gnuplot and type \\ \texttt{load 'ex2\_saving.p'}
+\item open gnuplot \\ \texttt{load 'ex5\_splot.p}
 \end{itemize}
-\inputminted{bash}{src/ex2_saving.p}
+\inputminted{bash}{src/ex5_splot.p}

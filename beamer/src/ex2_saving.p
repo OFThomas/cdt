@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced font "arial,10" fontscale 1.0 size 600, 400 
+set terminal pngcairo 
 set output 'ex2.png'
 
 set title "ex2 Saving Simple Plots" 

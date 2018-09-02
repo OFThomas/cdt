@@ -54,7 +54,7 @@
 
 \begin{itemize}
         \item Version control
-        \item Plotting using gnuplot
+        \item Plotting using Gnuplot
         \item Vim
     \end{itemize}
 \end{frame}
@@ -130,33 +130,11 @@
 \end{itemize}
 \end{frame}
 
-
-% slide editors
-\begin{frame}{A brief note on text editors: Vim}
-    \begin{itemize}
-    \item Vim is a powerful cross-platform text editor, released in 1991 and is still regarded as one of the most popular editors \footnote{Along with Emacs}. 
-    \item Flexible with thousands of plugins available e.g. I use Vim to compile latex documents, this presentation was written in Vim.  
-    \item Computing clusters normally only have CLI so if you are running high performance code you will need to be familiar with Vim, Emacs or Nano.
-    \item You can feel like a Hacker.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Vim commands}
-    \begin{itemize}
-        \item The most important thing to remember is that Vim has two main modes, \textit{NORMAL}, \texttt{ESC} and \textit{INSERT}, \texttt{i}
-        \item All commands are run from \textit{NORMAL} mode using \texttt{:}
-        \item to quit use, \texttt{ESC:q} (meaning go to \textit{NORMAL} mode, \texttt{:} means command and \texttt{q} is quit without saving)
-        \item to save and quit use, \texttt{ESC:wq} (\texttt{w} stands for write)
-    \end{itemize}
-
-\end{frame}
-
 %slide 2
 \begin{frame}
 	\frametitle{Adding your first commit}
+    Every repository should contain a readme, make one now then run:
 \begin{itemize}
-    \item Every repository should contain a readme
-	\item Then either run: 
 	\item \texttt{git add *}
 	\item \texttt{git commit -a}
 	\item \texttt{git push}
@@ -167,7 +145,7 @@ Or use the windows GUI version and commit them to your repository.
 
 %slide 5
 \begin{frame}
-\frametitle{gnuplot} 
+\frametitle{Gnuplot} 
 \begin{itemize}
 	\item Gnuplot is popular, multi-platform and standard software on computing clusters\footnote{standard on most of the popular linux distributions} 
     \item \url{https://sourceforge.net/projects/gnuplot/files/gnuplot/5.2.4}
@@ -229,23 +207,20 @@ Produces a png
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 2
-\begin{frame}
-\frametitle{Example 3 Plotting data!}
+\begin{frame}[fragile]
+\frametitle{Example 3 Plotting data}
 \begin{itemize}
-	\item once again, in the \texttt{src} folder open \texttt{ex3data.py}
-	\item Run all.py and choose 3 
+	\item open gnuplot and type \\ \texttt{load 'ex3\_barchart.p}
 \end{itemize}
+\inputminted{bash}{src/ex3_barchart.p}
 \end{frame}
 
 %slide 2
 \begin{frame}
-\frametitle{Example 3 Plotting data!}
-\begin{itemize}
-	\item figure 
-\end{itemize}
+\frametitle{Example 3 Plotting data}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{ex3.png}
+	\includegraphics[width=0.5\textwidth]{src/ex3.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
@@ -255,23 +230,20 @@ Produces a png
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide subplots
-\begin{frame}
-\frametitle{Example 5, Subplots!}
+\begin{frame}[fragile]
+\frametitle{Example 4 Subplots}
 \begin{itemize}
-\item In the \texttt{src} folder open \texttt{ex5subplots.py} 
-	\item Run all.py and choose 5 
+\item open gnuplot \\ \texttt{load 'ex4\_multiplot.p'} 
 \end{itemize}
+\inputminted{bash}{src/ex4_multiplot.p}
 \end{frame}
 
 %slide 2
 \begin{frame}
-\frametitle{Example 5, Subplots!}
-\begin{itemize}
-\item Figures!
-\end{itemize}
+\frametitle{Example 4 Subplots}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{ex5.png}
+	\includegraphics[width=0.5\textwidth]{src/ex4.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
@@ -280,29 +252,93 @@ Produces a png
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 2
-\begin{frame}
-\frametitle{Example 4, Histograms!}
+\begin{frame}[fragile]
+\frametitle{Example 5 Surface plots}
 \begin{itemize}
-\item once again, in the \texttt{src} folder open \texttt{ex4hist.py}
-	\item Run all.py and choose 4 
+\item open gnuplot \\ \texttt{load 'ex5\_splot.p}
 \end{itemize}
+\inputminted{bash}{src/ex5_splot.p}
 \end{frame}
 
 %slide 2
 \begin{frame}
-\frametitle{Example 4, Histograms!}
-\begin{itemize}
-\item figure
-\end{itemize}
+\frametitle{Example 5 Surface plots}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{ex4.png}
+	\includegraphics[width=0.5\textwidth]{src/ex5.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Gnuplot summary \& features}
+    \begin{itemize}
+        \item The documentation is very good, there will be an example of whatever you want to do somewhere
+        \item You can set \textit{pointstyle}, \textit{linestyle}, and colours 
+        \item Very easy to generate quick plots
+        \item Scripts makes it easy to generate nice figures
+        \item You can make GIFs
+    \end{itemize}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% slide editors
+\begin{frame}{A brief note on text editors: Vim}
+    \begin{itemize}
+    \item Vim is a powerful cross-platform text editor, released in 1991 and is still regarded as one of the most popular editors \footnote{Along with Emacs}. 
+    \item Flexible with thousands of plugins available e.g. I use Vim to compile latex documents, this presentation was written in Vim.  
+    \item Computing clusters normally only have CLI so if you are running high performance code you will need to be familiar with Vim, Emacs or Nano.
+    \item Overleaf supports Vim keybindings
+    \item You can feel like a Hacker.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Vim commands}
+    \begin{itemize}
+        \item The most important thing to remember is that Vim has two main modes, \textit{NORMAL}, \texttt{ESC} and \textit{INSERT}, \texttt{i}
+        \item All commands are run from \textit{NORMAL} mode using \texttt{:}
+        \item to quit use, \texttt{ESC:q} (meaning go to \textit{NORMAL} mode, \texttt{:} means command and \texttt{q} is quit without saving)
+        \item to save and quit use, \texttt{ESC:wq} (\texttt{w} stands for write)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Vim commands continued}
+    All of these commands are case-sensitive and must be run in \textit{NORMAL} mode not \textit{INSERT} 
+
+    \texttt{v} puts you in visual mode, useful for highlighting a block of text to copy or cut and paste
+    \begin{itemize}
+        \item \texttt{y} -yank (copy), \texttt{yy} -yank (copy) whole line
+        \item \texttt{d} -delete (cut), \texttt{dd} -delete (cut) whole line
+        \item \texttt{p} -paste after cursor, \texttt{P} -paste before cursor
+    \end{itemize}
+    
+    Movement commands
+    \begin{itemize}
+    \item \texttt{0} -go to start of line, \texttt{\$} -go to end of line
+    \item \texttt{a} -append at the end of the next word, \texttt{A} -append at the end of the line
+    \item \texttt{\{} -go to previous paragraph, \texttt{\}} -go to next paragraph 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Searching and Regex in Vim}
+    Searching and regex
+    \begin{itemize}
+    \item \texttt{fx} -find next occurrence of x in text, e.g. \texttt{f}\textit{b} finds the next letter \textit{b} in a line 
+    \item /x -search the whole document for x, e.g. /\textit{b} finds all letter \textit{b}s \\ 
+        use \texttt{n} to go to next occurrence, \texttt{N} to go to previous
+\end{itemize}
+Using SED\footnote{SED stands for Stream EDitor} commands \footnote{\url{http://vim.wikia.com/wiki/Search_and_replace}} 
+\begin{itemize}
+    \item :\%s/foo/bar/g -replaces all instances of foo with bar globally
+    \item :4,31s/foo/bar/g -replace instances of foo with bar in lines 4-31 
+\end{itemize}
+\end{frame}
+
 %slide 4
 \begin{frame}
 \frametitle{Advanced Git commands}

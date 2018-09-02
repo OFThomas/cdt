@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{set} term pngcairo
+\PYG{n+nb}{set} output \PYG{l+s+s2}{\PYGZdq{}ex3.png\PYGZdq{}}
+
+\PYG{n+nb}{unset} key
+\PYG{n+nb}{set} ylabel \PYG{l+s+s2}{\PYGZdq{}Occupation\PYGZdq{}}
+\PYG{n+nb}{set} xlabel \PYG{l+s+s2}{\PYGZdq{}Schimdt mode number\PYGZdq{}}
+
+\PYG{n+nb}{set} boxwidth \PYG{l+m}{1}.0
+\PYG{n+nb}{set} style fill solid
+plot \PYG{l+s+s2}{\PYGZdq{}schmidtout.dat\PYGZdq{}} with boxes
+\end{Verbatim}
