@@ -53,9 +53,9 @@
 
 
 \begin{itemize}
-        \item Version control
+        \item Version control using Git
         \item Plotting using Gnuplot
-        \item Vim
+        \item Text editing using Vim
     \end{itemize}
 \end{frame}
 
@@ -143,6 +143,49 @@
 Or use the windows GUI version and commit them to your repository.
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%slide 2
+\begin{frame}
+\frametitle{Branching}
+\begin{itemize}
+\item Branching is useful, it lets you test something out separately to the main branch.
+\item To make a new branch called \texttt{test} \\
+\texttt{git branch test} 
+\item You can check all of the current branches and which branch you are on with \\
+	\texttt{git branch}
+\end{itemize}
+\end{frame}
+
+%slide 2
+\begin{frame}
+\frametitle{Branching}
+\begin{itemize}
+	\item To switch to the test branch type: \\ 
+	\texttt{git checkout test} \\
+\end{itemize}
+\end{frame}
+
+%slide 4
+\begin{frame}
+\frametitle{Adding Collaborators}
+\begin{itemize}
+	\item Go to a repository and on the settings tab click collaborators, you can then search using a github username
+\end{itemize}
+\end{frame}
+
+%slide 4
+\begin{frame}
+\frametitle{Advanced Git commands}
+\begin{itemize}
+    \item One of the great things about Git is that you can get by with just the four (main) commands mentioned earlier.
+	\item The git man page is very useful, especially, \\
+	\texttt{man gittutorial} \\
+	\texttt{man giteveryday} \\ 
+\item \texttt{giteveryday} is a super useful collection of the 20 commands you will need regularly.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %slide 5
 \begin{frame}
 \frametitle{Gnuplot} 
@@ -181,7 +224,7 @@ Lets you very quickly see what the data is doing
 	\item Go to the \texttt{src} folder
     \item open gnuplot and type \\ \texttt{load 'ex1\_basic.p'}
 \end{itemize}
-\inputminted{bash}{src/ex1_basic.p}
+\inputminted[fontsize=\small]{bash}{src/ex1_basic.p}
 \end{frame}
 
 %slide saving plots gnuplot 
@@ -191,7 +234,7 @@ Lets you very quickly see what the data is doing
 	\item Go to the \texttt{src} folder
     \item open gnuplot and type \\ \texttt{load 'ex2\_saving.p'}
 \end{itemize}
-\inputminted{bash}{src/ex2_saving.p}
+\inputminted[fontsize=\small]{bash}{src/ex2_saving.p}
 \end{frame}
 
 %slide 2
@@ -212,7 +255,7 @@ Produces a png
 \begin{itemize}
 	\item open gnuplot and type \\ \texttt{load 'ex3\_barchart.p}
 \end{itemize}
-\inputminted{bash}{src/ex3_barchart.p}
+\inputminted[fontsize=\small, firstline=8]{bash}{src/ex3_barchart.p}
 \end{frame}
 
 %slide 2
@@ -235,7 +278,9 @@ Produces a png
 \begin{itemize}
 \item open gnuplot \\ \texttt{load 'ex4\_multiplot.p'} 
 \end{itemize}
-\inputminted{bash}{src/ex4_multiplot.p}
+\inputminted[fontsize=\small, firstline=4, lastline=9]{bash}{src/ex4_multiplot.p}
+\inputminted[fontsize=\small, firstline=14, lastline=15]{bash}{src/ex4_multiplot.p}
+\inputminted[fontsize=\small, firstline=27, lastline=28]{bash}{src/ex4_multiplot.p}
 \end{frame}
 
 %slide 2
@@ -257,7 +302,7 @@ Produces a png
 \begin{itemize}
 \item open gnuplot \\ \texttt{load 'ex5\_splot.p}
 \end{itemize}
-\inputminted{bash}{src/ex5_splot.p}
+\inputminted[fontsize=\small]{bash}{src/ex5_splot.p}
 \end{frame}
 
 %slide 2
@@ -265,7 +310,7 @@ Produces a png
 \frametitle{Example 5 Surface plots}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{src/ex5.png}
+	\includegraphics[width=0.6\textwidth]{src/ex5.png}
 	\caption{function plotting}
 	\label{fig:function}
 \end{figure}
@@ -303,8 +348,10 @@ Produces a png
         \item to quit use, \texttt{ESC:q} (meaning go to \textit{NORMAL} mode, \texttt{:} means command and \texttt{q} is quit without saving)
         \item to save and quit use, \texttt{ESC:wq} (\texttt{w} stands for write)
     \end{itemize}
+    In case everything goes wrong, \texttt{:q!} is force-quit without saving
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \begin{frame}
     \frametitle{Vim commands continued}
     All of these commands are case-sensitive and must be run in \textit{NORMAL} mode not \textit{INSERT} 
@@ -315,70 +362,74 @@ Produces a png
         \item \texttt{d} -delete (cut), \texttt{dd} -delete (cut) whole line
         \item \texttt{p} -paste after cursor, \texttt{P} -paste before cursor
     \end{itemize}
-    
-    Movement commands
+
     \begin{itemize}
-    \item \texttt{0} -go to start of line, \texttt{\$} -go to end of line
+
+        \item \texttt{x} -delete character
+        \item \texttt{u} -undo
+        \item \texttt{CTRL R} -redo
+    \end{itemize}
+\end{frame} 
+
+\begin{frame}
+    \frametitle{Movement commands}
+    \begin{itemize}
     \item \texttt{a} -append at the end of the next word, \texttt{A} -append at the end of the line
-    \item \texttt{\{} -go to previous paragraph, \texttt{\}} -go to next paragraph 
+    \item \texttt{o} -open line bellow in \textit{INSERT} mode, \texttt{O} -opens line above in \textit{INSERT} mode
+    \item \texttt{0} -go to start of line
+    \item \texttt{\$} -go to end of line
+    \item \texttt{\{} -go to previous paragraph
+    \item \texttt{\}} -go to next paragraph 
     \end{itemize}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-    \frametitle{Searching and Regex in Vim}
-    Searching and regex
+    \frametitle{Searching and editing in Vim}
+    Searching
     \begin{itemize}
-    \item \texttt{fx} -find next occurrence of x in text, e.g. \texttt{f}\textit{b} finds the next letter \textit{b} in a line 
-    \item /x -search the whole document for x, e.g. /\textit{b} finds all letter \textit{b}s \\ 
-        use \texttt{n} to go to next occurrence, \texttt{N} to go to previous
+    \item \texttt{fx} -find next occurrence of x in text,\\ e.g. \texttt{f}\textit{b} finds the next letter \textit{b} in a line 
+    \item /x -search the whole document for x,\\ e.g. /\textit{b} finds all letter \textit{b}s
 \end{itemize}
-Using SED\footnote{SED stands for Stream EDitor} commands \footnote{\url{http://vim.wikia.com/wiki/Search_and_replace}} 
+
+use \texttt{n} to go to next occurrence, \texttt{N} to go to previous.
+
+Editing
 \begin{itemize}
+        \item \texttt{r} -replace character, \\ e.g. \texttt{r}\textit{a} replaces character with \textit{a}
+        \item \texttt{\~} -Changes the CASE of character, \\ e.g. \texttt{\~} when the cursor is over \textit{a} will change it to a capital, \textit{A} \\ can be used with \textit{VISUAL} mode to block capitalise or block lower-case
+    \end{itemize}
+        \end{frame}
+
+\begin{frame}
+    \frametitle{Using SED in Vim}
+     Sed stands for Stream EDitor and can be used directly from vim \footnote{\url{http://vim.wikia.com/wiki/Search_and_replace}} 
+
+     Probably the most regularly used sed commands you will need are,
+     \begin{itemize}
     \item :\%s/foo/bar/g -replaces all instances of foo with bar globally
     \item :4,31s/foo/bar/g -replace instances of foo with bar in lines 4-31 
 \end{itemize}
 \end{frame}
 
-%slide 4
 \begin{frame}
-\frametitle{Advanced Git commands}
-\begin{itemize}
-    \item One of the great things about Git is that you can get by with just the four (main) commands mentioned earlier.
-	\item The git man page is very useful, especially, \\
-	\texttt{man gittutorial} \\
-	\texttt{man giteveryday} \\ 
-\item \texttt{giteveryday} is a super useful collection of the 20 commands you will need regularly.
-\end{itemize}
+    \frametitle{Vim summary}
+    \begin{itemize}
+    \item You should try Vim, it is available in overleaf
+    \item It takes some getting used to, but I and many others think it is worth it.
+    \item Cross-platform and powerful
+    \item Very good documentation
+    \end{itemize}
 \end{frame}
 
-
-%slide 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Branching}
-\begin{itemize}
-\item Branching is useful, it lets you test something out separately to the main branch.
-\item To make a new branch called \texttt{test} \\
-\texttt{git branch test} 
-\item You can check all of the current branches and which branch you are on with \\
-	\texttt{git branch}
-\end{itemize}
-\end{frame}
-
-%slide 2
-\begin{frame}
-\frametitle{Branching}
-\begin{itemize}
-	\item To switch to the test branch type: \\ 
-	\texttt{git checkout test} \\
-\end{itemize}
-\end{frame}
-
-%slide 4
-\begin{frame}
-\frametitle{Adding Collaborators}
-\begin{itemize}
-	\item Go to a repository and on the settings tab click collaborators, you can then search for the github username
-\end{itemize}
+    \frametitle{Conclusion}
+    \begin{itemize}
+    \item You should use version control
+    \item I recomend gnuplot as it is easy to use
+    \item Vim is a fantastic editor but does require a small amount of effort to learn
+    \end{itemize}
 \end{frame}
 
 

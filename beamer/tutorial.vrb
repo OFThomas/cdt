@@ -2,4 +2,4 @@
 \begin{itemize}
 \item open gnuplot \\ \texttt{load 'ex5\_splot.p}
 \end{itemize}
-\inputminted{bash}{src/ex5_splot.p}
+\inputminted[fontsize=\small]{bash}{src/ex5_splot.p}
