@@ -10,5 +10,5 @@
 \PYG{n+nb}{set} ylabel \PYG{l+s+s2}{\PYGZdq{}y axis\PYGZdq{}}
 \PYG{n+nb}{set} zlabel \PYG{l+s+s2}{\PYGZdq{}z axis\PYGZdq{}}
 
-splot \PYG{l+s+s1}{\PYGZsq{}fplotw1w2.dat\PYGZsq{}} using \PYG{l+m}{1}:2:3 with linespoints palette
+splot \PYG{l+s+s1}{\PYGZsq{}splot.dat\PYGZsq{}} using \PYG{l+m}{1}:2:3 with linespoints palette
 \end{Verbatim}

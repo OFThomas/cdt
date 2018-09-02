@@ -9,8 +9,8 @@
 
 \PYG{n+nb}{set} key box opaque
 
-\PYG{n+nb}{set} ylabel \PYG{l+s+s1}{\PYGZsq{}Amplitude\PYGZsq{}}
-\PYG{n+nb}{set} xlabel \PYG{l+s+s1}{\PYGZsq{}Frequency\PYGZsq{}}
+\PYG{n+nb}{set} ylabel \PYG{l+s+s1}{\PYGZsq{}y axis\PYGZsq{}}
+\PYG{n+nb}{set} xlabel \PYG{l+s+s1}{\PYGZsq{}x axis\PYGZsq{}}
 
 \PYG{n+nb}{set} style line \PYG{l+m}{1} lw \PYG{l+m}{3} lc \PYG{l+m}{1}
 \PYG{n+nb}{set} style line \PYG{l+m}{2} lw \PYG{l+m}{3} lc \PYG{l+m}{2}
@@ -21,12 +21,12 @@
 \PYG{n+nb}{set} style line \PYG{l+m}{6} lw \PYG{l+m}{3} lc \PYG{l+m}{2}
 \PYG{n+nb}{unset} key
 
-\PYG{c+c1}{\PYGZsh{}plot for [IDX=0:*] \PYGZsq{}signalfreq1.dat\PYGZsq{} i IDX using 2:3 with lines ls (IDX+1)}
+\PYG{c+c1}{\PYGZsh{}plot for [IDX=0:*] \PYGZsq{}multiplot1.dat\PYGZsq{} i IDX using 2:3 with lines ls (IDX+1)}
 
-\PYG{c+c1}{\PYGZsh{}plot for [IDX=0:*] \PYGZsq{}idlerfreq1.dat\PYGZsq{} i IDX using 2:3 with lines ls (IDX+4)}
+\PYG{c+c1}{\PYGZsh{}plot for [IDX=0:*] \PYGZsq{}multiplot2.dat\PYGZsq{} i IDX using 2:3 with lines ls (IDX+4)}
 
-plot \PYG{l+s+s1}{\PYGZsq{}signalfreq1.dat\PYGZsq{}} using \PYG{l+m}{2}:3 with lines ls \PYG{l+m}{1}
-plot \PYG{l+s+s1}{\PYGZsq{}idlerfreq1.dat\PYGZsq{}} using \PYG{l+m}{2}:3 with lines ls \PYG{l+m}{2}
+plot \PYG{l+s+s1}{\PYGZsq{}multiplot1.dat\PYGZsq{}} using \PYG{l+m}{2}:3 with lines ls \PYG{l+m}{1}
+plot \PYG{l+s+s1}{\PYGZsq{}multiplot2.dat\PYGZsq{}} using \PYG{l+m}{2}:3 with lines ls \PYG{l+m}{2}
 
 \PYG{n+nb}{unset} multiplot
 \end{Verbatim}
