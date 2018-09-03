@@ -1,5 +1,5 @@
 \frametitle{Example 5 Surface plots}
 \begin{itemize}
-\item open gnuplot \\ \texttt{load 'ex5\_splot.p}
+\item open gnuplot \\ \texttt{load 'ex5\_splot.p'}
 \end{itemize}
 \inputminted[fontsize=\small]{bash}{src/ex5_splot.p}
