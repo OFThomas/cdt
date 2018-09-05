@@ -1,0 +1,78 @@
+\begin{thebibliography}{10}
+
+\bibitem{blume2014streaming}
+Robin Blume-Kohout, Sarah Croke, and Daniel Gottesman.
+\newblock Streaming universal distortion-free entanglement concentration.
+\newblock {\em IEEE Transactions on Information Theory}, 60(1):334--350, 2014.
+
+\bibitem{moylett2018quantum}
+Alexandra~E Moylett and Peter~S Turner.
+\newblock Quantum simulation of partially distinguishable boson sampling.
+\newblock {\em arXiv:1803.03657}, 2018.
+
+\bibitem{plesch2010efficient}
+Martin Plesch and Vladim{\'\i}r Bu{\v{z}}ek.
+\newblock Efficient compression of quantum information.
+\newblock {\em Physical Review A}, 81(3):032317, 2010.
+
+\bibitem{harrow2005applications}
+Aram~W Harrow.
+\newblock Applications of coherent classical communication and the schur
+  transform to quantum information theory.
+\newblock {\em arXiv preprint quant-ph/0512255}, 2005.
+
+\bibitem{kirby2017practical}
+William~M Kirby and Frederick~W Strauch.
+\newblock A practical quantum algorithm for the schur transform.
+\newblock {\em arXiv:1709.07119}, 2017.
+
+\bibitem{li2013decomposition}
+Chi-Kwong Li, Rebecca Roberts, and Xiaoyan Yin.
+\newblock Decomposition of unitary matrices and quantum gates.
+\newblock {\em International Journal of Quantum Information}, 11(01):1350015,
+  2013.
+
+\bibitem{bacon2006efficient}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock Efficient quantum circuits for schur and clebsch-gordan transforms.
+\newblock {\em Physical review letters}, 97(17):170502, 2006.
+
+\bibitem{githubot561}
+https://github.com/ot561/schurtransform/blob/master/matrixmul.f90.
+
+\bibitem{sridharan2010reduced}
+Srinivas Sridharan, Mile Gu, Matthew~R James, and William~M McEneaney.
+\newblock Reduced-complexity numerical method for optimal gate synthesis.
+\newblock {\em Physical Review A}, 82(4):042319, 2010.
+
+\bibitem{barenco1995elementary}
+Adriano Barenco, Charles~H Bennett, Richard Cleve, David~P DiVincenzo, Norman
+  Margolus, Peter Shor, Tycho Sleator, John~A Smolin, and Harald Weinfurter.
+\newblock Elementary gates for quantum computation.
+\newblock {\em Physical review A}, 52(5):3457, 1995.
+
+\bibitem{shende2006synthesis}
+Vivek~V Shende, Stephen~S Bullock, and Igor~L Markov.
+\newblock Synthesis of quantum-logic circuits.
+\newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
+  Circuits and Systems}, 25(6):1000--1010, 2006.
+
+\bibitem{draper2004logarithmic}
+Thomas~G Draper, Samuel~A Kutin, Eric~M Rains, and Krysta~M Svore.
+\newblock A logarithmic-depth quantum carry-lookahead adder.
+\newblock {\em arXiv preprint quant-ph/0406142}, 2004.
+
+\bibitem{draper2000addition}
+Thomas~G Draper.
+\newblock Addition on a quantum computer.
+\newblock {\em arXiv preprint quant-ph/0008033}, 2000.
+
+\bibitem{bacon2007quantum}
+Dave Bacon, Isaac~L Chuang, and Aram~W Harrow.
+\newblock The quantum schur and clebsch-gordan transforms: I. efficient qudit
+  circuits.
+\newblock In {\em Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, pages 1235--1244. Society for Industrial and Applied
+  Mathematics, 2007.
+
+\end{thebibliography}
