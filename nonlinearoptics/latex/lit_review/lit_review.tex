@@ -1,0 +1,87 @@
+\documentclass[10pt]{IEEEtran}
+
+
+%%%%%%%%%%%%%55 IEEE stuff %%%%%%%%%%%%%%
+\usepackage[T1]{fontenc} % optional
+\usepackage{cite}
+
+%%%%%%%%%%%%% MATHS %%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500   % for multiline eqs
+
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{bm} % optional
+
+%%%%%%%%%% Packages language %%%%%%%%%%
+
+\usepackage{tcolorbox}  % boxes for minted in figures
+\usepackage{verbatim}   % comments
+\usepackage{url}        % cite url
+\usepackage{footnote}       % footnotes
+\makesavenoteenv{tabular}   % stop enviroments breaking footnotes
+
+%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx} 
+\usepackage{caption}    % subfigures
+\usepackage{float}      % images
+\usepackage{hyperref}   % colourful refs
+\usepackage{wrapfig}    % Oli
+
+\begin{document}
+
+\title{Approximations in Quantum Nonlinear Optics }
+\author{Oliver Thomas}
+
+\maketitle
+
+
+\begin{abstract}
+    Time ordering effects and solving to zeroth order \\
+    Classical pump approximation \\
+    JSAs \\
+\end{abstract}
+
+
+
+
+
+
+% fig example
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5in]{myfigure.png}
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
+
+
+Subfigure
+\begin{figure*}[!h]
+\centering
+\subfloat[Case I]{\includegraphics[width=2.5in]{subfigcase1}
+\label{fig_first_case}}
+\hfil
+\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}
+\label{fig_second_case}}
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure*}
+
+table 
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.3}
+\caption{A Simple Example Table}
+\label{table_example}
+\centering
+\begin{tabular}{c||c}
+\hline
+\bfseries First & \bfseries Next\\
+\hline\hline
+1.0 & 2.0\\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
