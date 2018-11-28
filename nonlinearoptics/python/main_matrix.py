@@ -14,20 +14,17 @@ from operatoralg import Operatoralg
 
 init_printing(use_unicode=True)
 
-
 def printc(matrix):
     print()
     mat = (matrix[0:n, 0:n])
     pprint(mat)
     return mat
 
-
 def prints(matrix):
     print()
     mat = (matrix[0:n, n:2 * n])
     pprint(mat)
     return mat
-
 
 # ################################# start of program
 showexplicit = 0
